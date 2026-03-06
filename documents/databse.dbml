@@ -1,0 +1,286 @@
+//-----Nhóm Quản Lý Phim-----
+Table phim{
+    ma_phim int [pk, increment]
+    ten_phim varchar(255)
+    thoi_luong int
+    ngay_phat_hanh date
+    ngon_ngu varchar(255)
+    trang_thai int [ref: > trang_thai_phim.ma_trang_thai]
+    ma_tuoi int [ref: > gioi_han_tuoi.ma_tuoi]
+    url_anh varchar(255)
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table gioi_han_tuoi{
+    ma_tuoi int [pk, increment]
+    loai_tuoi varchar(255)
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table trang_thai_phim{
+    ma_trang_thai int [pk, increment]
+    loai_trang_thai_phim varchar(255)
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table dao_dien{
+    ma_dao_dien int [pk, increment]
+    ten_dao_dien varchar(255)
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table the_loai{
+    ma_the_loai int [pk, increment]
+    ten_the_loai varchar(255)
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table dao_dien_phim{
+    ma_phim int [pk, ref: > phim.ma_phim]
+    ma_dao_dien int [pk, ref: > dao_dien.ma_dao_dien]
+    //1-n
+}
+
+Table the_loai_phim{
+    ma_phim int [pk, ref: > phim.ma_phim]
+    ma_the_loai int [pk, ref: > the_loai.ma_the_loai]
+    //1-n
+}
+//-----Nhóm Quản Lý Rạp-----
+Table rap{
+    ma_rap int [pk, increment]
+    ten_rap varchar(255)
+    dia_chi varchar(255)
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table phong_chieu{
+    ma_phong int [pk, increment]
+    ten_phong varchar(255)
+    ma_loai_phong int [ref: > loai_phong.ma_loai]
+    ma_rap int [ref: > rap.ma_rap]
+    trang_thai int [ref: > trang_thai_phong.ma_trang_thai]
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table loai_phong{
+    ma_loai int [pk, increment]
+    loai_phong varchar(255)
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table trang_thai_phong{
+    ma_trang_thai int [pk, increment]
+    loai_trang_thai varchar(255)
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+//-----Nhóm Quản Lý Ghế-----
+Table ghe{
+    ma_ghe int [pk, increment]
+    ma_phong int [ref: > phong_chieu.ma_phong]
+    ma_loai_ghe int [ref: > loai_ghe.ma_loai_ghe]
+    hang varchar(10)
+    cot varchar(10)
+    trang_thai_ghe int [ref: > trang_thai_ghe.ma_trang_thai]
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table loai_ghe{
+    ma_loai_ghe int [pk, increment]
+    loai_ghe varchar(255)
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table trang_thai_ghe{
+    ma_trang_thai int [pk, increment]
+    loai_trang_thai varchar(255)
+
+    created_at timestamp
+    updated_at timestamp
+}
+//-----Nhóm Quản Lý Suất Chiếu-----
+Table suat_chieu{
+    ma_suat_chieu int [pk, increment]
+    ma_phim int [ref: > phim.ma_phim]
+    ma_phong int [ref: > phong_chieu.ma_phong]
+    ngay_chieu date
+    gio_chieu time
+    gio_ket_thuc time
+    trang_thai_suat_chieu int [ref: > trang_thai_suat_chieu.ma_trang_thai]
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table trang_thai_suat_chieu{
+    ma_trang_thai int [pk, increment]
+    loai_trang_thai varchar(255)
+
+    created_at timestamp
+    updated_at timestamp
+}
+//-----Nhóm Quản Lý Vé-----
+Table ve{
+    ma_ve int [pk, increment]
+    ma_suat_chieu int [ref: > suat_chieu.ma_suat_chieu]
+    ma_ghe int [ref: > ghe.ma_ghe]
+    ma_co_ban int [ref: > gia_co_ban.ma_co_ban]
+    trang_thai_ve int [ref: > trang_thai_ve.ma_trang_thai]
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table trang_thai_ve{
+    ma_trang_thai int [pk, increment]
+    loai_trang_thai varchar(255)
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table gia_co_ban{
+    ma_co_ban int [pk, increment] //MySQL format
+    ma_loai_ghe int [ref: > loai_ghe.ma_loai_ghe]
+    ma_loai_phong int [ref: > loai_phong.ma_loai]
+    gia_co_ban decimal(10,2)
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+//-----Nhóm Quản Lý Sản Phẩm-----
+Table san_pham{
+    ma_san_pham int [pk, increment]
+    ten_san_pham varchar(255)
+    ma_loai_san_pham int [ref: > loai_san_pham.ma_loai_san_pham]
+    sl_ton int
+    gia_co_ban decimal(10,2)
+    url_anh varchar(255)
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table loai_san_pham{
+    ma_loai_san_pham int [pk, increment]
+    loai_sp varchar(255)
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+//-----Nhóm Hóa Đơn Tổng-----
+Table hoa_don{
+    ma_hoa_don int [pk, increment]
+    ma_nhan_vien int [ref: > nhan_vien.ma_nhan_vien]
+    tong_tien decimal(10,2)
+    phuong_thuc_thanh_toan varchar(255)
+    trang_thai_hoa_don int [ref: > trang_thai_hoa_don.ma_trang_thai]
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table trang_thai_hoa_don{
+    ma_trang_thai int [pk, increment]
+    loai_trang_thai varchar(255)
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table hoa_don_ve{
+    ma_hoa_don int [pk, ref: > hoa_don.ma_hoa_don]
+    ma_ve int [pk, ref: > ve.ma_ve]
+}
+
+Table hoa_don_san_pham{
+    ma_hoa_don int [pk, ref: > hoa_don.ma_hoa_don]
+    ma_san_pham int [pk, ref: > san_pham.ma_san_pham]
+}
+
+//-----Nhóm Quản Lý Nhân Viên-----
+Table nhan_vien{
+    ma_nhan_vien int [pk, increment]
+    ten_nhan_vien varchar(255)
+    gioi_tinh boolean
+    ma_chuc_vu int [ref: > chuc_vu.ma_chuc_vu]
+    so_dien_thoai varchar(20)
+    email varchar(255)
+    ma_tai_khoan int [ref: > tai_khoan.ma_tai_khoan]
+    ngay_vao_lam date
+    trang_thai int [ref: > trang_thai_nhan_vien.ma_trang_thai]
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table tai_khoan{
+    ma_tai_khoan int [pk, increment]
+    ten_tai_khoan varchar(255)
+    mat_khau varchar(255)
+    ma_chuc_vu int [ref: > chuc_vu.ma_chuc_vu]
+    trang_thai int [ref: > trang_thai_tai_khoan.ma_trang_thai]
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table chuc_vu{
+    ma_chuc_vu int [pk, increment]
+    ten_chuc_vu varchar(255)
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table quyen_han{
+    ma_quyen_han int [pk, increment]
+    ten_quyen_han varchar(255)
+    ma_chuc_vu int [ref: > chuc_vu.ma_chuc_vu]
+    ma_tai_khoan int [ref: > tai_khoan.ma_tai_khoan]
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table trang_thai_nhan_vien{
+    ma_trang_thai int [pk, increment]
+    loai_trang_thai varchar(255)
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+Table trang_thai_tai_khoan{
+    ma_trang_thai int [pk, increment]
+    loai_trang_thai varchar(255)
+
+    created_at timestamp
+    updated_at timestamp
+}
+
+//-----Nhóm Thống Kế Dữ Liệu-----
