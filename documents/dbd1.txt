@@ -1,12 +1,30 @@
+//Use DBML to define your database structure
+//Docs: https://dbml.dbdiagram.io/docs
 Table phim {
   ma_phim int [pk, increment]
   ten_phim varchar(255) [not null]
   thoi_luong int [not null]
   ngay_phat_hanh date
   ngon_ngu varchar(100)
-  trang_thai varchar(50) [not null] // sap_chieu, dang_chieu, ngung_chieu
-  gioi_han_tuoi varchar(50) // P, K, T13, T16, T18
+  ma_trang_thai int [not null, ref: > trang_thai_phim.ma_trang_thai]
+  ma_tuoi int [ref: > gioi_han_tuoi.ma_tuoi]
   url_anh varchar(255)
+
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table gioi_han_tuoi {
+  ma_tuoi int [pk, increment]
+  loai_tuoi varchar(50) [not null, unique]
+
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table trang_thai_phim {
+  ma_trang_thai int [pk, increment]
+  ten_trang_thai varchar(100) [not null, unique]
 
   created_at timestamp
   updated_at timestamp
@@ -38,7 +56,6 @@ Table the_loai_phim {
   ma_the_loai int [pk, ref: > the_loai.ma_the_loai]
 }
 
-//-----Nhóm Quản Lý Rạp-----
 Table rap {
   ma_rap int [pk, increment]
   ten_rap varchar(255) [not null]
@@ -61,16 +78,23 @@ Table phong_chieu {
   ten_phong varchar(100) [not null]
   ma_rap int [not null, ref: > rap.ma_rap]
   ma_loai_phong int [not null, ref: > loai_phong.ma_loai_phong]
-  trang_thai varchar(50) [not null] // hoat_dong, bao_tri, ngung_su_dung
+  trang_thai varchar(50)
 
   created_at timestamp
   updated_at timestamp
 }
 
-//-----Nhóm Quản Lý Ghế-----
 Table loai_ghe {
   ma_loai_ghe int [pk, increment]
   ten_loai_ghe varchar(100) [not null, unique]
+
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table trang_thai_ghe {
+  ma_trang_thai int [pk, increment]
+  ten_trang_thai varchar(100) [not null, unique]
 
   created_at timestamp
   updated_at timestamp
@@ -82,7 +106,7 @@ Table ghe {
   ma_loai_ghe int [not null, ref: > loai_ghe.ma_loai_ghe]
   hang varchar(10) [not null]
   cot varchar(10) [not null]
-  trang_thai varchar(50) [not null] // hoat_dong, hong, bao_tri
+  ma_trang_thai int [not null, ref: > trang_thai_ghe.ma_trang_thai]
 
   created_at timestamp
   updated_at timestamp
@@ -92,7 +116,6 @@ Table ghe {
   }
 }
 
-//-----Nhóm Quản Lý Suất Chiếu-----
 Table trang_thai_suat_chieu {
   ma_trang_thai int [pk, increment]
   ten_trang_thai varchar(100) [not null, unique]
@@ -113,7 +136,6 @@ Table suat_chieu {
   updated_at timestamp
 }
 
-//-----Nhóm Quản Lý Vé-----
 Table trang_thai_ve {
   ma_trang_thai int [pk, increment]
   ten_trang_thai varchar(100) [not null, unique]
@@ -151,7 +173,6 @@ Table ve {
   }
 }
 
-//-----Nhóm Quản Lý Sản Phẩm-----
 Table loai_san_pham {
   ma_loai_san_pham int [pk, increment]
   ten_loai_san_pham varchar(100) [not null, unique]
@@ -166,17 +187,23 @@ Table san_pham {
   ma_loai_san_pham int [not null, ref: > loai_san_pham.ma_loai_san_pham]
   so_luong_ton int [not null, default: 0]
   gia_co_ban decimal(10,2) [not null]
-  trang_thai varchar(50) // dang_ban, ngung_ban
   url_anh varchar(255)
 
   created_at timestamp
   updated_at timestamp
 }
 
-//-----Nhóm Quản Lý Nhân Viên-----
 Table chuc_vu {
   ma_chuc_vu int [pk, increment]
   ten_chuc_vu varchar(100) [not null, unique]
+
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table trang_thai_nhan_vien {
+  ma_trang_thai int [pk, increment]
+  ten_trang_thai varchar(100) [not null, unique]
 
   created_at timestamp
   updated_at timestamp
@@ -190,7 +217,15 @@ Table nhan_vien {
   email varchar(255)
   ngay_vao_lam date
   ma_chuc_vu int [not null, ref: > chuc_vu.ma_chuc_vu]
-  trang_thai varchar(50) [not null] // dang_lam, tam_nghi, nghi_viec
+  ma_trang_thai int [not null, ref: > trang_thai_nhan_vien.ma_trang_thai]
+
+  created_at timestamp
+  updated_at timestamp
+}
+
+Table trang_thai_tai_khoan {
+  ma_trang_thai int [pk, increment]
+  ten_trang_thai varchar(100) [not null, unique]
 
   created_at timestamp
   updated_at timestamp
@@ -201,13 +236,12 @@ Table tai_khoan {
   ma_nhan_vien int [not null, unique, ref: > nhan_vien.ma_nhan_vien]
   ten_tai_khoan varchar(100) [not null, unique]
   mat_khau varchar(255) [not null]
-  trang_thai varchar(50) [not null] // hoat_dong, bi_khoa
+  ma_trang_thai int [not null, ref: > trang_thai_tai_khoan.ma_trang_thai]
 
   created_at timestamp
   updated_at timestamp
 }
 
-//-----Nhóm Hóa Đơn-----
 Table trang_thai_hoa_don {
   ma_trang_thai int [pk, increment]
   ten_trang_thai varchar(100) [not null, unique]
@@ -219,10 +253,9 @@ Table trang_thai_hoa_don {
 Table hoa_don {
   ma_hoa_don int [pk, increment]
   ma_nhan_vien int [not null, ref: > nhan_vien.ma_nhan_vien]
-  phuong_thuc_thanh_toan varchar(100) // tien_mat, chuyen_khoan, the
+  phuong_thuc_thanh_toan varchar(100)
   tong_tien decimal(10,2) [not null, default: 0]
   ma_trang_thai int [not null, ref: > trang_thai_hoa_don.ma_trang_thai]
-  thoi_gian_thanh_toan datetime
 
   created_at timestamp
   updated_at timestamp
