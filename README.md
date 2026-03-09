@@ -1,8 +1,31 @@
 
 ```
-Cinema Ticket Management System       
-├─ cinema-ticket-management-system 
-│  └─ src     
+Cinema Ticket Management System
+├─ cinema-ticket-management-system
+│  ├─ .classpath
+│  ├─ .project
+│  ├─ bin
+│  │  ├─ main
+│  │  │  ├─ java
+│  │  │  │  └─ com
+│  │  │  │     └─ cinema
+│  │  │  │        ├─ config
+│  │  │  │        ├─ controller
+│  │  │  │        ├─ dao
+│  │  │  │        ├─ entity
+│  │  │  │        ├─ Main.class
+│  │  │  │        ├─ service
+│  │  │  │        └─ util
+│  │  │  └─ resources
+│  │  │     ├─ config
+│  │  │     ├─ css
+│  │  │     ├─ fxml
+│  │  │     └─ images
+│  │  └─ test
+│  │     └─ com
+│  │        └─ cinema
+│  ├─ build.fxbuild
+│  └─ src
 │     ├─ main
 │     │  ├─ java
 │     │  │  └─ com
