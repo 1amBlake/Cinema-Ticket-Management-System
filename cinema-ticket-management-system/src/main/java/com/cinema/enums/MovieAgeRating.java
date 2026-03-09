@@ -1,7 +1,7 @@
 package com.cinema.enums;
 
 /***
- * hihihi
+ * hihihif
  */
 public enum MovieAgeRating {
 	P
