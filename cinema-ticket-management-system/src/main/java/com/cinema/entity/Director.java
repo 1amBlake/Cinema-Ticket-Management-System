@@ -77,7 +77,7 @@ public class Director {
 
 	public void setDirectorName(String directorName) {
 		if(directorName == null || directorName.trim().isEmpty())
-			throw new IllegalArgumentException("Đạo diễn không được bỏ trống!");
+			throw new IllegalArgumentException("Đạo diễn không được bỏ trống");
 		else
 			this.directorName = directorName;
 	}
