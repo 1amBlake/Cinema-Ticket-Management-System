@@ -168,26 +168,47 @@ public class Movie {
 	}
 
 	public void setMovieDuration(int movieDuration) {
+		if(movieDuration <= 0) {
+			throw new IllegalArgumentException("movieDuration phải lớn hơn 0");
+		}
+		if (movieDuration > 600) {
+			throw new IllegalArgumentException("movieDuration không hợp lệ (>600 phút)");
+		}
 		this.movieDuration = movieDuration;
 	}
 
 	public void setMovieReleaseDate(LocalDate movieReleaseDate) {
+		if (movieReleaseDate != null && movieReleaseDate.isAfter(LocalDate.now())) {
+			throw new IllegalArgumentException("movieReleaseDate không được lớn hơn ngày hiện tại");
+		}
 		this.movieReleaseDate = movieReleaseDate;
 	}
 
 	public void setMovieLanguage(String movieLanguage) {
+		if (movieLanguage != null && movieLanguage.trim().isEmpty()) {
+			throw new IllegalArgumentException("movieLanguage không được để trống");
+		}
 		this.movieLanguage = movieLanguage;
 	}
 
 	public void setMovieStatus(MovieStatus movieStatus) {
+		if (movieStatus == null) {
+			throw new IllegalArgumentException("movieStatus không được null");
+		}
 		this.movieStatus = movieStatus;
 	}
 
 	public void setMovieAgeRating(MovieAgeRating movieAgeRating) {
+		if (movieAgeRating == null) {
+			throw new IllegalArgumentException("movieAgeRating không được null");
+		}
 		this.movieAgeRating = movieAgeRating;
 	}
 
 	public void setPictureUrl(String pictureUrl) {
+		if (pictureUrl != null && pictureUrl.trim().isEmpty()) {
+			throw new IllegalArgumentException("pictureUrl không hợp lệ");
+		}
 		this.pictureUrl = pictureUrl;
 	}
 
