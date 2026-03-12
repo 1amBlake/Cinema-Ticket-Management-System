@@ -1,4 +1,4 @@
-package com.cinema.entity; //TODO: chưa xong
+package com.cinema.entity; //TODO: chưa làm validate
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -10,7 +10,7 @@ import com.cinema.enums.MovieStatus;
 /**
  * Đại diện cho phim trong hệ thống
  * Chứa các thuộc tính cơ bản của một phim
- * @author minhhuy
+ * @author minhhuy (chính)
  */
 
 public class Movie {
@@ -33,6 +33,23 @@ public class Movie {
 	}
 	
 	/**
+	 * Constructor dùng để thêm phim với id là tự động tăng trong mysql và 
+	 * chỉ chứa các thuộc tính bắt buộc
+	 * @param movieName tên phim
+	 * @param movieDuration thời lượng
+	 * @param movieStatus tình trạng phim
+	 * @param movieAgeRating giới hạn tuổi
+	 */
+	public Movie(String movieName, int movieDuration, MovieStatus movieStatus, MovieAgeRating movieAgeRating) {
+		super();
+		setMovieName(movieName);
+		setMovieDuration(movieDuration);
+		setMovieStatus(movieStatus);
+		setMovieAgeRating(movieAgeRating);
+	}
+
+
+	/**
 	 * Khởi tạo phim với các thông tin bắt buộc.
 	 *
 	 * @param movieId mã phim
@@ -48,6 +65,30 @@ public class Movie {
 		setMovieDuration(movieDuration);
 		setMovieStatus(movieStatus);
 		setMovieAgeRating(movieAgeRating);
+	}
+
+	
+	/**
+	 * Constructor khởi tạo với tất cả thông tin trừ mã phim,
+	 * dùng để thêm phim mới vào mysql với id tăng tự động
+	 * @param movieName tên phim
+	 * @param movieDuration thời lượng
+	 * @param movieReleaseDate ngày công chiếu
+	 * @param movieLanguage ngôn ngữ
+	 * @param movieStatus tình trạng phim
+	 * @param movieAgeRating giới hạn tuổi
+	 * @param pictureUrl đường dẫn poster
+	 */
+	public Movie(String movieName, int movieDuration, LocalDate movieReleaseDate, String movieLanguage,
+			MovieStatus movieStatus, MovieAgeRating movieAgeRating, String pictureUrl) {
+		super();
+		setMovieName(movieName);
+		setMovieDuration(movieDuration);
+		setMovieReleaseDate(movieReleaseDate);
+		setMovieLanguage(movieLanguage);
+		setMovieStatus(movieStatus);
+		setMovieAgeRating(movieAgeRating);
+		setPictureUrl(pictureUrl);
 	}
 
 	/**
@@ -67,6 +108,7 @@ public class Movie {
 	public Movie(int movieId, String movieName, int movieDuration, LocalDate movieReleaseDate, String movieLanguage,
 			MovieStatus movieStatus, MovieAgeRating movieAgeRating, String pictureUrl, LocalDateTime createdAt,
 			LocalDateTime updatedAt) {
+		this.movieId = movieId;
 		setMovieName(movieName);
 		setMovieDuration(movieDuration);
 		setMovieReleaseDate(movieReleaseDate);
@@ -74,6 +116,8 @@ public class Movie {
 		setMovieStatus(movieStatus);
 		setMovieAgeRating(movieAgeRating);
 		setPictureUrl(pictureUrl);
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
 	}
 
 	public int getMovieId() {

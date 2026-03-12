@@ -1,0 +1,82 @@
+#note: 
+	done: hoàn thành
+	inprocess: chưa xong
+	needupdate: cần cập nhật chỉnh sửa
+	unset: chưa tạo class
+	sample: Mẫu để làm theo
+	unvalidate: Chưa gán ràng buộc, đã làm xong nền
+++++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++
+	
+ENTITY:
+	Movie - unvalidate (sample)
+		enums - done
+		
+	Director - unvalidate
+	
+	Genre - unvalidate
+	
+-----------------------------------------------	
+	
+	Theater - inprocess
+	
+	ScreenType - inprocess
+	
+	Screen - inprocess
+	
+	SeatType - inprocess
+	
+	Seat - inprocess
+	
+-----------------------------------------------	
+	
+	MovieSession - inprocess
+	
+-----------------------------------------------	
+
+	TicketPricing - inprocess
+	
+	Ticket - inprocess
+	
+-----------------------------------------------
+
+	ProductType - inprocess
+	
+	Product - inprocess
+	
+-----------------------------------------------
+
+	JobTitle - inprocess
+	
+	Employee - inprocess
+	
+	EmployeeAccount - inprocess
+	
+-----------------------------------------------
+
+	Invoice - unset
+	
+	TicketInvoice - unset
+	
+	ProductInvoice - unset
+
+===============================================
+ENUMS:
+	MovieStatus - done (sample)
+	MovieAgeRating - done
+	Gender - done
+
+===============================================
+SERVICE:
+
+===============================================
+DAO:
+
+===============================================
+CONTROLLER:
+
+===============================================
+CONFIG:
+
+===============================================
+Main:

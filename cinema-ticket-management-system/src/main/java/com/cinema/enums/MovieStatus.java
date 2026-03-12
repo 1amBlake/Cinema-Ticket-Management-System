@@ -1,57 +1,66 @@
 package com.cinema.enums;
 
 /**
- * Phân loại trạng thái của phim
- * 0 - COMMINGSOON: Phim sắp được chiếu
- * 1 - SHOWING: Phim đang được chiếu
- * 3 - STOPPED: Phim đã bị ngừng chiếu
- * @author minhhuy
+ * Phân loại trạng thái của phim.
+ * 0 - COMING_SOON: Phim sắp chiếu
+ * 1 - SHOWING: Phim đang chiếu
+ * 2 - STOPPED: Phim ngừng chiếu
+ * 
+ * @author minhhuy (chính)
  */
 public enum MovieStatus {
-	COMMINGSOON(0, "Sắp Chiếu"),
-	SHOWING(1, "Đang Chiếu"),
-	STOPPED(2, "Dừng Chiếu");
-	
-	private final int movieStatusId;
-	private final String displayMovieStatus;
-	
-	/**
-	 * Constructor
-	 * @param movieStatusId
-	 * @param displayMovieStatus
-	 */
-	MovieStatus(int movieStatusId, String displayMovieStatus){
-		this.movieStatusId = movieStatusId;
-		this.displayMovieStatus = displayMovieStatus;
-	}
-	
-	/**
-	 * Lấy mã id của trạng thái phim
-	 * @return int movieStatusId
-	 */
-	public int getMovieStatusId() {
-		return movieStatusId;
-	}
-	
-	/**
-	 * Dùng để hiển thị trạng thái phim.
-	 * Ví dụ: "Sắp Chiếu"
-	 * @return String displayMovieStatus
-	 */
-	public String getDisplayMovieStatus() {
-		return displayMovieStatus;
-	}
+    COMING_SOON(0, "Sắp Chiếu"),
+    SHOWING(1, "Đang Chiếu"),
+    STOPPED(2, "Dừng Chiếu");
 
-	/**
-	 * Dùng để lấy được trạng thái phim thông qua id trạng thái
-	 * @param msId
-	 * @return MovieStatus status
-	 */
-	public static MovieStatus getMovieStatusFromId(int msId) {
-		for (MovieStatus status : values()) {
-			if (status.movieStatusId == msId)
-				return status;
-		}
-		throw new IllegalArgumentException("Mã trạng thái phim không hợp lệ!");
-	}
+    private final int movieStatusId;
+    private final String displayName;
+
+    /**
+     * Khởi tạo trạng thái phim.
+     * 
+     * @param movieStatusId mã trạng thái
+     * @param displayName tên hiển thị trạng thái
+     */
+    MovieStatus(int movieStatusId, String displayName) {
+        this.movieStatusId = movieStatusId;
+        this.displayName = displayName;
+    }
+
+    /**
+     * Lấy mã trạng thái phim.
+     * 
+     * @return mã trạng thái
+     */
+    public int getMovieStatusId() {
+        return movieStatusId;
+    }
+
+    /**
+     * Lấy tên hiển thị của trạng thái phim.
+     * Ví dụ: "Sắp Chiếu".
+     * 
+     * @return tên hiển thị trạng thái
+     */
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    /**
+     * Chuyển mã trạng thái thành enum MovieStatus.
+     * 0 - COMING_SOON: Phim sắp chiếu
+     * 1 - SHOWING: Phim đang chiếu
+     * 2 - STOPPED: Phim ngừng chiếu
+     * @param id mã trạng thái
+     * @return trạng thái phim tương ứng
+     * @throws IllegalArgumentException nếu id không hợp lệ
+     */
+    public static MovieStatus fromId(int id) {
+        for (MovieStatus status : values()) {
+            if (status.movieStatusId == id) {
+                return status;
+            }
+        }
+        throw new IllegalArgumentException("Mã trạng thái phim không hợp lệ: " + id);
+    }
 }
