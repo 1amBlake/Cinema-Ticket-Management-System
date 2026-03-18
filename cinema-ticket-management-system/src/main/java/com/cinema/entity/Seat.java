@@ -43,11 +43,11 @@ public class Seat {
 			SeatStatus seatStatus, LocalDateTime createdAt, LocalDateTime updatedAt) {
 		super();
 		this.seatId = seatId;
-		this.screenId = screenId;
-		this.seatTypeId = seatTypeId;
-		this.seatRow = seatRow;
-		this.seatColl = seatColl;
-		this.seatStatus = seatStatus;
+		setScreenId(screenId);
+		setSeatTypeId(seatTypeId);
+		setSeatRow(seatRow);
+		setSeatColl(seatColl);
+		setSeatStatus(seatStatus);
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
@@ -62,11 +62,11 @@ public class Seat {
 	 */
 	public Seat(Screen screenId, SeatType seatTypeId, String seatRow, String seatColl, SeatStatus seatStatus) {
 		super();
-		this.screenId = screenId;
-		this.seatTypeId = seatTypeId;
-		this.seatRow = seatRow;
-		this.seatColl = seatColl;
-		this.seatStatus = seatStatus;
+		setScreenId(screenId);
+		setSeatTypeId(seatTypeId);
+		setSeatRow(seatRow);
+		setSeatColl(seatColl);
+		setSeatStatus(seatStatus);
 	}
 
 	/**
@@ -82,11 +82,11 @@ public class Seat {
 			SeatStatus seatStatus) {
 		super();
 		this.seatId = seatId;
-		this.screenId = screenId;
-		this.seatTypeId = seatTypeId;
-		this.seatRow = seatRow;
-		this.seatColl = seatColl;
-		this.seatStatus = seatStatus;
+		setScreenId(screenId);
+		setSeatTypeId(seatTypeId);
+		setSeatRow(seatRow);
+		setSeatColl(seatColl);
+		setSeatStatus(seatStatus);
 	}
 
 	public int getSeatId() {

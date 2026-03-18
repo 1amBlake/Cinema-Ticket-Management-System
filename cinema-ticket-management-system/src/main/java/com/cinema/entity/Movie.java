@@ -10,6 +10,7 @@ import com.cinema.enums.MovieStatus;
 /**
  * Đại diện cho phim trong hệ thống
  * Chứa các thuộc tính cơ bản của một phim
+ * 
  * @author minhhuy (chính)
  */
 

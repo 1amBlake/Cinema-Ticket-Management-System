@@ -18,19 +18,22 @@ ENTITY:
 	
 -----------------------------------------------	
 	
-	Theater - inprocess
+	Theater - unvalidate
 	
-	ScreenType - inprocess
+	ScreenType - unvalidate
 	
-	Screen - inprocess
+	Screen - unvalidate
+		enums - done
 	
-	SeatType - inprocess
+	SeatType - unvalidate
 	
-	Seat - inprocess
-	
+	Seat - unvalidate
+		enums - done
+		
 -----------------------------------------------	
 	
-	MovieSession - inprocess
+	MovieSession - unvalidate
+		enums: done
 	
 -----------------------------------------------	
 

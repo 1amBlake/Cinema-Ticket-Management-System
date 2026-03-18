@@ -31,7 +31,7 @@ public class SeatType {
 	public SeatType(int seatTypeId, String seatTypeName, LocalDateTime createdAt, LocalDateTime updatedAt) {
 		super();
 		this.seatTypeId = seatTypeId;
-		this.seatTypeName = seatTypeName;
+		setSeatTypeName(seatTypeName);
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
@@ -44,7 +44,7 @@ public class SeatType {
 	public SeatType(int seatTypeId, String seatTypeName) {
 		super();
 		this.seatTypeId = seatTypeId;
-		this.seatTypeName = seatTypeName;
+		setSeatTypeName(seatTypeName);
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class SeatType {
 	 */
 	public SeatType(String seatTypeName) {
 		super();
-		this.seatTypeName = seatTypeName;
+		setSeatTypeName(seatTypeName);
 	}
 
 
