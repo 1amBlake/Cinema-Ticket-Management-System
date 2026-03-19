@@ -10,7 +10,6 @@ import com.cinema.enums.MovieStatus;
 /**
  * Đại diện cho phim trong hệ thống
  * Chứa các thuộc tính cơ bản của một phim
- * 
  * @author minhhuy (chính)
  */
 
@@ -165,31 +164,52 @@ public class Movie {
 		if (movieName == null || movieName.trim().isEmpty()) {
 			throw new IllegalArgumentException("movieName không được để trống");
 		}
+		if (movieName.trim().length() > 255) {
+		    throw new IllegalArgumentException("movieName không được vượt quá 255 ký tự");
+		}
 		this.movieName = movieName.trim();
 	}
 
 	public void setMovieDuration(int movieDuration) {
-		this.movieDuration = movieDuration;
+	    if (movieDuration <= 0 || movieDuration > 600) {
+	        throw new IllegalArgumentException("movieDuration phải > 0 và <= 600 phút");
+	    }
+	    this.movieDuration = movieDuration;
 	}
 
 	public void setMovieReleaseDate(LocalDate movieReleaseDate) {
-		this.movieReleaseDate = movieReleaseDate;
+	    if (movieReleaseDate != null && movieReleaseDate.getYear() < 1800) {
+	        throw new IllegalArgumentException("movieReleaseDate không hợp lệ (trước năm 1800)");
+	    }
+	    this.movieReleaseDate = movieReleaseDate;
 	}
 
 	public void setMovieLanguage(String movieLanguage) {
-		this.movieLanguage = movieLanguage;
+		if (movieLanguage != null && movieLanguage.trim().length() > 255) {
+		    throw new IllegalArgumentException("movieLanguage không được vượt quá 255 ký tự");
+		}
+	    this.movieLanguage = (movieLanguage == null) ? null : movieLanguage.trim();
 	}
 
 	public void setMovieStatus(MovieStatus movieStatus) {
+		if (movieStatus == null) {
+			throw new IllegalArgumentException("movieStatus không được null");
+		}
 		this.movieStatus = movieStatus;
 	}
 
 	public void setMovieAgeRating(MovieAgeRating movieAgeRating) {
+		if (movieAgeRating == null) {
+			throw new IllegalArgumentException("movieAgeRating không được null");
+		}
 		this.movieAgeRating = movieAgeRating;
 	}
 
 	public void setPictureUrl(String pictureUrl) {
-		this.pictureUrl = pictureUrl;
+		if (pictureUrl != null && pictureUrl.trim().length() > 255) {
+		    throw new IllegalArgumentException("pictureUrl không được vượt quá 255 ký tự");
+		}
+	    this.pictureUrl = (pictureUrl == null) ? null : pictureUrl.trim();
 	}
 
 	/**
