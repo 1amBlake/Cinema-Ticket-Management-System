@@ -1,31 +1,34 @@
-package com.cinema.entity; //TODO: chưa làm validate
+package com.cinema.entity;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * Đại diện cho đạo diễn của phim trong hệ thống
- * Chứa các thuộc tính định danh đạo diễn
+ * Đại diện cho đạo diễn trong hệ thống.
+ * Chứa các thuộc tính đạo diễn.
  * 
- * @author minhhuy (chính)
+ * @author Minh Huy (chính, sửa ràng buộc)
+ * @author Hải Anh (ràng buộc)
  */
 
-public class Director {
-	private int directorId; //not null
+public class Director { //đợi last check
+	
+	private int directorId; //Do database tự sinh
 	private String directorName; //not null
-	private LocalDateTime createdAt;
-	private LocalDateTime updatedAt;
+	private LocalDateTime createdAt;//Do database tự sinh
+	private LocalDateTime updatedAt;//Do database tự sinh
 	
 	/**
-	 * constructor mặc định, không truyền dữ liệu
+	 * Constructor mặc định, không có dữ liệu để truyền
 	 */
 	public Director() {
 		super();
 	}
 	
 	/**
-	 * Constructor sử dụng để thêm một đạo diễn mới, id sẽ tư tăng trong mysql
-	 * @param directorName tên đạo diễn
+	 * Constructor để thêm dữ liệu cho CSDL
+	 * 
+	 * @param directorName - Tên đạo diễn
 	 */
 	public Director(String directorName) {
 		super();
@@ -33,10 +36,10 @@ public class Director {
 	}
 
 	/**
-	 * Constructor khởi tạo với các thông tin bắt buộc
+	 * Constructor truyền dữ liệu với các thông tin "not null"
 	 * 
-	 * @param directorId mã đạo diễn
-	 * @param directorName tên đạo diễn
+	 * @param directorId - Mã đạo diễn
+	 * @param directorName - Tên đạo diễn
 	 */
 	public Director(int directorId, String directorName) {
 		super();
@@ -45,11 +48,11 @@ public class Director {
 	}
 	
 	/**
-	 * Constructor đầy đủ
-	 * @param directorId
-	 * @param directorName
-	 * @param createdAt
-	 * @param updatedAt
+	 * Constructor đầy đủ thông rin
+	 * @param directorId - Mã đạo diễn
+	 * @param directorName - Tên đạo diễn
+	 * @param createdAt - Thời điểm khởi tạo dữ liệu
+	 * @param updatedAt - Thời điểm dữ liệu được cập nhật
 	 */
 	public Director(int directorId, String directorName, LocalDateTime createdAt, LocalDateTime updatedAt) {
 		super();
@@ -76,17 +79,23 @@ public class Director {
 	}
 
 	public void setDirectorName(String directorName) {
-		this.directorName = directorName;
+		if(directorName == null || directorName.trim().isEmpty() || directorName.equals(""))
+			throw new IllegalArgumentException("Đạo diễn không được bỏ trống");
+		else
+			this.directorName = directorName.trim();
 	}
 	
 	/**
-	 * Trả về hashcode dựa trên directorId
+	 * Nếu đã có id hợp lệ thì hash theo id. Nếu chưa có id hợp lệ thì hash theo chính Object
 	 */
 	@Override
 	public int hashCode() {
-		return Objects.hash(directorId);
+		return (directorId > 0) ? Integer.hashCode(directorId) : System.identityHashCode(this);
 	}
 	
+	/**
+	 * Hai đối tượng Director được xem là bằng nhau khi có cùng movieId hợp lệ
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

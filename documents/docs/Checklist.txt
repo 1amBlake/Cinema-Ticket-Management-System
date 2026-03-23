@@ -9,12 +9,12 @@
 ++++++++++++++++++++++++++++++++++++++++++++++
 	
 ENTITY:
-	Movie - unvalidate (sample)
+	Movie - done (sample)
 		enums - done
 		
-	Director - unvalidate
+	Director
 	
-	Genre - unvalidate
+	Genre
 	
 -----------------------------------------------	
 	
