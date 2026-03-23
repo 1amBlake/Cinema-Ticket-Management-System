@@ -7,25 +7,26 @@ import java.util.Objects;
  * Đại diện cho thể loại phim trong hệ thống.
  * Chứa các thông tin cơ bản của một thể loại phim.
  *
- * @author minhhuy
+ * @author Minh Huy (chính, ràng buộc)
  */
 public class Genre {
-	private int genreId; //mã thể loại
-	private String genreName; //tên thể loại
-	private LocalDateTime createdAt;
-	private LocalDateTime updatedAt;
+	
+	private int genreId; //Do database tự sinh
+	private String genreName; //not null
+	private LocalDateTime createdAt; //Do database tự sinh
+	private LocalDateTime updatedAt; //Do database tự sinh
 	
 	/**
-	 * Constructor mặc định, không truyền dữ liệu
+	 * Constructor mặc định, không có dữ liệu để truyền
 	 */
 	public Genre() {
 		super();
 	}
 	
 	/**
-	 * Constructor dùng để tạo một thể loại mới
-	 * Dùng cho SQL tự động gia tăng Id
-	 * @param genreName tên thể loại
+	 * Constructor để thêm dữ liệu cho CSDL (các dữ liệu not null)
+	 * 
+	 * @param genreName - Tên thể loại phim
 	 */
 	public Genre(String genreName) {
 		super();
@@ -33,9 +34,10 @@ public class Genre {
 	}
 	
 	/**
-	 * Constructor với các dữ liệu bắt buộc
-	 * @param genreId mã thể loại
-	 * @param genreName tên thể loại
+	 * Constructor truyền dữ liệu với các thông tin "not null"
+	 * 
+	 * @param genreId - Mã thể loại phim
+	 * @param genreName - Tên thể loại phim
 	 */
 	public Genre(int genreId, String genreName) {
 		super();
@@ -44,12 +46,12 @@ public class Genre {
 	}
 
 	/**
-	 * Constructor khởi tạo đầy đủ thông tin thể loại.
+	 * Constructor đầy đủ thông tin
 	 *
-	 * @param genreId mã thể loại
-	 * @param genreName tên thể loại
-	 * @param createdAt thời điểm tạo dữ liệu
-	 * @param updatedAt thời điểm cập nhật dữ liệu
+	 * @param genreId - Mã thể loại phim
+	 * @param genreName - Tên thể loại phim
+	 * @param createdAt - Thời điểm khởi tạo dữ liệu
+	 * @param updatedAt - Thời điểm dữ liệu được cập nhật
 	 */
 	public Genre(int genreId, String genreName, LocalDateTime createdAt, LocalDateTime updatedAt) {
 		super();
@@ -76,17 +78,24 @@ public class Genre {
 	}
 
 	public void setGenreName(String genreName) {
-		this.genreName = genreName;
+		if (genreName == null || genreName.trim().isEmpty())
+			throw new IllegalArgumentException("genreName không được để trống");
+		else if (genreName.trim().length() > 255)
+			throw new IllegalArgumentException("genreName không được vượt quá 255 ký tự");
+		this.genreName = genreName.trim();
 	}
 
 	/**
-	 * Trả về hashcode dựa trên genreId
+	 * Nếu đã có id hợp lệ thì hash theo id. Nếu chứa có id hợp lệ thì hash theo chính Object
 	 */
 	@Override
 	public int hashCode() {
-		return Objects.hash(genreId);
+		return (genreId > 0) ? Integer.hashCode(genreId) : System.identityHashCode(this);
 	}
-
+	
+	/**
+	 * Hai Object Genre được xem là bằng nhau khi có cùng genreId hợp lệ
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

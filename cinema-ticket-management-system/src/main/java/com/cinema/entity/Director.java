@@ -79,10 +79,11 @@ public class Director { //đợi last check
 	}
 
 	public void setDirectorName(String directorName) {
-		if(directorName == null || directorName.trim().isEmpty() || directorName.equals(""))
-			throw new IllegalArgumentException("Đạo diễn không được bỏ trống");
-		else
-			this.directorName = directorName.trim();
+		if(directorName == null || directorName.trim().isEmpty())
+			throw new IllegalArgumentException("directorName không được bỏ trống");
+		else if (directorName.trim().length() > 255)
+			throw new IllegalArgumentException("directorName không được vượt quá 255 ký tự");
+		this.directorName = directorName.trim();
 	}
 	
 	/**
@@ -94,7 +95,7 @@ public class Director { //đợi last check
 	}
 	
 	/**
-	 * Hai đối tượng Director được xem là bằng nhau khi có cùng movieId hợp lệ
+	 * Hai Object Director được xem là bằng nhau khi có cùng movieId hợp lệ
 	 */
 	@Override
 	public boolean equals(Object obj) {

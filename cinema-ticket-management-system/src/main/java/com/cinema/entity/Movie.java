@@ -231,7 +231,7 @@ public class Movie { //Đã xong
 	}
 	
 	/**
-	 * Hai đối tượng Movie được xem là bằng nhau khi có cùng movieId hợp lệ.
+	 * Hai Object Movie được xem là bằng nhau khi có cùng movieId hợp lệ.
 	 */
 	@Override
 	public boolean equals(Object obj) {
