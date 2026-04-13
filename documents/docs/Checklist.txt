@@ -10,71 +10,128 @@
 	
 ENTITY:
 	Movie - done (sample)
-		enums - done
+		enums: 
+			MovieStatus - done
+			MovieAgeRating - done
 		
-	Director
+	Director - done
 	
-	Genre
+	MovieDirector - done (beta)
+	
+	Genre - done
+	
+	MovieGenre - done (beta)
 	
 -----------------------------------------------	
 	
-	Theater - unvalidate
+	Theater - done
 	
-	ScreenType - unvalidate
+	ScreenType - done
 	
-	Screen - unvalidate
-		enums - done
+	Screen - done
+		enums:
+			ScreenStatus - done
 	
-	SeatType - unvalidate
+	SeatType - done
 	
-	Seat - unvalidate
-		enums - done
+	Seat - done
+		enums:
+			SeatStatus - done
 		
 -----------------------------------------------	
 	
-	MovieSession - unvalidate
-		enums: done
+	MovieSession - done
+		enums: 
+			MovieFormat - done
+			MovieSessionStatus - done
 	
 -----------------------------------------------	
 
 	TicketPricing - inprocess
 	
-	Ticket - inprocess
+	Ticket - done
+		Enums:
+			TicketStatus: done
 	
 -----------------------------------------------
 
-	ProductType - inprocess
+	ProductType - done
 	
-	Product - inprocess
-	
------------------------------------------------
-
-	JobTitle - inprocess
-	
-	Employee - inprocess
-	
-	EmployeeAccount - inprocess
+	Product - done
+		Enums:
+			ProductStatus - done
 	
 -----------------------------------------------
 
-	Invoice - unset
+	JobTitle - done
 	
-	TicketInvoice - unset
+	Employee - done
+		Enums:
+			EmployeeStatus - done
+			EmployeeGender - done
 	
-	ProductInvoice - unset
+	EmployeeAccount - done
+		Enums:
+			AccountStatus - done
+	
+-----------------------------------------------
 
-===============================================
-ENUMS:
-	MovieStatus - done (sample)
-	MovieAgeRating - done
-	Gender - done
+	Invoice - done
+		Enums:
+			PaymentMethod - done
+			InvoiceStatus - done
+	
+	TicketInvoice - done
+	
+	ProductInvoice - done
 
 ===============================================
 SERVICE:
 
 ===============================================
 DAO:
-
+	GenreDao
+	
+	DirectorDao
+	
+	TheaterDao
+	
+	ScreenTypeDao
+	
+	SeatTypeDao
+	
+	ProductTypeDao
+	
+	JobTitleDao
+	
+	MovieDao
+	
+	ScreenDao
+	
+	SeatDao
+	
+	MovieSessionDao
+	
+	ProductDao
+	
+	EmployeeDao
+	
+	EmployeeAccountDao
+	
+	TicketPricingDao
+	
+	TicketDao
+	
+	InvoiceDao
+	
+	MovieDirectorDao
+	
+	MovieGenreDao
+	
+	TicketInvoiceDao
+	
+	ProductInvoiceDao
+	
 ===============================================
 CONTROLLER:
 

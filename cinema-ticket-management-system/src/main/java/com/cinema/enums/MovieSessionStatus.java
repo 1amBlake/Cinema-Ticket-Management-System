@@ -1,61 +1,69 @@
 package com.cinema.enums;
 
 /**
- * Được dùng để định nghĩa cho trạng thái suất chiếu
- * 0 - CANCELLED: Hủy
- * 1 - UPCOMING: sắp chiếu (đã lên lịch)
- * 2 - NOW_SHOWING: đang chiếu
- * 3 - FINISHED: đã kết thúc
+ * Phân loại trạng thái của suất chiếu.
+ * 0 - CANCELLED: Suất chiếu bị hủy
+ * 1 - UPCOMING: Suất chiếu sắp chiếu
+ * 2 - NOW_SHOWING: Suất chiếu đang chiếu
+ * 3 - FINISHED: Suất chiếu đã kết thúc
  * 
- * @author minhhuy (chính)
+ * @author Minh Huy (chính)
  */
 public enum MovieSessionStatus {
 	CANCELLED(0, "Hủy"),
-	UPCOMING(1, "Sắp Chiếu"),
-	NOW_SHOWING(2, "Đang Chiếu"),
-	FINISHED(3, "Kết Thúc");
-	
+	UPCOMING(1, "Sắp chiếu"),
+	NOW_SHOWING(2, "Đang chiếu"),
+	FINISHED(3, "Kết thúc");
+
 	private final int movieSessionStatusId;
 	private final String displayName;
-	
+
 	/**
-	 * Khởi tạo trạng thái suất chiếu
+	 * Khởi tạo trạng thái suất chiếu.
 	 * 
-	 * @param movieSessionStatusId mã trạng thái
-	 * @param displayName tên hiển thị của trạng thái
+	 * @param movieSessionStatusId - Mã trạng thái suất chiếu
+	 * @param displayName - Tên hiển thị trạng thái suất chiếu
 	 */
-	MovieSessionStatus(int movieSessionStatusId, String displayName){
+	MovieSessionStatus(int movieSessionStatusId, String displayName) {
 		this.movieSessionStatusId = movieSessionStatusId;
 		this.displayName = displayName;
 	}
-	
+
 	/**
-	 * Lấy mã trạng thái suất chiếu
+	 * Lấy mã trạng thái suất chiếu.
 	 * 
-	 * @return movieSessionStatusId (int)
+	 * @return mã trạng thái suất chiếu
 	 */
 	public int getMovieSessionStatusId() {
 		return movieSessionStatusId;
 	}
-	
+
 	/**
-	 * Lấy tên hiện thị của của trạng thái suất chiếu
+	 * Lấy tên hiển thị của trạng thái suất chiếu.
 	 * 
-	 * @return displayName (String)
+	 * @return tên hiển thị trạng thái suất chiếu
 	 */
 	public String getDisplayName() {
 		return displayName;
 	}
-	
+
 	/**
-	 * Tìm trạng thái suất chiếu thông qua mã 
-	 * @param id mã trạng thái (int)
-	 * @return status (enums)
+	 * Chuyển mã trạng thái thành enum MovieSessionStatus.
+	 * 0 - CANCELLED: Suất chiếu bị hủy
+	 * 1 - UPCOMING: Suất chiếu sắp chiếu
+	 * 2 - NOW_SHOWING: Suất chiếu đang chiếu
+	 * 3 - FINISHED: Suất chiếu đã kết thúc
+	 * 
+	 * @param id - Mã trạng thái suất chiếu
+	 * @return trạng thái suất chiếu tương ứng
+	 * @throws IllegalArgumentException nếu id không hợp lệ
 	 */
-	public static MovieSessionStatus fromId (int id) {
+	public static MovieSessionStatus fromId(int id) {
 		for (MovieSessionStatus status : values()) {
-			return status;
+			if (status.movieSessionStatusId == id) {
+				return status;
+			}
 		}
-		throw new IllegalArgumentException("Mã định dạng trạng thái suất chiếu không hợp lệ!");
+		throw new IllegalArgumentException("Mã trạng thái suất chiếu không hợp lệ: " + id);
 	}
 }

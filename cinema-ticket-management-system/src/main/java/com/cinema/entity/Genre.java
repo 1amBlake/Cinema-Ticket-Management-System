@@ -1,7 +1,6 @@
-package com.cinema.entity; //TODO: chưa làm validate
+package com.cinema.entity;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  * Đại diện cho thể loại phim trong hệ thống.
@@ -21,6 +20,16 @@ public class Genre {
 	 */
 	public Genre() {
 		super();
+	}
+	
+	/**
+	 * Constructor để khởi tạo thực thể theo mã, phục vụ truy vấn và ánh xạ quan hệ
+	 * 
+	 * @param genreId - Mã thể loại phim
+	 */
+	public Genre(int genreId) {
+		super();
+		this.genreId = genreId;
 	}
 	
 	/**
@@ -80,13 +89,13 @@ public class Genre {
 	public void setGenreName(String genreName) {
 		if (genreName == null || genreName.trim().isEmpty())
 			throw new IllegalArgumentException("genreName không được để trống");
-		else if (genreName.trim().length() > 255)
-			throw new IllegalArgumentException("genreName không được vượt quá 255 ký tự");
+		else if (genreName.trim().length() > 100)
+			throw new IllegalArgumentException("genreName không được vượt quá 100 ký tự");
 		this.genreName = genreName.trim();
 	}
 
 	/**
-	 * Nếu đã có id hợp lệ thì hash theo id. Nếu chứa có id hợp lệ thì hash theo chính Object
+	 * Nếu đã có id hợp lệ thì hash theo id. Nếu chưa có id hợp lệ thì hash theo chính Object
 	 */
 	@Override
 	public int hashCode() {

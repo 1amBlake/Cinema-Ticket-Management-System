@@ -1,55 +1,58 @@
 package com.cinema.enums;
 
 /**
- * Phân loại trạng thái của phòng chiếu
- * 0 - AVAILABLE: Hoạt động
- * 1 - MAINTENANCE: Bảo trì
- * 2 - UNVAILABLE: Ngưng hoạt động
+ * Phân loại trạng thái của phòng chiếu.
+ * 0 - AVAILABLE: Phòng chiếu hoạt động
+ * 1 - MAINTENANCE: Phòng chiếu bảo trì
+ * 2 - UNAVAILABLE: Phòng chiếu ngưng hoạt động
  * 
- * @author minhhuy (chính)
+ * @author Minh Huy (chính)
  */
 public enum ScreenStatus {
-	AVAILABLE(0, "Hoạt Động"),
-	MAINTENANCE(1, "Bảo Trì"),
-	UNAVAILABLE(2, "Ngưng Hoạt Động");
-	
+	AVAILABLE(0, "Hoạt động"),
+	MAINTENANCE(1, "Bảo trì"),
+	UNAVAILABLE(2, "Ngưng hoạt động");
+
 	private final int screenStatusId;
 	private final String displayName;
-	
+
 	/**
-	 * Khởi tạo trạng thái phòng chiếu
+	 * Khởi tạo trạng thái phòng chiếu.
 	 * 
-	 * @param screenStatusId
-	 * @param displayName
+	 * @param screenStatusId - Mã trạng thái phòng chiếu
+	 * @param displayName - Tên hiển thị trạng thái phòng chiếu
 	 */
-	ScreenStatus(int screenStatusId, String displayName){
+	ScreenStatus(int screenStatusId, String displayName) {
 		this.screenStatusId = screenStatusId;
 		this.displayName = displayName;
 	}
-	
+
 	/**
-	 * Lấy mã trạng thái
-	 * @return mã trạng thái (int)
+	 * Lấy mã trạng thái phòng chiếu.
+	 * 
+	 * @return mã trạng thái phòng chiếu
 	 */
 	public int getScreenStatusId() {
 		return screenStatusId;
 	}
-	
+
 	/**
-	 * Lấy tên hiển thị của trạng thái phim
-	 * @return displayName (String)
+	 * Lấy tên hiển thị của trạng thái phòng chiếu.
+	 * 
+	 * @return tên hiển thị trạng thái phòng chiếu
 	 */
 	public String getDisplayName() {
 		return displayName;
 	}
-	
+
 	/**
-	 * Chuyển mã trạng thái thành enum ScreenStatus
-	 * 0 - AVAILABLE: Hoạt động
-	 * 1 - MAINTENANCE: Bảo trì
-	 * 2 - UNVAILABLE: Ngưng hoạt động
-	 * @param id
-	 * @return status (ScreenStatus)
+	 * Chuyển mã trạng thái thành enum ScreenStatus.
+	 * 0 - AVAILABLE: Phòng chiếu hoạt động
+	 * 1 - MAINTENANCE: Phòng chiếu bảo trì
+	 * 2 - UNAVAILABLE: Phòng chiếu ngưng hoạt động
+	 * 
+	 * @param id - Mã trạng thái phòng chiếu
+	 * @return trạng thái phòng chiếu tương ứng
 	 * @throws IllegalArgumentException nếu id không hợp lệ
 	 */
 	public static ScreenStatus fromId(int id) {
@@ -58,6 +61,6 @@ public enum ScreenStatus {
 				return status;
 			}
 		}
-		throw new IllegalArgumentException("Mã trạng thái phong chiếu không hợp lệ: " + id);
+		throw new IllegalArgumentException("Mã trạng thái phòng chiếu không hợp lệ: " + id);
 	}
 }

@@ -1,7 +1,8 @@
-package com.cinema.entity; 
+package com.cinema.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
 import com.cinema.enums.MovieAgeRating;
 import com.cinema.enums.MovieStatus;
 
@@ -12,27 +13,36 @@ import com.cinema.enums.MovieStatus;
  * @author Minh Huy (chính, góp ý, sửa ràng buộc)
  * @author Thanh Trọng (ràng buộc)
  */
+public class Movie {
 
-public class Movie { //Đã xong
-	
-	private int movieId; //Do database tự sinh
-	private String movieName; //not null
-	private int movieDuration; //not null
+	private int movieId; // Do database tự sinh
+	private String movieName; // not null
+	private int movieDuration; // not null
 	private LocalDate movieReleaseDate;
 	private String movieLanguage;
-	private MovieStatus movieStatus; //enums - not null
-	private MovieAgeRating movieAgeRating; //enums - not null
+	private MovieStatus movieStatus; // enums - not null
+	private MovieAgeRating movieAgeRating; // enums - not null
 	private String pictureUrl;
-	private LocalDateTime createdAt; //Do database tự sinh
-	private LocalDateTime updatedAt; //Do database tự sinh
-	
+	private LocalDateTime createdAt; // Do database tự sinh
+	private LocalDateTime updatedAt; // Do database tự sinh
+
 	/**
-	 *Constructor mặc định, không có dữ liệu để truyền
+	 * Constructor mặc định, không có dữ liệu để truyền
 	 */
 	public Movie() {
 		super();
 	}
-	
+
+	/**
+	 * Constructor để khởi tạo thực thể theo mã, phục vụ truy vấn và ánh xạ quan hệ
+	 * 
+	 * @param movieId - Mã phim
+	 */
+	public Movie(int movieId) {
+		super();
+		this.movieId = movieId;
+	}
+
 	/**
 	 * Constructor để thêm dữ liệu cho CSDL (các dữ liệu not null)
 	 * 
@@ -50,8 +60,8 @@ public class Movie { //Đã xong
 	}
 
 	/**
-	 * Constructor truyền dữ liệu với các thông tin "not null"
-	 *
+	 * Constructor truyền dữ liệu với các thông tin not null
+	 * 
 	 * @param movieId - Mã phim
 	 * @param movieName - Tên phim
 	 * @param movieDuration - Thời lượng
@@ -67,9 +77,8 @@ public class Movie { //Đã xong
 		setMovieAgeRating(movieAgeRating);
 	}
 
-	
 	/**
-	 * Constructor để thêm dữ liệu cho CSDL (các dữ liệu có thể null)
+	 * Constructor để thêm dữ liệu cho CSDL (tất cả dữ liệu nhập vào)
 	 * 
 	 * @param movieName - Tên phim
 	 * @param movieDuration - Thời lượng
@@ -93,7 +102,7 @@ public class Movie { //Đã xong
 
 	/**
 	 * Constructor đầy đủ thông tin
-	 *
+	 * 
 	 * @param movieId - Mã phim
 	 * @param movieName - Tên phim
 	 * @param movieDuration - Thời lượng
@@ -120,8 +129,8 @@ public class Movie { //Đã xong
 		this.updatedAt = updatedAt;
 	}
 
-	//Getter / Setter
-	
+	// Getter / Setter
+
 	public int getMovieId() {
 		return movieId;
 	}
@@ -167,24 +176,24 @@ public class Movie { //Đã xong
 			throw new IllegalArgumentException("movieName không được để trống");
 		}
 		if (movieName.trim().length() > 255) {
-		    throw new IllegalArgumentException("movieName không được vượt quá 255 ký tự");
+			throw new IllegalArgumentException("movieName không được vượt quá 255 ký tự");
 		}
 		this.movieName = movieName.trim();
 	}
 
 	public void setMovieDuration(int movieDuration) {
-	    if (movieDuration <= 0 || movieDuration > 600) {
-	        throw new IllegalArgumentException("movieDuration phải > 0 và <= 600 phút");
-	    }
-	    this.movieDuration = movieDuration;
+		if (movieDuration <= 0 || movieDuration > 600) {
+			throw new IllegalArgumentException("movieDuration phải > 0 và <= 600 phút");
+		}
+		this.movieDuration = movieDuration;
 	}
 
 	public void setMovieReleaseDate(LocalDate movieReleaseDate) {
-	    if (movieReleaseDate != null && 
-	    		(movieReleaseDate.getYear() < 1800 || movieReleaseDate.getYear() > (LocalDate.now().getYear()+2))) {
-	        throw new IllegalArgumentException("movieReleaseDate không hợp lệ!");
-	    }
-	    this.movieReleaseDate = movieReleaseDate;
+		if (movieReleaseDate != null
+				&& (movieReleaseDate.getYear() < 1800 || movieReleaseDate.getYear() > (LocalDate.now().getYear() + 2))) {
+			throw new IllegalArgumentException("movieReleaseDate không hợp lệ!");
+		}
+		this.movieReleaseDate = movieReleaseDate;
 	}
 
 	public void setMovieLanguage(String movieLanguage) {
@@ -195,7 +204,7 @@ public class Movie { //Đã xong
 		if (movieLanguage.trim().length() > 100) {
 			throw new IllegalArgumentException("movieLanguage không được vượt quá 100 ký tự");
 		}
-		this.movieLanguage = movieLanguage;
+		this.movieLanguage = movieLanguage.trim();
 	}
 
 	public void setMovieStatus(MovieStatus movieStatus) {
@@ -217,9 +226,10 @@ public class Movie { //Đã xong
 			this.pictureUrl = null;
 			return;
 		}
-		if(pictureUrl.trim().length() > 255)
+		if (pictureUrl.trim().length() > 255) {
 			throw new IllegalArgumentException("pictureUrl không được vượt quá 255 ký tự");
-		this.pictureUrl = pictureUrl;
+		}
+		this.pictureUrl = pictureUrl.trim();
 	}
 
 	/**
@@ -229,7 +239,7 @@ public class Movie { //Đã xong
 	public int hashCode() {
 		return (movieId > 0) ? Integer.hashCode(movieId) : System.identityHashCode(this);
 	}
-	
+
 	/**
 	 * Hai Object Movie được xem là bằng nhau khi có cùng movieId hợp lệ.
 	 */
@@ -239,8 +249,8 @@ public class Movie { //Đã xong
 			return true;
 		if (obj == null || getClass() != obj.getClass())
 			return false;
-		Movie other = (Movie) obj;
 
+		Movie other = (Movie) obj;
 		if (this.movieId <= 0 || other.movieId <= 0)
 			return false;
 

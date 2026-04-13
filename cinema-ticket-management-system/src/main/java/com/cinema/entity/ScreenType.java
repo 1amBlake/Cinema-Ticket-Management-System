@@ -1,30 +1,41 @@
 package com.cinema.entity;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
- * Đại diện cho loại phòng chiếu trong hệ thống
- * Chứa các thuộc tính định danh cho loại phòng
+ * Đại diện cho loại phòng chiếu trong hệ thống.
+ * Chứa các thuộc tính loại phòng chiếu.
  * 
- * @author minhhuy (chính)
+ * @author Minh Huy (chính, ràng buộc)
  */
 public class ScreenType {
-	private int screenTypeId;
-	private String screenTypeName;
-	private LocalDateTime createdAt;
-	private LocalDateTime updatedAt;
-	
+
+	private int screenTypeId; //Do database tự sinh
+	private String screenTypeName; //not null
+	private LocalDateTime createdAt; //Do database tự sinh
+	private LocalDateTime updatedAt; //Do database tự sinh
+
 	/**
-	 * Constructor mặc đinh, không truyền dữ liệu
+	 * Constructor mặc định, không có dữ liệu để truyền
 	 */
 	public ScreenType() {
 		super();
 	}
 	
 	/**
-	 * Constructor sử dụng để thêm đạo diễn mới với sql tự gia tăng id
-	 * @param screenTypeName
+	 * Constructor để khởi tạo thực thể theo mã, phục vụ truy vấn và ánh xạ quan hệ
+	 * 
+	 * @param screenTypeId - Mã loại phòng chiếu
+	 */
+	public ScreenType(int screenTypeId) {
+		super();
+		this.screenTypeId = screenTypeId;
+	}
+
+	/**
+	 * Constructor để thêm dữ liệu cho CSDL
+	 * 
+	 * @param screenTypeName - Tên loại phòng chiếu
 	 */
 	public ScreenType(String screenTypeName) {
 		super();
@@ -32,9 +43,10 @@ public class ScreenType {
 	}
 
 	/**
-	 * Constructor khởi tạo với các thông tin bắt buộc
-	 * @param screenTypeId
-	 * @param screenTypeName
+	 * Constructor truyền dữ liệu với các thông tin "not null"
+	 * 
+	 * @param screenTypeId - Mã loại phòng chiếu
+	 * @param screenTypeName - Tên loại phòng chiếu
 	 */
 	public ScreenType(int screenTypeId, String screenTypeName) {
 		super();
@@ -43,11 +55,12 @@ public class ScreenType {
 	}
 
 	/**
-	 * Khởi tạo constructor với các thông tin đầy đủ
-	 * @param screenTypeId
-	 * @param screenTypeName
-	 * @param createdAt
-	 * @param updatedAt
+	 * Constructor đầy đủ thông tin
+	 * 
+	 * @param screenTypeId - Mã loại phòng chiếu
+	 * @param screenTypeName - Tên loại phòng chiếu
+	 * @param createdAt - Thời điểm khởi tạo dữ liệu
+	 * @param updatedAt - Thời điểm dữ liệu được cập nhật
 	 */
 	public ScreenType(int screenTypeId, String screenTypeName, LocalDateTime createdAt, LocalDateTime updatedAt) {
 		super();
@@ -74,14 +87,24 @@ public class ScreenType {
 	}
 
 	public void setScreenTypeName(String screenTypeName) {
-		this.screenTypeName = screenTypeName;
+		if (screenTypeName == null || screenTypeName.trim().isEmpty())
+			throw new IllegalArgumentException("screenTypeName không được để trống");
+		else if (screenTypeName.trim().length() > 100)
+			throw new IllegalArgumentException("screenTypeName không được vượt quá 100 ký tự");
+		this.screenTypeName = screenTypeName.trim();
 	}
 
+	/**
+	 * Nếu đã có id hợp lệ thì hash theo id. Nếu chưa có id hợp lệ thì hash theo chính object
+	 */
 	@Override
 	public int hashCode() {
-		return Objects.hash(screenTypeId);
+		return (screenTypeId > 0) ? Integer.hashCode(screenTypeId) : System.identityHashCode(this);
 	}
 
+	/**
+	 * Hai Object ScreenType được xem là bằng nhau khi có cùng screenTypeId hợp lệ
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -101,6 +124,4 @@ public class ScreenType {
 		return "ScreenType [screenTypeId=" + screenTypeId + ", screenTypeName=" + screenTypeName + ", createdAt="
 				+ createdAt + ", updatedAt=" + updatedAt + "]";
 	}
-	
-	
 }

@@ -4,14 +4,14 @@ package com.cinema.enums;
  * Phân loại trạng thái của phim.
  * 0 - COMING_SOON: Phim sắp chiếu
  * 1 - SHOWING: Phim đang chiếu
- * 2 - STOPPED: Phim ngừng chiếu
+ * 2 - DISCONTINUED: Phim dừng chiếu
  * 
- * @author minhhuy (chính)
+ * @author Minh Huy (chính)
  */
 public enum MovieStatus {
     COMING_SOON(0, "Sắp Chiếu"),
     SHOWING(1, "Đang Chiếu"),
-    STOPPED(2, "Dừng Chiếu");
+    DISCONTINUED(2, "Dừng Chiếu");
 
     private final int movieStatusId;
     private final String displayName;
@@ -19,8 +19,8 @@ public enum MovieStatus {
     /**
      * Khởi tạo trạng thái phim.
      * 
-     * @param movieStatusId mã trạng thái
-     * @param displayName tên hiển thị trạng thái
+     * @param movieStatusId - Mã trạng thái
+     * @param displayName - Tên hiển thị trạng thái
      */
     MovieStatus(int movieStatusId, String displayName) {
         this.movieStatusId = movieStatusId;
@@ -50,8 +50,8 @@ public enum MovieStatus {
      * Chuyển mã trạng thái thành enum MovieStatus.
      * 0 - COMING_SOON: Phim sắp chiếu
      * 1 - SHOWING: Phim đang chiếu
-     * 2 - STOPPED: Phim ngừng chiếu
-     * @param id mã trạng thái
+     * 2 - DISCONTINUED: Phim dừng chiếu
+     * @param id - Mã trạng thái
      * @return trạng thái phim tương ứng
      * @throws IllegalArgumentException nếu id không hợp lệ
      */

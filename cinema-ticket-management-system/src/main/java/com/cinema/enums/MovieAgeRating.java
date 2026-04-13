@@ -9,7 +9,7 @@ package com.cinema.enums;
  * 4 - T18: Cấm khán giả dưới 18 tuổi
  * 5 - C: Cấm phổ biến
  * 
- * @author minhhuy (chính)
+ * @author Minh Huy (chính)
  */
 public enum MovieAgeRating {
     P(0, "P"),

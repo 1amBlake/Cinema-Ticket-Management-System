@@ -1,5 +1,10 @@
-//Film_database
-Table phim{
+//Use DBML to define your database structure
+//Docs: https://dbml.dbdiagram.io/docs
+
+// =========================
+// Movie_database
+// =========================
+Table phim {
     ma_phim int [pk, increment]
     ten_phim varchar(255) [not null]
     thoi_luong int [not null]
@@ -14,20 +19,22 @@ Table phim{
 }
 /*
     thoi_luong: phut
+
     trang_thai:
         0. Sap Chieu
         1. Dang Chieu
-        2. Ngung Chieu
+        2. Dung Chieu
+
     gioi_han_tuoi:
         0. P
         1. K
         2. T13
         3. T16
         4. T18
-        5. T21
+        5. C
 */
 
-Table dao_dien{
+Table dao_dien {
     ma_dao_dien int [pk, increment]
     ten_dao_dien varchar(255) [not null]
 
@@ -35,7 +42,7 @@ Table dao_dien{
     updated_at timestamp
 }
 
-Table the_loai{
+Table the_loai {
     ma_the_loai int [pk, increment]
     ten_the_loai varchar(100) [not null, unique]
 
@@ -43,18 +50,20 @@ Table the_loai{
     updated_at timestamp
 }
 
-Table dao_dien_phim{
-    ma_phim int [pk, ref : > phim.ma_phim]
-    ma_dao_dien int [pk, ref : > dao_dien.ma_dao_dien]
+Table dao_dien_phim {
+    ma_phim int [pk, ref: > phim.ma_phim]
+    ma_dao_dien int [pk, ref: > dao_dien.ma_dao_dien]
 }
 
-Table the_loai_phim{
-    ma_phim int [pk, ref : > phim.ma_phim]
-    ma_the_loai int [pk, ref : > the_loai.ma_the_loai]
+Table the_loai_phim {
+    ma_phim int [pk, ref: > phim.ma_phim]
+    ma_the_loai int [pk, ref: > the_loai.ma_the_loai]
 }
 
-//Threater_database
-Table rap{
+// =========================
+// Theater_database
+// =========================
+Table rap {
     ma_rap int [pk, increment]
     ten_rap varchar(255) [not null]
     dia_chi varchar(255)
@@ -63,7 +72,7 @@ Table rap{
     updated_at timestamp
 }
 
-Table loai_phong{
+Table loai_phong {
     ma_loai_phong int [pk, increment]
     ten_loai_phong varchar(100) [not null, unique]
 
@@ -71,7 +80,7 @@ Table loai_phong{
     updated_at timestamp
 }
 
-Table phong_chieu{
+Table phong_chieu {
     ma_phong int [pk, increment]
     ten_phong varchar(255) [not null]
     ma_rap int [not null, ref: > rap.ma_rap]
@@ -82,14 +91,16 @@ Table phong_chieu{
     updated_at timestamp
 }
 /*
-    trang_thai: 
+    trang_thai:
         0. Hoat Dong
         1. Bao Tri
-        2. Ngung Su Dung
+        2. Ngung Hoat Dong
 */
 
-//Seat_database
-Table loai_ghe{
+// =========================
+// Seat_database
+// =========================
+Table loai_ghe {
     ma_loai_ghe int [pk, increment]
     ten_loai_ghe varchar(255) [not null, unique]
 
@@ -97,7 +108,7 @@ Table loai_ghe{
     updated_at timestamp
 }
 
-Table ghe{
+Table ghe {
     ma_ghe int [pk, increment]
     ma_phong int [not null, ref: > phong_chieu.ma_phong]
     ma_loai_ghe int [not null, ref: > loai_ghe.ma_loai_ghe]
@@ -108,18 +119,20 @@ Table ghe{
     created_at timestamp
     updated_at timestamp
 
-    indexes { //tranh trung ma ghe
+    indexes {
         (ma_phong, hang, cot) [unique]
     }
 }
 /*
     trang_thai:
-        0. Khong Hoat Dong
-        1. Hoat Dong
+        0. Hoat Dong
+        1. Bao Tri
 */
 
-//Showcase_datebase
-Table suat_chieu{
+// =========================
+// Showcase_database
+// =========================
+Table suat_chieu {
     ma_suat_chieu int [pk, increment]
     ma_phim int [not null, ref: > phim.ma_phim]
     ma_phong int [not null, ref: > phong_chieu.ma_phong]
@@ -133,10 +146,11 @@ Table suat_chieu{
 }
 /*
     ngon_ngu_trinh_chieu:
-        0. Khong
+        0. Ban Goc
         1. Long Tieng
         2. Thuyet Minh
         3. Phu De
+
     trang_thai:
         0. Huy
         1. Sap Chieu
@@ -144,8 +158,11 @@ Table suat_chieu{
         3. Ket Thuc
 */
 
-//Ticket_database
-Table bang_gia_ve{
+
+// =========================
+// Ticket_database
+// =========================
+Table bang_gia_ve {
     ma_bang_gia int [pk, increment]
     ma_loai_ghe int [not null, ref: > loai_ghe.ma_loai_ghe]
     ma_loai_phong int [not null, ref: > loai_phong.ma_loai_phong]
@@ -159,7 +176,7 @@ Table bang_gia_ve{
     }
 }
 
-Table ve{
+Table ve {
     ma_ve int [pk, increment]
     ma_suat_chieu int [not null, ref: > suat_chieu.ma_suat_chieu]
     ma_ghe int [not null, ref: > ghe.ma_ghe]
@@ -180,8 +197,12 @@ Table ve{
         2. Da Doi
         3. Da Huy
 */
-//Product_database
-Table loai_san_pham{
+
+
+// =========================
+// Product_database
+// =========================
+Table loai_san_pham {
     ma_loai_san_pham int [pk, increment]
     ten_loai_san_pham varchar(255) [not null, unique]
 
@@ -189,7 +210,7 @@ Table loai_san_pham{
     updated_at timestamp
 }
 
-Table san_pham{
+Table san_pham {
     ma_san_pham int [pk, increment]
     ten_san_pham varchar(255) [not null]
     ma_loai_san_pham int [not null, ref: > loai_san_pham.ma_loai_san_pham]
@@ -207,8 +228,12 @@ Table san_pham{
         1. Dang Ban
         2. Het Hang
 */
-//Employees_database
-Table chuc_vu{
+
+
+// =========================
+// Employees_database
+// =========================
+Table chuc_vu {
     ma_chuc_vu int [pk, increment]
     ten_chuc_vu varchar(100) [not null, unique]
 
@@ -216,7 +241,7 @@ Table chuc_vu{
     updated_at timestamp
 }
 
-Table nhan_vien{
+Table nhan_vien {
     ma_nhan_vien int [pk, increment]
     ten_nhan_vien varchar(255) [not null]
     gioi_tinh bit
@@ -241,7 +266,7 @@ Table nhan_vien{
         2. Tam Nghi
 */
 
-Table tai_khoan{
+Table tai_khoan {
     ma_tai_khoan int [pk, increment]
     ma_nhan_vien int [not null, unique, ref: > nhan_vien.ma_nhan_vien]
     ten_tai_khoan varchar(255) [not null, unique]
@@ -257,8 +282,11 @@ Table tai_khoan{
         1. Hoat Dong
 */
 
-//Invoice_database
-Table hoa_don{
+
+// =========================
+// Invoice_database
+// =========================
+Table hoa_don {
     ma_hoa_don int [pk, increment]
     ma_nhan_vien int [not null, ref: > nhan_vien.ma_nhan_vien]
     phuong_thuc_thanh_toan tinyint [not null]
@@ -275,16 +303,17 @@ Table hoa_don{
         1. Chuyen Khoan
 
     trang_thai:
-        0. That bai
-        1. Thanh cong
+        0. That Bai
+        1. Thanh Cong
 */
-Table hoa_don_ve{
+
+Table hoa_don_ve {
     ma_hoa_don int [pk, ref: > hoa_don.ma_hoa_don]
     ma_ve int [pk, ref: > ve.ma_ve]
     don_gia decimal(10,2) [not null]
 }
 
-Table hoa_don_san_pham{
+Table hoa_don_san_pham {
     ma_hoa_don int [pk, ref: > hoa_don.ma_hoa_don]
     ma_san_pham int [pk, ref: > san_pham.ma_san_pham]
     so_luong_tong int [not null, default: 1]

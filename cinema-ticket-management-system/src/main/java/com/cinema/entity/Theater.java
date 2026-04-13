@@ -1,41 +1,64 @@
 package com.cinema.entity;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
- * Đại diện cho rạp phim trong hệ thống
- * Chứa các thuộc tính định danh cho rạp phim
+ * Đại diện cho rạp phim trong hệ thống.
+ * Chứa các thuộc tính rạp phim.
  * 
- * @author minhhuy (chính)
+ * @author Minh Huy (chính, ràng buộc)
  */
 public class Theater {
-	private int theaterId;
+	private int theaterId; //Do database tự sinh
 	private String theaterName; //not null
-	private String theaterAddress; //not null
-	private LocalDateTime createdAt;
-	private LocalDateTime updatedAt;
+	private String theaterAddress;
+	private LocalDateTime createdAt; //Do database tự sinh
+	private LocalDateTime updatedAt; //Do database tự sinh
 	
 	/**
-	 * Constructor mặc định, không truyền dữ liệu
+	 * Constructor mặc định, không có dữ liệu để truyền
 	 */
 	public Theater() {
 		super();
 	}
 
 	/**
-	 * Constructor sử dụng để truyền một rạp phim mới, dùng cho SQL với id tự tăng
-	 * @param theaterName //tên rạp phim
+	 * Constructor để khởi tạo thực thể theo mã, phục vụ truy vấn và ánh xạ quan hệ
+	 * 
+	 * @param theaterId - Mã rạp phim
+	 */
+	public Theater(int theaterId) {
+		super();
+		this.theaterId = theaterId;
+	}
+	
+	/**
+	 * Constructor để thêm dữ liệu cho CSDL (các dữ liệu not null)
+	 * 
+	 * @param theaterName - Tên rạp phim
 	 */
 	public Theater(String theaterName) {
 		super();
 		setTheaterName(theaterName);
 	}
+	
+	/**
+	 * Constructor để thêm dữ liệu cho CSDL (tất cả dữ liệu)
+	 * 
+	 * @param theaterName - Tên rạp phim
+	 * @param theaterAddress - Địa chỉ rạp phim
+	 */
+	public Theater(String theaterName, String theaterAddress) {
+		super();
+		setTheaterName(theaterName);
+		setTheaterAddress(theaterAddress);
+	}
 
 	/**
-	 * Constructor khởi tạo với các thông tin bắt buộc
-	 * @param theaterId mã rạp
-	 * @param theaterName tên rạp
+	 * Constructor truyền dữ liệu với các thông tin "not null"
+	 * 
+	 * @param theaterId - Mã rạp phim
+	 * @param theaterName - Tên rạp phim
 	 */
 	public Theater(int theaterId, String theaterName) {
 		super();
@@ -44,19 +67,19 @@ public class Theater {
 	}
 
 	/**
-	 * Constructor đầy đủ
-	 * @param theaterId
-	 * @param theaterName
-	 * @param theaterAddress
-	 * @param createdAt
-	 * @param updatedAt
+	 * Constructor đầy đủ thông tin
+	 * @param theaterId - Mã rạp phim
+	 * @param theaterName - Tên rạp phim
+	 * @param theaterAddress - Địa chỉ rạp phim
+	 * @param createdAt - Thời điểm khởi tạo dữ liệu
+	 * @param updatedAt - Thời điểm dữ liệu được cập nhật
 	 */
 	public Theater(int theaterId, String theaterName, String theaterAddress, LocalDateTime createdAt,
 			LocalDateTime updatedAt) {
 		super();
 		this.theaterId = theaterId;
-		this.theaterName = theaterName;
-		this.theaterAddress = theaterAddress;
+		setTheaterName(theaterName);
+		setTheaterAddress(theaterAddress);
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
@@ -82,18 +105,35 @@ public class Theater {
 	}
 
 	public void setTheaterName(String theaterName) {
-		this.theaterName = theaterName;
+		if (theaterName == null || theaterName.trim().isEmpty())
+			throw new IllegalArgumentException("theaterName không được để trống");
+		else if (theaterName.trim().length() > 255)
+			throw new IllegalArgumentException("theaterName không được vượt quá 255 ký tự");
+		this.theaterName = theaterName.trim();
 	}
 
 	public void setTheaterAddress(String theaterAddress) {
-		this.theaterAddress = theaterAddress;
+	    if (theaterAddress == null || theaterAddress.trim().isEmpty()) {
+	        this.theaterAddress = null;
+	        return;
+	    }
+	    if (theaterAddress.trim().length() > 255) {
+	        throw new IllegalArgumentException("theaterAddress không được vượt quá 255 ký tự");
+	    }
+	    this.theaterAddress = theaterAddress.trim();
 	}
 
+	/**
+	 * Nếu đã có id hợp lệ thì hash theo id. Nếu chưa có id hợp lệ thì hash theo chính object
+	 */
 	@Override
 	public int hashCode() {
-		return Objects.hash(theaterId);
+		return (theaterId > 0) ? Integer.hashCode(theaterId) : System.identityHashCode(this);
 	}
 
+	/**
+	 * Hai Object Theater được xem là bằng nhau khi có cùng theaterId hợp lệ
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

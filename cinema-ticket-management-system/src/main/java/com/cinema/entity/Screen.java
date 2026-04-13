@@ -1,86 +1,97 @@
 package com.cinema.entity;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 import com.cinema.enums.ScreenStatus;
 
 /**
- * Đại diện cho phòng chiếu trong hệ thống
- * Chứa các thuộc tính cơ bản của phòng chiếu
+ * Đại diện cho phòng chiếu trong hệ thống.
+ * Chứa các thuộc tính phòng chiếu.
  * 
- * @author minhhuy (chính)
+ * @author Minh Huy (chính)
  */
 public class Screen {
-	private int screenId; //not null
-	private String screenName; //not null
-	private Theater theaterId; //not null
-	private ScreenType screenTypeId; //not null
-	private ScreenStatus screenStatus; //not null
-	private LocalDateTime createdAt;
-	private LocalDateTime updatedAt;
-	
+
+	private int screenId; // Do database tự sinh
+	private String screenName; // not null
+	private Theater theater; // not null
+	private ScreenType screenType; // not null
+	private ScreenStatus screenStatus; // not null
+	private LocalDateTime createdAt; // Do database tự sinh
+	private LocalDateTime updatedAt; // Do database tự sinh
+
 	/**
-	 * Constructor mặc đinh, không truyền dữ liệu
+	 * Constructor mặc định, không có dữ liệu để truyền
 	 */
 	public Screen() {
 		super();
 	}
-	
+
 	/**
-	 * Constructor cần truyền đầy đủ dữ liệu
+	 * Constructor để khởi tạo thực thể theo mã, phục vụ truy vấn và ánh xạ quan hệ
 	 * 
-	 * @param screenId
-	 * @param screenName
-	 * @param theaterId
-	 * @param screenTypeId
-	 * @param screenStatus
-	 * @param createdAt
-	 * @param updatedAt
+	 * @param screenId - Mã phòng chiếu
 	 */
-	public Screen(int screenId, String screenName, Theater theaterId, ScreenType screenTypeId,
-			ScreenStatus screenStatus, LocalDateTime createdAt, LocalDateTime updatedAt) {
+	public Screen(int screenId) {
+		super();
+		this.screenId = screenId;
+	}
+
+	/**
+	 * Constructor để thêm dữ liệu cho CSDL (các dữ liệu not null)
+	 * 
+	 * @param screenName - Tên phòng chiếu
+	 * @param theater - Rạp phim
+	 * @param screenType - Loại phòng chiếu
+	 * @param screenStatus - Trạng thái phòng chiếu
+	 */
+	public Screen(String screenName, Theater theater, ScreenType screenType, ScreenStatus screenStatus) {
+		super();
+		setScreenName(screenName);
+		setTheater(theater);
+		setScreenType(screenType);
+		setScreenStatus(screenStatus);
+	}
+
+	/**
+	 * Constructor truyền dữ liệu với các thông tin "not null"
+	 * 
+	 * @param screenId - Mã phòng chiếu
+	 * @param screenName - Tên phòng chiếu
+	 * @param theater - Rạp phim
+	 * @param screenType - Loại phòng chiếu
+	 * @param screenStatus - Trạng thái phòng chiếu
+	 */
+	public Screen(int screenId, String screenName, Theater theater, ScreenType screenType, ScreenStatus screenStatus) {
 		super();
 		this.screenId = screenId;
 		setScreenName(screenName);
-		setTheaterId(theaterId);
-		setScreenTypeId(screenTypeId);
+		setTheater(theater);
+		setScreenType(screenType);
+		setScreenStatus(screenStatus);
+	}
+
+	/**
+	 * Constructor đầy đủ thông tin
+	 * 
+	 * @param screenId - Mã phòng chiếu
+	 * @param screenName - Tên phòng chiếu
+	 * @param theater - Rạp phim
+	 * @param screenType - Loại phòng chiếu
+	 * @param screenStatus - Trạng thái phòng chiếu
+	 * @param createdAt - Thời điểm khởi tạo dữ liệu
+	 * @param updatedAt - Thời điểm dữ liệu được cập nhật
+	 */
+	public Screen(int screenId, String screenName, Theater theater, ScreenType screenType, ScreenStatus screenStatus,
+			LocalDateTime createdAt, LocalDateTime updatedAt) {
+		super();
+		this.screenId = screenId;
+		setScreenName(screenName);
+		setTheater(theater);
+		setScreenType(screenType);
 		setScreenStatus(screenStatus);
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
-	}
-
-	/**
-	 * Constructor cho việc tạo đối tượng với Id gia tăng tự động trong SQL
-	 * @param screenName
-	 * @param theaterId
-	 * @param screenTypeId
-	 * @param screenStatus
-	 */
-	public Screen(String screenName, Theater theaterId, ScreenType screenTypeId, ScreenStatus screenStatus) {
-		super();
-		setScreenName(screenName);
-		setTheaterId(theaterId);
-		setScreenTypeId(screenTypeId);
-		setScreenStatus(screenStatus);
-	}
-
-	/**
-	 * Constructor truyền những dữ liệu bắt buộc
-	 * @param screenId
-	 * @param screenName
-	 * @param theaterId
-	 * @param screenTypeId
-	 * @param screenStatus
-	 */
-	public Screen(int screenId, String screenName, Theater theaterId, ScreenType screenTypeId,
-			ScreenStatus screenStatus) {
-		super();
-		this.screenId = screenId;
-		setScreenName(screenName);
-		setTheaterId(theaterId);
-		setScreenTypeId(screenTypeId);
-		setScreenStatus(screenStatus);
 	}
 
 	public int getScreenId() {
@@ -91,12 +102,12 @@ public class Screen {
 		return screenName;
 	}
 
-	public Theater getTheaterId() {
-		return theaterId;
+	public Theater getTheater() {
+		return theater;
 	}
 
-	public ScreenType getScreenTypeId() {
-		return screenTypeId;
+	public ScreenType getScreenType() {
+		return screenType;
 	}
 
 	public ScreenStatus getScreenStatus() {
@@ -112,39 +123,60 @@ public class Screen {
 	}
 
 	public void setScreenName(String screenName) {
-		this.screenName = screenName;
+		if (screenName == null || screenName.trim().isEmpty())
+			throw new IllegalArgumentException("screenName không được để trống");
+		else if (screenName.trim().length() > 255)
+			throw new IllegalArgumentException("screenName không được vượt quá 255 ký tự");
+		this.screenName = screenName.trim();
 	}
 
-	public void setTheaterId(Theater theaterId) {
-		this.theaterId = theaterId;
+	public void setTheater(Theater theater) {
+		if (theater == null)
+			throw new IllegalArgumentException("theater không được null");
+		this.theater = theater;
 	}
 
-	public void setScreenTypeId(ScreenType screenTypeId) {
-		this.screenTypeId = screenTypeId;
+	public void setScreenType(ScreenType screenType) {
+		if (screenType == null)
+			throw new IllegalArgumentException("screenType không được null");
+		this.screenType = screenType;
 	}
 
 	public void setScreenStatus(ScreenStatus screenStatus) {
+		if (screenStatus == null)
+			throw new IllegalArgumentException("screenStatus không được null");
 		this.screenStatus = screenStatus;
 	}
 
+	/**
+	 * Nếu đã có id hợp lệ thì hash theo id. Nếu chưa có id hợp lệ thì hash theo chính object
+	 */
 	@Override
 	public int hashCode() {
-		return Objects.hash(screenId);
+		return (screenId > 0) ? Integer.hashCode(screenId) : System.identityHashCode(this);
 	}
 
+	/**
+	 * Hai Object Screen được xem là bằng nhau khi có cùng screenId hợp lệ
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
+		if (obj == null || getClass() != obj.getClass())
 			return false;
 		Screen other = (Screen) obj;
 		if (this.screenId <= 0 || other.screenId <= 0)
 			return false;
-		return screenId == other.screenId;
+		return this.screenId == other.screenId;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Screen [screenId=" + screenId + ", screenName=" + screenName
+				+ ", theaterId=" + (theater != null ? theater.getTheaterId() : null)
+				+ ", screenTypeId=" + (screenType != null ? screenType.getScreenTypeId() : null)
+				+ ", screenStatus=" + screenStatus + ", createdAt=" + createdAt
+				+ ", updatedAt=" + updatedAt + "]";
+	}
 }

@@ -1,64 +1,68 @@
 package com.cinema.enums;
+
 /**
- * Được dùng để lưu dữ liệu chỉ định cho khả năng tiếp cận ngôn ngữ bản địa
- * 0 - NONE: Không có
- * 1 - SUBTITLED: Phim có chứa phụ đề
- * 2 - DUBBED: Phim lồng tiếng
- * 3 - VO: Phim thuyết mình
+ * Phân loại ngôn ngữ trình chiếu của suất chiếu.
+ * 0 - ORIGINAL: Bản gốc
+ * 1 - DUBBED: Lồng tiếng
+ * 2 - VOICE_OVER: Thuyết minh
+ * 3 - SUBTITLED: Phụ đề
  * 
- * @author minhhuy (chính)
+ * @author Minh Huy (chính)
  */
 public enum MovieFormat {
-	NONE(0, "Không"),
-	SUBTITlED(1, "Phụ Đề"),
-	DUBBED(2, "Lồng Tiếng"),
-	VO(3, "Thuyết Minh");
-	
+	ORIGINAL(0, "Bản gốc"),
+	DUBBED(1, "Lồng tiếng"),
+	VOICE_OVER(2, "Thuyết minh"),
+	SUBTITLED(3, "Phụ đề");
+
 	private final int movieFormatId;
 	private final String displayName;
-	
+
 	/**
-	 * Khởi tạo định dạng phim
+	 * Khởi tạo định dạng trình chiếu của phim.
 	 * 
-	 * @param movieFormatId mã trạng thái
-	 * @param displayName tên hiển thị trạng thái
+	 * @param movieFormatId - Mã định dạng trình chiếu
+	 * @param displayName - Tên hiển thị định dạng trình chiếu
 	 */
-	MovieFormat(int movieFormatId, String displayName){
+	MovieFormat(int movieFormatId, String displayName) {
 		this.movieFormatId = movieFormatId;
 		this.displayName = displayName;
 	}
-	
+
 	/**
-	 * Lấy mã định dạng phim
+	 * Lấy mã định dạng trình chiếu.
 	 * 
-	 * @return mã định dạng (int)
+	 * @return mã định dạng trình chiếu
 	 */
-	public int getMoiveFormatId() {
+	public int getMovieFormatId() {
 		return movieFormatId;
 	}
-	
+
 	/**
-	 * Lấy tên hiển thị của định dạng phim
+	 * Lấy tên hiển thị của định dạng trình chiếu.
 	 * 
-	 * @return tên hiện thị định dạng (String)
+	 * @return tên hiển thị định dạng trình chiếu
 	 */
 	public String getDisplayName() {
 		return displayName;
 	}
-	
+
 	/**
-	 * Tìm định dạng dựa theo mã định dạng
-	 * 0 - NONE: Không có
-	 * 1 - SUBTITLED: Phim có chứa phụ đề
-	 * 2 - DUBBED: Phim lồng tiếng
-	 * 3 - VO: Phim thuyết mình
+	 * Chuyển mã định dạng thành enum MovieFormat.
+	 * 0 - ORIGINAL: Bản gốc
+	 * 1 - DUBBED: Lồng tiếng
+	 * 2 - VOICE_OVER: Thuyết minh
+	 * 3 - SUBTITLED: Phụ đề
 	 * 
-	 * @param id mã định dạng (int)
-	 * @return format (enums)
+	 * @param id - Mã định dạng trình chiếu
+	 * @return định dạng trình chiếu tương ứng
+	 * @throws IllegalArgumentException nếu id không hợp lệ
 	 */
 	public static MovieFormat fromId(int id) {
 		for (MovieFormat format : values()) {
-			return format;
+			if (format.movieFormatId == id) {
+				return format;
+			}
 		}
 		throw new IllegalArgumentException("Mã định dạng phim không hợp lệ: " + id);
 	}

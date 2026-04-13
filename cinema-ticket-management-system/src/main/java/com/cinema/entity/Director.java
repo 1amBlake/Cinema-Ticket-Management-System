@@ -1,7 +1,6 @@
 package com.cinema.entity;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  * Đại diện cho đạo diễn trong hệ thống.
@@ -11,7 +10,7 @@ import java.util.Objects;
  * @author Hải Anh (ràng buộc)
  */
 
-public class Director { //đợi last check
+public class Director { 
 	
 	private int directorId; //Do database tự sinh
 	private String directorName; //not null
@@ -23,6 +22,16 @@ public class Director { //đợi last check
 	 */
 	public Director() {
 		super();
+	}
+	
+	/**
+	 * Constructor để khởi tạo thực thể theo mã, phục vụ truy vấn và ánh xạ quan hệ
+	 * 
+	 * @param directorId - Mã đạo diễn
+	 */
+	public Director(int directorId) {
+		super();
+		this.directorId = directorId;
 	}
 	
 	/**
@@ -48,7 +57,7 @@ public class Director { //đợi last check
 	}
 	
 	/**
-	 * Constructor đầy đủ thông rin
+	 * Constructor đầy đủ thông tin
 	 * @param directorId - Mã đạo diễn
 	 * @param directorName - Tên đạo diễn
 	 * @param createdAt - Thời điểm khởi tạo dữ liệu
@@ -95,7 +104,7 @@ public class Director { //đợi last check
 	}
 	
 	/**
-	 * Hai Object Director được xem là bằng nhau khi có cùng movieId hợp lệ
+	 * Hai Object Director được xem là bằng nhau khi có cùng directorId hợp lệ
 	 */
 	@Override
 	public boolean equals(Object obj) {
