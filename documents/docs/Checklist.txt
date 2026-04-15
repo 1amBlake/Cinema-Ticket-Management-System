@@ -90,47 +90,47 @@ SERVICE:
 
 ===============================================
 DAO:
-	GenreDao
+	GenreDao - done (sample)
 	
-	DirectorDao
+	DirectorDao Trọng
 	
-	TheaterDao
+	TheaterDao Hải Anh
 	
-	ScreenTypeDao
+	ScreenTypeDao Hải Anh
 	
-	SeatTypeDao
+	SeatTypeDao Hải Anh
 	
-	ProductTypeDao
+	ProductTypeDao Quốc Anh
 	
-	JobTitleDao
+	JobTitleDao Quốc Anh
 	
-	MovieDao
+	MovieDao Minh Huy
 	
-	ScreenDao
+	ScreenDao Hải Anh
 	
-	SeatDao
+	SeatDao Hải Anh
 	
-	MovieSessionDao
+	MovieSessionDao Minh Huy
 	
-	ProductDao
+	ProductDao Minh Huy
 	
-	EmployeeDao
+	EmployeeDao Minh Huy
 	
-	EmployeeAccountDao
+	EmployeeAccountDao Quốc Anh
 	
-	TicketPricingDao
+	TicketPricingDao Quốc Anh
 	
-	TicketDao
+	TicketDao Minh Huy
 	
-	InvoiceDao
+	InvoiceDao Minh Huy
 	
-	MovieDirectorDao
+	MovieDirectorDao Trọng
 	
-	MovieGenreDao
+	MovieGenreDao Trọng
 	
-	TicketInvoiceDao
+	TicketInvoiceDao Minh Huy
 	
-	ProductInvoiceDao
+	ProductInvoiceDao Minh Huy
 	
 ===============================================
 CONTROLLER:
