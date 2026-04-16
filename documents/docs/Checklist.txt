@@ -104,7 +104,7 @@ DAO:
 	
 	JobTitleDao Quốc Anh
 	
-	MovieDao Minh Huy
+	MovieDao - done
 	
 	ScreenDao Hải Anh
 	
@@ -112,7 +112,7 @@ DAO:
 	
 	MovieSessionDao Minh Huy
 	
-	ProductDao Minh Huy
+	ProductDao - done
 	
 	EmployeeDao Minh Huy
 	

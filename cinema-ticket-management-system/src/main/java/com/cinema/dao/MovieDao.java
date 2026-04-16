@@ -273,7 +273,7 @@ public class MovieDao {
     }
     
     /**
-     * Kiểm tra phim có đang được sử dụng ở các bảng MovieGenre hay không.
+     * Kiểm tra phim có đang được sử dụng ở bảng MovieGenre hay không.
      * 
      * @param movieId - Mã phim
      * @return true nếu đang được sử dụng
@@ -313,7 +313,7 @@ public class MovieDao {
     	Timestamp updatedAt = rs.getTimestamp("updated_at");
     	Date releaseDate = rs.getDate("ngay_phat_hanh");
     	
-    	Movie newMovie = new Movie(
+    	Movie aMovie = new Movie(
     			rs.getInt("ma_phim"),
                 rs.getString("ten_phim"),
                 rs.getInt("thoi_luong"),
@@ -325,7 +325,7 @@ public class MovieDao {
                 createdAt != null ? createdAt.toLocalDateTime() : null,
                 updatedAt != null ? updatedAt.toLocalDateTime() : null
     			);
-    	return newMovie;
+    	return aMovie;
     }
 
     /**
