@@ -11,7 +11,7 @@ import java.util.List;
 import com.cinema.config.DBConnection;
 import com.cinema.entity.Genre;
 
-//sameple
+//sample
 
 /**
  * DAO cho thực thể Genre
