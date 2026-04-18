@@ -110,7 +110,7 @@ DAO:
 	
 	SeatDao Hải Anh
 	
-	MovieSessionDao Minh Huy
+	MovieSessionDao - done
 	
 	ProductDao - done
 	
