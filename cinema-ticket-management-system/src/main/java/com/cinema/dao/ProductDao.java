@@ -131,34 +131,8 @@ public class ProductDao {
 	 * 
 	 * @param product - Đối tượng Product để kiểm tra
 	 */
-	public void validateProduct(Product product) {
-		if (product == null) {
-			throw new IllegalArgumentException("Product không được null!");
-		}
-		
-		if (product.getProductName() == null || product.getProductName().trim().isEmpty()) {
-			throw new IllegalArgumentException("Tên sản phẩm không được trống!");
-		}
-		
-		if (product.getProductType() == null) {
-			throw new IllegalArgumentException("Loại sản phẩm không được rỗng");
-		}
-		
-		if (product.getProductType().getProductTypeId() <= 0) {
-			throw new IllegalArgumentException("Mã loại sản phẩm phải lớn hơn 0");
-		}
-		
-		if (product.getPrice() <= 0) {
-			throw new IllegalArgumentException("Giá cơ bản phải lớn hơn 0!");
-		}
-		
-		if (product.getStockQuantity() < 0) {
-			throw new IllegalArgumentException("Số lượng sản phần tồn phải lớn hơn bằng 0!");
-		}
-		
-		if (product.getProductStatus() == null) {
-			throw new IllegalArgumentException("Tình trạng của sản phầm không được phép trống!");
-		}
+	private void validateProduct(Product product) { //TODO: làm validate internal và package
+
 	}
 	
 	/**
@@ -168,7 +142,7 @@ public class ProductDao {
 	 * @return true nếu đã tồn tại
 	 * @throws SQLException nếu có lỗi SQL
 	 */
-	public boolean existsByName (String productName) throws SQLException{
+	private boolean existsByName (String productName) throws SQLException{
 		if (productName == null || productName.trim().isEmpty()) {
 			return false;
 		}
@@ -192,7 +166,10 @@ public class ProductDao {
 	 * @return true nếu đã tồn tại
 	 * @throws SQLException nếu có lỗi SQL
 	 */
-	public boolean existsByNameExceptId(String productName, int productId) throws SQLException {
+	private boolean existsByNameExceptId(String productName, int productId) throws SQLException {
+		if (productId <= 0 || productName == null || productName.trim().isEmpty()) {
+			throw new IllegalArgumentException("productId phải lớn hơn 0 và productName không được để trống!");
+		}
 		try (Connection connection = DBConnection.getConnection();
 				PreparedStatement ps = connection.prepareStatement(EXISTS_BY_NAME_EXCEPT_ID_MYSQL)){
 			
@@ -232,7 +209,10 @@ public class ProductDao {
 	 * @return true nếu đang đang được dụng
 	 * @throws SQLException nếu có lỗi SQL
 	 */
-	public boolean isProductUsed (int productId) throws SQLException{
+	private boolean isProductUsed (int productId) throws SQLException{
+		if (productId <= 0) {
+			throw new IllegalArgumentException("productId phải lớn hơn 0!");
+		}
 		return isUsedInProductInvoice(productId);
 	}
 	
@@ -279,22 +259,22 @@ public class ProductDao {
 		try(Connection connection = DBConnection.getConnection();
 				PreparedStatement ps = connection.prepareStatement(INSERT_MYSQL)){
 			
-			ps.setString(1, product.getProductName());
+			ps.setString(1, product.getProductName().trim());
 			ps.setInt(2, product.getProductType().getProductTypeId());
 			ps.setDouble(3, product.getPrice());
 			ps.setInt(4, product.getStockQuantity());
 			ps.setInt(5, product.getProductStatus().getProductStatusId());
-			ps.setString(6, product.getPictureUrl());
+			ps.setString(6, product.getPictureUrl() != null ? product.getPictureUrl().trim() : null);
 			
 			return ps.executeUpdate() > 0;
 		}
 	}
 	
 	/**
-	 * Cập nhật thông tin phim
+	 * Cập nhật thông tin sản phẩm
 	 * 
 	 * @param product - Đối tượng Product
-	 * @return true nếu thêm thành công
+	 * @return true nếu cập nhật thành công
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean updateProduct (Product product) throws SQLException{
@@ -305,18 +285,18 @@ public class ProductDao {
 		}
 		
 		if (existsByNameExceptId(product.getProductName(), product.getProductId())) {
-			throw new IllegalArgumentException("Sản phẩm đã tổn tại ở bảng ghi khác!");
+			throw new IllegalArgumentException("Sản phẩm đã tồn tại ở bản ghi khác!");
 		}
 		
 		try (Connection connection = DBConnection.getConnection();
 				PreparedStatement ps = connection.prepareStatement(UPDATE_MYSQL)){
 			
-			ps.setString(1, product.getProductName());
+			ps.setString(1, product.getProductName().trim());
 			ps.setInt(2, product.getProductType().getProductTypeId());
 			ps.setDouble(3, product.getPrice());
 			ps.setInt(4, product.getStockQuantity());
 			ps.setInt(5, product.getProductStatus().getProductStatusId());
-			ps.setString(6, product.getPictureUrl());
+			ps.setString(6, product.getPictureUrl() != null ? product.getPictureUrl().trim() : null);
 			ps.setInt(7, product.getProductId());
 			
 			return ps.executeUpdate() > 0;
@@ -383,15 +363,12 @@ public class ProductDao {
 	 */
 	public List<Product> searchByName(String keyword) throws SQLException{
 		List<Product> products = new ArrayList<Product>();
-		
-		if (keyword == null) {
-			keyword = "";
-		}
-		
+
 		try (Connection connection = DBConnection.getConnection();
 				PreparedStatement ps = connection.prepareStatement(SEARCH_BY_NAME_MYSQL)){
-			
-			ps.setString(1, "%" + keyword.trim() + "%");
+    		
+			keyword = (keyword == null) ? "" : keyword.trim();
+    		ps.setString(1, "%" + keyword + "%");
 			
 			try (ResultSet rs = ps.executeQuery()){
 				while (rs.next()) {

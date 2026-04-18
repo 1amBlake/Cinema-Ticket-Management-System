@@ -89,12 +89,12 @@ public class GenreDao {
     	validateGenre(genre);
     	
     	if (existsByName(genre.getGenreName())) {
-    		throw new IllegalArgumentException("Tên thể loại đã tồn tại!");
+    		throw new IllegalArgumentException("Thể loại đã tồn tại!");
     	}
     	
     	try (Connection connection = DBConnection.getConnection();
     			PreparedStatement ps = connection.prepareStatement(INSERT_MYSQL)){
-    		ps.setString(1, genre.getGenreName());
+    		ps.setString(1, genre.getGenreName().trim());
     		return ps.executeUpdate() > 0;
     	}
     }
@@ -114,13 +114,13 @@ public class GenreDao {
     	}
     	
     	if (existsByNameExceptId(genre.getGenreName(), genre.getGenreId())) {
-    		throw new IllegalArgumentException("Tên thể loại đã tồn tại");
+    		throw new IllegalArgumentException("Thể loại đã tồn tại!");
     	}
     	
     	try (Connection connection = DBConnection.getConnection();
     			PreparedStatement ps = connection.prepareStatement(UPDATE_MYSQL)){
     		
-    		ps.setString(1, genre.getGenreName());
+    		ps.setString(1, genre.getGenreName().trim());
     		ps.setInt(2, genre.getGenreId());
     		
     		return ps.executeUpdate() > 0;
@@ -210,14 +210,11 @@ public class GenreDao {
     public List<Genre> searchByName (String keyword) throws SQLException{
     	List<Genre> genres = new ArrayList<>();
     	
-    	if (keyword == null) {
-    		keyword = "";
-    	}
-    	
     	try (Connection connection = DBConnection.getConnection();
     			PreparedStatement ps = connection.prepareStatement(SEARCH_BY_NAME_MYSQL)){
     		
-    		ps.setString(1, "%" + keyword.trim() + "%");
+    		keyword = (keyword == null) ? "" : keyword.trim();
+    		ps.setString(1, "%" + keyword + "%");
     		
     		try (ResultSet rs = ps.executeQuery()){
     			while (rs.next()) {
@@ -235,7 +232,7 @@ public class GenreDao {
      * @return true nếu đã tồn tại, false nếu chưa
      * @throws SQLException nếu có lỗi SQL
      */
-    public boolean existsByName (String genreName) throws SQLException{
+    private boolean existsByName (String genreName) throws SQLException{
     	if (genreName == null || genreName.trim().isEmpty()) {
     		return false;
     	}
@@ -258,7 +255,11 @@ public class GenreDao {
      * @return true nếu tên đã tồn tại
      * @throws SQLException nếu SQL có lỗi
      */
-    public boolean  existsByNameExceptId(String genreName, int genreId) throws SQLException{
+    private boolean  existsByNameExceptId(String genreName, int genreId) throws SQLException{
+    	if (genreId <= 0 || genreName == null || genreName.trim().isEmpty()) {
+    	    throw new IllegalArgumentException("genreId phải lớn hơn 0 và genreName không được để trống!");
+    	}
+    	
     	try (Connection connection = DBConnection.getConnection();
     			PreparedStatement ps = connection.prepareStatement(EXISTS_BY_NAME_EXCEPT_ID_MYSQL)){
     		
@@ -278,7 +279,11 @@ public class GenreDao {
      * @return true nếu đang được dùng
      * @throws SQLException nếu có lỗi SQL
      */
-    public boolean isGenreUsed(int genreId) throws SQLException{
+    private boolean isGenreUsed(int genreId) throws SQLException{
+    	if (genreId <= 0) {
+    		throw new IllegalArgumentException("genreId phải lớn hơn 0!");
+    	}
+    	
     	try(Connection connection = DBConnection.getConnection();
     			PreparedStatement ps = connection.prepareStatement(IS_USED_MYSQL)){
     		
@@ -314,14 +319,7 @@ public class GenreDao {
      * 
      * @param genre - Đối tượng genre cần kiểm tra
      */
-    public void validateGenre(Genre genre) {
-    	if (genre == null) {
-    		throw new IllegalArgumentException("Genre không được null!");
-    	}
-    	
-    	//Đã kiểm tra một phần nhờ setter
-    	if (genre.getGenreName() == null || genre.getGenreName().trim().isEmpty()) {
-    		throw new IllegalArgumentException("Tên thể loại không được để trống!");
-    	}
+    private void validateGenre(Genre genre) { //TODO: làm validate internal và package
+    	//GenreValidator -> package Validator
     }
 }

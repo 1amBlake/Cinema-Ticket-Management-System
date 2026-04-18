@@ -172,38 +172,8 @@ public class MovieSessionDao {
 	 * 
 	 * @param movieSession - Đối tượng MovieSession để kiểm tra
 	 */
-	private void validateMovieSession (MovieSession movieSession) {
-		if (movieSession == null) {
-			throw new IllegalArgumentException("MovieSession không được rỗng!");
-		}
-		
-		if (movieSession.getMovie() == null || movieSession.getMovie().getMovieId() <= 0) {
-		    throw new IllegalArgumentException("Mã phim của suất chiếu phải lớn hơn 0!");
-		}
+	private void validateMovieSession (MovieSession movieSession) { //TODO: làm validate internal và package
 
-		if (movieSession.getScreen() == null || movieSession.getScreen().getScreenId() <= 0) {
-		    throw new IllegalArgumentException("Mã phòng của suất chiếu phải lớn hơn 0!");
-		}
-		
-		if (movieSession.getMovieFormat() == null) {
-			throw new IllegalArgumentException("Định dạng / Ngôn ngữ trình chiếu không được rỗng!");
-		}
-		
-		if (movieSession.getStartsAt() == null) {
-			throw new IllegalArgumentException("Thời gian bắt đầu chiếu không được rỗng!");
-		}
-		
-		if (movieSession.getEndsAt() == null) {
-			throw new IllegalArgumentException("Thời gian kết thúc suất chiếu không được rỗng");
-		}
-		
-		if (movieSession.getMovieSessionStatus() == null) {
-			throw new IllegalArgumentException("Tình trạng suất chiếu không được rỗng!");
-		}
-		
-		if (!movieSession.getStartsAt().isBefore(movieSession.getEndsAt())) {
-		    throw new IllegalArgumentException("Thời gian bắt đầu phải trước thời gian kết thúc!");
-		}
 	}
 	
 	/**
@@ -215,9 +185,9 @@ public class MovieSessionDao {
 	 * @return true nếu đã tồn tại
 	 * @throws SQLException nếu có lỗi SQL
 	 */
-	public boolean existsTimeConflictByScreenId (int screenId, LocalDateTime startsAt, LocalDateTime endsAt) throws SQLException{
+	private boolean existsTimeConflictByScreenId (int screenId, LocalDateTime startsAt, LocalDateTime endsAt) throws SQLException{
 		if (screenId <= 0 || startsAt == null || endsAt == null) {
-			throw new IllegalArgumentException("Dữ liệu vào không hợp lệ - existsTimeConflictByScreenId");
+			return false;
 		}
 		
 		try (Connection connection = DBConnection.getConnection();
@@ -243,10 +213,10 @@ public class MovieSessionDao {
 	 * @return true nếu đã tồn tại
 	 * @throws SQLException nếu có lỗi SQL
 	 */
-	public boolean existsTimeConflictByScreenIdExceptId 
+	private boolean existsTimeConflictByScreenIdExceptId 
 	(int screenId, LocalDateTime startsAt, LocalDateTime endsAt, int movieSessionId) throws SQLException{
 		if (screenId <= 0 || startsAt == null || endsAt == null || movieSessionId <= 0) {
-			throw new IllegalArgumentException("Dữ liệu vào không hợp lệ - existsTimeConflictByScreenIdExceptId");
+			return false;
 		}
 		
 		try (Connection connection = DBConnection.getConnection();
@@ -292,7 +262,7 @@ public class MovieSessionDao {
 	 * @return true nếu đang được sử dụng
 	 * @throws SQLException nếu có lỗi SQL
 	 */
-	public boolean isMovieSessionUsed (int movieSessionId) throws SQLException{
+	private boolean isMovieSessionUsed (int movieSessionId) throws SQLException{
 		return  isUsedInTicket(movieSessionId);
 	}
 	

@@ -104,17 +104,17 @@ DAO:
 	
 	JobTitleDao Quốc Anh
 	
-	MovieDao - done
+	MovieDao - unvalidate
 	
 	ScreenDao Hải Anh
 	
 	SeatDao Hải Anh
 	
-	MovieSessionDao - done
+	MovieSessionDao - unvalidate
 	
-	ProductDao - done
+	ProductDao - unvalidate
 	
-	EmployeeDao Minh Huy
+	EmployeeDao - unvalidate
 	
 	EmployeeAccountDao Quốc Anh
 	

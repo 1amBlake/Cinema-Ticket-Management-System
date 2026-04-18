@@ -145,27 +145,9 @@ public class MovieDao {
      * 
      * @param movie - Đối tượng Movie để kiểm tra
      */
-    public void validateMovie(Movie movie) {
-    	if (movie == null) {
-    		throw new IllegalArgumentException("Movie không được null");
-    	}
-    	
-    	if (movie.getMovieName() == null || movie.getMovieName().trim().isEmpty()) {
-    		throw new IllegalArgumentException("Tên phim không được để trống");
-    	}
-    	
-    	if (movie.getMovieDuration() <= 0) {
-    		throw new IllegalArgumentException("Thời lượng phim phải lớn hơn 0!");
-    	}
-    	
-    	if (movie.getMovieStatus() == null) {
-    		throw new IllegalArgumentException("Trạng thái/Tình trạng phim không được null!");
-    	}
-    	
-    	if (movie.getMovieAgeRating() == null) {
-    		throw new IllegalArgumentException("Giới hạn tuổi không được null!");
-    	}
-    		
+    private void validateMovie(Movie movie) { //TODO: làm validate internal và package
+    	//MovieValidator -> package Validator
+
     }
     
     /**
@@ -175,9 +157,9 @@ public class MovieDao {
      * @return true nếu đã tồn tại
      * @throws SQLException nếu có lỗi SQL
      */
-    public boolean existsByNameAndReleaseDate(String movieName, LocalDate releaseDate) throws SQLException {
+    private boolean existsByNameAndReleaseDate(String movieName, LocalDate releaseDate) throws SQLException {
     	if (movieName == null || movieName.trim().isEmpty()) {
-    		return false;
+    	    return false;
     	}
     	
     	try (Connection connection = DBConnection.getConnection();
@@ -209,8 +191,11 @@ public class MovieDao {
      * @return true nếu đã tồn tại ở bản ghi khác
      * @throws SQLException nếu có lỗi SQL
      */
-    public boolean existsByNameAndReleaseDateExceptId(String movieName, LocalDate movieReleaseDate,
+    private boolean existsByNameAndReleaseDateExceptId(String movieName, LocalDate movieReleaseDate,
     		int movieId) throws SQLException{
+    	if (movieId <= 0 || movieName == null || movieName.trim().isEmpty()) {
+    		throw new IllegalArgumentException("movieId phải lớn hơn 0 và movieName không được để trống!");
+    	}
     	try (Connection connection = DBConnection.getConnection();
     			PreparedStatement ps = connection.prepareStatement(EXISTS_BY_NAME_AND_RELEASE_DATE_EXCEPT_ID_MYSQL)){
     		
@@ -242,6 +227,10 @@ public class MovieDao {
      * @throws SQLException nếu có lỗi SQL
      */
     private boolean isUsedInMovieSession (int movieId) throws SQLException{
+    	if (movieId <= 0) {
+    		throw new IllegalArgumentException("movieId phải lớn hơn 0!");
+    	}
+    	
     	try (Connection connection = DBConnection.getConnection();
     			PreparedStatement ps = connection.prepareStatement(IS_USED_IN_MOVIE_SESSION_MYSQL)){
     		
@@ -260,7 +249,7 @@ public class MovieDao {
      * @return true nếu đang được sử dụng
      * @throws SQLException nếu có lỗi SQL
      */
-    private boolean isUsedInMovieDirector(int movieId) throws SQLException{
+    private boolean isUsedInMovieDirector(int movieId) throws SQLException{	
     	try (Connection connection = DBConnection.getConnection();
     			PreparedStatement ps = connection.prepareStatement(IS_USED_IN_MOVIE_DIRECTOR_MYSQL)){
     		
@@ -279,7 +268,7 @@ public class MovieDao {
      * @return true nếu đang được sử dụng
      * @throws SQLException nếu có lỗi SQL
      */
-    private boolean isUsedInMovieGenre(int movieId) throws SQLException{
+    private boolean isUsedInMovieGenre(int movieId) throws SQLException{    	
     	try (Connection connection = DBConnection.getConnection();
     			PreparedStatement ps = connection.prepareStatement(IS_USED_IN_MOVIE_GENRE_MYSQL)){
     	
@@ -297,7 +286,11 @@ public class MovieDao {
      * @return true nếu đang được sử dụng
      * @throws SQLException nếu có lỗi SQL
      */
-    public boolean isMovieUsed (int movieId) throws SQLException{
+    private boolean isMovieUsed (int movieId) throws SQLException{
+    	if (movieId <= 0) {
+    		throw new IllegalArgumentException("movieId phải lớn hơn 0!");
+    	}
+    	
     	return isUsedInMovieSession(movieId) || isUsedInMovieDirector(movieId) || isUsedInMovieGenre(movieId);
     }
     
@@ -338,13 +331,13 @@ public class MovieDao {
     	validateMovie(movie);
     	
     	if (existsByNameAndReleaseDate(movie.getMovieName(), movie.getMovieReleaseDate())) {
-    		throw new IllegalArgumentException("Phim đã tồn tại");
+    		throw new IllegalArgumentException("Phim đã tồn tại!");
     	}
     	
     	try (Connection connection = DBConnection.getConnection();
     			PreparedStatement ps = connection.prepareStatement(INSERT_MYSQL)){
     		
-    		ps.setString(1, movie.getMovieName());
+    		ps.setString(1, movie.getMovieName().trim());
     		ps.setInt(2, movie.getMovieDuration());
     		
     		if (movie.getMovieReleaseDate() != null) {
@@ -353,10 +346,10 @@ public class MovieDao {
     			ps.setDate(3, null);
     		}
     		
-    		ps.setString(4, movie.getMovieLanguage());
+    		ps.setString(4, movie.getMovieLanguage() != null ? movie.getMovieLanguage().trim() : null);
             ps.setInt(5, movie.getMovieStatus().getMovieStatusId());
             ps.setInt(6, movie.getMovieAgeRating().getAgeRatingId());
-            ps.setString(7, movie.getPictureUrl());
+            ps.setString(7, movie.getPictureUrl() != null ? movie.getPictureUrl().trim() : null);
             
             return ps.executeUpdate() > 0;
     	}
@@ -384,7 +377,7 @@ public class MovieDao {
     	try (Connection connection = DBConnection.getConnection();
                 PreparedStatement ps = connection.prepareStatement(UPDATE_MYSQL)) {
 
-               ps.setString(1, movie.getMovieName());
+    		   ps.setString(1, movie.getMovieName().trim());
                ps.setInt(2, movie.getMovieDuration());
 
                if (movie.getMovieReleaseDate() != null) {
@@ -393,10 +386,10 @@ public class MovieDao {
                    ps.setDate(3, null);
                }
 
-               ps.setString(4, movie.getMovieLanguage());
+               ps.setString(4, movie.getMovieLanguage() != null ? movie.getMovieLanguage().trim() : null);
                ps.setInt(5, movie.getMovieStatus().getMovieStatusId());
                ps.setInt(6, movie.getMovieAgeRating().getAgeRatingId());
-               ps.setString(7, movie.getPictureUrl());
+               ps.setString(7, movie.getPictureUrl() != null ? movie.getPictureUrl().trim() : null);
                ps.setInt(8, movie.getMovieId());
 
                return ps.executeUpdate() > 0;
@@ -465,14 +458,11 @@ public class MovieDao {
     public List<Movie> searchByName(String keyword) throws SQLException{
     	List<Movie> movies = new ArrayList<Movie>();
     	
-    	if (keyword == null) {
-    		keyword = "";
-    	}
-    	
     	try (Connection connection = DBConnection.getConnection();
     			PreparedStatement ps = connection.prepareStatement(SEARCH_BY_NAME_MYSQL)){
     		
-    		ps.setString(1, "%" + keyword.trim() + "%");
+    		keyword = (keyword == null) ? "" : keyword.trim();
+    		ps.setString(1, "%" + keyword + "%");
     		
     		try(ResultSet rs = ps.executeQuery()){
     			while (rs.next()) {
