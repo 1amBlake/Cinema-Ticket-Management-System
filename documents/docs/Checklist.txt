@@ -92,7 +92,7 @@ SERVICE:
 DAO:
 	GenreDao - done (sample)
 	
-	DirectorDao Trọng
+	DirectorDao - unvalidate
 	
 	TheaterDao Hải Anh
 	
@@ -120,17 +120,17 @@ DAO:
 	
 	TicketPricingDao Quốc Anh
 	
-	TicketDao Minh Huy
+	TicketDao - unvalidate
 	
-	InvoiceDao Minh Huy
+	InvoiceDao - unvalidate
 	
-	MovieDirectorDao Trọng
+	MovieDirectorDao Trọng - unvalidate
 	
-	MovieGenreDao Trọng
+	MovieGenreDao Trọng - checking
 	
-	TicketInvoiceDao Minh Huy
+	TicketInvoiceDao - unvalidate
 	
-	ProductInvoiceDao Minh Huy
+	ProductInvoiceDao - unvalidate
 	
 ===============================================
 CONTROLLER:
