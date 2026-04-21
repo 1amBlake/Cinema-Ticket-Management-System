@@ -186,8 +186,14 @@ public class MovieSessionDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	private boolean existsTimeConflictByScreenId (int screenId, LocalDateTime startsAt, LocalDateTime endsAt) throws SQLException{
-		if (screenId <= 0 || startsAt == null || endsAt == null) {
-			return false;
+		if (startsAt == null) {
+		    throw new IllegalArgumentException("startsAt không được null!");
+		}
+		if (endsAt == null) {
+		    throw new IllegalArgumentException("endsAt không được null!");
+		}
+		if (screenId <= 0) {
+		    throw new IllegalArgumentException("screenId phải lớn hơn 0!");
 		}
 		
 		try (Connection connection = DBConnection.getConnection();
@@ -215,8 +221,17 @@ public class MovieSessionDao {
 	 */
 	private boolean existsTimeConflictByScreenIdExceptId 
 	(int screenId, LocalDateTime startsAt, LocalDateTime endsAt, int movieSessionId) throws SQLException{
-		if (screenId <= 0 || startsAt == null || endsAt == null || movieSessionId <= 0) {
-			return false;
+		if (screenId <= 0) {
+		    throw new IllegalArgumentException("screenId phải lớn hơn 0!");
+		}
+		if (startsAt == null) {
+		    throw new IllegalArgumentException("startsAt không được null!");
+		}
+		if (endsAt == null) {
+		    throw new IllegalArgumentException("endsAt không được null!");
+		}
+		if (movieSessionId <= 0) {
+		    throw new IllegalArgumentException("movieSessionId phải lớn hơn 0!");
 		}
 		
 		try (Connection connection = DBConnection.getConnection();
@@ -235,14 +250,12 @@ public class MovieSessionDao {
 	
 	/**
 	 * Kiểm tra liêu suất chiếu có đang được sử dụng ở bảng Ticket hay không
+	 *
 	 * @param movieSessionId - Mã suất chiếu
 	 * @return true nếu đang được sử dung
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	private boolean isUsedInTicket (int movieSessionId) throws SQLException{
-		if (movieSessionId <= 0) {
-			throw new IllegalArgumentException("Dữ liệu vào không hợp lệ - isUsedInTicket");
-		}
 		
 		try (Connection connection = DBConnection.getConnection();
 				PreparedStatement ps = connection.prepareStatement(IN_USED_MYSQL)){
@@ -263,6 +276,10 @@ public class MovieSessionDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	private boolean isMovieSessionUsed (int movieSessionId) throws SQLException{
+		if (movieSessionId <= 0) {
+			throw new IllegalArgumentException("movieSessionId phải lớn hơn 0!");
+		}
+		
 		return  isUsedInTicket(movieSessionId);
 	}
 	
@@ -307,7 +324,7 @@ public class MovieSessionDao {
 		validateMovieSession(movieSession);
 		
 		if (existsTimeConflictByScreenId(movieSession.getScreen().getScreenId(), movieSession.getStartsAt(), movieSession.getEndsAt())) {
-			throw new IllegalArgumentException("Phòng có id " + movieSession.getScreen().getScreenId() + " đã có xuất chiếu!"); 
+			throw new IllegalArgumentException("Phòng đã có suất chiếu bị trùng lịch!"); 
 		}
 		
 		try (Connection connection = DBConnection.getConnection();
@@ -326,21 +343,22 @@ public class MovieSessionDao {
 	
 	/**
 	 * Cập nhật thông tin suất chiếu
-	 * @param movieSession
-	 * @return
-	 * @throws SQLException
+	 *
+	 * @param movieSession - Đối tượng suất chiếu cần cập nhật
+	 * @return true nếu cập nhật thành công, false nếu không tìm thấy suất chiếu
+	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean updateMovieSession (MovieSession movieSession) throws SQLException{
 		validateMovieSession(movieSession);
-		
-		if (isMovieSessionUsed(movieSession.getMovieSessionId())) {
-		    throw new IllegalArgumentException("Suất chiếu đã phát sinh vé, không thể cập nhật!");
-		}
 		
 		if (movieSession.getMovieSessionId() <= 0) {
 		    throw new IllegalArgumentException("movieSessionId phải lớn hơn 0!");
 		}
 
+		if (isMovieSessionUsed(movieSession.getMovieSessionId())) {
+		    throw new IllegalArgumentException("Suất chiếu đã phát sinh vé, không thể cập nhật!");
+		}
+		
 		if (existsTimeConflictByScreenIdExceptId(
 		        movieSession.getScreen().getScreenId(),
 		        movieSession.getStartsAt(),
@@ -373,7 +391,7 @@ public class MovieSessionDao {
 	 */
 	public boolean deleteMovieSessionById (int movieSessionId) throws SQLException {
 		if (movieSessionId <= 0) {
-			throw new IllegalArgumentException("movieSessionId không được rỗng!");
+			throw new IllegalArgumentException("movieSessionId phải lớn hơn 0!");
 		}
 		
 		if (isMovieSessionUsed(movieSessionId)) {
@@ -398,7 +416,7 @@ public class MovieSessionDao {
 	 */
 	public MovieSession findById (int movieSessionId) throws SQLException{
 		if (movieSessionId <= 0) {
-			throw new IllegalArgumentException("movieSessionId không được rỗng!");
+			throw new IllegalArgumentException("movieSessionId phải lớn hơn 0!");
 		}
 		
 		try (Connection connection = DBConnection.getConnection();
@@ -503,7 +521,7 @@ public class MovieSessionDao {
 	 */
 	public List<MovieSession> searchByDate(LocalDate searchDate) throws SQLException{
 		if (searchDate == null) {
-			throw new IllegalArgumentException("date không được rỗng");
+			throw new IllegalArgumentException("searchDate không được null!");
 		}
 		
 		List<MovieSession> movieSessions = new ArrayList<MovieSession>();
