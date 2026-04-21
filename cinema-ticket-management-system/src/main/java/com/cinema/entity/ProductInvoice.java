@@ -13,7 +13,6 @@ public class ProductInvoice {
 	private Product product; // not null
 	private int quantity; // not null
 	private double unitPrice; // not null
-	private double totalPrice; // not null
 
 	/**
 	 * Constructor mặc định, không có dữ liệu để truyền
@@ -36,7 +35,6 @@ public class ProductInvoice {
 		setProduct(product);
 		setQuantity(quantity);
 		setUnitPrice(unitPrice);
-		recalculateTotalPrice();
 	}
 
 	/**
@@ -81,7 +79,7 @@ public class ProductInvoice {
 	 * @return thành tiền
 	 */
 	public double getTotalPrice() {
-		return totalPrice;
+		return quantity * unitPrice;
 	}
 
 	/**
@@ -118,7 +116,6 @@ public class ProductInvoice {
 		if (quantity <= 0)
 			throw new IllegalArgumentException("quantity phải > 0");
 		this.quantity = quantity;
-		recalculateTotalPrice();
 	}
 
 	/**
@@ -131,16 +128,6 @@ public class ProductInvoice {
 		if (unitPrice <= 0)
 			throw new IllegalArgumentException("unitPrice phải > 0");
 		this.unitPrice = unitPrice;
-		recalculateTotalPrice();
-	}
-
-	/**
-	 * Tự động tính lại thành tiền theo số lượng và đơn giá
-	 */
-	private void recalculateTotalPrice() {
-		if (this.quantity > 0 && this.unitPrice > 0) {
-			this.totalPrice = this.quantity * this.unitPrice;
-		}
 	}
 
 	/**
@@ -189,6 +176,6 @@ public class ProductInvoice {
 		return "ProductInvoice [invoiceId=" + (invoice != null ? invoice.getInvoiceId() : null)
 				+ ", productId=" + (product != null ? product.getProductId() : null)
 				+ ", quantity=" + quantity + ", unitPrice=" + unitPrice
-				+ ", totalPrice=" + totalPrice + "]";
+				+ ", totalPrice=" + getTotalPrice() + "]";
 	}
 }

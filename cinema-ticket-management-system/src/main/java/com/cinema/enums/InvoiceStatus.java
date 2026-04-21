@@ -2,14 +2,18 @@ package com.cinema.enums;
 
 /**
  * Phân loại trạng thái của hóa đơn.
- * 0 - FAILED: Hóa đơn thất bại
+ * 0 - PENDING: Hóa đơn đang chờ xử lý / chưa thanh toán
  * 1 - SUCCESS: Hóa đơn thành công
+ * 2 - FAILED: Hóa đơn thất bại
+ * 3 - CANCELLED: Hóa đơn đã hủy
  * 
  * @author Minh Huy (chính)
  */
 public enum InvoiceStatus {
-	FAILED(0, "Thất bại"),
-	SUCCESS(1, "Thành công");
+	PENDING(0, "Chờ xử lý"),
+	SUCCESS(1, "Thành công"),
+	FAILED(2, "Thất bại"),
+	CANCELLED(3, "Đã hủy");
 
 	private final int invoiceStatusId;
 	private final String displayName;
@@ -45,8 +49,10 @@ public enum InvoiceStatus {
 
 	/**
 	 * Chuyển mã trạng thái thành enum InvoiceStatus.
-	 * 0 - FAILED: Hóa đơn thất bại
+	 * 0 - PENDING: Hóa đơn đang chờ xử lý / chưa thanh toán
 	 * 1 - SUCCESS: Hóa đơn thành công
+	 * 2 - FAILED: Hóa đơn thất bại
+	 * 3 - CANCELLED: Hóa đơn đã hủy
 	 * 
 	 * @param id - Mã trạng thái hóa đơn
 	 * @return trạng thái hóa đơn tương ứng
@@ -61,3 +67,8 @@ public enum InvoiceStatus {
 		throw new IllegalArgumentException("Mã trạng thái hóa đơn không hợp lệ: " + id);
 	}
 }
+/*
+ * UPDATE: 20/04/2026
+ * Cũ chỉ có FAILED và SUCCESS nên không biểu diễn được trạng thái trung gian
+ * Thêm PENDING để biểu diễn hóa đơn đang lập, thêm CANCELLED để phân biệt với lỗi thanh toán. “Hủy” và “thất bại” không hoàn toàn giống nhau về nghiệp vụ.
+ * */

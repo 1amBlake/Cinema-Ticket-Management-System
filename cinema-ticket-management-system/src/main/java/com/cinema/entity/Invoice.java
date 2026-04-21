@@ -14,14 +14,13 @@ import com.cinema.enums.PaymentMethod;
  */
 public class Invoice {
 
-	private int invoiceId; //Do database tự sinh
-	private Employee employee; //not null
-	private PaymentMethod paymentMethod; //not null
-	private double totalAmount; //not null
-	private InvoiceStatus invoiceStatus; //not null
+	private int invoiceId; // Do database tự sinh
+	private Employee employee; // not null
+	private PaymentMethod paymentMethod; // not null
+	private InvoiceStatus invoiceStatus; // not null
 	private LocalDateTime paymentTime;
-	private LocalDateTime createdAt; //Do database tự sinh
-	private LocalDateTime updatedAt; //Do database tự sinh
+	private LocalDateTime createdAt; // Do database tự sinh
+	private LocalDateTime updatedAt; // Do database tự sinh
 
 	/**
 	 * Constructor mặc định, không có dữ liệu để truyền
@@ -45,14 +44,12 @@ public class Invoice {
 	 * 
 	 * @param employee - Nhân viên lập hóa đơn
 	 * @param paymentMethod - Phương thức thanh toán
-	 * @param totalAmount - Tổng tiền hóa đơn
 	 * @param invoiceStatus - Trạng thái hóa đơn
 	 */
-	public Invoice(Employee employee, PaymentMethod paymentMethod, double totalAmount, InvoiceStatus invoiceStatus) {
+	public Invoice(Employee employee, PaymentMethod paymentMethod, InvoiceStatus invoiceStatus) {
 		super();
 		setEmployee(employee);
 		setPaymentMethod(paymentMethod);
-		setTotalAmount(totalAmount);
 		setInvoiceStatus(invoiceStatus);
 	}
 
@@ -62,16 +59,13 @@ public class Invoice {
 	 * @param invoiceId - Mã hóa đơn
 	 * @param employee - Nhân viên lập hóa đơn
 	 * @param paymentMethod - Phương thức thanh toán
-	 * @param totalAmount - Tổng tiền hóa đơn
 	 * @param invoiceStatus - Trạng thái hóa đơn
 	 */
-	public Invoice(int invoiceId, Employee employee, PaymentMethod paymentMethod, double totalAmount,
-			InvoiceStatus invoiceStatus) {
+	public Invoice(int invoiceId, Employee employee, PaymentMethod paymentMethod, InvoiceStatus invoiceStatus) {
 		super();
 		this.invoiceId = invoiceId;
 		setEmployee(employee);
 		setPaymentMethod(paymentMethod);
-		setTotalAmount(totalAmount);
 		setInvoiceStatus(invoiceStatus);
 	}
 
@@ -81,19 +75,18 @@ public class Invoice {
 	 * @param invoiceId - Mã hóa đơn
 	 * @param employee - Nhân viên lập hóa đơn
 	 * @param paymentMethod - Phương thức thanh toán
-	 * @param totalAmount - Tổng tiền hóa đơn
 	 * @param invoiceStatus - Trạng thái hóa đơn
 	 * @param paymentTime - Thời gian thanh toán
 	 * @param createdAt - Thời điểm khởi tạo dữ liệu
 	 * @param updatedAt - Thời điểm dữ liệu được cập nhật
 	 */
-	public Invoice(int invoiceId, Employee employee, PaymentMethod paymentMethod, double totalAmount,
-			InvoiceStatus invoiceStatus, LocalDateTime paymentTime, LocalDateTime createdAt, LocalDateTime updatedAt) {
+	public Invoice(int invoiceId, Employee employee, PaymentMethod paymentMethod,
+			InvoiceStatus invoiceStatus, LocalDateTime paymentTime,
+			LocalDateTime createdAt, LocalDateTime updatedAt) {
 		super();
 		this.invoiceId = invoiceId;
 		setEmployee(employee);
 		setPaymentMethod(paymentMethod);
-		setTotalAmount(totalAmount);
 		setInvoiceStatus(invoiceStatus);
 		setPaymentTime(paymentTime);
 		this.createdAt = createdAt;
@@ -110,10 +103,6 @@ public class Invoice {
 
 	public PaymentMethod getPaymentMethod() {
 		return paymentMethod;
-	}
-
-	public double getTotalAmount() {
-		return totalAmount;
 	}
 
 	public InvoiceStatus getInvoiceStatus() {
@@ -142,12 +131,6 @@ public class Invoice {
 		if (paymentMethod == null)
 			throw new IllegalArgumentException("paymentMethod không được null");
 		this.paymentMethod = paymentMethod;
-	}
-
-	public void setTotalAmount(double totalAmount) {
-		if (totalAmount < 0)
-			throw new IllegalArgumentException("totalAmount phải >= 0");
-		this.totalAmount = totalAmount;
 	}
 
 	public void setInvoiceStatus(InvoiceStatus invoiceStatus) {
@@ -186,7 +169,15 @@ public class Invoice {
 	@Override
 	public String toString() {
 		return "Invoice [invoiceId=" + invoiceId + ", employee=" + employee + ", paymentMethod=" + paymentMethod
-				+ ", totalAmount=" + totalAmount + ", invoiceStatus=" + invoiceStatus + ", paymentTime=" + paymentTime
+				+ ", invoiceStatus=" + invoiceStatus + ", paymentTime=" + paymentTime
 				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
 	}
 }
+/*
+ * updated 20/04/2026
+ * đổi ý nghĩa của invoiceStatus theo enum mới
+ * giữ paymentTime là nullable
+ * khi PENDING thì paymentTime = null
+ * khi SUCCESS thì bắt buộc có paymentTime
+ * khi FAILED hoặc CANCELLED thì có thể để paymentTime = null
+ */
