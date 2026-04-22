@@ -87,9 +87,9 @@ ENTITY:
 
 ===============================================
 DAO:
-	GenreDao - done (sample)
+	GenreDao - unvalidate 
 	
-	DirectorDao - unvalidate
+	DirectorDao - done (sample)
 	
 	TheaterDao - unvalidate
 	
@@ -101,7 +101,7 @@ DAO:
 	
 	JobTitleDao - unvalidate
 	
-	MovieDao - unvalidate
+	MovieDao - done (sample)
 	
 	ScreenDao - unvalidate
 	
@@ -129,6 +129,57 @@ DAO:
 	
 	ProductInvoiceDao - unvalidate
 	
+===============================================
+VALIDATOR:
+	
+	MovieValidator - Minh Huy
+	
+	DirectorValidator - Minh Huy
+	
+	TicketValidator - Minh Huy
+	
+	ProductInvoiceValidator - Minh Huy
+	
+	TicketInvoiceValidator - Minh Huy
+	
+	MovieSessionValidator - Minh Huy
+	
+	InvoiceValidator - Minh Huy
+	
+	EmployeeValidator - Minh Huy
+	
+-----------------------------------------------
+	
+	GenreValidator - Trọng
+	
+	TheaterValidator - Trọng
+	
+	ScreenTypeValidator - Trọng
+	
+	SeatTypeValidator - Trọng
+	
+	ProductTypeValidator - Trọng
+	
+-----------------------------------------------
+
+	ProductValidator - Quốc Anh
+	
+	ScreenValidator - Quốc Anh
+	
+	MovieDirectorValidator - Quốc Anh
+	
+	JobTitleValidator - Quốc Anh
+
+-----------------------------------------------
+
+	SeatValidator - Hải Anh
+	
+	EmployeeAccountValidator - Hải Anh
+	
+	TicketPricingValidator - Hải Anh
+	
+	MovieGenreValidator - Hải Anh
+
 ===============================================
 CONTROLLER:
 
