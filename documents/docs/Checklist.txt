@@ -86,29 +86,26 @@ ENTITY:
 	ProductInvoice - done
 
 ===============================================
-SERVICE:
-
-===============================================
 DAO:
 	GenreDao - done (sample)
 	
 	DirectorDao - unvalidate
 	
-	TheaterDao Hải Anh
+	TheaterDao - unvalidate
 	
-	ScreenTypeDao Hải Anh
+	ScreenTypeDao - unvalidate
 	
-	SeatTypeDao Hải Anh
+	SeatTypeDao - unvalidate
 	
-	ProductTypeDao Quốc Anh
+	ProductTypeDao - unvalidate
 	
-	JobTitleDao Quốc Anh
+	JobTitleDao - unvalidate
 	
 	MovieDao - unvalidate
 	
-	ScreenDao Hải Anh
+	ScreenDao - unvalidate
 	
-	SeatDao Hải Anh
+	SeatDao - unvalidate
 	
 	MovieSessionDao - unvalidate
 	
@@ -116,9 +113,9 @@ DAO:
 	
 	EmployeeDao - unvalidate
 	
-	EmployeeAccountDao Quốc Anh
+	EmployeeAccountDao - unvalidate
 	
-	TicketPricingDao Quốc Anh
+	TicketPricingDao - unvalidate
 	
 	TicketDao - unvalidate
 	
@@ -126,7 +123,7 @@ DAO:
 	
 	MovieDirectorDao Trọng - unvalidate
 	
-	MovieGenreDao Trọng - checking
+	MovieGenreDao Trọng - unvalidate
 	
 	TicketInvoiceDao - unvalidate
 	
@@ -137,6 +134,9 @@ CONTROLLER:
 
 ===============================================
 CONFIG:
+
+===============================================
+SERVICE:
 
 ===============================================
 Main:
