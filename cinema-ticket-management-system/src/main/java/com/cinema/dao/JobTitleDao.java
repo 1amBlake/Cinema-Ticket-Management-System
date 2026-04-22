@@ -18,7 +18,7 @@ import com.cinema.entity.JobTitle;
  * Bảng ánh xạ:
  * chuc_vu(ma_chuc_vu, ten_chuc_vu, created_at, updated_at)
  * 
- * @author Quốc Anh (gốc)
+ * @author Quốc Anh (chính)
  * @author Minh Huy (sủa một số điểm)
  */
 public class JobTitleDao {

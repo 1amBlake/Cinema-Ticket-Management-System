@@ -30,7 +30,7 @@ import com.cinema.enums.InvoiceStatus;
  * - Chỉ cho phép thêm / sửa / xóa chi tiết vé khi hóa đơn còn ở trạng thái PENDING.
  * - Khi hóa đơn đã SUCCESS, FAILED hoặc CANCELLED thì nên khóa chi tiết để tránh lệch dữ liệu.
  * 
- * @author Minh Huy (đề xuất)
+ * @author Minh Huy (chính)
  */
 public class TicketInvoiceDao {
 

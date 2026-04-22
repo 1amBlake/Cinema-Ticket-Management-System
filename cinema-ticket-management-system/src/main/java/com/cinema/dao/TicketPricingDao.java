@@ -27,7 +27,8 @@ import com.cinema.entity.TicketPricing;
  * 	updated_at
  * )
  * 
- * @author Minh Huy (sửa theo mẫu)
+ * @author Quốc Anh
+ * @author Minh Huy (sửa một số chi tiết)
  */
 public class TicketPricingDao {
 

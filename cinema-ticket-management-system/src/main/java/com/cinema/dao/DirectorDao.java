@@ -18,7 +18,8 @@ import com.cinema.entity.Director;
  * Bảng ánh xạ:
  * dao_dien(ma_dao_dien, ten_dao_dien, created_at, updated_at)
  * 
- * @author Minh Huy (đề xuất sửa theo mẫu nhóm)
+ * @author Trọng (chính)
+ * @author Minh Huy (sửa một số chi tiết)
  */
 public class DirectorDao {
 
