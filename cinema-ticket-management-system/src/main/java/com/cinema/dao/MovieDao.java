@@ -14,6 +14,7 @@ import com.cinema.config.DBConnection;
 import com.cinema.entity.Movie;
 import com.cinema.enums.MovieAgeRating;
 import com.cinema.enums.MovieStatus;
+import com.cinema.validator.MovieValidator;
 
 /**
  * DAO cho thực thể Movie
@@ -139,16 +140,6 @@ public class MovieDao {
             WHERE ma_phim = ?
             LIMIT 1
             """;
-    
-    /**
-     * Kiểm tra dữ liệu đầu vào của Movie
-     * 
-     * @param movie - Đối tượng Movie để kiểm tra
-     */
-    private void validateMovie(Movie movie) { //TODO: làm validate internal và package
-    	//MovieValidator -> package Validator
-
-    }
     
     /**
      * Kiểm tra phim đã tồn tại theo tên và ngày phát hành chưa
@@ -328,7 +319,7 @@ public class MovieDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean addMovie(Movie movie) throws SQLException{
-    	validateMovie(movie);
+    	MovieValidator.validateForCreate(movie);
     	
     	if (existsByNameAndReleaseDate(movie.getMovieName(), movie.getMovieReleaseDate())) {
     		throw new IllegalArgumentException("Phim đã tồn tại!");
@@ -363,11 +354,7 @@ public class MovieDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean updateMovie(Movie movie) throws SQLException{
-    	validateMovie(movie);
-    	
-    	if (movie.getMovieId() <= 0) {
-    		throw new IllegalArgumentException("movieId phải lớn hơn 0!");
-    	}
+    	MovieValidator.validateForUpdate(movie);
     	
     	if (existsByNameAndReleaseDateExceptId(movie.getMovieName(), movie.getMovieReleaseDate(), 
     			movie.getMovieId())) {

@@ -14,6 +14,7 @@ import com.cinema.entity.Seat;
 import com.cinema.entity.Ticket;
 import com.cinema.entity.TicketPricing;
 import com.cinema.enums.TicketStatus;
+import com.cinema.validator.TicketValidator;
 
 /**
  * DAO cho thực thể Ticket
@@ -166,15 +167,6 @@ public class TicketDao {
 			WHERE sc.ma_suat_chieu = ?
 			LIMIT 1
 			""";
-
-	/**
-	 * Kiểm tra dữ liệu đầu vào của Ticket
-	 * 
-	 * @param ticket - Đối tượng Ticket để kiểm tra
-	 */
-	private void validateTicket(Ticket ticket) { // TODO: làm validate internal và package
-
-	}
 
 	/**
 	 * Kiểm tra cặp movieSession - seat đã tồn tại hay chưa
@@ -350,7 +342,7 @@ public class TicketDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean addTicket(Ticket ticket) throws SQLException {
-		validateTicket(ticket);
+		TicketValidator.validateForCreate(ticket);
 
 		if (existsByMovieSessionIdAndSeatId(
 				ticket.getMovieSession().getMovieSessionId(),
@@ -391,7 +383,7 @@ public class TicketDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean updateTicket(Ticket ticket) throws SQLException {
-		validateTicket(ticket);
+		TicketValidator.validateForUpdate(ticket);
 
 		if (ticket.getTicketId() <= 0) {
 			throw new IllegalArgumentException("ticketId phải lớn hơn 0!");

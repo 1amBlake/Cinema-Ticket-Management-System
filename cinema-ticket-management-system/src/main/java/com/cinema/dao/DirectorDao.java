@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.cinema.config.DBConnection;
 import com.cinema.entity.Director;
+import com.cinema.validator.DirectorValidator;
 
 /**
  * DAO cho thực thể Director
@@ -75,16 +76,6 @@ public class DirectorDao {
             WHERE ma_dao_dien = ?
             LIMIT 1
             """;
-
-    /**
-     * Kiểm tra dữ liệu đầu vào của Director.
-     * Một phần đã được kiểm tra thông qua setter của entity.
-     * 
-     * @param director - Đối tượng Director cần kiểm tra
-     */
-    private void validateDirector(Director director) { // TODO: làm validate internal và package
-        // DirectorValidator -> package validator
-    }
 
     /**
      * Kiểm tra đạo diễn có đang được sử dụng trong bảng liên kết phim - đạo diễn hay không.
@@ -155,12 +146,8 @@ public class DirectorDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean addDirector(Director director) throws SQLException {
-        validateDirector(director);
-
-        if (director == null) {
-            throw new IllegalArgumentException("director không được null!");
-        }
-
+        DirectorValidator.validateForCreate(director);
+         
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement ps = connection.prepareStatement(INSERT_MYSQL)) {
 
@@ -178,7 +165,7 @@ public class DirectorDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean updateDirector(Director director) throws SQLException {
-        validateDirector(director);
+        DirectorValidator.validateForUpdate(director);
 
         if (director == null) {
             throw new IllegalArgumentException("director không được null!");

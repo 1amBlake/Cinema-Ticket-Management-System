@@ -132,11 +132,11 @@ DAO:
 ===============================================
 VALIDATOR:
 	
-	MovieValidator - Minh Huy
+	MovieValidator - done (sample)
 	
-	DirectorValidator - Minh Huy
+	DirectorValidator - done (sample)
 	
-	TicketValidator - Minh Huy
+	TicketValidator - done (sample)
 	
 	ProductInvoiceValidator - Minh Huy
 	
