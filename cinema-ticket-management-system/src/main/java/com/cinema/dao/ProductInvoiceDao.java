@@ -13,6 +13,7 @@ import com.cinema.entity.Product;
 import com.cinema.entity.ProductInvoice;
 import com.cinema.enums.InvoiceStatus;
 import com.cinema.enums.ProductStatus;
+import com.cinema.validator.ProductInvoiceValidator;
 
 /**
  * DAO cho thực thể ProductInvoice
@@ -139,16 +140,7 @@ public class ProductInvoiceDao {
 			FROM san_pham
 			WHERE ma_san_pham = ?
 			""";
-
-	/**
-	 * Kiểm tra dữ liệu đầu vào của ProductInvoice
-	 * 
-	 * @param productInvoice - Đối tượng ProductInvoice để kiểm tra
-	 */
-	private void validateProductInvoice(ProductInvoice productInvoice) { // TODO: làm validate internal và package
-
-	}
-
+	
 	/**
 	 * Kiểm tra nghiệp vụ cơ bản của ProductInvoice
 	 * 
@@ -355,8 +347,7 @@ public class ProductInvoiceDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean addProductInvoice(ProductInvoice productInvoice) throws SQLException {
-		validateProductInvoice(productInvoice);
-		validateProductInvoiceBusinessRule(productInvoice);
+		ProductInvoiceValidator.validateForCreate(productInvoice);
 
 		int invoiceId = productInvoice.getInvoice().getInvoiceId();
 		int productId = productInvoice.getProduct().getProductId();
@@ -407,7 +398,7 @@ public class ProductInvoiceDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean updateProductInvoice(ProductInvoice productInvoice) throws SQLException {
-		validateProductInvoice(productInvoice);
+		ProductInvoiceValidator.validateForUpdate(productInvoice);
 		validateProductInvoiceBusinessRule(productInvoice);
 
 		int invoiceId = productInvoice.getInvoice().getInvoiceId();

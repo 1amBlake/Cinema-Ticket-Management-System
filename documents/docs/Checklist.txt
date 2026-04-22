@@ -117,7 +117,7 @@ DAO:
 	
 	TicketPricingDao - unvalidate
 	
-	TicketDao - unvalidate
+	TicketDao - done
 	
 	InvoiceDao - unvalidate
 	
@@ -125,9 +125,9 @@ DAO:
 	
 	MovieGenreDao Trọng - unvalidate
 	
-	TicketInvoiceDao - unvalidate
+	TicketInvoiceDao - done
 	
-	ProductInvoiceDao - unvalidate
+	ProductInvoiceDao - done
 	
 ===============================================
 VALIDATOR:
@@ -138,9 +138,9 @@ VALIDATOR:
 	
 	TicketValidator - done (sample)
 	
-	ProductInvoiceValidator - Minh Huy
+	ProductInvoiceValidator - done 
 	
-	TicketInvoiceValidator - Minh Huy
+	TicketInvoiceValidator - done
 	
 	MovieSessionValidator - Minh Huy
 	

@@ -12,6 +12,7 @@ import com.cinema.entity.Invoice;
 import com.cinema.entity.Ticket;
 import com.cinema.entity.TicketInvoice;
 import com.cinema.enums.InvoiceStatus;
+import com.cinema.validator.TicketInvoiceValidator;
 
 /**
  * DAO cho thực thể TicketInvoice
@@ -127,14 +128,6 @@ public class TicketInvoiceDao {
 			LIMIT 1
 			""";
 
-	/**
-	 * Kiểm tra dữ liệu đầu vào của TicketInvoice
-	 * 
-	 * @param ticketInvoice - Đối tượng TicketInvoice để kiểm tra
-	 */
-	private void validateTicketInvoice(TicketInvoice ticketInvoice) { // TODO: làm validate internal và package
-
-	}
 
 	/**
 	 * Kiểm tra cặp invoiceId - ticketId đã tồn tại hay chưa
@@ -306,7 +299,7 @@ public class TicketInvoiceDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean addTicketInvoice(TicketInvoice ticketInvoice) throws SQLException {
-		validateTicketInvoice(ticketInvoice);
+		TicketInvoiceValidator.validateForCreate(ticketInvoice);
 
 		if (ticketInvoice == null) {
 			throw new IllegalArgumentException("ticketInvoice không được null!");
@@ -371,7 +364,7 @@ public class TicketInvoiceDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean updateTicketInvoice(TicketInvoice ticketInvoice) throws SQLException {
-		validateTicketInvoice(ticketInvoice);
+		TicketInvoiceValidator.validateForUpdate(ticketInvoice);
 
 		if (ticketInvoice == null) {
 			throw new IllegalArgumentException("ticketInvoice không được null!");
