@@ -267,6 +267,9 @@ public class DirectorDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public List<Director> searchByName(String keyword) throws SQLException {
+    	if (keyword.trim().length() > 255) {
+    		throw new IllegalArgumentException("keyword không dược vượt quá 255 ký tự!");
+    	}
         List<Director> directors = new ArrayList<>();
 
         try (Connection connection = DBConnection.getConnection();

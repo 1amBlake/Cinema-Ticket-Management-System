@@ -66,7 +66,7 @@ public class TheaterDao {
 			       created_at,
 			       updated_at
 			FROM rap
-			ORDER BY ten_rap ASC
+			ORDER BY ten_rap ASC, ma_rap ASC
 			""";
 
 	private static final String SEARCH_BY_NAME_MYSQL = """
@@ -77,7 +77,7 @@ public class TheaterDao {
 			       updated_at
 			FROM rap
 			WHERE ten_rap LIKE ?
-			ORDER BY ten_rap ASC
+			ORDER BY ten_rap ASC, ma_rap ASC
 			""";
 
 	private static final String EXISTS_BY_NAME_MYSQL = """
@@ -101,18 +101,6 @@ public class TheaterDao {
 			WHERE ma_rap = ?
 			LIMIT 1
 			""";
-
-	/**
-	 * Kiểm tra dữ liệu đầu vào của Theater
-	 * 
-	 * @param theater - Đối tượng Theater để kiểm tra
-	 */
-	private void validateTheater(Theater theater) { // TODO: làm validate internal và package
-		// TheaterValidator -> package validator
-		if (theater == null) {
-			throw new IllegalArgumentException("theater không được null!");
-		}
-	}
 
 	/**
 	 * Kiểm tra rạp đã tồn tại theo tên hay chưa
@@ -230,7 +218,7 @@ public class TheaterDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean addTheater(Theater theater) throws SQLException {
-		validateTheater(theater);
+		//TheaterValidator.validateForCreate(theater);
 
 		if (existsByName(theater.getTheaterName())) {
 			throw new IllegalArgumentException("Rạp đã tồn tại!");
@@ -254,7 +242,7 @@ public class TheaterDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean updateTheater(Theater theater) throws SQLException {
-		validateTheater(theater);
+		//TheaterValidator.validateForUpdate(theater);
 
 		if (theater.getTheaterId() <= 0) {
 			throw new IllegalArgumentException("theaterId phải lớn hơn 0!");

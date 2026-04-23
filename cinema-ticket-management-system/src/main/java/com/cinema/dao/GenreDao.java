@@ -48,14 +48,14 @@ public class GenreDao {
     private static final String SELECT_ALL_MYSQL = """
             SELECT ma_the_loai, ten_the_loai, created_at, updated_at
             FROM the_loai
-            ORDER BY ten_the_loai ASC
+            ORDER BY ten_the_loai ASC, ma_the_loai ASC
             """;
 
     private static final String SEARCH_BY_NAME_MYSQL = """
             SELECT ma_the_loai, ten_the_loai, created_at, updated_at
             FROM the_loai
             WHERE ten_the_loai LIKE ?
-            ORDER BY ten_the_loai ASC
+            ORDER BY ten_the_loai ASC, ma_the_loai ASC
             """;
     
     private static final String EXISTS_BY_NAME_MYSQL = """
@@ -86,7 +86,7 @@ public class GenreDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean addGenre(Genre genre) throws SQLException{
-    	validateGenre(genre);
+    	//GenreValidator.validateForCreate(genre);
     	
     	if (existsByName(genre.getGenreName())) {
     		throw new IllegalArgumentException("Thể loại đã tồn tại!");
@@ -107,7 +107,7 @@ public class GenreDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean updateGenre(Genre genre) throws SQLException{
-    	validateGenre(genre);
+    	//GenreValidator.validateForUpdate(genre);
     	
     	if (genre.getGenreId() <= 0) {
     		throw new IllegalArgumentException("genreId phải lớn hơn 0!");
@@ -312,14 +312,5 @@ public class GenreDao {
                 createdAt != null ? createdAt.toLocalDateTime() : null,
                 updatedAt != null ? updatedAt.toLocalDateTime() : null
         );
-    }
-    
-    /**
-     * Kiểm tra dữ liệu đầu vào. Một phần đã được kiểm tra thông qua setter.
-     * 
-     * @param genre - Đối tượng genre cần kiểm tra
-     */
-    private void validateGenre(Genre genre) { //TODO: làm validate internal và package
-    	//GenreValidator -> package Validator
     }
 }

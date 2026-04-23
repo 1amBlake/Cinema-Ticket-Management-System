@@ -17,6 +17,7 @@ import com.cinema.entity.MovieSession;
 import com.cinema.entity.Screen;
 import com.cinema.enums.MovieFormat;
 import com.cinema.enums.MovieSessionStatus;
+import com.cinema.validator.MovieSessionValidator;
 
 
 /**
@@ -92,7 +93,7 @@ public class MovieSessionDao {
 				 created_at,
 				 updated_at
 			FROM suat_chieu
-			ORDER BY tg_bat_dau ASC
+			ORDER BY tg_bat_dau ASC, ma_suat_chieu ASC
 			""";
 	
 	private static final String SEARCH_BY_MOVIE_ID_MYSQL = """
@@ -107,7 +108,7 @@ public class MovieSessionDao {
 				 updated_at
 				 FROM suat_chieu
 				 WHERE ma_phim = ?
-				 ORDER BY tg_bat_dau ASC
+				 ORDER BY tg_bat_dau ASC, ma_suat_chieu ASC
 			""";
 	
 	private static final String SEARCH_BY_SCREEN_ID_MYSQL= """
@@ -122,7 +123,7 @@ public class MovieSessionDao {
 				 updated_at
 				 FROM suat_chieu
 				 WHERE ma_phong = ?
-				 ORDER BY tg_bat_dau ASC
+				 ORDER BY tg_bat_dau ASC, ma_suat_chieu ASC
 			""";
 	
 	private static final String SEARCH_BY_DATE_MYSQL = """
@@ -137,7 +138,7 @@ public class MovieSessionDao {
 				       updated_at
 				FROM suat_chieu
 				WHERE DATE(tg_bat_dau) = ?
-				ORDER BY tg_bat_dau ASC
+				ORDER BY tg_bat_dau ASC, ma_suat_chieu ASC
 			""";
 	//WHERE tg_bat_dau BETWEEN ? AND ?: nếu muốn tìm trong khoảng thời gian
 	
@@ -166,15 +167,6 @@ public class MovieSessionDao {
 			WHERE ma_suat_chieu = ?
 			LIMIT 1
 			""";
-	
-	/**
-	 * Kiểm tra dữ liệu đầu vào của MovieSession
-	 * 
-	 * @param movieSession - Đối tượng MovieSession để kiểm tra
-	 */
-	private void validateMovieSession (MovieSession movieSession) { //TODO: làm validate internal và package
-
-	}
 	
 	/**
 	 * Kiểm tra xem suất chiếu có bị trùng lịch theo phòng hay không
@@ -321,7 +313,7 @@ public class MovieSessionDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean addMovieSession (MovieSession movieSession) throws SQLException{
-		validateMovieSession(movieSession);
+		MovieSessionValidator.validateForCreate(movieSession);
 		
 		if (existsTimeConflictByScreenId(movieSession.getScreen().getScreenId(), movieSession.getStartsAt(), movieSession.getEndsAt())) {
 			throw new IllegalArgumentException("Phòng đã có suất chiếu bị trùng lịch!"); 
@@ -349,7 +341,7 @@ public class MovieSessionDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean updateMovieSession (MovieSession movieSession) throws SQLException{
-		validateMovieSession(movieSession);
+		MovieSessionValidator.validateForUpdate(movieSession);
 		
 		if (movieSession.getMovieSessionId() <= 0) {
 		    throw new IllegalArgumentException("movieSessionId phải lớn hơn 0!");

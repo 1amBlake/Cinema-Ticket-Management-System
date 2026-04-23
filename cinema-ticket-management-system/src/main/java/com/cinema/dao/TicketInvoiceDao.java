@@ -443,7 +443,7 @@ public class TicketInvoiceDao {
 	 * @return đối tượng TicketInvoice nếu tìm thấy, ngược lại trả về null
 	 * @throws SQLException nếu có lỗi SQL
 	 */
-	public TicketInvoice findById(int invoiceId, int ticketId) throws SQLException {
+	public TicketInvoice findByInvoiceIdAndTicketId(int invoiceId, int ticketId) throws SQLException {
 		if (invoiceId <= 0 || ticketId <= 0) {
 			throw new IllegalArgumentException("invoiceId và ticketId phải lớn hơn 0!");
 		}

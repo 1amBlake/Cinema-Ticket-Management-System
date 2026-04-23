@@ -81,9 +81,16 @@ public class MovieDirector {
 	 */
 	@Override
 	public int hashCode() {
-		int movieId = (movie != null) ? movie.getMovieId() : 0;
-		int directorId = (director != null) ? director.getDirectorId() : 0;
-		return 31 * Integer.hashCode(movieId) + Integer.hashCode(directorId);
+		int movieId = (movie != null) ? movie.getMovieId() : -1;
+		int directorId = (director != null) ? director.getDirectorId() : -1;
+
+		if (movieId > 0 && directorId > 0) {
+			int result = Integer.hashCode(movieId);
+			result = 31 * result + Integer.hashCode(directorId);
+			return result;
+		}
+
+		return System.identityHashCode(this);
 	}
 
 	/**
@@ -104,10 +111,15 @@ public class MovieDirector {
 		if (this.movie == null || other.movie == null || this.director == null || other.director == null)
 			return false;
 
-		return this.movie.getMovieId() > 0 && other.movie.getMovieId() > 0
-				&& this.director.getDirectorId() > 0 && other.director.getDirectorId() > 0
-				&& this.movie.getMovieId() == other.movie.getMovieId()
-				&& this.director.getDirectorId() == other.director.getDirectorId();
+		int thisMovieId = this.movie.getMovieId();
+		int otherMovieId = other.movie.getMovieId();
+		int thisDirectorId = this.director.getDirectorId();
+		int otherDirectorId = other.director.getDirectorId();
+
+		if (thisMovieId <= 0 || otherMovieId <= 0 || thisDirectorId <= 0 || otherDirectorId <= 0)
+			return false;
+
+		return thisMovieId == otherMovieId && thisDirectorId == otherDirectorId;
 	}
 
 	/**

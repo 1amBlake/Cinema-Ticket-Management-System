@@ -104,9 +104,16 @@ public class TicketInvoice {
 	 */
 	@Override
 	public int hashCode() {
-		int invoiceId = (invoice != null) ? invoice.getInvoiceId() : 0;
-		int ticketId = (ticket != null) ? ticket.getTicketId() : 0;
-		return 31 * Integer.hashCode(invoiceId) + Integer.hashCode(ticketId);
+		int invoiceId = (invoice != null) ? invoice.getInvoiceId() : -1;
+		int ticketId = (ticket != null) ? ticket.getTicketId() : -1;
+
+		if (invoiceId > 0 && ticketId > 0) {
+			int result = Integer.hashCode(invoiceId);
+			result = 31 * result + Integer.hashCode(ticketId);
+			return result;
+		}
+
+		return System.identityHashCode(this);
 	}
 
 	/**

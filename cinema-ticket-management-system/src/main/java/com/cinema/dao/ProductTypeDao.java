@@ -59,7 +59,7 @@ public class ProductTypeDao {
                    created_at,
                    updated_at
             FROM loai_san_pham
-            ORDER BY ten_loai_san_pham ASC
+            ORDER BY ten_loai_san_pham ASC, ma_loai_san_pham ASC
             """;
 
     private static final String SEARCH_BY_NAME_MYSQL = """
@@ -69,7 +69,7 @@ public class ProductTypeDao {
                    updated_at
             FROM loai_san_pham
             WHERE ten_loai_san_pham LIKE ?
-            ORDER BY ten_loai_san_pham ASC
+            ORDER BY ten_loai_san_pham ASC, ma_loai_san_pham ASC
             """;
 
     private static final String EXISTS_BY_NAME_MYSQL = """
@@ -93,15 +93,6 @@ public class ProductTypeDao {
             WHERE ma_loai_san_pham = ?
             LIMIT 1
             """;
-
-    /**
-     * Kiểm tra dữ liệu đầu vào của ProductType
-     * 
-     * @param productType - Đối tượng ProductType để kiểm tra
-     */
-    private void validateProductType(ProductType productType) { // TODO: làm validate internal và package
-        // ProductTypeValidator -> package validator
-    }
 
     /**
      * Kiểm tra tên loại sản phẩm đã tồn tại hay chưa
@@ -214,7 +205,7 @@ public class ProductTypeDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean addProductType(ProductType productType) throws SQLException {
-        validateProductType(productType);
+        //ProductTypeValidator.validateForCreate(productType);
 
         if (productType == null) {
             throw new IllegalArgumentException("productType không được null!");
@@ -241,7 +232,7 @@ public class ProductTypeDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean updateProductType(ProductType productType) throws SQLException {
-        validateProductType(productType);
+    	//ProductTypeValidator.validateForUpdate(productType);
 
         if (productType == null) {
             throw new IllegalArgumentException("productType không được null!");

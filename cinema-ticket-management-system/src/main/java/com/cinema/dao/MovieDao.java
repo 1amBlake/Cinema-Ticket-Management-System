@@ -84,7 +84,7 @@ public class MovieDao {
                 created_at, 
                 updated_at
 			FROM phim
-			ORDER BY ten_phim ASC
+			ORDER BY ten_phim ASC, ma_phim ASC
 			""";
 	
 	private static final String SEARCH_BY_NAME_MYSQL = """
@@ -100,7 +100,7 @@ public class MovieDao {
                 updated_at
 			FROM phim
 			WHERE ten_phim LIKE ?
-			ORDER BY ten_phim ASC
+			ORDER BY ten_phim ASC, ma_phim ASC
 			""";
 	
     private static final String EXISTS_BY_NAME_AND_RELEASE_DATE_MYSQL = """

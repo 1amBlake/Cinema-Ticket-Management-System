@@ -86,7 +86,7 @@ public class ProductDao {
 	               created_at,
 	               updated_at
 	        FROM san_pham
-	        ORDER BY ten_san_pham ASC
+	        ORDER BY ten_san_pham ASC, ma_san_pham ASC
 	        """;
 
 	private static final String SEARCH_BY_NAME_MYSQL = """
@@ -101,7 +101,7 @@ public class ProductDao {
 	               updated_at
 	        FROM san_pham
 	        WHERE ten_san_pham LIKE ?
-	        ORDER BY ten_san_pham ASC
+	        ORDER BY ten_san_pham ASC, ma_san_pham ASC
 	        """;
 
 	private static final String EXISTS_BY_NAME_MYSQL = """
@@ -125,16 +125,7 @@ public class ProductDao {
 	        WHERE ma_san_pham = ?
 	        LIMIT 1
 			""";
-	
-	/**
-	 * Kiểm tra dữ liệu đầu vào của Product
-	 * 
-	 * @param product - Đối tượng Product để kiểm tra
-	 */
-	private void validateProduct(Product product) { //TODO: làm validate internal và package
 
-	}
-	
 	/**
 	 * Kiểm tra xem sản phẩm đã tồn tại theo tên hay chưa
 	 * 
@@ -250,7 +241,7 @@ public class ProductDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean addProduct(Product product) throws SQLException{
-		validateProduct(product);
+		//ProductValidator.validateForCreate(product);
 		
 		if (existsByName(product.getProductName())) {
 			throw new IllegalArgumentException("Sản phẩm đã tồn tại!");
@@ -278,7 +269,7 @@ public class ProductDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean updateProduct (Product product) throws SQLException{
-		validateProduct(product);
+		//ProductValidator.validateForProduct(product);
 		
 		if (product.getProductId() <= 0) {
 			throw new IllegalArgumentException("productId phải lớn hơn 0!");

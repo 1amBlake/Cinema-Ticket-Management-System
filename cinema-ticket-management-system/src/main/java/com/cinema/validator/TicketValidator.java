@@ -1,26 +1,11 @@
 package com.cinema.validator;
 
 import com.cinema.entity.Ticket;
-import com.cinema.enums.TicketStatus;
 
 /**
  * Validator cho thực thể Ticket.
  * Chịu trách nhiệm kiểm tra dữ liệu của đối tượng Ticket
  * trước khi xử lý ở các lớp khác trong chương trình.
- * 
- * <p>
- * Lưu ý:
- * Một phần ràng buộc đã được kiểm tra ở entity thông qua setter,
- * tuy nhiên validator vẫn kiểm tra lại để bảo vệ đa lớp, tránh dữ liệu
- * không hợp lệ đi sâu vào DAO / Service.
- * </p>
- * 
- * <p>
- * Các ràng buộc nghiệp vụ liên quan đến truy vấn dữ liệu như:
- * trùng ghế trong cùng suất chiếu, ghế không thuộc phòng chiếu của suất,
- * hoặc bảng giá không phù hợp với ghế và phòng chiếu
- * nên tiếp tục đặt ở DAO / Service.
- * </p>
  * 
  * @author Minh Huy (chính)
  */
@@ -96,27 +81,10 @@ public final class TicketValidator {
     }
 
     /**
-     * Kiểm tra một số ràng buộc nghiệp vụ cơ bản của Ticket
-     * không cần truy vấn database.
+     * Kiểm tra các ràng buộc nghiệp vụ nâng cao của Ticket.
      *
      * @param ticket - Đối tượng Ticket cần kiểm tra
      */
     private static void validateBusinessRule(Ticket ticket) {
-        if (ticket.getMovieSession().getMovieSessionId() <= 0
-                || ticket.getSeat().getSeatId() <= 0
-                || ticket.getTicketPricing().getTicketPricingId() <= 0) {
-            return;
-        }
-
-        TicketStatus ticketStatus = ticket.getTicketStatus();
-
-        if (ticketStatus == TicketStatus.SOLD
-                || ticketStatus == TicketStatus.CHANGED
-                || ticketStatus == TicketStatus.CANCELLED
-                || ticketStatus == TicketStatus.NOT_SOLD) {
-            return;
-        }
-
-        throw new IllegalArgumentException("ticketStatus không hợp lệ!");
     }
 }

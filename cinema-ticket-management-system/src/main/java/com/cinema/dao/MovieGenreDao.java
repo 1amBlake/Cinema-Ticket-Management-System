@@ -99,15 +99,6 @@ public class MovieGenreDao {
             """;
 
     /**
-     * Kiểm tra dữ liệu đầu vào của MovieGenre
-     * 
-     * @param movieGenre - Đối tượng MovieGenre để kiểm tra
-     */
-    private void validateMovieGenre(MovieGenre movieGenre) { // TODO: làm validate internal và package
-        // MovieGenreValidator -> package validator
-    }
-
-    /**
      * Kiểm tra liên kết phim - thể loại đã tồn tại hay chưa
      * 
      * @param movieId - Mã phim
@@ -200,23 +191,7 @@ public class MovieGenreDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean addMovieGenre(MovieGenre movieGenre) throws SQLException {
-        validateMovieGenre(movieGenre);
-
-        if (movieGenre == null) {
-            throw new IllegalArgumentException("movieGenre không được null!");
-        }
-        if (movieGenre.getMovie() == null) {
-            throw new IllegalArgumentException("movie không được null!");
-        }
-        if (movieGenre.getGenre() == null) {
-            throw new IllegalArgumentException("genre không được null!");
-        }
-        if (movieGenre.getMovie().getMovieId() <= 0) {
-            throw new IllegalArgumentException("movieId phải lớn hơn 0!");
-        }
-        if (movieGenre.getGenre().getGenreId() <= 0) {
-            throw new IllegalArgumentException("genreId phải lớn hơn 0!");
-        }
+        //MovieGenreValidator.validateForCreate(movieGenre);
 
         int movieId = movieGenre.getMovie().getMovieId();
         int genreId = movieGenre.getGenre().getGenreId();
@@ -274,7 +249,7 @@ public class MovieGenreDao {
      * @return đối tượng MovieGenre nếu tìm thấy, ngược lại trả về null
      * @throws SQLException nếu có lỗi SQL
      */
-    public MovieGenre findById(int movieId, int genreId) throws SQLException {
+    public MovieGenre findByMovieIdAndGenreId(int movieId, int genreId) throws SQLException {
         if (movieId <= 0 || genreId <= 0) {
             throw new IllegalArgumentException("movieId và genreId phải lớn hơn 0!");
         }

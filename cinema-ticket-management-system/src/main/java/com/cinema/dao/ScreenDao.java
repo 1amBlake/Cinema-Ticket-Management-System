@@ -112,6 +112,20 @@ public class ScreenDao {
             LIMIT 1
             """;
 
+    private static final String EXISTS_THEATER_BY_ID_MYSQL = """
+            SELECT 1
+            FROM rap
+            WHERE ma_rap = ?
+            LIMIT 1
+            """;
+
+    private static final String EXISTS_SCREEN_TYPE_BY_ID_MYSQL = """
+            SELECT 1
+            FROM loai_phong
+            WHERE ma_loai_phong = ?
+            LIMIT 1
+            """;
+    
     private static final String IS_USED_IN_MOVIE_SESSION_MYSQL = """
             SELECT 1
             FROM suat_chieu
@@ -125,34 +139,6 @@ public class ScreenDao {
             WHERE ma_phong = ?
             LIMIT 1
             """;
-
-    /**
-     * Kiểm tra dữ liệu đầu vào của Screen.
-     * 
-     * @param screen - Đối tượng Screen để kiểm tra
-     */
-    private void validateScreen(Screen screen) { // TODO: làm validate package
-        // ScreenValidator -> package validator
-        if (screen == null) {
-            throw new IllegalArgumentException("screen không được null!");
-        }
-
-        if (screen.getScreenName() == null || screen.getScreenName().trim().isEmpty()) {
-            throw new IllegalArgumentException("screenName không được để trống!");
-        }
-
-        if (screen.getTheater() == null || screen.getTheater().getTheaterId() <= 0) {
-            throw new IllegalArgumentException("theaterId phải lớn hơn 0!");
-        }
-
-        if (screen.getScreenType() == null || screen.getScreenType().getScreenTypeId() <= 0) {
-            throw new IllegalArgumentException("screenTypeId phải lớn hơn 0!");
-        }
-
-        if (screen.getScreenStatus() == null) {
-            throw new IllegalArgumentException("screenStatus không được null!");
-        }
-    }
 
     /**
      * Ánh xạ một dòng dữ liệu ResultSet thành đối tượng Screen.
@@ -241,6 +227,52 @@ public class ScreenDao {
     }
 
     /**
+     * Kiểm tra rạp có tồn tại hay không.
+     * 
+     * @param theaterId - Mã rạp
+     * @return true nếu tồn tại
+     * @throws SQLException nếu có lỗi SQL
+     */
+    private boolean existsTheaterById(int theaterId) throws SQLException {
+        if (theaterId <= 0) {
+            throw new IllegalArgumentException("theaterId phải lớn hơn 0!");
+        }
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement ps = connection.prepareStatement(EXISTS_THEATER_BY_ID_MYSQL)) {
+
+            ps.setInt(1, theaterId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        }
+    }
+
+    /**
+     * Kiểm tra loại phòng chiếu có tồn tại hay không.
+     * 
+     * @param screenTypeId - Mã loại phòng chiếu
+     * @return true nếu tồn tại
+     * @throws SQLException nếu có lỗi SQL
+     */
+    private boolean existsScreenTypeById(int screenTypeId) throws SQLException {
+        if (screenTypeId <= 0) {
+            throw new IllegalArgumentException("screenTypeId phải lớn hơn 0!");
+        }
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement ps = connection.prepareStatement(EXISTS_SCREEN_TYPE_BY_ID_MYSQL)) {
+
+            ps.setInt(1, screenTypeId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        }
+    }
+    
+    /**
      * Kiểm tra phòng chiếu có đang được sử dụng ở bảng MovieSession hay không.
      * 
      * @param screenId - Mã phòng chiếu
@@ -309,8 +341,19 @@ public class ScreenDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean addScreen(Screen screen) throws SQLException {
-        validateScreen(screen);
+        //ScreenValidator.validateForCreate(screen);
 
+        int theaterId = screen.getTheater().getTheaterId();
+        int screenTypeId = screen.getScreenType().getScreenTypeId();
+        
+        if (!existsTheaterById(theaterId)) {
+            throw new IllegalArgumentException("Rạp không tồn tại!");
+        }
+
+        if (!existsScreenTypeById(screenTypeId)) {
+            throw new IllegalArgumentException("Loại phòng chiếu không tồn tại!");
+        }
+        
         if (existsByNameAndTheaterId(screen.getScreenName(), screen.getTheater().getTheaterId())) {
             throw new IllegalArgumentException("Tên phòng đã tồn tại trong rạp này!");
         }
@@ -335,12 +378,23 @@ public class ScreenDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean updateScreen(Screen screen) throws SQLException {
-        validateScreen(screen);
+    	//ScreenValidator.validateForUpdate(screen);
 
         if (screen.getScreenId() <= 0) {
             throw new IllegalArgumentException("screenId phải lớn hơn 0!");
         }
 
+        int theaterId = screen.getTheater().getTheaterId();
+        int screenTypeId = screen.getScreenType().getScreenTypeId();
+
+        if (!existsTheaterById(theaterId)) {
+            throw new IllegalArgumentException("Rạp không tồn tại!");
+        }
+
+        if (!existsScreenTypeById(screenTypeId)) {
+            throw new IllegalArgumentException("Loại phòng chiếu không tồn tại!");
+        }
+        
         if (existsByNameAndTheaterIdExceptId(
                 screen.getScreenName(),
                 screen.getTheater().getTheaterId(),

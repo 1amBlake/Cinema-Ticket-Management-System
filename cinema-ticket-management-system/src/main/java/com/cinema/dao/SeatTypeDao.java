@@ -56,7 +56,7 @@ public class SeatTypeDao {
 			       created_at,
 			       updated_at
 			FROM loai_ghe
-			ORDER BY ten_loai_ghe ASC
+			ORDER BY ten_loai_ghe ASC, ma_loai_ghe ASC
 			""";
 
 	private static final String SEARCH_BY_NAME_MYSQL = """
@@ -66,7 +66,7 @@ public class SeatTypeDao {
 			       updated_at
 			FROM loai_ghe
 			WHERE ten_loai_ghe LIKE ?
-			ORDER BY ten_loai_ghe ASC
+			ORDER BY ten_loai_ghe ASC, ma_loai_ghe ASC
 			""";
 
 	private static final String EXISTS_BY_NAME_MYSQL = """
@@ -90,16 +90,6 @@ public class SeatTypeDao {
 			WHERE ma_loai_ghe = ?
 			LIMIT 1
 			""";
-
-	/**
-	 * Kiểm tra dữ liệu đầu vào của SeatType.
-	 * Một phần ràng buộc đã được kiểm tra ở entity.
-	 * 
-	 * @param seatType - Đối tượng SeatType cần kiểm tra
-	 */
-	private void validateSeatType(SeatType seatType) { // TODO: làm validate package
-		// SeatTypeValidator -> package validator
-	}
 
 	/**
 	 * Ánh xạ một dòng dữ liệu ResultSet thành đối tượng SeatType.
@@ -210,7 +200,7 @@ public class SeatTypeDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean addSeatType(SeatType seatType) throws SQLException {
-		validateSeatType(seatType);
+		//SeatTypeValidator.validateForCreate(seatType);
 
 		if (seatType == null) {
 			throw new IllegalArgumentException("seatType không được null!");
@@ -237,7 +227,7 @@ public class SeatTypeDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean updateSeatType(SeatType seatType) throws SQLException {
-		validateSeatType(seatType);
+		//SeatTypeValidator.validateForUpdate(seatType);
 
 		if (seatType == null) {
 			throw new IllegalArgumentException("seatType không được null!");

@@ -56,7 +56,7 @@ public class ScreenTypeDao {
 			       created_at,
 			       updated_at
 			FROM loai_phong
-			ORDER BY ten_loai_phong ASC
+			ORDER BY ten_loai_phong ASC, ma_loai_phong ASC
 			""";
 
 	private static final String SEARCH_BY_NAME_MYSQL = """
@@ -66,7 +66,7 @@ public class ScreenTypeDao {
 			       updated_at
 			FROM loai_phong
 			WHERE ten_loai_phong LIKE ?
-			ORDER BY ten_loai_phong ASC
+			ORDER BY ten_loai_phong ASC, ma_loai_phong ASC
 			""";
 
 	private static final String EXISTS_BY_NAME_MYSQL = """
@@ -90,16 +90,6 @@ public class ScreenTypeDao {
 			WHERE ma_loai_phong = ?
 			LIMIT 1
 			""";
-
-	/**
-	 * Kiểm tra dữ liệu đầu vào của ScreenType.
-	 * Một phần ràng buộc đã được kiểm tra ở entity.
-	 * 
-	 * @param screenType - Đối tượng ScreenType cần kiểm tra
-	 */
-	private void validateScreenType(ScreenType screenType) { // TODO: làm validate package
-		// ScreenTypeValidator -> package validator
-	}
 
 	/**
 	 * Ánh xạ một dòng dữ liệu ResultSet thành đối tượng ScreenType.
@@ -210,7 +200,7 @@ public class ScreenTypeDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean addScreenType(ScreenType screenType) throws SQLException {
-		validateScreenType(screenType);
+		//ScreenTypeValidator.validateForCreate(screenType);
 
 		if (screenType == null) {
 			throw new IllegalArgumentException("screenType không được null!");
@@ -237,7 +227,7 @@ public class ScreenTypeDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean updateScreenType(ScreenType screenType) throws SQLException {
-		validateScreenType(screenType);
+		//ScreenTypeValidator.validateForUpdate(screenType);
 
 		if (screenType == null) {
 			throw new IllegalArgumentException("screenType không được null!");

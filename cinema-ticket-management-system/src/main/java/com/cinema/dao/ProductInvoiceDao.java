@@ -140,41 +140,6 @@ public class ProductInvoiceDao {
 			FROM san_pham
 			WHERE ma_san_pham = ?
 			""";
-	
-	/**
-	 * Kiểm tra nghiệp vụ cơ bản của ProductInvoice
-	 * 
-	 * @param productInvoice - Chi tiết hóa đơn sản phẩm cần kiểm tra
-	 */
-	private void validateProductInvoiceBusinessRule(ProductInvoice productInvoice) {
-		if (productInvoice == null) {
-			throw new IllegalArgumentException("productInvoice không được null!");
-		}
-
-		if (productInvoice.getInvoice() == null) {
-			throw new IllegalArgumentException("invoice không được null!");
-		}
-
-		if (productInvoice.getProduct() == null) {
-			throw new IllegalArgumentException("product không được null!");
-		}
-
-		if (productInvoice.getInvoice().getInvoiceId() <= 0) {
-			throw new IllegalArgumentException("invoiceId phải lớn hơn 0!");
-		}
-
-		if (productInvoice.getProduct().getProductId() <= 0) {
-			throw new IllegalArgumentException("productId phải lớn hơn 0!");
-		}
-
-		if (productInvoice.getQuantity() <= 0) {
-			throw new IllegalArgumentException("quantity phải lớn hơn 0!");
-		}
-
-		if (productInvoice.getUnitPrice() <= 0) {
-			throw new IllegalArgumentException("unitPrice phải lớn hơn 0!");
-		}
-	}
 
 	/**
 	 * Kiểm tra chi tiết hóa đơn sản phẩm đã tồn tại hay chưa
@@ -399,7 +364,6 @@ public class ProductInvoiceDao {
 	 */
 	public boolean updateProductInvoice(ProductInvoice productInvoice) throws SQLException {
 		ProductInvoiceValidator.validateForUpdate(productInvoice);
-		validateProductInvoiceBusinessRule(productInvoice);
 
 		int invoiceId = productInvoice.getInvoice().getInvoiceId();
 		int productId = productInvoice.getProduct().getProductId();
@@ -468,7 +432,7 @@ public class ProductInvoiceDao {
 	 * @return đối tượng ProductInvoice nếu tìm thấy, ngược lại trả về null
 	 * @throws SQLException nếu có lỗi SQL
 	 */
-	public ProductInvoice findById(int invoiceId, int productId) throws SQLException {
+	public ProductInvoice findByInvoiceIdAndProductId(int invoiceId, int productId) throws SQLException {
 		if (invoiceId <= 0 || productId <= 0) {
 			throw new IllegalArgumentException("invoiceId và productId phải lớn hơn 0!");
 		}

@@ -125,15 +125,6 @@ public class TicketPricingDao {
 			""";
 
 	/**
-	 * Kiểm tra dữ liệu đầu vào của TicketPricing
-	 * 
-	 * @param ticketPricing - Đối tượng TicketPricing để kiểm tra
-	 */
-	private void validateTicketPricing(TicketPricing ticketPricing) { // TODO: làm validate internal và package
-
-	}
-
-	/**
 	 * Kiểm tra cặp loại ghế - loại phòng đã tồn tại hay chưa
 	 * 
 	 * @param seatTypeId - Mã loại ghế
@@ -254,7 +245,7 @@ public class TicketPricingDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean addTicketPricing(TicketPricing ticketPricing) throws SQLException {
-		validateTicketPricing(ticketPricing);
+		//TickPricingValidator.validateForCreate(ticketPricing);
 
 		if (existsBySeatTypeIdAndScreenTypeId(
 				ticketPricing.getSeatType().getSeatTypeId(),
@@ -281,7 +272,7 @@ public class TicketPricingDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean updateTicketPricing(TicketPricing ticketPricing) throws SQLException {
-		validateTicketPricing(ticketPricing);
+		//TickPricingValidator.validateForUpdate(ticketPricing);
 
 		if (ticketPricing.getTicketPricingId() <= 0) {
 			throw new IllegalArgumentException("ticketPricingId phải lớn hơn 0!");

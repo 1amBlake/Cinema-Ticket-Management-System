@@ -19,7 +19,7 @@ import com.cinema.entity.JobTitle;
  * chuc_vu(ma_chuc_vu, ten_chuc_vu, created_at, updated_at)
  * 
  * @author Quốc Anh (chính)
- * @author Minh Huy (sủa một số điểm)
+ * @author Minh Huy (sửa một số điểm)
  */
 public class JobTitleDao {
 
@@ -54,7 +54,7 @@ public class JobTitleDao {
 				   created_at,
 				   updated_at
 			FROM chuc_vu
-			ORDER BY ten_chuc_vu ASC
+			ORDER BY ten_chuc_vu ASC, ma_chuc_vu ASC
 			""";
 
 	private static final String SEARCH_BY_NAME_MYSQL = """
@@ -64,7 +64,7 @@ public class JobTitleDao {
 				   updated_at
 			FROM chuc_vu
 			WHERE ten_chuc_vu LIKE ?
-			ORDER BY ten_chuc_vu ASC
+			ORDER BY ten_chuc_vu ASC, ma_chuc_vu ASC
 			""";
 
 	private static final String EXISTS_BY_NAME_MYSQL = """
@@ -88,21 +88,6 @@ public class JobTitleDao {
 			WHERE ma_chuc_vu = ?
 			LIMIT 1
 			""";
-
-	/**
-	 * Kiểm tra dữ liệu đầu vào của JobTitle.
-	 * 
-	 * @param jobTitle - Đối tượng JobTitle cần kiểm tra
-	 */
-	private void validateJobTitle(JobTitle jobTitle) { // TODO: làm validate internal và package
-		if (jobTitle == null) {
-			throw new IllegalArgumentException("jobTitle không được null!");
-		}
-
-		if (jobTitle.getJobTitleName() == null || jobTitle.getJobTitleName().trim().isEmpty()) {
-			throw new IllegalArgumentException("jobTitleName không được để trống!");
-		}
-	}
 
 	/**
 	 * Kiểm tra tên chức vụ đã tồn tại hay chưa.
@@ -160,10 +145,6 @@ public class JobTitleDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	private boolean isUsedInEmployee(int jobTitleId) throws SQLException {
-		if (jobTitleId <= 0) {
-			throw new IllegalArgumentException("jobTitleId phải lớn hơn 0!");
-		}
-
 		try (Connection connection = DBConnection.getConnection();
 				PreparedStatement ps = connection.prepareStatement(IS_USED_IN_EMPLOYEE_MYSQL)) {
 
@@ -173,6 +154,21 @@ public class JobTitleDao {
 				return rs.next();
 			}
 		}
+	}
+
+	/**
+	 * Kiểm tra chức vụ có đang được sử dụng ở các bảng liên quan hay không.
+	 * 
+	 * @param jobTitleId - Mã chức vụ
+	 * @return true nếu đang được sử dụng
+	 * @throws SQLException nếu có lỗi SQL
+	 */
+	private boolean isJobTitleUsed(int jobTitleId) throws SQLException {
+		if (jobTitleId <= 0) {
+			throw new IllegalArgumentException("jobTitleId phải lớn hơn 0!");
+		}
+
+		return isUsedInEmployee(jobTitleId);
 	}
 
 	/**
@@ -202,7 +198,11 @@ public class JobTitleDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean addJobTitle(JobTitle jobTitle) throws SQLException {
-		validateJobTitle(jobTitle);
+		// JobTitleValidator.validateForCreate(jobTitle);
+
+		if (jobTitle == null) {
+			throw new IllegalArgumentException("jobTitle không được null!");
+		}
 
 		if (existsByName(jobTitle.getJobTitleName())) {
 			throw new IllegalArgumentException("Chức vụ đã tồn tại!");
@@ -225,7 +225,11 @@ public class JobTitleDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean updateJobTitle(JobTitle jobTitle) throws SQLException {
-		validateJobTitle(jobTitle);
+		// JobTitleValidator.validateForUpdate(jobTitle);
+
+		if (jobTitle == null) {
+			throw new IllegalArgumentException("jobTitle không được null!");
+		}
 
 		if (jobTitle.getJobTitleId() <= 0) {
 			throw new IllegalArgumentException("jobTitleId phải lớn hơn 0!");
@@ -258,7 +262,7 @@ public class JobTitleDao {
 			throw new IllegalArgumentException("jobTitleId phải lớn hơn 0!");
 		}
 
-		if (isUsedInEmployee(jobTitleId)) {
+		if (isJobTitleUsed(jobTitleId)) {
 			throw new IllegalArgumentException("Chức vụ đang được gán cho nhân viên, không thể xóa!");
 		}
 

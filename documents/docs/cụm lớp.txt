@@ -1,0 +1,170 @@
+1) Cụm đơn giản
+Director
+DBConnection.java
+Director.java
+DirectorDao.java
+DirectorValidator.java
+
+Genre
+DBConnection.java
+Genre.java
+GenreDao.java
+
+Theater
+DBConnection.java
+Theater.java
+TheaterDao.java
+TheaterValidator.java (nếu đã có)
+
+ScreenType
+DBConnection.java
+ScreenType.java
+ScreenTypeDao.java
+ScreenTypeValidator.java (nếu đã có)
+
+SeatType
+DBConnection.java
+SeatType.java
+SeatTypeDao.java
+SeatTypeValidator.java (nếu đã có)
+
+ProductType
+DBConnection.java
+ProductType.java
+ProductTypeDao.java
+ProductTypeValidator.java (nếu đã có)
+
+JobTitle
+DBConnection.java
+JobTitle.java
+JobTitleDao.java
+JobTitleValidator.java (nếu đã có)
+
+2) Cụm phim
+Movie
+DBConnection.java
+Movie.java
+MovieDao.java
+MovieValidator.java
+MovieStatus.java
+MovieAgeRating.java
+
+MovieDirector
+DBConnection.java
+MovieDirector.java
+MovieDirectorDao.java
+Movie.java
+Director.java
+MovieDirectorValidator.java (nếu đã có)
+
+MovieGenre
+DBConnection.java
+MovieGenre.java
+MovieGenreDao.java
+Movie.java
+Genre.java
+MovieGenreValidator.java (nếu đã có)
+
+3) Cụm phòng chiếu
+Screen
+DBConnection.java
+Screen.java
+ScreenDao.java
+Theater.java
+ScreenType.java
+ScreenStatus.java
+ScreenValidator.java (nếu đã có)
+
+Seat
+DBConnection.java
+Seat.java
+SeatDao.java
+Screen.java
+SeatType.java
+SeatStatus.java
+SeatValidator.java (nếu đã có)
+
+4) Cụm suất chiếu
+MovieSession
+DBConnection.java
+MovieSession.java
+MovieSessionDao.java
+Movie.java
+Screen.java
+MovieFormat.java
+MovieSessionStatus.java
+MovieSessionValidator.java
+
+5) Cụm sản phẩm
+Product
+DBConnection.java
+Product.java
+ProductDao.java
+ProductType.java
+ProductStatus.java
+ProductValidator.java (nếu đã có)
+
+6) Cụm nhân viên
+Employee
+
+DBConnection.java
+Employee.java
+EmployeeDao.java
+JobTitle.java
+EmployeeStatus.java
+EmployeeGender.java
+EmployeeValidator.java
+
+EmployeeAccount
+DBConnection.java
+EmployeeAccount.java
+EmployeeAccountDao.java
+Employee.java
+AccountStatus.java
+EmployeeAccountValidator.java (nếu đã có)
+
+7) Cụm vé
+TicketPricing
+DBConnection.java
+TicketPricing.java
+TicketPricingDao.java
+các entity mà TicketPricing tham chiếu trực tiếp
+TicketPricingValidator.java (nếu đã có)
+
+Ticket
+DBConnection.java
+Ticket.java
+TicketDao.java
+TicketValidator.java
+MovieSession.java
+Seat.java
+TicketPricing.java
+TicketStatus.java
+
+TicketValidator của cậu đang phụ thuộc trực tiếp vào MovieSession, Seat, TicketPricing, TicketStatus, nên cụm này nên gửi đủ như trên để mình check logic và ràng buộc cho trọn vẹn .
+
+8) Cụm hóa đơn
+Invoice
+DBConnection.java
+Invoice.java
+InvoiceDao.java
+Employee.java
+PaymentMethod.java
+InvoiceStatus.java
+InvoiceValidator.java
+
+TicketInvoice
+DBConnection.java
+TicketInvoice.java
+TicketInvoiceDao.java
+Invoice.java
+Ticket.java
+TicketInvoiceValidator.java
+
+ProductInvoice
+DBConnection.java
+ProductInvoice.java
+ProductInvoiceDao.java
+Invoice.java
+Product.java
+ProductInvoiceValidator.java

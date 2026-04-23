@@ -87,43 +87,43 @@ ENTITY:
 
 ===============================================
 DAO:
-	GenreDao - unvalidate 
+	GenreDao - done 
 	
 	DirectorDao - done (sample)
 	
-	TheaterDao - unvalidate
+	TheaterDao - done
 	
-	ScreenTypeDao - unvalidate
+	ScreenTypeDao - done
 	
-	SeatTypeDao - unvalidate
+	SeatTypeDao - done
 	
-	ProductTypeDao - unvalidate
+	ProductTypeDao - done
 	
-	JobTitleDao - unvalidate
+	JobTitleDao - done
 	
 	MovieDao - done (sample)
 	
-	ScreenDao - unvalidate
+	ScreenDao - done
 	
-	SeatDao - unvalidate
+	SeatDao - done
 	
-	MovieSessionDao - unvalidate
+	MovieSessionDao - done
 	
-	ProductDao - unvalidate
+	ProductDao - done
 	
-	EmployeeDao - unvalidate
+	EmployeeDao - done
 	
-	EmployeeAccountDao - unvalidate
+	EmployeeAccountDao - done
 	
-	TicketPricingDao - unvalidate
+	TicketPricingDao - done
 	
 	TicketDao - done
 	
-	InvoiceDao - unvalidate
+	InvoiceDao - done
 	
-	MovieDirectorDao Trọng - unvalidate
+	MovieDirectorDao - done
 	
-	MovieGenreDao Trọng - unvalidate
+	MovieGenreDao - done
 	
 	TicketInvoiceDao - done
 	
@@ -132,21 +132,21 @@ DAO:
 ===============================================
 VALIDATOR:
 	
-	MovieValidator - done (sample)
+	MovieValidator - needBusinessRule (sample)
 	
-	DirectorValidator - done (sample)
+	DirectorValidator - needBusinessRule (sample)
 	
-	TicketValidator - done (sample)
+	TicketValidator - needBusinessRule (sample)
 	
-	ProductInvoiceValidator - done 
+	ProductInvoiceValidator - needBusinessRule 
 	
-	TicketInvoiceValidator - done
+	TicketInvoiceValidator - needBusinessRule
 	
-	MovieSessionValidator - Minh Huy
+	MovieSessionValidator - needBusinessRule
 	
-	InvoiceValidator - Minh Huy
+	InvoiceValidator - needBusinessRule
 	
-	EmployeeValidator - Minh Huy
+	EmployeeValidator - needBusinessRule
 	
 -----------------------------------------------
 	

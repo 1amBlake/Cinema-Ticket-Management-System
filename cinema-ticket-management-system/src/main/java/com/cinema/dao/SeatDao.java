@@ -128,38 +128,6 @@ public class SeatDao {
             """;
 
     /**
-     * Kiểm tra dữ liệu đầu vào của Seat.
-     * 
-     * @param seat - Đối tượng Seat để kiểm tra
-     */
-    private void validateSeat(Seat seat) { // TODO: làm validate package
-        // SeatValidator -> package validator
-        if (seat == null) {
-            throw new IllegalArgumentException("seat không được null!");
-        }
-
-        if (seat.getScreen() == null || seat.getScreen().getScreenId() <= 0) {
-            throw new IllegalArgumentException("screenId phải lớn hơn 0!");
-        }
-
-        if (seat.getSeatType() == null || seat.getSeatType().getSeatTypeId() <= 0) {
-            throw new IllegalArgumentException("seatTypeId phải lớn hơn 0!");
-        }
-
-        if (seat.getSeatRow() == null || seat.getSeatRow().trim().isEmpty()) {
-            throw new IllegalArgumentException("seatRow không được để trống!");
-        }
-
-        if (seat.getSeatCol() == null || seat.getSeatCol().trim().isEmpty()) {
-            throw new IllegalArgumentException("seatCol không được để trống!");
-        }
-
-        if (seat.getSeatStatus() == null) {
-            throw new IllegalArgumentException("seatStatus không được null!");
-        }
-    }
-
-    /**
      * Ánh xạ một dòng dữ liệu ResultSet thành đối tượng Seat.
      * 
      * @param rs - ResultSet đang trỏ tới dòng dữ liệu hợp lệ
@@ -304,7 +272,7 @@ public class SeatDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean addSeat(Seat seat) throws SQLException {
-        validateSeat(seat);
+        //SeatValidator.validateForCreate(seat);
 
         if (existsByPosition(
                 seat.getScreen().getScreenId(),
@@ -338,7 +306,7 @@ public class SeatDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean updateSeat(Seat seat) throws SQLException {
-        validateSeat(seat);
+        //SeatValidator.validateForUpdate(seat);
 
         if (seat.getSeatId() <= 0) {
             throw new IllegalArgumentException("seatId phải lớn hơn 0!");

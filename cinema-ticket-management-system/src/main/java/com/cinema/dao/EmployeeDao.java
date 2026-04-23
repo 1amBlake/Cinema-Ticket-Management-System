@@ -14,6 +14,7 @@ import com.cinema.entity.Employee;
 import com.cinema.entity.JobTitle;
 import com.cinema.enums.EmployeeGender;
 import com.cinema.enums.EmployeeStatus;
+import com.cinema.validator.EmployeeValidator;
 
 /**
  * DAO cho thực thể Employee
@@ -97,7 +98,7 @@ public class EmployeeDao {
 				created_at,
 				updated_at
 			FROM nhan_vien
-			ORDER BY ten_nhan_vien ASC
+			ORDER BY ten_nhan_vien ASC, ma_nhan_vien ASC
 			""";
 	
 	private static final String SEARCH_BY_NAME_MYSQL = """
@@ -114,7 +115,7 @@ public class EmployeeDao {
 				updated_at
 			FROM nhan_vien
 			WHERE ten_nhan_vien LIKE ?
-			ORDER BY ten_nhan_vien ASC
+			ORDER BY ten_nhan_vien ASC, ma_nhan_vien ASC
 			""";
 	
 	private static final String  EXISTS_BY_PHONE_MYSQL = """
@@ -160,16 +161,7 @@ public class EmployeeDao {
 			WHERE ma_nhan_vien = ?
 			LIMIT 1
 			""";
-	
-	/**
-	 * Kiểm tra dữ liệu đầu vào của Employee
-	 * 
-	 * @param empl - Đối tượng Employee để kiểm tra
-	 */
-	private void validateEmployee (Employee empl) { //TODO: làm validate internal và package
 
-	}
-	
 	/**
 	 * Kiểm tra email của nhân viên đã tồn tại trong hệ thống chưa
 	 * 
@@ -371,7 +363,7 @@ public class EmployeeDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean addEmployee (Employee employee) throws SQLException{
-		validateEmployee(employee);
+		EmployeeValidator.validateForCreate(employee);
 		
 		if (existsByEmail(employee.getEmployeeEmail())) {
 		    throw new IllegalArgumentException("Email thuộc về nhân viên khác!");
@@ -423,7 +415,7 @@ public class EmployeeDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean updateEmployee (Employee employee) throws SQLException{
-		validateEmployee(employee);
+		EmployeeValidator.validateForUpdate(employee);
 		
 		if (employee.getEmployeeId() <= 0) {
 			throw new IllegalArgumentException("employeeId phải lớn hơn 0!");

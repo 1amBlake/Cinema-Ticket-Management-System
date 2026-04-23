@@ -97,16 +97,7 @@ public class MovieDirectorDao {
             WHERE ma_dao_dien = ?
             LIMIT 1
             """;
-
-    /**
-     * Kiểm tra dữ liệu đầu vào của MovieDirector
-     * 
-     * @param movieDirector - Đối tượng MovieDirector để kiểm tra
-     */
-    private void validateMovieDirector(MovieDirector movieDirector) { //TODO: làm validate internal và package
-        // MovieDirectorValidator -> package validator
-    }
-
+    
     /**
      * Kiểm tra liên kết phim - đạo diễn đã tồn tại hay chưa
      * 
@@ -200,23 +191,7 @@ public class MovieDirectorDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean addMovieDirector(MovieDirector movieDirector) throws SQLException {
-        validateMovieDirector(movieDirector);
-
-        if (movieDirector == null) {
-            throw new IllegalArgumentException("movieDirector không được null!");
-        }
-        if (movieDirector.getMovie() == null) {
-            throw new IllegalArgumentException("movie không được null!");
-        }
-        if (movieDirector.getDirector() == null) {
-            throw new IllegalArgumentException("director không được null!");
-        }
-        if (movieDirector.getMovie().getMovieId() <= 0) {
-            throw new IllegalArgumentException("movieId phải lớn hơn 0!");
-        }
-        if (movieDirector.getDirector().getDirectorId() <= 0) {
-            throw new IllegalArgumentException("directorId phải lớn hơn 0!");
-        }
+        //MovieDirectorValidator.validateForCreate(movieDirector);
 
         int movieId = movieDirector.getMovie().getMovieId();
         int directorId = movieDirector.getDirector().getDirectorId();
@@ -274,7 +249,7 @@ public class MovieDirectorDao {
      * @return đối tượng MovieDirector nếu tìm thấy, ngược lại trả về null
      * @throws SQLException nếu có lỗi SQL
      */
-    public MovieDirector findById(int movieId, int directorId) throws SQLException {
+    public MovieDirector findByMovieIdAndDirectorId(int movieId, int directorId) throws SQLException {
         if (movieId <= 0 || directorId <= 0) {
             throw new IllegalArgumentException("movieId và directorId phải lớn hơn 0!");
         }

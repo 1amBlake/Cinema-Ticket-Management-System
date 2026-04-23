@@ -82,7 +82,7 @@ public class EmployeeAccountDao {
                    created_at,
                    updated_at
             FROM tai_khoan
-            ORDER BY ten_tai_khoan ASC
+            ORDER BY ten_tai_khoan ASC, ma_tai_khoan ASC
             """;
 
     private static final String SEARCH_BY_ACCOUNT_NAME_MYSQL = """
@@ -95,7 +95,7 @@ public class EmployeeAccountDao {
                    updated_at
             FROM tai_khoan
             WHERE ten_tai_khoan LIKE ?
-            ORDER BY ten_tai_khoan ASC
+            ORDER BY ten_tai_khoan ASC, ma_tai_khoan ASC
             """;
 
     private static final String SELECT_BY_EMPLOYEE_ID_MYSQL = """
@@ -154,37 +154,6 @@ public class EmployeeAccountDao {
               AND trang_thai = 1
             LIMIT 1
             """;
-
-    /**
-     * Kiểm tra dữ liệu đầu vào của EmployeeAccount.
-     *
-     * @param employeeAccount - Đối tượng EmployeeAccount để kiểm tra
-     */
-    private void validateEmployeeAccount(EmployeeAccount employeeAccount) { // TODO: làm validate internal và package
-        if (employeeAccount == null) {
-            throw new IllegalArgumentException("employeeAccount không được null!");
-        }
-
-        if (employeeAccount.getEmployee() == null) {
-            throw new IllegalArgumentException("employee không được null!");
-        }
-
-        if (employeeAccount.getEmployee().getEmployeeId() <= 0) {
-            throw new IllegalArgumentException("employeeId phải lớn hơn 0!");
-        }
-
-        if (employeeAccount.getAccountName() == null || employeeAccount.getAccountName().trim().isEmpty()) {
-            throw new IllegalArgumentException("accountName không được để trống!");
-        }
-
-        if (employeeAccount.getAccountPassword() == null || employeeAccount.getAccountPassword().trim().isEmpty()) {
-            throw new IllegalArgumentException("accountPassword không được để trống!");
-        }
-
-        if (employeeAccount.getAccountStatus() == null) {
-            throw new IllegalArgumentException("accountStatus không được null!");
-        }
-    }
 
     /**
      * Kiểm tra nhân viên có tồn tại hay không.
@@ -312,7 +281,7 @@ public class EmployeeAccountDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean addEmployeeAccount(EmployeeAccount employeeAccount) throws SQLException {
-        validateEmployeeAccount(employeeAccount);
+        //EmployeeAccountValidator.validateForCreate(employeeAccount);
 
         int employeeId = employeeAccount.getEmployee().getEmployeeId();
 
@@ -351,7 +320,7 @@ public class EmployeeAccountDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean updateEmployeeAccount(EmployeeAccount employeeAccount) throws SQLException {
-        validateEmployeeAccount(employeeAccount);
+    	//EmployeeAccountValidator.validateForUpdate(employeeAccount);
 
         if (employeeAccount.getAccountId() <= 0) {
             throw new IllegalArgumentException("accountId phải lớn hơn 0!");

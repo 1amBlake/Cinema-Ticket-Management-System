@@ -7,22 +7,6 @@ import com.cinema.entity.TicketInvoice;
  * Chịu trách nhiệm kiểm tra dữ liệu của đối tượng TicketInvoice
  * trước khi xử lý ở các lớp khác trong chương trình.
  * 
- * <p>
- * Lưu ý:
- * Một phần ràng buộc đã được kiểm tra ở entity thông qua setter,
- * tuy nhiên validator vẫn kiểm tra lại để bảo vệ đa lớp, tránh dữ liệu
- * không hợp lệ đi sâu vào DAO / Service.
- * </p>
- * 
- * <p>
- * Các ràng buộc nghiệp vụ liên quan đến truy vấn dữ liệu như:
- * vé đã tồn tại trong cùng hóa đơn hay chưa,
- * vé đã được gán sang hóa đơn khác chưa,
- * hóa đơn đã thanh toán / hủy rồi có được sửa chi tiết hay không,
- * hoặc giá vé trong chi tiết hóa đơn có cần đối chiếu với bảng giá hiện tại hay không
- * nên tiếp tục đặt ở DAO / Service.
- * </p>
- * 
  * @author Minh Huy (chính)
  */
 public final class TicketInvoiceValidator {
@@ -85,24 +69,10 @@ public final class TicketInvoiceValidator {
     }
 
     /**
-     * Kiểm tra một số ràng buộc nghiệp vụ cơ bản của TicketInvoice
-     * không cần truy vấn database.
+     * Kiểm tra các ràng buộc nghiệp vụ nâng cao của TicketInvoice.
      *
      * @param ticketInvoice - Đối tượng TicketInvoice cần kiểm tra
      */
     private static void validateBusinessRule(TicketInvoice ticketInvoice) {
-        if (ticketInvoice.getInvoice() == null
-                || ticketInvoice.getTicket() == null) {
-            return;
-        }
-
-        if (ticketInvoice.getInvoice().getInvoiceId() <= 0
-                || ticketInvoice.getTicket().getTicketId() <= 0) {
-            return;
-        }
-
-        if (ticketInvoice.getPrice() <= 0) {
-            throw new IllegalArgumentException("price phải lớn hơn 0!");
-        }
     }
 }

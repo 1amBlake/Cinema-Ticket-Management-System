@@ -81,9 +81,16 @@ public class MovieGenre {
 	 */
 	@Override
 	public int hashCode() {
-		int movieId = (movie != null) ? movie.getMovieId() : 0;
-		int genreId = (genre != null) ? genre.getGenreId() : 0;
-		return 31 * Integer.hashCode(movieId) + Integer.hashCode(genreId);
+		int movieId = (movie != null) ? movie.getMovieId() : -1;
+		int genreId = (genre != null) ? genre.getGenreId() : -1;
+
+		if (movieId > 0 && genreId > 0) {
+			int result = Integer.hashCode(movieId);
+			result = 31 * result + Integer.hashCode(genreId);
+			return result;
+		}
+
+		return System.identityHashCode(this);
 	}
 
 	/**
@@ -104,10 +111,15 @@ public class MovieGenre {
 		if (this.movie == null || other.movie == null || this.genre == null || other.genre == null)
 			return false;
 
-		return this.movie.getMovieId() > 0 && other.movie.getMovieId() > 0
-				&& this.genre.getGenreId() > 0 && other.genre.getGenreId() > 0
-				&& this.movie.getMovieId() == other.movie.getMovieId()
-				&& this.genre.getGenreId() == other.genre.getGenreId();
+		int thisMovieId = this.movie.getMovieId();
+		int otherMovieId = other.movie.getMovieId();
+		int thisGenreId = this.genre.getGenreId();
+		int otherGenreId = other.genre.getGenreId();
+
+		if (thisMovieId <= 0 || otherMovieId <= 0 || thisGenreId <= 0 || otherGenreId <= 0)
+			return false;
+
+		return thisMovieId == otherMovieId && thisGenreId == otherGenreId;
 	}
 
 	/**

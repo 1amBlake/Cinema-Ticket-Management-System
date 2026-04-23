@@ -1,5 +1,7 @@
 package com.cinema.validator;
 
+import java.time.LocalDate;
+
 import com.cinema.entity.Movie;
 
 /**
@@ -10,7 +12,7 @@ import com.cinema.entity.Movie;
  * @author Minh Huy (chính)
  */
 public final class MovieValidator {
-	
+
     /**
      * Constructor private để ngăn tạo đối tượng từ lớp MovieValidator.
      */
@@ -52,13 +54,19 @@ public final class MovieValidator {
         if (movie.getMovieName() == null || movie.getMovieName().trim().isEmpty()) {
             throw new IllegalArgumentException("movieName không được để trống!");
         }
-        
-        if (movie.getMovieName().length() > 255) {
-        	throw new IllegalArgumentException("movieName không được vượt quá 255 ký tự!");
+
+        if (movie.getMovieName().trim().length() > 255) {
+            throw new IllegalArgumentException("movieName không được vượt quá 255 ký tự!");
         }
-        
+
         if (movie.getMovieDuration() <= 0 || movie.getMovieDuration() > 600) {
             throw new IllegalArgumentException("movieDuration phải > 0 và <= 600 phút!");
+        }
+
+        if (movie.getMovieReleaseDate() != null
+                && (movie.getMovieReleaseDate().getYear() < 1800
+                || movie.getMovieReleaseDate().getYear() > LocalDate.now().getYear() + 2)) {
+            throw new IllegalArgumentException("movieReleaseDate không hợp lệ!");
         }
 
         if (movie.getMovieStatus() == null) {
@@ -76,5 +84,15 @@ public final class MovieValidator {
         if (movie.getPictureUrl() != null && movie.getPictureUrl().trim().length() > 255) {
             throw new IllegalArgumentException("pictureUrl không được vượt quá 255 ký tự!");
         }
+
+        validateBusinessRule(movie);
+    }
+
+    /**
+     * Kiểm tra các ràng buộc nghiệp vụ nâng cao của Movie.
+     *
+     * @param movie - Đối tượng Movie cần kiểm tra
+     */
+    private static void validateBusinessRule(Movie movie) {
     }
 }

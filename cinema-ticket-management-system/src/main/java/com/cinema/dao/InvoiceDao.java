@@ -13,6 +13,7 @@ import com.cinema.entity.Employee;
 import com.cinema.entity.Invoice;
 import com.cinema.enums.InvoiceStatus;
 import com.cinema.enums.PaymentMethod;
+import com.cinema.validator.InvoiceValidator;
 
 /**
  * DAO cho thực thể Invoice
@@ -123,15 +124,6 @@ public class InvoiceDao {
 			WHERE ma_hoa_don = ?
 			LIMIT 1
 			""";
-
-	/**
-	 * Kiểm tra dữ liệu đầu vào của Invoice
-	 * 
-	 * @param invoice - Đối tượng Invoice để kiểm tra
-	 */
-	private void validateInvoice(Invoice invoice) { // TODO: làm validate internal và package
-
-	}
 
 	/**
 	 * Kiểm tra nghiệp vụ trạng thái hóa đơn và thời gian thanh toán.
@@ -261,7 +253,7 @@ public class InvoiceDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean addInvoice(Invoice invoice) throws SQLException {
-		validateInvoice(invoice);
+		InvoiceValidator.validateForCreate(invoice);
 		validateInvoiceBusinessRule(invoice);
 
 		try (Connection connection = DBConnection.getConnection();
@@ -293,7 +285,7 @@ public class InvoiceDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean updateInvoice(Invoice invoice) throws SQLException {
-		validateInvoice(invoice);
+		InvoiceValidator.validateForUpdate(invoice);
 		validateInvoiceBusinessRule(invoice);
 
 		if (invoice.getInvoiceId() <= 0) {
