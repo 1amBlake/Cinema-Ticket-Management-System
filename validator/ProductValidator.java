@@ -1,0 +1,64 @@
+package com.cinema.validator;
+
+import com.cinema.entity.Product;
+
+public final class ProductValidator {
+
+    private ProductValidator() {
+    }
+
+    public static void validateForCreate(Product product) {
+        validateCommon(product);
+    }
+
+    public static void validateForUpdate(Product product) {
+        validateCommon(product);
+
+        if (product.getProductId() <= 0) {
+            throw new IllegalArgumentException("productId phải lớn hơn 0!");
+        }
+    }
+
+    private static void validateCommon(Product product) {
+        if (product == null) {
+            throw new IllegalArgumentException("product không được null!");
+        }
+
+        if (product.getProductName() == null || product.getProductName().trim().isEmpty()) {
+            throw new IllegalArgumentException("productName không được để trống!");
+        }
+
+        if (product.getProductName().trim().length() > 255) {
+            throw new IllegalArgumentException("productName không được vượt quá 255 ký tự!");
+        }
+
+        if (product.getProductType() == null) {
+            throw new IllegalArgumentException("productType không được null!");
+        }
+
+        if (product.getProductType().getProductTypeId() <= 0) {
+            throw new IllegalArgumentException("productTypeId phải lớn hơn 0!");
+        }
+
+        if (product.getPrice() <= 0) {
+            throw new IllegalArgumentException("price phải lớn hơn 0!");
+        }
+
+        if (product.getStockQuantity() < 0) {
+            throw new IllegalArgumentException("stockQuantity phải lớn hơn hoặc bằng 0!");
+        }
+
+        if (product.getProductStatus() == null) {
+            throw new IllegalArgumentException("productStatus không được null!");
+        }
+
+        if (product.getPictureUrl() != null && product.getPictureUrl().trim().length() > 255) {
+            throw new IllegalArgumentException("pictureUrl không được vượt quá 255 ký tự!");
+        }
+
+        validateBusinessRule(product);
+    }
+
+    private static void validateBusinessRule(Product product) {
+    }
+}
