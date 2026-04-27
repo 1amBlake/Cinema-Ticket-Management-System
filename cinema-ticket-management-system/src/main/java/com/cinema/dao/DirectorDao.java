@@ -267,15 +267,17 @@ public class DirectorDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public List<Director> searchByName(String keyword) throws SQLException {
-    	if (keyword.trim().length() > 255) {
-    		throw new IllegalArgumentException("keyword không dược vượt quá 255 ký tự!");
-    	}
+        keyword = (keyword == null) ? "" : keyword.trim();
+
+        if (keyword.length() > 255) {
+            throw new IllegalArgumentException("keyword không được vượt quá 255 ký tự!");
+        }
+
         List<Director> directors = new ArrayList<>();
 
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement ps = connection.prepareStatement(SEARCH_BY_NAME_MYSQL)) {
 
-            keyword = (keyword == null) ? "" : keyword.trim();
             ps.setString(1, "%" + keyword + "%");
 
             try (ResultSet rs = ps.executeQuery()) {
