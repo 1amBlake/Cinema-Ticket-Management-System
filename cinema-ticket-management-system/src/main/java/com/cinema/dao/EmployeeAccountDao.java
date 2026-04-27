@@ -12,6 +12,7 @@ import com.cinema.config.DBConnection;
 import com.cinema.entity.Employee;
 import com.cinema.entity.EmployeeAccount;
 import com.cinema.enums.AccountStatus;
+import com.cinema.validator.EmployeeAccountValidator;
 
 /**
  * DAO cho thực thể EmployeeAccount
@@ -281,7 +282,7 @@ public class EmployeeAccountDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean addEmployeeAccount(EmployeeAccount employeeAccount) throws SQLException {
-        //EmployeeAccountValidator.validateForCreate(employeeAccount);
+        EmployeeAccountValidator.validateForCreate(employeeAccount);
 
         int employeeId = employeeAccount.getEmployee().getEmployeeId();
 
@@ -320,7 +321,7 @@ public class EmployeeAccountDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean updateEmployeeAccount(EmployeeAccount employeeAccount) throws SQLException {
-    	//EmployeeAccountValidator.validateForUpdate(employeeAccount);
+    	EmployeeAccountValidator.validateForUpdate(employeeAccount);
 
         if (employeeAccount.getAccountId() <= 0) {
             throw new IllegalArgumentException("accountId phải lớn hơn 0!");

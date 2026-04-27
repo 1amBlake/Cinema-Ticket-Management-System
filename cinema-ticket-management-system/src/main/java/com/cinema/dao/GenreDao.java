@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.cinema.config.DBConnection;
 import com.cinema.entity.Genre;
+import com.cinema.validator.GenreValidator;
 
 //sample
 
@@ -86,7 +87,7 @@ public class GenreDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean addGenre(Genre genre) throws SQLException{
-    	//GenreValidator.validateForCreate(genre);
+    	GenreValidator.validateForCreate(genre);
     	
     	if (existsByName(genre.getGenreName())) {
     		throw new IllegalArgumentException("Thể loại đã tồn tại!");
@@ -107,7 +108,7 @@ public class GenreDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean updateGenre(Genre genre) throws SQLException{
-    	//GenreValidator.validateForUpdate(genre);
+    	GenreValidator.validateForUpdate(genre);
     	
     	if (genre.getGenreId() <= 0) {
     		throw new IllegalArgumentException("genreId phải lớn hơn 0!");

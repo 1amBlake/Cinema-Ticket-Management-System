@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.cinema.config.DBConnection;
 import com.cinema.entity.SeatType;
+import com.cinema.validator.SeatTypeValidator;
 
 /**
  * DAO cho thực thể SeatType
@@ -200,7 +201,7 @@ public class SeatTypeDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean addSeatType(SeatType seatType) throws SQLException {
-		//SeatTypeValidator.validateForCreate(seatType);
+		SeatTypeValidator.validateForCreate(seatType);
 
 		if (seatType == null) {
 			throw new IllegalArgumentException("seatType không được null!");
@@ -227,7 +228,7 @@ public class SeatTypeDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean updateSeatType(SeatType seatType) throws SQLException {
-		//SeatTypeValidator.validateForUpdate(seatType);
+		SeatTypeValidator.validateForUpdate(seatType);
 
 		if (seatType == null) {
 			throw new IllegalArgumentException("seatType không được null!");

@@ -11,6 +11,7 @@ import com.cinema.config.DBConnection;
 import com.cinema.entity.Genre;
 import com.cinema.entity.Movie;
 import com.cinema.entity.MovieGenre;
+import com.cinema.validator.MovieGenreValidator;
 
 /**
  * DAO cho thực thể MovieGenre
@@ -191,7 +192,7 @@ public class MovieGenreDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean addMovieGenre(MovieGenre movieGenre) throws SQLException {
-        //MovieGenreValidator.validateForCreate(movieGenre);
+        MovieGenreValidator.validateForCreate(movieGenre);
 
         int movieId = movieGenre.getMovie().getMovieId();
         int genreId = movieGenre.getGenre().getGenreId();

@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.cinema.config.DBConnection;
 import com.cinema.entity.JobTitle;
+import com.cinema.validator.JobTitleValidator;
 
 /**
  * DAO cho thực thể JobTitle
@@ -198,7 +199,7 @@ public class JobTitleDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean addJobTitle(JobTitle jobTitle) throws SQLException {
-		// JobTitleValidator.validateForCreate(jobTitle);
+		JobTitleValidator.validateForCreate(jobTitle);
 
 		if (jobTitle == null) {
 			throw new IllegalArgumentException("jobTitle không được null!");
@@ -225,7 +226,7 @@ public class JobTitleDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean updateJobTitle(JobTitle jobTitle) throws SQLException {
-		// JobTitleValidator.validateForUpdate(jobTitle);
+		JobTitleValidator.validateForUpdate(jobTitle);
 
 		if (jobTitle == null) {
 			throw new IllegalArgumentException("jobTitle không được null!");

@@ -13,6 +13,7 @@ import com.cinema.entity.Screen;
 import com.cinema.entity.Seat;
 import com.cinema.entity.SeatType;
 import com.cinema.enums.SeatStatus;
+import com.cinema.validator.SeatValidator;
 
 /**
  * DAO cho thực thể Seat
@@ -120,6 +121,20 @@ public class SeatDao {
             LIMIT 1
             """;
 
+    private static final String EXISTS_SCREEN_BY_ID_MYSQL = """
+            SELECT 1
+            FROM phong_chieu
+            WHERE ma_phong = ?
+            LIMIT 1
+            """;
+
+    private static final String EXISTS_SEAT_TYPE_BY_ID_MYSQL = """
+            SELECT 1
+            FROM loai_ghe
+            WHERE ma_loai_ghe = ?
+            LIMIT 1
+            """;
+    
     private static final String IS_USED_IN_TICKET_MYSQL = """
             SELECT 1
             FROM ve
@@ -225,6 +240,52 @@ public class SeatDao {
             }
         }
     }
+    
+    /**
+     * Kiểm tra phòng chiếu có tồn tại hay không.
+     * 
+     * @param screenId - Mã phòng chiếu
+     * @return true nếu phòng chiếu tồn tại
+     * @throws SQLException nếu có lỗi SQL
+     */
+    private boolean existsScreenById(int screenId) throws SQLException {
+        if (screenId <= 0) {
+            throw new IllegalArgumentException("screenId phải lớn hơn 0!");
+        }
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement ps = connection.prepareStatement(EXISTS_SCREEN_BY_ID_MYSQL)) {
+
+            ps.setInt(1, screenId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        }
+    }
+
+    /**
+     * Kiểm tra loại ghế có tồn tại hay không.
+     * 
+     * @param seatTypeId - Mã loại ghế
+     * @return true nếu loại ghế tồn tại
+     * @throws SQLException nếu có lỗi SQL
+     */
+    private boolean existsSeatTypeById(int seatTypeId) throws SQLException {
+        if (seatTypeId <= 0) {
+            throw new IllegalArgumentException("seatTypeId phải lớn hơn 0!");
+        }
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement ps = connection.prepareStatement(EXISTS_SEAT_TYPE_BY_ID_MYSQL)) {
+
+            ps.setInt(1, seatTypeId);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        }
+    }
 
     /**
      * Kiểm tra ghế có đang được sử dụng ở bảng Ticket hay không.
@@ -272,8 +333,16 @@ public class SeatDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean addSeat(Seat seat) throws SQLException {
-        //SeatValidator.validateForCreate(seat);
+        SeatValidator.validateForCreate(seat);
 
+        if (!existsScreenById(seat.getScreen().getScreenId())) {
+            throw new IllegalArgumentException("Phòng chiếu không tồn tại!");
+        }
+
+        if (!existsSeatTypeById(seat.getSeatType().getSeatTypeId())) {
+            throw new IllegalArgumentException("Loại ghế không tồn tại!");
+        }
+        
         if (existsByPosition(
                 seat.getScreen().getScreenId(),
                 seat.getSeatRow(),
@@ -306,7 +375,7 @@ public class SeatDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean updateSeat(Seat seat) throws SQLException {
-        //SeatValidator.validateForUpdate(seat);
+        SeatValidator.validateForUpdate(seat);
 
         if (seat.getSeatId() <= 0) {
             throw new IllegalArgumentException("seatId phải lớn hơn 0!");
@@ -314,6 +383,14 @@ public class SeatDao {
 
         if (isSeatUsed(seat.getSeatId())) {
             throw new IllegalArgumentException("Ghế đã phát sinh vé, không thể cập nhật!");
+        }
+        
+        if (!existsScreenById(seat.getScreen().getScreenId())) {
+            throw new IllegalArgumentException("Phòng chiếu không tồn tại!");
+        }
+
+        if (!existsSeatTypeById(seat.getSeatType().getSeatTypeId())) {
+            throw new IllegalArgumentException("Loại ghế không tồn tại!");
         }
 
         if (existsByPositionExceptId(

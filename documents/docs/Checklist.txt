@@ -153,35 +153,35 @@ VALIDATOR:
 	
 -----------------------------------------------
 	
-	GenreValidator - Trọng
+	GenreValidator - needBusinessRule
 	
-	TheaterValidator - Trọng
+	TheaterValidator - needBusinessRule
 	
-	ScreenTypeValidator - Trọng
+	ScreenTypeValidator - needBusinessRule
 	
-	SeatTypeValidator - Trọng
+	SeatTypeValidator - needBusinessRule
 	
-	ProductTypeValidator - Trọng
+	ProductTypeValidator - needBusinessRule
 	
 -----------------------------------------------
 
-	ProductValidator - Quốc Anh
+	ProductValidator - needBusinessRule
 	
-	ScreenValidator - Quốc Anh
+	ScreenValidator - needBusinessRule
 	
-	MovieDirectorValidator - Quốc Anh
+	MovieDirectorValidator - needBusinessRule
 	
-	JobTitleValidator - Quốc Anh
+	JobTitleValidator - needBusinessRule
 
 -----------------------------------------------
 
-	SeatValidator - Hải Anh
+	SeatValidator - needBusinessRule
 	
-	EmployeeAccountValidator - Hải Anh
+	EmployeeAccountValidator - needBusinessRule
 	
-	TicketPricingValidator - Hải Anh
+	TicketPricingValidator - needBusinessRule
 	
-	MovieGenreValidator - Hải Anh
+	MovieGenreValidator - needBusinessRule
 	
 ===============================================
 SERVICE:

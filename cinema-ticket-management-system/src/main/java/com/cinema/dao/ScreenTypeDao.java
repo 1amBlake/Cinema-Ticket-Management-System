@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.cinema.config.DBConnection;
 import com.cinema.entity.ScreenType;
+import com.cinema.validator.ScreenTypeValidator;
 
 /**
  * DAO cho thực thể ScreenType
@@ -200,7 +201,7 @@ public class ScreenTypeDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean addScreenType(ScreenType screenType) throws SQLException {
-		//ScreenTypeValidator.validateForCreate(screenType);
+		ScreenTypeValidator.validateForCreate(screenType);
 
 		if (screenType == null) {
 			throw new IllegalArgumentException("screenType không được null!");
@@ -227,7 +228,7 @@ public class ScreenTypeDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean updateScreenType(ScreenType screenType) throws SQLException {
-		//ScreenTypeValidator.validateForUpdate(screenType);
+		ScreenTypeValidator.validateForUpdate(screenType);
 
 		if (screenType == null) {
 			throw new IllegalArgumentException("screenType không được null!");

@@ -13,6 +13,7 @@ import com.cinema.entity.Screen;
 import com.cinema.entity.ScreenType;
 import com.cinema.entity.Theater;
 import com.cinema.enums.ScreenStatus;
+import com.cinema.validator.ScreenValidator;
 
 /**
  * DAO cho thực thể Screen
@@ -341,7 +342,7 @@ public class ScreenDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean addScreen(Screen screen) throws SQLException {
-        //ScreenValidator.validateForCreate(screen);
+        ScreenValidator.validateForCreate(screen);
 
         int theaterId = screen.getTheater().getTheaterId();
         int screenTypeId = screen.getScreenType().getScreenTypeId();
@@ -378,7 +379,7 @@ public class ScreenDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean updateScreen(Screen screen) throws SQLException {
-    	//ScreenValidator.validateForUpdate(screen);
+    	ScreenValidator.validateForUpdate(screen);
 
         if (screen.getScreenId() <= 0) {
             throw new IllegalArgumentException("screenId phải lớn hơn 0!");

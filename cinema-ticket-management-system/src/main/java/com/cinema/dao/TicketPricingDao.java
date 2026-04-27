@@ -12,6 +12,7 @@ import com.cinema.config.DBConnection;
 import com.cinema.entity.ScreenType;
 import com.cinema.entity.SeatType;
 import com.cinema.entity.TicketPricing;
+import com.cinema.validator.TicketPricingValidator;
 
 /**
  * DAO cho thực thể TicketPricing
@@ -245,7 +246,7 @@ public class TicketPricingDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean addTicketPricing(TicketPricing ticketPricing) throws SQLException {
-		//TickPricingValidator.validateForCreate(ticketPricing);
+		TicketPricingValidator.validateForCreate(ticketPricing);
 
 		if (existsBySeatTypeIdAndScreenTypeId(
 				ticketPricing.getSeatType().getSeatTypeId(),
@@ -272,7 +273,7 @@ public class TicketPricingDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean updateTicketPricing(TicketPricing ticketPricing) throws SQLException {
-		//TickPricingValidator.validateForUpdate(ticketPricing);
+		TicketPricingValidator.validateForUpdate(ticketPricing);
 
 		if (ticketPricing.getTicketPricingId() <= 0) {
 			throw new IllegalArgumentException("ticketPricingId phải lớn hơn 0!");

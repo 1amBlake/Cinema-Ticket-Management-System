@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.cinema.config.DBConnection;
 import com.cinema.entity.ProductType;
+import com.cinema.validator.ProductTypeValidator;
 
 /**
  * DAO cho thực thể ProductType
@@ -205,7 +206,7 @@ public class ProductTypeDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean addProductType(ProductType productType) throws SQLException {
-        //ProductTypeValidator.validateForCreate(productType);
+        ProductTypeValidator.validateForCreate(productType);
 
         if (productType == null) {
             throw new IllegalArgumentException("productType không được null!");
@@ -232,7 +233,7 @@ public class ProductTypeDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean updateProductType(ProductType productType) throws SQLException {
-    	//ProductTypeValidator.validateForUpdate(productType);
+    	ProductTypeValidator.validateForUpdate(productType);
 
         if (productType == null) {
             throw new IllegalArgumentException("productType không được null!");

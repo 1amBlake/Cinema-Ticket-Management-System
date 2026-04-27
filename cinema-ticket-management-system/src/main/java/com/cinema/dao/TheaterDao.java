@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.cinema.config.DBConnection;
 import com.cinema.entity.Theater;
+import com.cinema.validator.TheaterValidator;
 
 /**
  * DAO cho thực thể Theater
@@ -218,7 +219,7 @@ public class TheaterDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean addTheater(Theater theater) throws SQLException {
-		//TheaterValidator.validateForCreate(theater);
+		TheaterValidator.validateForCreate(theater);
 
 		if (existsByName(theater.getTheaterName())) {
 			throw new IllegalArgumentException("Rạp đã tồn tại!");
@@ -242,7 +243,7 @@ public class TheaterDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean updateTheater(Theater theater) throws SQLException {
-		//TheaterValidator.validateForUpdate(theater);
+		TheaterValidator.validateForUpdate(theater);
 
 		if (theater.getTheaterId() <= 0) {
 			throw new IllegalArgumentException("theaterId phải lớn hơn 0!");

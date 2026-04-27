@@ -12,6 +12,7 @@ import com.cinema.config.DBConnection;
 import com.cinema.entity.Product;
 import com.cinema.entity.ProductType;
 import com.cinema.enums.ProductStatus;
+import com.cinema.validator.ProductValidator;
 
 /**
  * DAO cho thực thể Product
@@ -241,7 +242,7 @@ public class ProductDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean addProduct(Product product) throws SQLException{
-		//ProductValidator.validateForCreate(product);
+		ProductValidator.validateForCreate(product);
 		
 		if (existsByName(product.getProductName())) {
 			throw new IllegalArgumentException("Sản phẩm đã tồn tại!");
@@ -269,7 +270,7 @@ public class ProductDao {
 	 * @throws SQLException nếu có lỗi SQL
 	 */
 	public boolean updateProduct (Product product) throws SQLException{
-		//ProductValidator.validateForProduct(product);
+		ProductValidator.validateForUpdate(product);
 		
 		if (product.getProductId() <= 0) {
 			throw new IllegalArgumentException("productId phải lớn hơn 0!");

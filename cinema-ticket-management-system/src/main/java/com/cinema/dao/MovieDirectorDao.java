@@ -11,6 +11,7 @@ import com.cinema.config.DBConnection;
 import com.cinema.entity.Director;
 import com.cinema.entity.Movie;
 import com.cinema.entity.MovieDirector;
+import com.cinema.validator.MovieDirectorValidator;
 
 /**
  * DAO cho thực thể MovieDirector
@@ -191,7 +192,7 @@ public class MovieDirectorDao {
      * @throws SQLException nếu có lỗi SQL
      */
     public boolean addMovieDirector(MovieDirector movieDirector) throws SQLException {
-        //MovieDirectorValidator.validateForCreate(movieDirector);
+        MovieDirectorValidator.validateForCreate(movieDirector);
 
         int movieId = movieDirector.getMovie().getMovieId();
         int directorId = movieDirector.getDirector().getDirectorId();
