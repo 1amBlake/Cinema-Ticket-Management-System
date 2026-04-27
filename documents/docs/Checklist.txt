@@ -223,8 +223,32 @@ Nghiệp Vụ:
 ===============================================
 GUI:
 
+	Loading / Splash Screen
+	
+	Login Screen
+	
+	Main Layout / DashBoard
+	
+	Ticket Sale Screen
+	
+	Invoice Screen
+	
+	Movie Management Screen
+	
+	Movie Sesion Screen
+	
+	Theater / Room / Seat Management
+	
+	Product Management Screen
+	
+	Employee Management Screen
+	
+	Statistic Screen
+	
+	
 ===============================================
 CONTROLLER:
 
-
+===============================================
+UTILS:
 

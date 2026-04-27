@@ -1,0 +1,195 @@
+.root {
+    -fx-font-family: "Segoe UI";
+    -fx-background-color: #f4f6f8;
+}
+
+.header-box {
+    -fx-background-color: #111827;
+    -fx-padding: 18 24;
+}
+
+.page-title {
+    -fx-text-fill: white;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+}
+
+.session-info {
+    -fx-text-fill: #d1d5db;
+    -fx-font-size: 14px;
+}
+
+.seat-scroll {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.seat-content {
+    -fx-padding: 28;
+    -fx-background-color: #f4f6f8;
+}
+
+.screen-shape {
+    -fx-pref-width: 560px;
+    -fx-pref-height: 34px;
+    -fx-background-color: linear-gradient(to bottom, #374151, #111827);
+    -fx-background-radius: 0 0 90 90;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 16, 0, 0, 4);
+}
+
+.screen-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #6b7280;
+    -fx-font-weight: bold;
+}
+
+.seat-grid {
+    -fx-background-color: white;
+    -fx-padding: 24;
+    -fx-background-radius: 18;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 14, 0, 0, 4);
+}
+
+.row-label {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #374151;
+    -fx-min-width: 24px;
+    -fx-alignment: center;
+}
+
+.seat-button {
+    -fx-min-width: 46px;
+    -fx-min-height: 38px;
+    -fx-background-radius: 8;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.available-seat {
+    -fx-background-color: #e5e7eb;
+    -fx-text-fill: #111827;
+}
+
+.available-seat:hover {
+    -fx-background-color: #cbd5e1;
+}
+
+.selected-seat {
+    -fx-background-color: #22c55e;
+    -fx-text-fill: white;
+}
+
+.sold-seat {
+    -fx-background-color: #ef4444;
+    -fx-text-fill: white;
+    -fx-opacity: 1.0;
+}
+
+.maintenance-seat {
+    -fx-background-color: #6b7280;
+    -fx-text-fill: white;
+    -fx-opacity: 1.0;
+}
+
+.legend-box {
+    -fx-background-color: white;
+    -fx-padding: 14 20;
+    -fx-background-radius: 12;
+}
+
+.legend-seat {
+    -fx-pref-width: 24px;
+    -fx-pref-height: 18px;
+    -fx-background-radius: 5;
+}
+
+.legend-seat.available {
+    -fx-background-color: #e5e7eb;
+}
+
+.legend-seat.selected {
+    -fx-background-color: #22c55e;
+}
+
+.legend-seat.sold {
+    -fx-background-color: #ef4444;
+}
+
+.legend-seat.maintenance {
+    -fx-background-color: #6b7280;
+}
+
+.summary-box {
+    -fx-background-color: white;
+    -fx-padding: 24;
+    -fx-pref-width: 280px;
+    -fx-border-color: #e5e7eb;
+    -fx-border-width: 0 0 0 1;
+}
+
+.summary-title {
+    -fx-font-size: 21px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111827;
+}
+
+.summary-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #374151;
+}
+
+.summary-text {
+    -fx-font-size: 15px;
+    -fx-text-fill: #374151;
+}
+
+.total-price {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #dc2626;
+}
+
+.selected-seat-pane {
+    -fx-min-height: 90px;
+    -fx-background-color: #f9fafb;
+    -fx-padding: 10;
+    -fx-background-radius: 10;
+}
+
+.selected-seat-tag {
+    -fx-background-color: #22c55e;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 6 10;
+    -fx-background-radius: 8;
+}
+
+.confirm-button {
+    -fx-background-color: #2563eb;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 12;
+    -fx-cursor: hand;
+}
+
+.confirm-button:hover {
+    -fx-background-color: #1d4ed8;
+}
+
+.refresh-button {
+    -fx-background-color: #e5e7eb;
+    -fx-text-fill: #111827;
+    -fx-font-size: 14px;
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+    -fx-cursor: hand;
+}
+
+.refresh-button:hover {
+    -fx-background-color: #d1d5db;
+}

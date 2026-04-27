@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.cinema.controller.SeatSelectionController"
+            stylesheets="@../css/seat-selection.css">
+
+    <top>
+        <VBox styleClass="header-box" spacing="8">
+            <Label text="Chọn ghế" styleClass="page-title"/>
+            <Label text="Phim: Doraemon Movie 2026  |  Suất chiếu: 19:30  |  Phòng: Screen 01"
+                   styleClass="session-info"/>
+        </VBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="seat-scroll">
+            <VBox alignment="TOP_CENTER" spacing="22" styleClass="seat-content">
+
+                <!-- Màn hình -->
+                <VBox alignment="CENTER" spacing="6">
+                    <Region styleClass="screen-shape"/>
+                    <Label text="MÀN HÌNH" styleClass="screen-label"/>
+                </VBox>
+
+                <!-- Sơ đồ ghế -->
+                <GridPane fx:id="seatGrid"
+                          alignment="CENTER"
+                          hgap="8"
+                          vgap="8"
+                          styleClass="seat-grid"/>
+
+                <!-- Chú thích -->
+                <HBox alignment="CENTER" spacing="24" styleClass="legend-box">
+                    <HBox alignment="CENTER" spacing="6">
+                        <Region styleClass="legend-seat available"/>
+                        <Label text="Ghế trống"/>
+                    </HBox>
+
+                    <HBox alignment="CENTER" spacing="6">
+                        <Region styleClass="legend-seat selected"/>
+                        <Label text="Đang chọn"/>
+                    </HBox>
+
+                    <HBox alignment="CENTER" spacing="6">
+                        <Region styleClass="legend-seat sold"/>
+                        <Label text="Đã bán"/>
+                    </HBox>
+
+                    <HBox alignment="CENTER" spacing="6">
+                        <Region styleClass="legend-seat maintenance"/>
+                        <Label text="Bảo trì"/>
+                    </HBox>
+                </HBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+
+    <right>
+        <VBox styleClass="summary-box" spacing="14">
+            <Label text="Thông tin đặt vé" styleClass="summary-title"/>
+
+            <Label text="Ghế đã chọn:" styleClass="summary-label"/>
+            <FlowPane fx:id="selectedSeatPane" hgap="6" vgap="6" styleClass="selected-seat-pane"/>
+
+            <Label fx:id="totalSeatLabel" text="Số lượng: 0" styleClass="summary-text"/>
+            <Label fx:id="totalPriceLabel" text="Tổng tiền: 0đ" styleClass="total-price"/>
+
+            <Button text="Xác nhận ghế" styleClass="confirm-button"/>
+            <Button text="Làm mới" onAction="#handleRefresh" styleClass="refresh-button"/>
+        </VBox>
+    </right>
+
+</BorderPane>
