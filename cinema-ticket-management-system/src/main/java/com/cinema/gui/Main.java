@@ -1,4 +1,4 @@
-package com.cinema;
+package com.cinema.gui;
 
 import javafx.application.Application;
 import javafx.stage.Stage;

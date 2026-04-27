@@ -1,4 +1,4 @@
-package com.cinema;
+package com.cinema.gui;
 
 import java.sql.Connection;
 import java.sql.SQLException;

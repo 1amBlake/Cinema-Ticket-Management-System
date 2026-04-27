@@ -86,6 +86,9 @@ ENTITY:
 	ProductInvoice - done
 
 ===============================================
+CONFIG:
+	DBConnection - done
+===============================================
 DAO:
 	GenreDao - done 
 	
@@ -179,15 +182,49 @@ VALIDATOR:
 	TicketPricingValidator - Hải Anh
 	
 	MovieGenreValidator - Hải Anh
+	
+===============================================
+SERVICE:
+
+CRUD
+
+	MovieService
+	
+	DirectorService
+	
+	GenreService
+	
+	TheaterService
+	
+	ScreenService
+	
+	SeatService
+	
+	MovieSessionService
+	
+	ProductService
+	
+	EmployeeService
+	
+	EmployeeAccountService
+	
+	TicketPricingService
+	
+Nghiệp Vụ:
+
+	TicketSaleService
+	
+	InvoiceService
+	
+	AuthenticationService
+	
+	StatisticsService
+	
+===============================================
+GUI:
 
 ===============================================
 CONTROLLER:
 
-===============================================
-CONFIG:
 
-===============================================
-SERVICE:
 
-===============================================
-Main:
