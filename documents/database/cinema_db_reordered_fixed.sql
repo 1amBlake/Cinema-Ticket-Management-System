@@ -15,45 +15,15 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+DROP DATABASE IF EXISTS `cinema_db`;
+
 CREATE DATABASE IF NOT EXISTS `cinema_db`
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_unicode_ci;
 
 USE `cinema_db`;
 
-SET FOREIGN_KEY_CHECKS = 1;
-
---
--- Table structure for table `bang_gia_ve`
---
-
-DROP TABLE IF EXISTS `bang_gia_ve`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `bang_gia_ve` (
-  `ma_bang_gia` int NOT NULL AUTO_INCREMENT,
-  `ma_loai_ghe` int NOT NULL,
-  `ma_loai_phong` int NOT NULL,
-  `gia` decimal(10,2) NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ma_bang_gia`),
-  UNIQUE KEY `uq_bang_gia_ve` (`ma_loai_ghe`,`ma_loai_phong`),
-  KEY `fk_bang_gia_ve_loai_phong` (`ma_loai_phong`),
-  CONSTRAINT `fk_bang_gia_ve_loai_ghe` FOREIGN KEY (`ma_loai_ghe`) REFERENCES `loai_ghe` (`ma_loai_ghe`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `fk_bang_gia_ve_loai_phong` FOREIGN KEY (`ma_loai_phong`) REFERENCES `loai_phong` (`ma_loai_phong`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `bang_gia_ve_chk_1` CHECK ((`gia` >= 0))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `bang_gia_ve`
---
-
-LOCK TABLES `bang_gia_ve` WRITE;
-/*!40000 ALTER TABLE `bang_gia_ve` DISABLE KEYS */;
-/*!40000 ALTER TABLE `bang_gia_ve` ENABLE KEYS */;
-UNLOCK TABLES;
+SET FOREIGN_KEY_CHECKS = 0;
 
 --
 -- Table structure for table `chuc_vu`
@@ -104,156 +74,6 @@ CREATE TABLE `dao_dien` (
 LOCK TABLES `dao_dien` WRITE;
 /*!40000 ALTER TABLE `dao_dien` DISABLE KEYS */;
 /*!40000 ALTER TABLE `dao_dien` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `dao_dien_phim`
---
-
-DROP TABLE IF EXISTS `dao_dien_phim`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `dao_dien_phim` (
-  `ma_phim` int NOT NULL,
-  `ma_dao_dien` int NOT NULL,
-  PRIMARY KEY (`ma_phim`,`ma_dao_dien`),
-  KEY `fk_dao_dien_phim_dao_dien` (`ma_dao_dien`),
-  CONSTRAINT `fk_dao_dien_phim_dao_dien` FOREIGN KEY (`ma_dao_dien`) REFERENCES `dao_dien` (`ma_dao_dien`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_dao_dien_phim_phim` FOREIGN KEY (`ma_phim`) REFERENCES `phim` (`ma_phim`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `dao_dien_phim`
---
-
-LOCK TABLES `dao_dien_phim` WRITE;
-/*!40000 ALTER TABLE `dao_dien_phim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `dao_dien_phim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `ghe`
---
-
-DROP TABLE IF EXISTS `ghe`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `ghe` (
-  `ma_ghe` int NOT NULL AUTO_INCREMENT,
-  `ma_phong` int NOT NULL,
-  `ma_loai_ghe` int NOT NULL,
-  `hang` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `cot` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `trang_thai` tinyint NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ma_ghe`),
-  UNIQUE KEY `uq_ghe_phong_hang_cot` (`ma_phong`,`hang`,`cot`),
-  KEY `fk_ghe_loai_ghe` (`ma_loai_ghe`),
-  CONSTRAINT `fk_ghe_loai_ghe` FOREIGN KEY (`ma_loai_ghe`) REFERENCES `loai_ghe` (`ma_loai_ghe`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `fk_ghe_phong` FOREIGN KEY (`ma_phong`) REFERENCES `phong_chieu` (`ma_phong`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `chk_ghe_trang_thai` CHECK ((`trang_thai` in (0,1)))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ghe`
---
-
-LOCK TABLES `ghe` WRITE;
-/*!40000 ALTER TABLE `ghe` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ghe` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `hoa_don`
---
-
-DROP TABLE IF EXISTS `hoa_don`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `hoa_don` (
-  `ma_hoa_don` int NOT NULL AUTO_INCREMENT,
-  `ma_nhan_vien` int NOT NULL,
-  `phuong_thuc_thanh_toan` tinyint NOT NULL,
-  `trang_thai` tinyint NOT NULL DEFAULT '0',
-  `thoi_gian_thanh_toan` datetime DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ma_hoa_don`),
-  KEY `fk_hoa_don_nhan_vien` (`ma_nhan_vien`),
-  CONSTRAINT `fk_hoa_don_nhan_vien` FOREIGN KEY (`ma_nhan_vien`) REFERENCES `nhan_vien` (`ma_nhan_vien`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `chk_hoa_don_phuong_thuc_thanh_toan` CHECK ((`phuong_thuc_thanh_toan` in (0,1))),
-  CONSTRAINT `chk_hoa_don_trang_thai` CHECK ((`trang_thai` in (0,1,2,3)))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `hoa_don`
---
-
-LOCK TABLES `hoa_don` WRITE;
-/*!40000 ALTER TABLE `hoa_don` DISABLE KEYS */;
-/*!40000 ALTER TABLE `hoa_don` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `hoa_don_san_pham`
---
-
-DROP TABLE IF EXISTS `hoa_don_san_pham`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `hoa_don_san_pham` (
-  `ma_hoa_don` int NOT NULL,
-  `ma_san_pham` int NOT NULL,
-  `so_luong_tong` int NOT NULL DEFAULT '1',
-  `don_gia` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`ma_hoa_don`,`ma_san_pham`),
-  KEY `fk_hoa_don_san_pham_san_pham` (`ma_san_pham`),
-  CONSTRAINT `fk_hoa_don_san_pham_hoa_don` FOREIGN KEY (`ma_hoa_don`) REFERENCES `hoa_don` (`ma_hoa_don`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_hoa_don_san_pham_san_pham` FOREIGN KEY (`ma_san_pham`) REFERENCES `san_pham` (`ma_san_pham`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `hoa_don_san_pham_chk_1` CHECK ((`so_luong_tong` > 0)),
-  CONSTRAINT `hoa_don_san_pham_chk_2` CHECK ((`don_gia` >= 0))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `hoa_don_san_pham`
---
-
-LOCK TABLES `hoa_don_san_pham` WRITE;
-/*!40000 ALTER TABLE `hoa_don_san_pham` DISABLE KEYS */;
-/*!40000 ALTER TABLE `hoa_don_san_pham` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `hoa_don_ve`
---
-
-DROP TABLE IF EXISTS `hoa_don_ve`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `hoa_don_ve` (
-  `ma_hoa_don` int NOT NULL,
-  `ma_ve` int NOT NULL,
-  `don_gia` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`ma_hoa_don`,`ma_ve`),
-  KEY `fk_hoa_don_ve_ve` (`ma_ve`),
-  CONSTRAINT `fk_hoa_don_ve_hoa_don` FOREIGN KEY (`ma_hoa_don`) REFERENCES `hoa_don` (`ma_hoa_don`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_hoa_don_ve_ve` FOREIGN KEY (`ma_ve`) REFERENCES `ve` (`ma_ve`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `hoa_don_ve_chk_1` CHECK ((`don_gia` >= 0))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `hoa_don_ve`
---
-
-LOCK TABLES `hoa_don_ve` WRITE;
-/*!40000 ALTER TABLE `hoa_don_ve` DISABLE KEYS */;
-/*!40000 ALTER TABLE `hoa_don_ve` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -335,6 +155,124 @@ LOCK TABLES `loai_san_pham` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `the_loai`
+--
+
+DROP TABLE IF EXISTS `the_loai`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `the_loai` (
+  `ma_the_loai` int NOT NULL AUTO_INCREMENT,
+  `ten_the_loai` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_the_loai`),
+  UNIQUE KEY `ten_the_loai` (`ten_the_loai`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `the_loai`
+--
+
+LOCK TABLES `the_loai` WRITE;
+/*!40000 ALTER TABLE `the_loai` DISABLE KEYS */;
+/*!40000 ALTER TABLE `the_loai` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `rap`
+--
+
+DROP TABLE IF EXISTS `rap`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rap` (
+  `ma_rap` int NOT NULL AUTO_INCREMENT,
+  `ten_rap` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dia_chi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_rap`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rap`
+--
+
+LOCK TABLES `rap` WRITE;
+/*!40000 ALTER TABLE `rap` DISABLE KEYS */;
+/*!40000 ALTER TABLE `rap` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `phim`
+--
+
+DROP TABLE IF EXISTS `phim`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `phim` (
+  `ma_phim` int NOT NULL AUTO_INCREMENT,
+  `ten_phim` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `thoi_luong` int NOT NULL,
+  `ngay_phat_hanh` date DEFAULT NULL,
+  `ngon_ngu` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `trang_thai` tinyint NOT NULL,
+  `gioi_han_tuoi` tinyint NOT NULL,
+  `url_anh` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_phim`),
+  CONSTRAINT `chk_phim_gioi_han_tuoi` CHECK ((`gioi_han_tuoi` in (0,1,2,3,4,5))),
+  CONSTRAINT `chk_phim_trang_thai` CHECK ((`trang_thai` in (0,1,2))),
+  CONSTRAINT `phim_chk_1` CHECK ((`thoi_luong` > 0))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `phim`
+--
+
+LOCK TABLES `phim` WRITE;
+/*!40000 ALTER TABLE `phim` DISABLE KEYS */;
+/*!40000 ALTER TABLE `phim` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `bang_gia_ve`
+--
+
+DROP TABLE IF EXISTS `bang_gia_ve`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `bang_gia_ve` (
+  `ma_bang_gia` int NOT NULL AUTO_INCREMENT,
+  `ma_loai_ghe` int NOT NULL,
+  `ma_loai_phong` int NOT NULL,
+  `gia` decimal(10,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_bang_gia`),
+  UNIQUE KEY `uq_bang_gia_ve` (`ma_loai_ghe`,`ma_loai_phong`),
+  KEY `fk_bang_gia_ve_loai_phong` (`ma_loai_phong`),
+  CONSTRAINT `fk_bang_gia_ve_loai_ghe` FOREIGN KEY (`ma_loai_ghe`) REFERENCES `loai_ghe` (`ma_loai_ghe`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_bang_gia_ve_loai_phong` FOREIGN KEY (`ma_loai_phong`) REFERENCES `loai_phong` (`ma_loai_phong`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `bang_gia_ve_chk_1` CHECK ((`gia` >= 0))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bang_gia_ve`
+--
+
+LOCK TABLES `bang_gia_ve` WRITE;
+/*!40000 ALTER TABLE `bang_gia_ve` DISABLE KEYS */;
+/*!40000 ALTER TABLE `bang_gia_ve` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `nhan_vien`
 --
 
@@ -373,40 +311,6 @@ LOCK TABLES `nhan_vien` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `phim`
---
-
-DROP TABLE IF EXISTS `phim`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `phim` (
-  `ma_phim` int NOT NULL AUTO_INCREMENT,
-  `ten_phim` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `thoi_luong` int NOT NULL,
-  `ngay_phat_hanh` date DEFAULT NULL,
-  `ngon_ngu` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `trang_thai` tinyint NOT NULL,
-  `gioi_han_tuoi` tinyint NOT NULL,
-  `url_anh` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ma_phim`),
-  CONSTRAINT `chk_phim_gioi_han_tuoi` CHECK ((`gioi_han_tuoi` in (0,1,2,3,4,5))),
-  CONSTRAINT `chk_phim_trang_thai` CHECK ((`trang_thai` in (0,1,2))),
-  CONSTRAINT `phim_chk_1` CHECK ((`thoi_luong` > 0))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `phim`
---
-
-LOCK TABLES `phim` WRITE;
-/*!40000 ALTER TABLE `phim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `phim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `phong_chieu`
 --
 
@@ -437,32 +341,6 @@ CREATE TABLE `phong_chieu` (
 LOCK TABLES `phong_chieu` WRITE;
 /*!40000 ALTER TABLE `phong_chieu` DISABLE KEYS */;
 /*!40000 ALTER TABLE `phong_chieu` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `rap`
---
-
-DROP TABLE IF EXISTS `rap`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `rap` (
-  `ma_rap` int NOT NULL AUTO_INCREMENT,
-  `ten_rap` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `dia_chi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ma_rap`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `rap`
---
-
-LOCK TABLES `rap` WRITE;
-/*!40000 ALTER TABLE `rap` DISABLE KEYS */;
-/*!40000 ALTER TABLE `rap` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -498,6 +376,124 @@ CREATE TABLE `san_pham` (
 LOCK TABLES `san_pham` WRITE;
 /*!40000 ALTER TABLE `san_pham` DISABLE KEYS */;
 /*!40000 ALTER TABLE `san_pham` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `dao_dien_phim`
+--
+
+DROP TABLE IF EXISTS `dao_dien_phim`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `dao_dien_phim` (
+  `ma_phim` int NOT NULL,
+  `ma_dao_dien` int NOT NULL,
+  PRIMARY KEY (`ma_phim`,`ma_dao_dien`),
+  KEY `fk_dao_dien_phim_dao_dien` (`ma_dao_dien`),
+  CONSTRAINT `fk_dao_dien_phim_dao_dien` FOREIGN KEY (`ma_dao_dien`) REFERENCES `dao_dien` (`ma_dao_dien`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_dao_dien_phim_phim` FOREIGN KEY (`ma_phim`) REFERENCES `phim` (`ma_phim`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `dao_dien_phim`
+--
+
+LOCK TABLES `dao_dien_phim` WRITE;
+/*!40000 ALTER TABLE `dao_dien_phim` DISABLE KEYS */;
+/*!40000 ALTER TABLE `dao_dien_phim` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `the_loai_phim`
+--
+
+DROP TABLE IF EXISTS `the_loai_phim`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `the_loai_phim` (
+  `ma_phim` int NOT NULL,
+  `ma_the_loai` int NOT NULL,
+  PRIMARY KEY (`ma_phim`,`ma_the_loai`),
+  KEY `fk_the_loai_phim_the_loai` (`ma_the_loai`),
+  CONSTRAINT `fk_the_loai_phim_phim` FOREIGN KEY (`ma_phim`) REFERENCES `phim` (`ma_phim`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_the_loai_phim_the_loai` FOREIGN KEY (`ma_the_loai`) REFERENCES `the_loai` (`ma_the_loai`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `the_loai_phim`
+--
+
+LOCK TABLES `the_loai_phim` WRITE;
+/*!40000 ALTER TABLE `the_loai_phim` DISABLE KEYS */;
+/*!40000 ALTER TABLE `the_loai_phim` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tai_khoan`
+--
+
+DROP TABLE IF EXISTS `tai_khoan`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tai_khoan` (
+  `ma_tai_khoan` int NOT NULL AUTO_INCREMENT,
+  `ma_nhan_vien` int NOT NULL,
+  `ten_tai_khoan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mat_khau` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `trang_thai` tinyint NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_tai_khoan`),
+  UNIQUE KEY `ma_nhan_vien` (`ma_nhan_vien`),
+  UNIQUE KEY `ten_tai_khoan` (`ten_tai_khoan`),
+  CONSTRAINT `fk_tai_khoan_nhan_vien` FOREIGN KEY (`ma_nhan_vien`) REFERENCES `nhan_vien` (`ma_nhan_vien`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `chk_tai_khoan_trang_thai` CHECK ((`trang_thai` in (0,1)))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tai_khoan`
+--
+
+LOCK TABLES `tai_khoan` WRITE;
+/*!40000 ALTER TABLE `tai_khoan` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tai_khoan` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ghe`
+--
+
+DROP TABLE IF EXISTS `ghe`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ghe` (
+  `ma_ghe` int NOT NULL AUTO_INCREMENT,
+  `ma_phong` int NOT NULL,
+  `ma_loai_ghe` int NOT NULL,
+  `hang` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cot` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `trang_thai` tinyint NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_ghe`),
+  UNIQUE KEY `uq_ghe_phong_hang_cot` (`ma_phong`,`hang`,`cot`),
+  KEY `fk_ghe_loai_ghe` (`ma_loai_ghe`),
+  CONSTRAINT `fk_ghe_loai_ghe` FOREIGN KEY (`ma_loai_ghe`) REFERENCES `loai_ghe` (`ma_loai_ghe`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_ghe_phong` FOREIGN KEY (`ma_phong`) REFERENCES `phong_chieu` (`ma_phong`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `chk_ghe_trang_thai` CHECK ((`trang_thai` in (0,1)))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ghe`
+--
+
+LOCK TABLES `ghe` WRITE;
+/*!40000 ALTER TABLE `ghe` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ghe` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -538,90 +534,6 @@ LOCK TABLES `suat_chieu` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tai_khoan`
---
-
-DROP TABLE IF EXISTS `tai_khoan`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tai_khoan` (
-  `ma_tai_khoan` int NOT NULL AUTO_INCREMENT,
-  `ma_nhan_vien` int NOT NULL,
-  `ten_tai_khoan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `mat_khau` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `trang_thai` tinyint NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ma_tai_khoan`),
-  UNIQUE KEY `ma_nhan_vien` (`ma_nhan_vien`),
-  UNIQUE KEY `ten_tai_khoan` (`ten_tai_khoan`),
-  CONSTRAINT `fk_tai_khoan_nhan_vien` FOREIGN KEY (`ma_nhan_vien`) REFERENCES `nhan_vien` (`ma_nhan_vien`) ON DELETE RESTRICT ON UPDATE CASCADE,
-  CONSTRAINT `chk_tai_khoan_trang_thai` CHECK ((`trang_thai` in (0,1)))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tai_khoan`
---
-
-LOCK TABLES `tai_khoan` WRITE;
-/*!40000 ALTER TABLE `tai_khoan` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tai_khoan` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `the_loai`
---
-
-DROP TABLE IF EXISTS `the_loai`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `the_loai` (
-  `ma_the_loai` int NOT NULL AUTO_INCREMENT,
-  `ten_the_loai` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`ma_the_loai`),
-  UNIQUE KEY `ten_the_loai` (`ten_the_loai`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `the_loai`
---
-
-LOCK TABLES `the_loai` WRITE;
-/*!40000 ALTER TABLE `the_loai` DISABLE KEYS */;
-/*!40000 ALTER TABLE `the_loai` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `the_loai_phim`
---
-
-DROP TABLE IF EXISTS `the_loai_phim`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `the_loai_phim` (
-  `ma_phim` int NOT NULL,
-  `ma_the_loai` int NOT NULL,
-  PRIMARY KEY (`ma_phim`,`ma_the_loai`),
-  KEY `fk_the_loai_phim_the_loai` (`ma_the_loai`),
-  CONSTRAINT `fk_the_loai_phim_phim` FOREIGN KEY (`ma_phim`) REFERENCES `phim` (`ma_phim`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_the_loai_phim_the_loai` FOREIGN KEY (`ma_the_loai`) REFERENCES `the_loai` (`ma_the_loai`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `the_loai_phim`
---
-
-LOCK TABLES `the_loai_phim` WRITE;
-/*!40000 ALTER TABLE `the_loai_phim` DISABLE KEYS */;
-/*!40000 ALTER TABLE `the_loai_phim` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `ve`
 --
 
@@ -655,6 +567,98 @@ LOCK TABLES `ve` WRITE;
 /*!40000 ALTER TABLE `ve` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ve` ENABLE KEYS */;
 UNLOCK TABLES;
+--
+-- Table structure for table `hoa_don`
+--
+
+DROP TABLE IF EXISTS `hoa_don`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `hoa_don` (
+  `ma_hoa_don` int NOT NULL AUTO_INCREMENT,
+  `ma_nhan_vien` int NOT NULL,
+  `phuong_thuc_thanh_toan` tinyint NOT NULL,
+  `trang_thai` tinyint NOT NULL DEFAULT '0',
+  `thoi_gian_thanh_toan` datetime DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_hoa_don`),
+  KEY `fk_hoa_don_nhan_vien` (`ma_nhan_vien`),
+  CONSTRAINT `fk_hoa_don_nhan_vien` FOREIGN KEY (`ma_nhan_vien`) REFERENCES `nhan_vien` (`ma_nhan_vien`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `chk_hoa_don_phuong_thuc_thanh_toan` CHECK ((`phuong_thuc_thanh_toan` in (0,1))),
+  CONSTRAINT `chk_hoa_don_trang_thai` CHECK ((`trang_thai` in (0,1,2,3)))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hoa_don`
+--
+
+LOCK TABLES `hoa_don` WRITE;
+/*!40000 ALTER TABLE `hoa_don` DISABLE KEYS */;
+/*!40000 ALTER TABLE `hoa_don` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `hoa_don_ve`
+--
+
+DROP TABLE IF EXISTS `hoa_don_ve`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `hoa_don_ve` (
+  `ma_hoa_don` int NOT NULL,
+  `ma_ve` int NOT NULL,
+  `don_gia` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`ma_hoa_don`,`ma_ve`),
+  KEY `fk_hoa_don_ve_ve` (`ma_ve`),
+  CONSTRAINT `fk_hoa_don_ve_hoa_don` FOREIGN KEY (`ma_hoa_don`) REFERENCES `hoa_don` (`ma_hoa_don`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_hoa_don_ve_ve` FOREIGN KEY (`ma_ve`) REFERENCES `ve` (`ma_ve`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `hoa_don_ve_chk_1` CHECK ((`don_gia` >= 0))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hoa_don_ve`
+--
+
+LOCK TABLES `hoa_don_ve` WRITE;
+/*!40000 ALTER TABLE `hoa_don_ve` DISABLE KEYS */;
+/*!40000 ALTER TABLE `hoa_don_ve` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `hoa_don_san_pham`
+--
+
+DROP TABLE IF EXISTS `hoa_don_san_pham`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `hoa_don_san_pham` (
+  `ma_hoa_don` int NOT NULL,
+  `ma_san_pham` int NOT NULL,
+  `so_luong_tong` int NOT NULL DEFAULT '1',
+  `don_gia` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`ma_hoa_don`,`ma_san_pham`),
+  KEY `fk_hoa_don_san_pham_san_pham` (`ma_san_pham`),
+  CONSTRAINT `fk_hoa_don_san_pham_hoa_don` FOREIGN KEY (`ma_hoa_don`) REFERENCES `hoa_don` (`ma_hoa_don`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_hoa_don_san_pham_san_pham` FOREIGN KEY (`ma_san_pham`) REFERENCES `san_pham` (`ma_san_pham`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `hoa_don_san_pham_chk_1` CHECK ((`so_luong_tong` > 0)),
+  CONSTRAINT `hoa_don_san_pham_chk_2` CHECK ((`don_gia` >= 0))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hoa_don_san_pham`
+--
+
+LOCK TABLES `hoa_don_san_pham` WRITE;
+/*!40000 ALTER TABLE `hoa_don_san_pham` DISABLE KEYS */;
+/*!40000 ALTER TABLE `hoa_don_san_pham` ENABLE KEYS */;
+UNLOCK TABLES;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

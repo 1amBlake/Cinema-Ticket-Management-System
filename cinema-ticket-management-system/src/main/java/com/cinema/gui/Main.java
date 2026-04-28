@@ -16,7 +16,7 @@ public class Main extends Application {
                 getClass().getResource("/fxml/LoadingScreen.fxml")
             );
 
-            Scene scene = new Scene(root, 900, 550);
+            Scene scene = new Scene(root);
 
             primaryStage.initStyle(StageStyle.UNDECORATED);
             primaryStage.setResizable(false);

@@ -1,0 +1,273 @@
+/* ================================
+   Cinema Ticket Management Dashboard
+   File: dashboard-screen.css
+   ================================ */
+
+.dashboard-root {
+    -fx-background-color: #F4F6F8;
+    -fx-font-family: "Segoe UI", "Arial";
+}
+
+/* ================================
+   Sidebar
+   ================================ */
+
+.sidebar {
+    -fx-background-color: #0F172A;
+}
+
+.sidebar-header {
+    -fx-padding: 4 0 4 0;
+}
+
+.logo-wrapper {
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-background-radius: 22;
+    -fx-padding: 12;
+}
+
+.brand-title {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 24px;
+    -fx-font-weight: 800;
+}
+
+.brand-subtitle {
+    -fx-text-fill: #D1D5DB;
+    -fx-font-size: 13px;
+}
+
+.sidebar-separator .line {
+    -fx-border-color: rgba(209, 213, 219, 0.18);
+    -fx-border-width: 1 0 0 0;
+}
+
+.menu-box {
+    -fx-padding: 2 0 0 0;
+}
+
+.sidebar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #D1D5DB;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-alignment: CENTER_LEFT;
+    -fx-pref-height: 42px;
+    -fx-background-radius: 12;
+    -fx-padding: 0 12 0 14;
+    -fx-cursor: hand;
+}
+
+.sidebar-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.08);
+    -fx-text-fill: #FFFFFF;
+}
+
+.sidebar-active-button {
+    -fx-background-color: #E50914;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-alignment: CENTER_LEFT;
+    -fx-pref-height: 42px;
+    -fx-background-radius: 12;
+    -fx-padding: 0 12 0 14;
+    -fx-cursor: hand;
+}
+
+.sidebar-active-button:hover {
+    -fx-background-color: #E50914;
+    -fx-text-fill: #FFFFFF;
+}
+
+.sidebar-secondary-button {
+    -fx-background-color: rgba(255, 255, 255, 0.06);
+    -fx-text-fill: #D1D5DB;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-alignment: CENTER_LEFT;
+    -fx-pref-height: 42px;
+    -fx-background-radius: 12;
+    -fx-padding: 0 12 0 14;
+    -fx-cursor: hand;
+}
+
+.sidebar-secondary-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.10);
+    -fx-text-fill: #FFFFFF;
+}
+
+.logout-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #FBBF24;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-alignment: CENTER_LEFT;
+    -fx-pref-height: 42px;
+    -fx-background-radius: 12;
+    -fx-padding: 0 12 0 14;
+    -fx-cursor: hand;
+}
+
+.logout-button:hover {
+    -fx-background-color: rgba(229, 9, 20, 0.16);
+    -fx-text-fill: #FFFFFF;
+}
+
+.sidebar-icon {
+    -fx-text-fill: inherit;
+    -fx-font-size: 16px;
+    -fx-min-width: 18px;
+}
+
+.sidebar-footer {
+    -fx-padding: 6 0 0 0;
+}
+
+.user-card {
+    -fx-background-color: #111827;
+    -fx-background-radius: 14;
+    -fx-padding: 12 14 12 14;
+}
+
+.user-muted-label {
+    -fx-text-fill: #9CA3AF;
+    -fx-font-size: 12px;
+}
+
+.user-name-label {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+}
+
+/* ================================
+   Main area
+   ================================ */
+
+.main-area {
+    -fx-background-color: #F4F6F8;
+}
+
+.top-bar {
+    -fx-background-color: #FFFFFF;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.08), 12, 0, 0, 2);
+}
+
+.page-title {
+    -fx-text-fill: #111827;
+    -fx-font-size: 24px;
+    -fx-font-weight: 800;
+}
+
+.page-description {
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 13px;
+}
+
+.global-search {
+    -fx-background-color: #F4F6F8;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 9 12 9 12;
+    -fx-font-size: 13px;
+    -fx-text-fill: #111827;
+    -fx-prompt-text-fill: #9CA3AF;
+}
+
+.global-search:focused {
+    -fx-border-color: #FBBF24;
+    -fx-border-width: 1.5;
+    -fx-background-color: #FFFFFF;
+}
+
+.top-icon-button {
+    -fx-background-color: #FBBF24;
+    -fx-text-fill: #111827;
+    -fx-font-weight: 900;
+    -fx-font-size: 14px;
+    -fx-background-radius: 50;
+    -fx-min-width: 38px;
+    -fx-min-height: 38px;
+    -fx-pref-width: 38px;
+    -fx-pref-height: 38px;
+    -fx-cursor: hand;
+}
+
+.top-icon-button:hover {
+    -fx-background-color: #F59E0B;
+}
+
+.top-user-box {
+    -fx-padding: 0 0 0 4;
+}
+
+.top-user-name {
+    -fx-text-fill: #111827;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+}
+
+.top-user-role {
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 12px;
+}
+
+/* ================================
+   Content
+   ================================ */
+
+.content-area {
+    -fx-background-color: #F4F6F8;
+}
+
+.welcome-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 22;
+    -fx-padding: 42;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.10), 18, 0, 0, 6);
+    -fx-max-width: 620px;
+}
+
+.welcome-title {
+    -fx-text-fill: #111827;
+    -fx-font-size: 22px;
+    -fx-font-weight: 800;
+}
+
+.welcome-subtitle {
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 14px;
+}
+
+.primary-button {
+    -fx-background-color: #E50914;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-background-radius: 10;
+    -fx-padding: 11 20 11 20;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #B91C1C;
+}
+
+.outline-button {
+    -fx-background-color: transparent;
+    -fx-border-color: #E50914;
+    -fx-border-radius: 10;
+    -fx-text-fill: #E50914;
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-background-radius: 10;
+    -fx-padding: 10 20 10 20;
+    -fx-cursor: hand;
+}
+
+.outline-button:hover {
+    -fx-background-color: rgba(229, 9, 20, 0.08);
+}
+/* ================================

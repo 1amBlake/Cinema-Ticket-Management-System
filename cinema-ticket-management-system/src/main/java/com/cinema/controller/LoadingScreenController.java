@@ -53,7 +53,7 @@ public class LoadingScreenController {
             public void handle(ActionEvent event) {
                 try {
                     Parent loginRoot = FXMLLoader.load(
-                        getClass().getResource("/fxml/logindemo.fxml")
+                        getClass().getResource("/fxml/LoginScreen.fxml")
                     );
 
                     Scene loginScene = new Scene(loginRoot, 900, 550);
