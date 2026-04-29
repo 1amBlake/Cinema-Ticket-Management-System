@@ -670,3 +670,266 @@ SET FOREIGN_KEY_CHECKS = 1;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2026-04-21 10:31:21
+
+USE cinema_db;
+
+-- =========================
+-- chuc_vu
+-- =========================
+INSERT IGNORE INTO chuc_vu (ten_chuc_vu) VALUES
+('Quản Trị Viên'),
+('Quản Lý'),
+('Nhân Viên');
+
+-- =========================
+-- dao_dien
+-- =========================
+INSERT IGNORE INTO dao_dien (ten_dao_dien) VALUES
+('Đỗ Quốc Trung'),
+('Võ Thạch Thảo'),
+('Lưu Thành Luân'),
+('Phan Gia Nhật Linh'),
+('Antoine Fuqua'),
+('Đỗ Đức Thịnh'),
+('Henry Selick'),
+('Matt Bettinelli-Olpin'),
+('Tyler Gillett'),
+('Phil Lord'),
+('Christopher Miller'),
+('Frank Darabont'),
+('Francis Ford Coppola'),
+('Christopher Nolan'),
+('Peter Jackson'),
+('Lana Wachowski'),
+('Lilly Wachowski'),
+('Irvin Kershner'),
+('James Cameron'),
+('Hayao Miyazaki'),
+('Nguyễn Quang Dũng'),
+('Vũ Ngọc Đãng'),
+('Victor Vũ'),
+('Nhất Trung'),
+('Võ Thanh Hòa'),
+('Lý Hải'),
+('Nguyễn Thành Nam'),
+('Vasily Rovensky'),
+('Ricard Cussó'),
+('Rio Harrington'),
+('Antoine Fuqua'),
+('Lee Cronin'),
+('Aaron Horvath'),
+('Michael Jelenic'),
+('David Yates'),
+('Destin Daniel Cretton');
+
+-- =========================
+-- loai_ghe
+-- =========================
+INSERT IGNORE INTO loai_ghe (ten_loai_ghe) VALUES
+('Ghế Phổ Thông'),
+('Ghế Đôi'),
+('Ghế VIP'),
+('Ghế Premium');
+
+-- =========================
+-- loai_phong
+-- =========================
+INSERT IGNORE INTO loai_phong (ten_loai_phong) VALUES
+('Phòng Thường'),
+('Phòng 3D'),
+('Phòng IMAX'),
+('Phòng 4DX'),
+('Phòng Gold');
+
+-- =========================
+-- loai_san_pham
+-- =========================
+INSERT IGNORE INTO loai_san_pham (ten_loai_san_pham) VALUES
+('Đồ Ăn'),
+('Thức Uống'),
+('Combo'),
+('Merchandise');
+
+-- =========================
+-- the_loai
+-- =========================
+INSERT IGNORE INTO the_loai (ten_the_loai) VALUES
+('Hành Động (Action)'),
+('Phiêu Lưu (Adventure)'),
+('Hoạt Hình (Animation)'),
+('Hài (Comedy)'),
+('Chính Kịch (Drama)'),
+('Giả Tưởng (Fantasy)'),
+('Lịch Sử (Historical)'),
+('Kinh Dị (Horror)'),
+('Tâm Lý Tình Cảm (Melodrama)'),
+('Nhạc Kịch (Musical)'),
+('Noir (Noir)'),
+('Tình Cảm (Romance)'),
+('Khoa Học Viễn Tưởng (Science Fiction)'),
+('Giật Gân (Thriller)'),
+('Viễn Tây (Western)'),
+('Tội Phạm (Crime)'),
+('Bí Ẩn (Mystery)'),
+('Phim Tài Liệu (Documentary)');
+-- =========================
+-- rap
+-- =========================
+INSERT IGNORE INTO rap (ten_rap, dia_chi) VALUES
+('HSKN1 Cinema Gò Vấp', '12 Nguyễn Văn Bảo, Hạnh Thông, Hồ Chí Minh');
+
+-- =========================
+-- phim
+-- MovieStatus:
+-- 0 = COMING_SOON
+-- 1 = SHOWING
+-- 2 = DISCONTINUED
+--
+-- MovieAgeRating:
+-- 0 = P
+-- 1 = K
+-- 2 = T13
+-- 3 = T16
+-- 4 = T18
+-- 5 = C
+-- =========================
+
+INSERT INTO phim (
+    ten_phim,
+    thoi_luong,
+    ngay_phat_hanh,
+    ngon_ngu,
+    trang_thai,
+    gioi_han_tuoi,
+    url_anh
+) VALUES
+('Heo Năm Móng', 103, '2026-04-24', 'Tiếng Việt', 1, 4, '/images/movie_img/movie_1.jpg'),
+
+('Trùm Sò', 105, '2026-04-24', 'Tiếng Việt', 1, 1, '/images/movie_img/movie_2.jpg'),
+
+('Phí Phông: Quỷ Máu Rừng Thiêng', 120, '2026-04-16', 'Tiếng Việt', 1, 3, '/images/movie_img/movie_3.jpg'),
+
+('Đại Tiệc Trăng Máu 8', 130, '2026-04-23', 'Tiếng Việt', 1, 3, '/images/movie_img/movie_4.jpg'),
+
+('Anh Hùng', 122, '2026-04-24', 'Tiếng Việt', 1, 2, '/images/movie_img/movie_5.jpg'),
+
+('Mèo Siêu Quậy Ở Viện Bảo Tàng 2: Đại Náo Kim Tự Tháp', 90, '2026-04-24', 'Tiếng Nga', 1, 0, '/images/movie_img/movie_6.jpg'),
+
+('Cá Con Cau Có', 92, '2026-04-24', 'Tiếng Anh', 1, 0, '/images/movie_img/movie_7.jpg'),
+
+('Michael', 127, '2026-04-22', 'Tiếng Anh', 1, 1, '/images/movie_img/movie_8.jpg'),
+
+('Xác Ướp', 133, '2026-04-17', 'Tiếng Anh', 1, 4, '/images/movie_img/movie_9.jpg'),
+
+('Super Mario Thiên Hà', 98, '2026-04-03', 'Tiếng Anh', 1, 0, '/images/movie_img/movie_10.jpg'),
+
+('Chúa Tể Của Những Chiếc Nhẫn: Sự Trở Lại Của Nhà Vua', 201, '2003-12-03', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_11.jpg'),
+
+('Chúa Tể Của Những Chiếc Nhẫn: Hiệp Hội Nhẫn Thần', 179, '2001-12-10', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_12.jpg'),
+
+('Chúa Tể Của Những Chiếc Nhẫn: Hai Tòa Tháp', 179, '2002-12-18', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_13.jpg'),
+
+('Người Hobbit: Hành Trình Vô Định', 169, '2012-12-28', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_14.jpg'),
+
+('Người Hobbit: Đại Chiến Với Rồng Lửa', 161, '2014-01-03', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_15.jpg'),
+
+('Người Hobbit: Đại Chiến Năm Cánh Quân', 144, '2014-12-19', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_16.jpg'),
+
+('Harry Potter và Chiếc Cốc Lửa', 157, '2006-08-25', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_17.jpg'),
+
+('Harry Potter và Tù Nhân Azkaban', 141, '2004-05-31', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_18.jpg'),
+
+('Harry Potter và Căn Phòng Bí Mật', 161, '2002-11-03', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_19.jpg'),
+
+('Harry Potter và Hội Phượng Hoàng', 138, '2007-07-11', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_20.jpg'),
+
+('Harry Potter và Hòn Đá Phù Thủy', 152, '2001-11-16', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_21.jpg'),
+
+('Harry Potter và Hoàng Tử Lai', 153, '2009-07-24', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_22.jpg'),
+
+('Harry Potter và Bảo Bối Tử Thần: Phần 1', 146, '2010-11-26', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_23.jpg'),
+
+('Harry Potter và Bảo Bối Tử Thần: Phần 2', 130, '2012-02-03', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_24.jpg'),
+
+('Bố Già', 175, '1972-03-24', 'Tiếng Anh', 2, 4, '/images/movie_img/movie_25.jpg'),
+
+('Bố Già 2', 202, '1974-12-20', 'Tiếng Anh', 2, 4, '/images/movie_img/movie_26.jpg'),
+
+('Bố Già 3', 162, '1990-12-25', 'Tiếng Anh', 2, 4, '/images/movie_img/movie_27.jpg'),
+
+('Người Nhện: Khởi Đầu Mới', 120, '2026-07-31', 'Tiếng Anh', 0, 0, '/images/movie_img/movie_28.jpg');
+
+INSERT INTO bang_gia_ve (ma_loai_ghe, ma_loai_phong, gia) VALUES
+-- Phòng Thường
+(1, 1, 75000),
+(2, 1, 160000),
+
+-- Phòng 3D
+(1, 2, 95000),
+(2, 2, 208000),
+
+-- Phòng IMAX
+(1, 3, 160000),
+(2, 3, 320000),
+(3, 3, 450000),
+
+-- Phòng 4DX
+(2, 4, 380000),
+(3, 4, 530000),
+
+-- Phòng Gold
+(3, 5, 650000),
+(4, 5, 800000);
+
+INSERT INTO nhan_vien (
+    ten_nhan_vien,
+    gioi_tinh,
+    so_dien_thoai,
+    ngay_sinh,
+    email,
+    ngay_vao_lam,
+    ma_chuc_vu,
+    trang_thai
+) VALUES
+('Đoàn Minh Huy', 1, '0967000000', '2000-05-15', 'doanminhhuy@gmail.com', '2025-08-09', 1, 1),
+('Bùi Quốc Anh', 1, '0961234567', '2002-08-28', 'buiquocanh@gmail.com', '2021-01-09', 2, 1),
+('Trần Hải Anh', 1, '0967654321', '1999-12-05', 'tranhaianh@gmail.com', '2019-01-02', 3, 2),
+('Nguyễn Thị Bình', 0, '0961233211', '1980-04-25', 'ntbinh@gmail.com', '2016-07-02', 3, 0);
+
+INSERT INTO phong_chieu (
+    ten_phong,
+    ma_rap,
+    ma_loai_phong,
+    trang_thai
+) VALUES
+('PT 01', 1, 1, 0),
+('PT 02', 1, 1, 0),
+('PT 03', 1, 1, 0),
+('3D 01', 1, 2, 0),
+('3D 02', 1, 2, 0),
+('IMAX 01', 1, 3, 0),
+('IMAX 02', 1, 3, 0),
+('4DX 01', 1, 4, 0),
+('4DX 02', 1, 4, 0),
+('Gold 01', 1, 5, 0);
+
+INSERT INTO san_pham
+(ten_san_pham, ma_loai_san_pham, gia_co_ban, so_luong_ton, trang_thai, url_anh)
+VALUES
+('Bắp L', 1, 65000, 40, 1, '/images/product_img/food_img/food_1.png'),
+('Bắp M', 1, 55000, 30, 1, '/images/product_img/food_img/food_2.png'),
+('Bắp S', 1, 45000, 15, 1, '/images/product_img/food_img/food_3.png'),
+('Bột Phô Mai', 1, 10000, 36, 1, '/images/product_img/food_img/food_4.png'),
+
+('Pepsi L', 2, 45000, 20, 1, '/images/product_img/drink_img/drink_1.png'),
+('Pepsi M', 2, 35000, 15, 1, '/images/product_img/drink_img/drink_2.png'),
+('Coca-Cola L', 2, 45000, 30, 1, '/images/product_img/drink_img/drink_3.png'),
+('Coca-Cola M', 2, 35000, 20, 1, '/images/product_img/drink_img/drink_4.png'),
+
+('1 Bắp L 2 Nước M', 3, 120000, 24, 1, '/images/product_img/combo_img/combo_1.png'),
+('2 Bắp M', 3, 100000, 13, 1, '/images/product_img/combo_img/combo_2.png'),
+('2 Nước M', 3, 55000, 11, 1, '/images/product_img/combo_img/combo_3.png'),
+
+('Michael''s Merchandise', 4, 67000, 29, 1, '/images/product_img/merchandise_img/merch_1.png');
+
+use cinema_db;

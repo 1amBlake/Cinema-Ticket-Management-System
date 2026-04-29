@@ -1,0 +1,551 @@
+chuc_vu(ten_chuc_vu)
+- Quản Trị Viên
+- Quản Lý
+- Nhân Viên
+
+dao_dien (ten_dao_dien)
+- Đỗ Quốc Trung
+- Võ Thạch Thảo
+- Lưu Thành Luân
+- Phan Gia Nhật Linh
+- Antoine Fuqua
+- Đỗ Đức Thịnh
+- Henry Selick
+- Matt Bettinelli-Olpin
+- Tyler Gillett
+- Phil Lord
+- Christopher Miller
+- Frank Darabont
+- Francis Ford Coppola
+- Christopher Nolan
+- Peter Jackson
+- Lana Wachowski
+- Lilly Wachowski
+- Irvin Kershner
+- James Cameron
+- Hayao Miyazaki
+- Nguyễn Quang Dũng
+- Vũ Ngọc Đãng
+- Victor Vũ
+- Nhất Trung
+- Võ Thanh Hòa
+- Lý Hải
+- Nguyễn Thành Nam
+- Vasily Rovensky
+
+loai_ghe (ten_loai_ghe)
+- Ghế Phổ Thông
+- Ghế Đôi
+- Ghế VIP
+- Ghế Premium
+
+loai_phong (ten_loai_phong)
+- Phòng Thường
+- Phòng 3D
+- Phòng IMAX
+- Phòng 4DX
+- Phòng Gold
+
+loai_san_pham (ten_loai_san_pham)
+- Đồ Ăn
+- Thức Uống
+- Combo
+- Merchandise
+
+the_loai (ten_the_loai)
+- Hành Động (Action)
+- Phiêu Lưu (Adventure)
+- Hoạt Hình (Animation)
+- Hài (Comedy)
+- Chính Kịch (Drama)
+- Giả Tưởng (Fantasy)
+- Lịch Sử (Historical)
+- Kinh Dị (Horror)
+- Tâm Lý Tình Cảm (Melodrama)
+- Nhạc Kịch (Musical)
+- Noir (Noir)
+- Tình Cảm (Romance)
+- Khoa Học Viễn Tưởng (Science Fiction)
+- Giật Gân (Thriller)
+- Viễn Tây (Western)
+- Tội Phạm (Crime)
+- Bí Ẩn (Mystery)
+- Phim Tài Liệu (Documentary)
+
+rap (ten_rap, dia_chi)
+- HSKN1 Cinema Gò Vấp
+	12 Nguyễn Văn Bảo, Hạnh Thông, Hồ Chí Minh
+	
+phim (ten_phim, thoi_luong, ngay_phat_hanh, ngon_ngu, trang_thai
+gioi_han_tuoi, url_anh)
+
+enums:
+MovieAgeRating
+	 * 0 - P: Mọi lứa tuổi
+	 * 1 - K: Trẻ dưới 13 tuổi xem cùng người giám hộ
+	 * 2 - T13: Cấm khán giả dưới 13 tuổi
+	 * 3 - T16: Cấm khán giả dưới 16 tuổi
+	 * 4 - T18: Cấm khán giả dưới 18 tuổi
+	 * 5 - C: Cấm phổ biến
+	 
+MovieStatus
+	 * 0 - COMING_SOON: Phim sắp chiếu
+	 * 1 - SHOWING: Phim đang chiếu
+	 * 2 - DISCONTINUED: Phim dừng chiếu
+	 
+- Heo Năm Móng
+	103
+	04/24/2026
+	Tiếng Việt
+	1
+	4
+	'/images/movie_img/movie_1.jpg'
+	
+- Trùm Sò
+	105
+	04/24/2026
+	Tiếng Việt
+	1
+	1
+	'/images/movie_img/movie_2.jpg'
+	
+- Phí Phông: Quỷ Máu Rừng Thiêng
+	120
+	04/16/2026
+	Tiếng Việt
+	1
+	3
+	'/images/movie_img/movie_3.jpg'
+	
+- Đại Tiệc Trăng Máu 8
+	130
+	04/23/2026
+	Tiếng Việt
+	1
+	3
+	'/images/movie_img/movie_4.jpg'
+	
+- Anh Hùng
+	122
+	04/24/2026
+	Tiếng Việt
+	1
+	2
+	'/images/movie_img/movie_5.jpg'
+	
+- Mèo Siêu Quậy Ở Viện Bảo Tàng 2: Đại Náo Kim Tự Tháp
+	90
+	04/24/2026
+	Tiếng Nga
+	1
+	0
+	'/images/movie_img/movie_6.jpg'
+	
+- Cá Con Cau Có
+	92
+	04/24/2026
+	Tiếng Anh
+	1
+	0
+	'/images/movie_img/movie_7.jpg'
+	
+- Michael
+	127
+	04/22/2026
+	Tiếng Anh
+	1
+	1
+	'/images/movie_img/movie_8.jpg'
+	
+- Xác Ướp
+	133
+	04/17/2026
+	Tiếng Anh
+	1
+	4
+	'/images/movie_img/movie_9.jpg'
+	
+- Super Mario Thiên Hà
+	98
+	04/03/2026
+	Tiếng Anh
+	1
+	0
+	'/images/movie_img/movie_10.jpg'
+
+- Chúa Tể Của Những Chiếc Nhẫn: Sự Trở Lại Của Nhà Vua
+	201
+	12/03/2003
+	Tiếng Anh
+	2
+	2
+	'/images/movie_img/movie_11.jpg'
+	
+- Chúa Tể Của Những Chiếc Nhẫn: Hiệp Hội Nhẫn Thần
+	179
+	12/10/2001
+	Tiếng Anh
+	2
+	2
+	'/images/movie_img/movie_12.jpg'
+	
+- Chúa Tể Của Những Chiếc Nhẫn: Hai Tòa Tháp
+	179
+	12/18/2002
+	Tiếng Anh
+	2
+	2
+	'/images/movie_img/movie_13.jpg'
+	
+- Người Hobbit: Hành Trình Vô Định
+	169
+	12/28/2012
+	Tiếng Anh
+	2
+	2
+	'/images/movie_img/movie_14.jpg'
+	
+- Người Hobbit: Đại Chiến Với Rồng Lửa
+	161
+	01/03/2014
+	Tiếng Anh
+	2
+	2
+	'/images/movie_img/movie_15.jpg'
+	
+- Người Hobbit: Đại Chiến Năm Cánh Quân
+	144
+	12/19/2014
+	Tiếng Anh
+	2
+	2
+	'/images/movie_img/movie_16.jpg'
+	
+- Harry Potter và Chiếc Cốc Lửa
+	157
+	08/25/2006
+	Tiếng Anh
+	2
+	2
+	'/images/movie_img/movie_17.jpg'
+	
+- Harry Potter và Tù Nhân Azkaban
+	141
+	05/31/2004
+	Tiếng Anh
+	2
+	2
+	'/images/movie_img/movie_18.jpg'
+	
+- Harry Potter và Căn Phòng Bí Mật
+	161
+	11/03/2002
+	Tiếng Anh
+	2
+	2
+	'/images/movie_img/movie_19.jpg'
+	
+- Harry Potter và Hội Phượng Hoàng
+	138
+	07/11/2007
+	Tiếng Anh
+	2
+	2
+	'/images/movie_img/movie_20.jpg'
+	
+- Harry Potter và Hòn Đá Phù Thủy
+	152
+	11/16/2001
+	Tiếng Anh
+	2
+	2
+	'/images/movie_img/movie_21.jpg'
+
+- Harry Potter và Hoàng Tử Lai
+	153
+	07/24/2009
+	Tiếng Anh
+	2
+	2
+	'/images/movie_img/movie_22.jpg'
+	
+- Harry Potter và Bảo Bối Tử Thần: Phần 1
+	146
+	11/26/2010 
+	Tiếng Anh
+	2
+	2
+	'/images/movie_img/movie_23.jpg'
+	
+- Harry Potter và Bảo Bối Tử Thần: Phần 2
+	130
+	02/03/2012
+	Tiếng Anh
+	2
+	2
+	'/images/movie_img/movie_24.jpg'
+	
+- Bố Già
+	175
+	03/24/1972
+	Tiếng Anh
+	2
+	4
+	'/images/movie_img/movie_25.jpg'
+	
+- Bố Già 2
+	202
+	12/20/1974
+	Tiếng Anh
+	2
+	4
+	'/images/movie_img/movie_26.jpg'
+	
+- Bố Già 3
+	162
+	12/25/1990
+	Tiếng Anh
+	2
+	4
+	'/images/movie_img/movie_27.jpg'
+	
+- Người Nhện: Khởi Đầu Mới
+	1
+	07/31/2026
+	0
+	0
+	'/images/movie_img/movie_28.jpg'
+
+bang_gia_ve(ma_loai_ghe, ma_loai_phong, gia)
+
+	phong:
+		1. Thường
+		2. 3D
+		3. IMAX
+		4. 4DX
+		5. Gold
+	ghe:
+		1. Phổ Thông
+		2. Đôi
+		3. VIP
+		4. Premium
+		
+- Phòng Thường: (Mã Ghế - Giá)
+	1 - 75000 d
+	2 - 160000 d
+
+- Phòng 3D
+	1 - 95000 d
+	2 - 208000 d
+
+- Phòng IMAX
+	1 - 160000 d
+	2 - 320000 d
+	3 - 450000 d
+	
+- Phòng 4DX
+	2 - 380000 d
+	3 - 530000 d
+	
+- Phòng Gold
+	3 - 650000 d
+	4 - 800000 d
+	
+nhan_vien (ten_nhan_vien, gioi_tinh, so_dien_thoai,
+ngay_sinh, email, ngay_vao_lam, ma_chuc_vu, trang_thai)
+
+enums:
+	EmployeeStatus
+		* 0 - RESIGNED: Nhân viên đã nghỉ
+		* 1 - WORKING: Nhân viên đang làm
+		* 2 - ON_LEAVE: Nhân viên tạm nghỉ
+	 
+	EmployeeGender
+		* 0 - FEMALE: Nữ
+		* 1 - MALE: Nam
+		
+	Mã chức vụ
+		1 - Quản Trị Viên
+		2 - Quản Lý
+		3 - Nhân Viên
+	
+- Đoàn Minh Huy
+	1
+	0967000000
+	05/15/2000
+	doanminhhuy@gmail.com
+	08/09/2025
+	1
+	1
+
+- Bùi Quốc Anh
+	1
+	0961234567
+	08/28/2002
+	buiquocanh@gmail.com
+	01/09/2021
+	2
+	1
+	
+- Trần Hải Anh
+	1
+	0967654321
+	12/05/1999
+	tranhaianh@gmail.com
+	01/02/2019
+	3
+	2
+	
+- Nguyễn Thị Bình
+	0
+	0961233211
+	04/25/1980
+	ntbinh@gmail.com
+	07/02/2016
+	3
+	0
+	
+phong_chieu (ten_phong, ma_rap, ma_loai_phong, trang_thai)
+ enums:
+	ScreenStatus
+		 * 0 - AVAILABLE: Phòng chiếu hoạt động
+		 * 1 - MAINTENANCE: Phòng chiếu bảo trì
+		 * 2 - UNAVAILABLE: Phòng chiếu ngưng hoạt động
+		 
+- PT 01
+	1
+	1
+	0
+	
+- PT 02
+	1
+	1
+	0
+	
+- PT 03
+	1
+	1
+	0
+	
+- 3D 01
+	1
+	2
+	0
+	
+- 3D 02
+	1
+	2
+	0
+	
+- IMAX 01
+	1
+	3
+	0
+	
+- IMAX 02
+	1
+	3
+	0
+	
+- 4DX 01
+	1
+	4
+	0
+	
+- 4DX 02
+	1
+	4
+	0
+	
+- Gold 01
+	1
+	5
+	0
+	
+san_pham (ten_san_pham, ma_loai_san_pham, gia_co_ban,
+so_luong_ton, trang_thai, url_anh),
+enums:
+	ProductStatus:
+	* 0 - STOPPED: Sản phẩm ngừng bán
+	* 1 - SELLING: Sản phẩm đang bán
+	* 2 - SOLD_OUT: Sản phẩm hết hàng
+	
+	Loại sản phẩm:
+	1. Đồ Ăn
+	2. Thức uống
+	3. Combo
+	4. Merchanise
+	
+- Bắp L
+	1
+	65000
+	40
+	2
+	'/images/product_img/food_img/food_1.png'
+	
+- Bắp M
+	1
+	55000
+	30
+	'/images/product_img/food_img/food_2.png'
+
+- Bắp S
+	1
+	45000
+	15
+	'/images/product_img/food_img/food_3.png'
+
+- Bột Phô Mai
+	1
+	10000
+	36
+	'/images/product_img/food_img/food_4.png'
+	
+- Pepsi L
+	2
+	45000
+	20
+	'/images/product_img/drink_img/drink_1.png'
+	
+- Pepsi M
+	2
+	35000
+	15
+	'/images/product_img/drink_img/drink_2.png'
+	
+- Coca-Cola L
+	2
+	45000
+	30
+	'/images/product_img/drink_img/drink_3.png'
+	
+- Coca-Cola M
+ 	2
+	35000
+	20
+	'/images/product_img/drink_img/drink_4.png'
+	
+- 1 Bắp L 2 Nước M
+	3
+	120000
+	24
+	'/images/product_img/combo_img/combo_1.png'
+
+- 2 Bắp M
+	3
+	100000
+	13
+	'/images/product_img/combo_img/combo_2.png'
+	
+- 2 Nước M
+	3
+	55000
+	11
+	'/images/product_img/combo_img/combo_3.png'
+	
+- Michael's Merchandise
+	4
+	67000
+	29
+	'/images/product_img/merchandise_img/merch_1.png'
+	
