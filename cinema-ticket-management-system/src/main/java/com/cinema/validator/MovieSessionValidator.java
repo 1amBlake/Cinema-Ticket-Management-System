@@ -1,6 +1,11 @@
 package com.cinema.validator;
 
+import java.time.LocalDateTime;
+
 import com.cinema.entity.MovieSession;
+import com.cinema.enums.MovieSessionStatus;
+import com.cinema.enums.MovieStatus;
+import com.cinema.enums.ScreenStatus;
 
 /**
  * Validator cho thực thể MovieSession.
@@ -11,26 +16,21 @@ import com.cinema.entity.MovieSession;
  */
 public final class MovieSessionValidator {
 
-    /**
-     * Constructor private để ngăn tạo đối tượng từ lớp MovieSessionValidator.
-     */
     private MovieSessionValidator() {
     }
 
-    /**
-     * Kiểm tra dữ liệu của MovieSession trong trường hợp thêm mới.
-     *
-     * @param movieSession - Đối tượng MovieSession cần kiểm tra
-     */
     public static void validateForCreate(MovieSession movieSession) {
         validateCommon(movieSession);
+
+        if (movieSession.getMovieSessionStatus() == MovieSessionStatus.CANCELLED) {
+            throw new IllegalArgumentException("Không thể tạo mới suất chiếu với trạng thái đã hủy!");
+        }
+
+        if (movieSession.getMovieSessionStatus() == MovieSessionStatus.FINISHED) {
+            throw new IllegalArgumentException("Không thể tạo mới suất chiếu với trạng thái đã kết thúc!");
+        }
     }
 
-    /**
-     * Kiểm tra dữ liệu của MovieSession trong trường hợp cập nhật.
-     *
-     * @param movieSession - Đối tượng MovieSession cần kiểm tra
-     */
     public static void validateForUpdate(MovieSession movieSession) {
         validateCommon(movieSession);
 
@@ -39,13 +39,6 @@ public final class MovieSessionValidator {
         }
     }
 
-    /**
-     * Kiểm tra các ràng buộc chung của thực thể MovieSession.
-     * Đây là các kiểm tra dữ liệu cơ bản để đảm bảo object hợp lệ
-     * trước khi đi vào DAO hoặc Service.
-     *
-     * @param movieSession - Đối tượng MovieSession cần kiểm tra
-     */
     private static void validateCommon(MovieSession movieSession) {
         if (movieSession == null) {
             throw new IllegalArgumentException("movieSession không được null!");
@@ -92,9 +85,42 @@ public final class MovieSessionValidator {
 
     /**
      * Kiểm tra các ràng buộc nghiệp vụ nâng cao của MovieSession.
-	 *
+     * 
+     * Quy tắc hiện tại:
+     * - Không cho tạo/cập nhật suất chiếu cho phim đã dừng chiếu.
+     * - Không cho tạo/cập nhật suất chiếu ở phòng bảo trì hoặc ngưng hoạt động.
+     * - Thời gian kết thúc phải bằng thời gian bắt đầu cộng với thời lượng phim.
+     *
      * @param movieSession - Đối tượng MovieSession cần kiểm tra
      */
     private static void validateBusinessRule(MovieSession movieSession) {
+        if (movieSession.getMovie().getMovieStatus() == null) {
+            throw new IllegalArgumentException("movieStatus không được null!");
+        }
+
+        if (movieSession.getMovie().getMovieStatus() == MovieStatus.DISCONTINUED) {
+            throw new IllegalArgumentException("Phim đã dừng chiếu, không thể tạo hoặc cập nhật suất chiếu!");
+        }
+
+        if (movieSession.getScreen().getScreenStatus() == null) {
+            throw new IllegalArgumentException("screenStatus không được null!");
+        }
+
+        if (movieSession.getScreen().getScreenStatus() != ScreenStatus.AVAILABLE) {
+            throw new IllegalArgumentException(
+                    "Phòng chiếu đang bảo trì hoặc ngưng hoạt động, không thể tạo hoặc cập nhật suất chiếu!"
+            );
+        }
+
+        if (movieSession.getMovie().getMovieDuration() <= 0) {
+            throw new IllegalArgumentException("movieDuration phải lớn hơn 0!");
+        }
+
+        LocalDateTime expectedEndsAt = movieSession.getStartsAt()
+                .plusMinutes(movieSession.getMovie().getMovieDuration());
+
+        if (!expectedEndsAt.equals(movieSession.getEndsAt())) {
+            throw new IllegalArgumentException("endsAt phải bằng startsAt cộng với thời lượng phim!");
+        }
     }
 }
