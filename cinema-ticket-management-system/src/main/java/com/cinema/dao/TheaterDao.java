@@ -110,7 +110,7 @@ public class TheaterDao {
 	 * @return true nếu đã tồn tại
 	 * @throws SQLException nếu có lỗi SQL
 	 */
-	private boolean existsByName(String theaterName) throws SQLException {
+	public boolean existsByName(String theaterName) throws SQLException {
 		if (theaterName == null || theaterName.trim().isEmpty()) {
 			return false;
 		}
