@@ -1,5 +1,7 @@
 package com.cinema.validator;
 
+import java.util.regex.Pattern;
+
 import com.cinema.entity.Genre;
 
 /**
@@ -12,6 +14,11 @@ import com.cinema.entity.Genre;
  */
 public final class GenreValidator {
 
+
+	private static final int MAX_GENRE_NAME_LENGTH = 100;
+
+	private static final Pattern GENRE_NAME_PATTERN =
+	        Pattern.compile("^[\\p{L}\\s()&'/-]+$");
     /**
      * Constructor private để ngăn tạo đối tượng từ lớp GenreValidator.
      */
@@ -52,22 +59,36 @@ public final class GenreValidator {
             throw new IllegalArgumentException("genre không được null!");
         }
 
-        if (genre.getGenreName() == null || genre.getGenreName().trim().isEmpty()) {
-            throw new IllegalArgumentException("genreName không được để trống!");
+        String genreName = genre.getGenreName();
+
+        if (genreName == null || genreName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Tên thể loại không được để trống!");
         }
 
-        if (genre.getGenreName().trim().length() > 100) {
-            throw new IllegalArgumentException("genreName không được vượt quá 100 ký tự!");
+        genreName = genreName.trim();
+
+        if (genreName.length() > MAX_GENRE_NAME_LENGTH) {
+            throw new IllegalArgumentException("Tên thể loại không được vượt quá 100 ký tự!");
         }
 
-        validateBusinessRule(genre);
+        validateBusinessRule(genreName);
     }
 
     /**
      * Kiểm tra các ràng buộc nghiệp vụ nâng cao của Genre.
+     * 
+     * Quy tắc hiện tại:
+     * - Tên thể loại chỉ được chứa chữ cái, khoảng trắng,
+     *   dấu ngoặc tròn, dấu &, dấu nháy đơn, dấu gạch ngang hoặc dấu gạch chéo.
      *
-     * @param genre - Đối tượng Genre cần kiểm tra
+     * @param genreName - Tên thể loại cần kiểm tra
      */
-    private static void validateBusinessRule(Genre genre) {
+    private static void validateBusinessRule(String genreName) {
+        if (!GENRE_NAME_PATTERN.matcher(genreName).matches()) {
+            throw new IllegalArgumentException(
+                    "Tên thể loại chỉ được chứa chữ cái, khoảng trắng, dấu ngoặc tròn, dấu &, dấu nháy đơn, dấu gạch ngang hoặc dấu gạch chéo!"
+            );
+        }
     }
 }
+

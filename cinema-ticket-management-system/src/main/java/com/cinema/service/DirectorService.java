@@ -155,4 +155,5 @@ public class DirectorService {
  * - Việc kiểm tra đạo diễn có đang được gán cho phim hay không
  *   được xử lý ở DirectorDao khi xóa.
  * - DAO vẫn chịu trách nhiệm thao tác trực tiếp với cơ sở dữ liệu.
+ * Minh Huy
  */
