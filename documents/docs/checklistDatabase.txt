@@ -549,3 +549,1088 @@ enums:
 	29
 	'/images/product_img/merchandise_img/merch_1.png'
 	
+dao_dien_phim (ma_phim, ma_dao_dien)
+
+1. Heo Năm Móng
+   - ma_phim: 1
+   - đạo diễn: Đỗ Quốc Trung
+   - ma_dao_dien: 1
+
+2. Trùm Sò
+   - ma_phim: 2
+   - đạo diễn: Võ Thạch Thảo
+   - ma_dao_dien: 2
+
+3. Phí Phông: Quỷ Máu Rừng Thiêng
+   - ma_phim: 3
+   - đạo diễn: Lưu Thành Luân
+   - ma_dao_dien: 3
+
+4. Đại Tiệc Trăng Máu 8
+   - ma_phim: 4
+   - đạo diễn: Nguyễn Quang Dũng
+   - ma_dao_dien: 21
+
+5. Anh Hùng
+   - ma_phim: 5
+   - đạo diễn: Đỗ Đức Thịnh
+   - ma_dao_dien: 6
+
+6. Mèo Siêu Quậy Ở Viện Bảo Tàng 2: Đại Náo Kim Tự Tháp
+   - ma_phim: 6
+   - đạo diễn: Vasily Rovensky
+   - ma_dao_dien: 28
+
+7. Cá Con Cau Có
+   - ma_phim: 7
+   - đạo diễn: Henry Selick
+   - ma_dao_dien: 7
+
+8. Michael
+   - ma_phim: 8
+   - đạo diễn: Antoine Fuqua
+   - ma_dao_dien: 5
+
+9. Xác Ướp
+   - ma_phim: 9
+   - đạo diễn: Matt Bettinelli-Olpin, Tyler Gillett
+   - ma_dao_dien: 8, 9
+
+10. Super Mario Thiên Hà
+    - ma_phim: 10
+    - đạo diễn: Phil Lord, Christopher Miller
+    - ma_dao_dien: 10, 11
+
+11. Chúa Tể Của Những Chiếc Nhẫn: Sự Trở Lại Của Nhà Vua
+    - ma_phim: 11
+    - đạo diễn: Peter Jackson
+    - ma_dao_dien: 15
+
+12. Chúa Tể Của Những Chiếc Nhẫn: Hiệp Hội Nhẫn Thần
+    - ma_phim: 12
+    - đạo diễn: Peter Jackson
+    - ma_dao_dien: 15
+
+13. Chúa Tể Của Những Chiếc Nhẫn: Hai Tòa Tháp
+    - ma_phim: 13
+    - đạo diễn: Peter Jackson
+    - ma_dao_dien: 15
+
+14. Người Hobbit: Hành Trình Vô Định
+    - ma_phim: 14
+    - đạo diễn: Peter Jackson
+    - ma_dao_dien: 15
+
+15. Người Hobbit: Đại Chiến Với Rồng Lửa
+    - ma_phim: 15
+    - đạo diễn: Peter Jackson
+    - ma_dao_dien: 15
+
+16. Người Hobbit: Đại Chiến Năm Cánh Quân
+    - ma_phim: 16
+    - đạo diễn: Peter Jackson
+    - ma_dao_dien: 15
+
+17. Harry Potter và Chiếc Cốc Lửa
+    - ma_phim: 17
+    - đạo diễn: Christopher Nolan
+    - ma_dao_dien: 14
+
+18. Harry Potter và Tù Nhân Azkaban
+    - ma_phim: 18
+    - đạo diễn: Hayao Miyazaki
+    - ma_dao_dien: 20
+
+19. Harry Potter và Căn Phòng Bí Mật
+    - ma_phim: 19
+    - đạo diễn: Frank Darabont
+    - ma_dao_dien: 12
+
+20. Harry Potter và Hội Phượng Hoàng
+    - ma_phim: 20
+    - đạo diễn: Francis Ford Coppola
+    - ma_dao_dien: 13
+
+21. Harry Potter và Hòn Đá Phù Thủy
+    - ma_phim: 21
+    - đạo diễn: Irvin Kershner
+    - ma_dao_dien: 18
+
+22. Harry Potter và Hoàng Tử Lai
+    - ma_phim: 22
+    - đạo diễn: James Cameron
+    - ma_dao_dien: 19
+
+23. Harry Potter và Bảo Bối Tử Thần: Phần 1
+    - ma_phim: 23
+    - đạo diễn: Lana Wachowski
+    - ma_dao_dien: 16
+
+24. Harry Potter và Bảo Bối Tử Thần: Phần 2
+    - ma_phim: 24
+    - đạo diễn: Lilly Wachowski
+    - ma_dao_dien: 17
+
+25. Bố Già
+    - ma_phim: 25
+    - đạo diễn: Francis Ford Coppola
+    - ma_dao_dien: 13
+
+26. Bố Già 2
+    - ma_phim: 26
+    - đạo diễn: Francis Ford Coppola
+    - ma_dao_dien: 13
+
+27. Bố Già 3
+    - ma_phim: 27
+    - đạo diễn: Francis Ford Coppola
+    - ma_dao_dien: 13
+
+28. Người Nhện: Khởi Đầu Mới
+    - ma_phim: 28
+    - đạo diễn: Phil Lord, Christopher Miller
+    - ma_dao_dien: 10, 11
+	
+the_loai_phim (ma_phim, ma_the_loai)
+
+1. Heo Năm Móng
+   - ma_phim: 1
+   - thể loại: Kinh Dị, Giật Gân
+   - ma_the_loai: 8, 14
+
+2. Trùm Sò
+   - ma_phim: 2
+   - thể loại: Hài, Chính Kịch
+   - ma_the_loai: 4, 5
+
+3. Phí Phông: Quỷ Máu Rừng Thiêng
+   - ma_phim: 3
+   - thể loại: Kinh Dị, Bí Ẩn, Giật Gân
+   - ma_the_loai: 8, 17, 14
+
+4. Đại Tiệc Trăng Máu 8
+   - ma_phim: 4
+   - thể loại: Chính Kịch, Hài, Giật Gân
+   - ma_the_loai: 5, 4, 14
+
+5. Anh Hùng
+   - ma_phim: 5
+   - thể loại: Hành Động, Phiêu Lưu, Chính Kịch
+   - ma_the_loai: 1, 2, 5
+
+6. Mèo Siêu Quậy Ở Viện Bảo Tàng 2: Đại Náo Kim Tự Tháp
+   - ma_phim: 6
+   - thể loại: Hoạt Hình, Phiêu Lưu, Hài
+   - ma_the_loai: 3, 2, 4
+
+7. Cá Con Cau Có
+   - ma_phim: 7
+   - thể loại: Hoạt Hình, Phiêu Lưu, Hài
+   - ma_the_loai: 3, 2, 4
+
+8. Michael
+   - ma_phim: 8
+   - thể loại: Chính Kịch, Nhạc Kịch
+   - ma_the_loai: 5, 10
+
+9. Xác Ướp
+   - ma_phim: 9
+   - thể loại: Kinh Dị, Bí Ẩn, Giật Gân
+   - ma_the_loai: 8, 17, 14
+
+10. Super Mario Thiên Hà
+    - ma_phim: 10
+    - thể loại: Hoạt Hình, Phiêu Lưu, Hài, Giả Tưởng
+    - ma_the_loai: 3, 2, 4, 6
+
+11. Chúa Tể Của Những Chiếc Nhẫn: Sự Trở Lại Của Nhà Vua
+    - ma_phim: 11
+    - thể loại: Phiêu Lưu, Giả Tưởng, Hành Động, Chính Kịch
+    - ma_the_loai: 2, 6, 1, 5
+
+12. Chúa Tể Của Những Chiếc Nhẫn: Hiệp Hội Nhẫn Thần
+    - ma_phim: 12
+    - thể loại: Phiêu Lưu, Giả Tưởng, Hành Động
+    - ma_the_loai: 2, 6, 1
+
+13. Chúa Tể Của Những Chiếc Nhẫn: Hai Tòa Tháp
+    - ma_phim: 13
+    - thể loại: Phiêu Lưu, Giả Tưởng, Hành Động
+    - ma_the_loai: 2, 6, 1
+
+14. Người Hobbit: Hành Trình Vô Định
+    - ma_phim: 14
+    - thể loại: Phiêu Lưu, Giả Tưởng, Hành Động
+    - ma_the_loai: 2, 6, 1
+
+15. Người Hobbit: Đại Chiến Với Rồng Lửa
+    - ma_phim: 15
+    - thể loại: Phiêu Lưu, Giả Tưởng, Hành Động
+    - ma_the_loai: 2, 6, 1
+
+16. Người Hobbit: Đại Chiến Năm Cánh Quân
+    - ma_phim: 16
+    - thể loại: Phiêu Lưu, Giả Tưởng, Hành Động
+    - ma_the_loai: 2, 6, 1
+
+17. Harry Potter và Chiếc Cốc Lửa
+    - ma_phim: 17
+    - thể loại: Phiêu Lưu, Giả Tưởng, Bí Ẩn
+    - ma_the_loai: 2, 6, 17
+
+18. Harry Potter và Tù Nhân Azkaban
+    - ma_phim: 18
+    - thể loại: Phiêu Lưu, Giả Tưởng, Bí Ẩn
+    - ma_the_loai: 2, 6, 17
+
+19. Harry Potter và Căn Phòng Bí Mật
+    - ma_phim: 19
+    - thể loại: Phiêu Lưu, Giả Tưởng, Bí Ẩn
+    - ma_the_loai: 2, 6, 17
+
+20. Harry Potter và Hội Phượng Hoàng
+    - ma_phim: 20
+    - thể loại: Phiêu Lưu, Giả Tưởng, Bí Ẩn
+    - ma_the_loai: 2, 6, 17
+
+21. Harry Potter và Hòn Đá Phù Thủy
+    - ma_phim: 21
+    - thể loại: Phiêu Lưu, Giả Tưởng
+    - ma_the_loai: 2, 6
+
+22. Harry Potter và Hoàng Tử Lai
+    - ma_phim: 22
+    - thể loại: Phiêu Lưu, Giả Tưởng, Bí Ẩn
+    - ma_the_loai: 2, 6, 17
+
+23. Harry Potter và Bảo Bối Tử Thần: Phần 1
+    - ma_phim: 23
+    - thể loại: Phiêu Lưu, Giả Tưởng, Bí Ẩn
+    - ma_the_loai: 2, 6, 17
+
+24. Harry Potter và Bảo Bối Tử Thần: Phần 2
+    - ma_phim: 24
+    - thể loại: Phiêu Lưu, Giả Tưởng, Hành Động
+    - ma_the_loai: 2, 6, 1
+
+25. Bố Già
+    - ma_phim: 25
+    - thể loại: Tội Phạm, Chính Kịch
+    - ma_the_loai: 16, 5
+
+26. Bố Già 2
+    - ma_phim: 26
+    - thể loại: Tội Phạm, Chính Kịch
+    - ma_the_loai: 16, 5
+
+27. Bố Già 3
+    - ma_phim: 27
+    - thể loại: Tội Phạm, Chính Kịch, Giật Gân
+    - ma_the_loai: 16, 5, 14
+
+28. Người Nhện: Khởi Đầu Mới
+    - ma_phim: 28
+    - thể loại: Hành Động, Phiêu Lưu, Khoa Học Viễn Tưởng
+    - ma_the_loai: 1, 2, 13
+	
+tai_khoan (ma_nhan_vien, ten_tai_khoan, mat_khau, trang_thai)
+enums:
+	* 0 - LOCKED: Tài khoản bị khóa
+	* 1 - ACTIVE: Tài khoản hoạt động
+chuc_vu:
+	1. qtv
+	2. ql
+	3. nv
+	
+EmployeeStatus
+	0. Nghỉ
+	1. Đang
+	2. Tạm
+- 1
+	QTV1@huy
+	abc123
+	1
+	
+- 2
+	QL2@anh
+	abc123
+	1
+
+- 3 
+	NV3@anh
+	abc123
+	1
+	
+- 4
+	NV4@binh
+	abc123
+	0
+	
+ghe (ma_phong, ma_loai_ghe, hang, cot, trang_thai)
+
+enums:
+    SeatStatus:
+        * 0 - AVAILABLE: Ghế hoạt động
+        * 1 - MAINTENANCE: Ghế bảo trì
+
+Loại ghế:
+    1. Ghế Phổ Thông
+    2. Ghế Đôi
+    3. Ghế VIP
+    4. Ghế Premium
+
+Quy ước:
+    - ma_phong lấy theo danh sách phòng chiếu
+    - hang dùng chữ cái: A, B, C, D, E...
+    - cot dùng số: 1, 2, 3...
+    - Ghế đôi nên đặt ở hàng cuối, mỗi ghế đôi chiếm 2 chỗ ngồi thực tế nhưng lưu là 1 dòng ghế
+    - Ghế VIP/Premium nên đặt ở hàng giữa hoặc phòng đặc biệt
+	
+PT 01 - ma_phong: 1 - Phòng Thường
+
+Sơ đồ:
+    Màn hình
+    A: A1 A2 A3 A4 | A5 A6 A7 A8
+    B: B1 B2 B3 B4 | B5 B6 B7 B8
+    C: C1 C2 C3 C4 | C5 C6 C7 C8
+    D: D1 D2 D3 D4 | D5 D6 D7 D8
+    E: E1 E2 E3 E4 | E5 E6 E7 E8
+    F: F1 F2 F3 F4
+
+Dữ liệu:
+- A1-A8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- B1-B8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- C1-C8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- D1-D8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- E1-E8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- F1-F4: Ghế Đôi, ma_loai_ghe = 2, trạng thái 0
+
+Tổng:
+- 40 ghế phổ thông
+- 4 ghế đôi
+- 44 dòng ghế trong database
+
+=======================================================
+
+PT 02 - ma_phong: 2 - Phòng Thường
+
+Sơ đồ:
+    Màn hình
+    A: A1 A2 A3 A4 | A5 A6 A7 A8
+    B: B1 B2 B3 B4 | B5 B6 B7 B8
+    C: C1 C2 C3 C4 | C5 C6 C7 C8
+    D: D1 D2 D3 D4 | D5 D6 D7 D8
+    E: E1 E2 E3 E4 | E5 E6 E7 E8
+    F: F1 F2 F3 F4
+
+Dữ liệu:
+- A1-A8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- B1-B8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- C1-C8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- D1-D8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- E1-E8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- F1-F4: Ghế Đôi, ma_loai_ghe = 2, trạng thái 0
+
+Tổng:
+- 40 ghế phổ thông
+- 4 ghế đôi
+- 44 dòng ghế trong database
+
+=======================================================
+
+PT 03 - ma_phong: 3 - Phòng Thường
+
+Sơ đồ:
+    Màn hình
+    A: A1 A2 A3 A4 | A5 A6 A7 A8
+    B: B1 B2 B3 B4 | B5 B6 B7 B8
+    C: C1 C2 C3 C4 | C5 C6 C7 C8
+    D: D1 D2 D3 D4 | D5 D6 D7 D8
+    E: E1 E2 E3 E4 | E5 E6 E7 E8
+    F: F1 F2 F3 F4
+
+Dữ liệu:
+- A1-A8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- B1-B8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- C1-C8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- D1-D8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- E1-E8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- F1-F4: Ghế Đôi, ma_loai_ghe = 2, trạng thái 0
+
+Tổng:
+- 40 ghế phổ thông
+- 4 ghế đôi
+- 44 dòng ghế trong database
+
+=======================================================
+
+3D 01 - ma_phong: 4 - Phòng 3D
+
+Sơ đồ:
+    Màn hình
+    A: A1 A2 A3 A4 | A5 A6 A7 A8
+    B: B1 B2 B3 B4 | B5 B6 B7 B8
+    C: C1 C2 C3 C4 | C5 C6 C7 C8
+    D: D1 D2 D3 D4 | D5 D6 D7 D8
+    E: E1 E2 E3 E4 | E5 E6 E7 E8
+    F: F1 F2 F3 F4 | F5 F6 F7 F8
+    G: G1 G2 G3 G4
+
+Dữ liệu:
+- A1-A8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- B1-B8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- C1-C8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- D1-D8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- E1-E8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- F1-F8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- G1-G4: Ghế Đôi, ma_loai_ghe = 2, trạng thái 0
+
+Tổng:
+- 48 ghế phổ thông
+- 4 ghế đôi
+- 52 dòng ghế trong database
+
+=======================================================
+
+3D 02 - ma_phong: 5 - Phòng 3D
+
+Sơ đồ:
+    Màn hình
+    A: A1 A2 A3 A4 | A5 A6 A7 A8
+    B: B1 B2 B3 B4 | B5 B6 B7 B8
+    C: C1 C2 C3 C4 | C5 C6 C7 C8
+    D: D1 D2 D3 D4 | D5 D6 D7 D8
+    E: E1 E2 E3 E4 | E5 E6 E7 E8
+    F: F1 F2 F3 F4 | F5 F6 F7 F8
+    G: G1 G2 G3 G4
+
+Dữ liệu:
+- A1-A8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- B1-B8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- C1-C8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- D1-D8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- E1-E8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- F1-F8: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- G1-G4: Ghế Đôi, ma_loai_ghe = 2, trạng thái 0
+
+Tổng:
+- 48 ghế phổ thông
+- 4 ghế đôi
+- 52 dòng ghế trong database
+
+=======================================================
+
+IMAX 01 - ma_phong: 6 - Phòng IMAX
+
+Sơ đồ:
+    Màn hình lớn
+    A: A1 A2 A3 A4 A5 | A6 A7 A8 A9 A10
+    B: B1 B2 B3 B4 B5 | B6 B7 B8 B9 B10
+    C: C1 C2 C3 C4 C5 | C6 C7 C8 C9 C10
+    D: D1 D2 D3 D4 D5 | D6 D7 D8 D9 D10
+    E: E1 E2 E3 E4 E5 | E6 E7 E8 E9 E10
+    F: F1 F2 F3 F4 F5 | F6 F7 F8 F9 F10
+    G: G1 G2 G3 G4 G5 | G6 G7 G8 G9 G10
+    H: H1 H2 H3 H4 H5
+
+Dữ liệu:
+- A1-A10: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- B1-B10: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- C1-C10: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- D1-D10: Ghế VIP, ma_loai_ghe = 3, trạng thái 0
+- E1-E10: Ghế VIP, ma_loai_ghe = 3, trạng thái 0
+- F1-F10: Ghế VIP, ma_loai_ghe = 3, trạng thái 0
+- G1-G10: Ghế VIP, ma_loai_ghe = 3, trạng thái 0
+- H1-H5: Ghế Đôi, ma_loai_ghe = 2, trạng thái 0
+
+Tổng:
+- 30 ghế phổ thông
+- 40 ghế VIP
+- 5 ghế đôi
+- 75 dòng ghế trong database
+
+=======================================================
+
+IMAX 02 - ma_phong: 7 - Phòng IMAX
+
+Sơ đồ:
+    Màn hình lớn
+    A: A1 A2 A3 A4 A5 | A6 A7 A8 A9 A10
+    B: B1 B2 B3 B4 B5 | B6 B7 B8 B9 B10
+    C: C1 C2 C3 C4 C5 | C6 C7 C8 C9 C10
+    D: D1 D2 D3 D4 D5 | D6 D7 D8 D9 D10
+    E: E1 E2 E3 E4 E5 | E6 E7 E8 E9 E10
+    F: F1 F2 F3 F4 F5 | F6 F7 F8 F9 F10
+    G: G1 G2 G3 G4 G5 | G6 G7 G8 G9 G10
+    H: H1 H2 H3 H4 H5
+
+Dữ liệu:
+- A1-A10: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- B1-B10: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- C1-C10: Ghế Phổ Thông, ma_loai_ghe = 1, trạng thái 0
+- D1-D10: Ghế VIP, ma_loai_ghe = 3, trạng thái 0
+- E1-E10: Ghế VIP, ma_loai_ghe = 3, trạng thái 0
+- F1-F10: Ghế VIP, ma_loai_ghe = 3, trạng thái 0
+- G1-G10: Ghế VIP, ma_loai_ghe = 3, trạng thái 0
+- H1-H5: Ghế Đôi, ma_loai_ghe = 2, trạng thái 0
+
+Tổng:
+- 30 ghế phổ thông
+- 40 ghế VIP
+- 5 ghế đôi
+- 75 dòng ghế trong database
+
+=======================================================
+
+4DX 01 - ma_phong: 8 - Phòng 4DX
+
+Sơ đồ:
+    Màn hình
+    A: A1 A2 A3 A4 | A5 A6 A7 A8
+    B: B1 B2 B3 B4 | B5 B6 B7 B8
+    C: C1 C2 C3 C4 | C5 C6 C7 C8
+    D: D1 D2 D3 D4 | D5 D6 D7 D8
+    E: E1 E2 E3 E4
+
+Dữ liệu:
+- A1-A8: Ghế VIP, ma_loai_ghe = 3, trạng thái 0
+- B1-B8: Ghế VIP, ma_loai_ghe = 3, trạng thái 0
+- C1-C8: Ghế VIP, ma_loai_ghe = 3, trạng thái 0
+- D1-D8: Ghế VIP, ma_loai_ghe = 3, trạng thái 0
+- E1-E4: Ghế Đôi, ma_loai_ghe = 2, trạng thái 0
+
+Tổng:
+- 32 ghế VIP
+- 4 ghế đôi
+- 36 dòng ghế trong database
+
+=======================================================
+
+4DX 02 - ma_phong: 9 - Phòng 4DX
+
+Sơ đồ:
+    Màn hình
+    A: A1 A2 A3 A4 | A5 A6 A7 A8
+    B: B1 B2 B3 B4 | B5 B6 B7 B8
+    C: C1 C2 C3 C4 | C5 C6 C7 C8
+    D: D1 D2 D3 D4 | D5 D6 D7 D8
+    E: E1 E2 E3 E4
+
+Dữ liệu:
+- A1-A8: Ghế VIP, ma_loai_ghe = 3, trạng thái 0
+- B1-B8: Ghế VIP, ma_loai_ghe = 3, trạng thái 0
+- C1-C8: Ghế VIP, ma_loai_ghe = 3, trạng thái 0
+- D1-D8: Ghế VIP, ma_loai_ghe = 3, trạng thái 0
+- E1-E4: Ghế Đôi, ma_loai_ghe = 2, trạng thái 0
+
+Tổng:
+- 32 ghế VIP
+- 4 ghế đôi
+- 36 dòng ghế trong database
+
+=======================================================
+
+Gold 01 - ma_phong: 10 - Phòng Gold
+
+- A1-A8: Ghế VIP, ma_loai_ghe = 3, trạng thái 0
+- B1-B8: Ghế Premium, ma_loai_ghe = 4, trạng thái 0
+- C1-C8: Ghế Premium, ma_loai_ghe = 4, trạng thái 0
+- D1-D8: Ghế Premium, ma_loai_ghe = 4, trạng thái 0
+
+Tổng:
+- 8 ghế VIP
+- 24 ghế Premium
+- 32 dòng ghế trong database
+
+suat_chieu (ma_phim, ma_phong, ngon_ngu_trinh_chieu,
+tg_bat_dau, tg_ket_thuc, trang_thai)
+enums:
+	MovieFormat:
+		 * 0 - ORIGINAL: Bản gốc
+		 * 1 - DUBBED: Lồng tiếng
+		 * 2 - VOICE_OVER: Thuyết minh
+		 * 3 - SUBTITLED: Phụ đề
+	MovieSessionStatus:
+		 * 0 - CANCELLED: Suất chiếu bị hủy
+		 * 1 - UPCOMING: Suất chiếu sắp chiếu
+		 * 2 - NOW_SHOWING: Suất chiếu đang chiếu
+		 * 3 - FINISHED: Suất chiếu đã kết thúc
+	
+PT:
+    Chiếu được hầu hết phim.
+
+3D:
+    Chỉ nên chiếu phim có bản 3D hoặc phim mình muốn mô phỏng dạng 3D.
+
+IMAX:
+    Ưu tiên phim bom tấn, hành động, sci-fi, fantasy, phim hình ảnh mạnh.
+    Nhưng không bắt buộc chỉ các thể loại này.
+
+4DX:
+    Ưu tiên phim hành động, phiêu lưu, kinh dị, vì có rung/chuyển động/hiệu ứng.
+    Nhưng vẫn không phải cố định theo thể loại.
+
+Gold:
+    Là phòng cao cấp, thường chọn phim hot hoặc suất giờ đẹp.
+    Không cố định thể loại.
+	
+Quy ước phân bổ lịch chiếu:
+    - Phòng chiếu không cố định theo thể loại phim.
+    - Một phim có thể được chiếu ở nhiều loại phòng khác nhau.
+    - PT dùng cho phần lớn phim.
+    - 3D/IMAX/4DX/Gold là các trải nghiệm chiếu đặc biệt.
+    - Khi seed dữ liệu, ưu tiên xếp phim phù hợp với từng loại phòng để demo thực tế hơn.
+	
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+1. Heo Năm Móng
+   ma_phim: 1
+   ma_phong: 1 - PT 01
+   ngon_ngu_trinh_chieu: 0 - ORIGINAL
+   tg_bat_dau: 2026-04-30 09:00:00
+   tg_ket_thuc: 2026-04-30 10:43:00
+   trang_thai: 1 - UPCOMING
+
+2. Trùm Sò
+   ma_phim: 2
+   ma_phong: 2 - PT 02
+   ngon_ngu_trinh_chieu: 0 - ORIGINAL
+   tg_bat_dau: 2026-04-30 09:30:00
+   tg_ket_thuc: 2026-04-30 11:15:00
+   trang_thai: 1 - UPCOMING
+
+3. Mèo Siêu Quậy Ở Viện Bảo Tàng 2
+   ma_phim: 6
+   ma_phong: 4 - 3D 01
+   ngon_ngu_trinh_chieu: 1 - DUBBED
+   tg_bat_dau: 2026-04-30 10:00:00
+   tg_ket_thuc: 2026-04-30 11:30:00
+   trang_thai: 1 - UPCOMING
+
+4. Super Mario Thiên Hà
+   ma_phim: 10
+   ma_phong: 5 - 3D 02
+   ngon_ngu_trinh_chieu: 1 - DUBBED
+   tg_bat_dau: 2026-04-30 10:30:00
+   tg_ket_thuc: 2026-04-30 12:08:00
+   trang_thai: 1 - UPCOMING
+
+5. Anh Hùng
+   ma_phim: 5
+   ma_phong: 6 - IMAX 01
+   ngon_ngu_trinh_chieu: 0 - ORIGINAL
+   tg_bat_dau: 2026-04-30 13:00:00
+   tg_ket_thuc: 2026-04-30 15:02:00
+   trang_thai: 1 - UPCOMING
+
+6. Xác Ướp
+   ma_phim: 9
+   ma_phong: 8 - 4DX 01
+   ngon_ngu_trinh_chieu: 3 - SUBTITLED
+   tg_bat_dau: 2026-04-30 14:00:00
+   tg_ket_thuc: 2026-04-30 16:13:00
+   trang_thai: 1 - UPCOMING
+
+7. Michael
+   ma_phim: 8
+   ma_phong: 10 - Gold 01
+   ngon_ngu_trinh_chieu: 3 - SUBTITLED
+   tg_bat_dau: 2026-04-30 18:00:00
+   tg_ket_thuc: 2026-04-30 20:07:00
+   trang_thai: 1 - UPCOMING
+
+8. Đại Tiệc Trăng Máu 8
+   ma_phim: 4
+   ma_phong: 3 - PT 03
+   ngon_ngu_trinh_chieu: 0 - ORIGINAL
+   tg_bat_dau: 2026-04-30 18:30:00
+   tg_ket_thuc: 2026-04-30 20:40:00
+   trang_thai: 1 - UPCOMING
+
+9. Phí Phông: Quỷ Máu Rừng Thiêng
+   ma_phim: 3
+   ma_phong: 9 - 4DX 02
+   ngon_ngu_trinh_chieu: 0 - ORIGINAL
+   tg_bat_dau: 2026-04-30 21:00:00
+   tg_ket_thuc: 2026-04-30 23:00:00
+   trang_thai: 1 - UPCOMING
+
+10. Xác Ướp
+    ma_phim: 9
+    ma_phong: 7 - IMAX 02
+    ngon_ngu_trinh_chieu: 3 - SUBTITLED
+    tg_bat_dau: 2026-04-30 21:15:00
+    tg_ket_thuc: 2026-04-30 23:28:00
+    trang_thai: 1 - UPCOMING
+	
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+11. Cá Con Cau Có
+    ma_phim: 7
+    ma_phong: 4 - 3D 01
+    ngon_ngu_trinh_chieu: 1 - DUBBED
+    tg_bat_dau: 2026-05-01 09:00:00
+    tg_ket_thuc: 2026-05-01 10:32:00
+    trang_thai: 1 - UPCOMING
+
+12. Heo Năm Móng
+    ma_phim: 1
+    ma_phong: 1 - PT 01
+    ngon_ngu_trinh_chieu: 0 - ORIGINAL
+    tg_bat_dau: 2026-05-01 10:00:00
+    tg_ket_thuc: 2026-05-01 11:43:00
+    trang_thai: 1 - UPCOMING
+
+13. Super Mario Thiên Hà
+    ma_phim: 10
+    ma_phong: 5 - 3D 02
+    ngon_ngu_trinh_chieu: 1 - DUBBED
+    tg_bat_dau: 2026-05-01 12:00:00
+    tg_ket_thuc: 2026-05-01 13:38:00
+    trang_thai: 1 - UPCOMING
+
+14. Anh Hùng
+    ma_phim: 5
+    ma_phong: 6 - IMAX 01
+    ngon_ngu_trinh_chieu: 0 - ORIGINAL
+    tg_bat_dau: 2026-05-01 13:30:00
+    tg_ket_thuc: 2026-05-01 15:32:00
+    trang_thai: 1 - UPCOMING
+
+15. Trùm Sò
+    ma_phim: 2
+    ma_phong: 2 - PT 02
+    ngon_ngu_trinh_chieu: 0 - ORIGINAL
+    tg_bat_dau: 2026-05-01 14:00:00
+    tg_ket_thuc: 2026-05-01 15:45:00
+    trang_thai: 1 - UPCOMING
+
+16. Xác Ướp
+    ma_phim: 9
+    ma_phong: 8 - 4DX 01
+    ngon_ngu_trinh_chieu: 3 - SUBTITLED
+    tg_bat_dau: 2026-05-01 16:30:00
+    tg_ket_thuc: 2026-05-01 18:43:00
+    trang_thai: 1 - UPCOMING
+
+17. Michael
+    ma_phim: 8
+    ma_phong: 10 - Gold 01
+    ngon_ngu_trinh_chieu: 3 - SUBTITLED
+    tg_bat_dau: 2026-05-01 19:00:00
+    tg_ket_thuc: 2026-05-01 21:07:00
+    trang_thai: 1 - UPCOMING
+
+18. Đại Tiệc Trăng Máu 8
+    ma_phim: 4
+    ma_phong: 3 - PT 03
+    ngon_ngu_trinh_chieu: 0 - ORIGINAL
+    tg_bat_dau: 2026-05-01 19:30:00
+    tg_ket_thuc: 2026-05-01 21:40:00
+    trang_thai: 1 - UPCOMING
+
+19. Phí Phông: Quỷ Máu Rừng Thiêng
+    ma_phim: 3
+    ma_phong: 9 - 4DX 02
+    ngon_ngu_trinh_chieu: 0 - ORIGINAL
+    tg_bat_dau: 2026-05-01 21:30:00
+    tg_ket_thuc: 2026-05-01 23:30:00
+    trang_thai: 1 - UPCOMING
+
+20. Michael
+    ma_phim: 8
+    ma_phong: 7 - IMAX 02
+    ngon_ngu_trinh_chieu: 3 - SUBTITLED
+    tg_bat_dau: 2026-05-01 21:45:00
+    tg_ket_thuc: 2026-05-01 23:52:00
+    trang_thai: 1 - UPCOMING
+	
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+21. Mèo Siêu Quậy Ở Viện Bảo Tàng 2
+    ma_phim: 6
+    ma_phong: 4 - 3D 01
+    ngon_ngu_trinh_chieu: 1 - DUBBED
+    tg_bat_dau: 2026-05-02 09:00:00
+    tg_ket_thuc: 2026-05-02 10:30:00
+    trang_thai: 1 - UPCOMING
+
+22. Cá Con Cau Có
+    ma_phim: 7
+    ma_phong: 5 - 3D 02
+    ngon_ngu_trinh_chieu: 1 - DUBBED
+    tg_bat_dau: 2026-05-02 10:00:00
+    tg_ket_thuc: 2026-05-02 11:32:00
+    trang_thai: 1 - UPCOMING
+
+23. Heo Năm Móng
+    ma_phim: 1
+    ma_phong: 1 - PT 01
+    ngon_ngu_trinh_chieu: 0 - ORIGINAL
+    tg_bat_dau: 2026-05-02 11:00:00
+    tg_ket_thuc: 2026-05-02 12:43:00
+    trang_thai: 1 - UPCOMING
+
+24. Anh Hùng
+    ma_phim: 5
+    ma_phong: 6 - IMAX 01
+    ngon_ngu_trinh_chieu: 0 - ORIGINAL
+    tg_bat_dau: 2026-05-02 13:00:00
+    tg_ket_thuc: 2026-05-02 15:02:00
+    trang_thai: 1 - UPCOMING
+
+25. Trùm Sò
+    ma_phim: 2
+    ma_phong: 2 - PT 02
+    ngon_ngu_trinh_chieu: 0 - ORIGINAL
+    tg_bat_dau: 2026-05-02 14:00:00
+    tg_ket_thuc: 2026-05-02 15:45:00
+    trang_thai: 1 - UPCOMING
+
+26. Xác Ướp
+    ma_phim: 9
+    ma_phong: 8 - 4DX 01
+    ngon_ngu_trinh_chieu: 3 - SUBTITLED
+    tg_bat_dau: 2026-05-02 16:00:00
+    tg_ket_thuc: 2026-05-02 18:13:00
+    trang_thai: 1 - UPCOMING
+
+27. Michael
+    ma_phim: 8
+    ma_phong: 10 - Gold 01
+    ngon_ngu_trinh_chieu: 3 - SUBTITLED
+    tg_bat_dau: 2026-05-02 18:30:00
+    tg_ket_thuc: 2026-05-02 20:37:00
+    trang_thai: 1 - UPCOMING
+
+28. Đại Tiệc Trăng Máu 8
+    ma_phim: 4
+    ma_phong: 3 - PT 03
+    ngon_ngu_trinh_chieu: 0 - ORIGINAL
+    tg_bat_dau: 2026-05-02 19:00:00
+    tg_ket_thuc: 2026-05-02 21:10:00
+    trang_thai: 1 - UPCOMING
+
+29. Phí Phông: Quỷ Máu Rừng Thiêng
+    ma_phim: 3
+    ma_phong: 9 - 4DX 02
+    ngon_ngu_trinh_chieu: 0 - ORIGINAL
+    tg_bat_dau: 2026-05-02 21:00:00
+    tg_ket_thuc: 2026-05-02 23:00:00
+    trang_thai: 1 - UPCOMING
+
+30. Xác Ướp
+    ma_phim: 9
+    ma_phong: 7 - IMAX 02
+    ngon_ngu_trinh_chieu: 3 - SUBTITLED
+    tg_bat_dau: 2026-05-02 21:30:00
+    tg_ket_thuc: 2026-05-02 23:43:00
+    trang_thai: 1 - UPCOMING
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+31. Heo Năm Móng
+    ma_phim: 1
+    ma_phong: 1 - PT 01
+    ngon_ngu_trinh_chieu: 0 - ORIGINAL
+    tg_bat_dau: 2026-05-03 09:00:00
+    tg_ket_thuc: 2026-05-03 10:43:00
+    trang_thai: 1 - UPCOMING
+
+32. Trùm Sò
+    ma_phim: 2
+    ma_phong: 2 - PT 02
+    ngon_ngu_trinh_chieu: 0 - ORIGINAL
+    tg_bat_dau: 2026-05-03 09:30:00
+    tg_ket_thuc: 2026-05-03 11:15:00
+    trang_thai: 1 - UPCOMING
+
+33. Cá Con Cau Có
+    ma_phim: 7
+    ma_phong: 4 - 3D 01
+    ngon_ngu_trinh_chieu: 1 - DUBBED
+    tg_bat_dau: 2026-05-03 10:00:00
+    tg_ket_thuc: 2026-05-03 11:32:00
+    trang_thai: 1 - UPCOMING
+
+34. Super Mario Thiên Hà
+    ma_phim: 10
+    ma_phong: 5 - 3D 02
+    ngon_ngu_trinh_chieu: 1 - DUBBED
+    tg_bat_dau: 2026-05-03 10:30:00
+    tg_ket_thuc: 2026-05-03 12:08:00
+    trang_thai: 1 - UPCOMING
+
+35. Anh Hùng
+    ma_phim: 5
+    ma_phong: 6 - IMAX 01
+    ngon_ngu_trinh_chieu: 0 - ORIGINAL
+    tg_bat_dau: 2026-05-03 13:00:00
+    tg_ket_thuc: 2026-05-03 15:02:00
+    trang_thai: 1 - UPCOMING
+
+36. Đại Tiệc Trăng Máu 8
+    ma_phim: 4
+    ma_phong: 3 - PT 03
+    ngon_ngu_trinh_chieu: 0 - ORIGINAL
+    tg_bat_dau: 2026-05-03 15:30:00
+    tg_ket_thuc: 2026-05-03 17:40:00
+    trang_thai: 1 - UPCOMING
+
+37. Xác Ướp
+    ma_phim: 9
+    ma_phong: 8 - 4DX 01
+    ngon_ngu_trinh_chieu: 3 - SUBTITLED
+    tg_bat_dau: 2026-05-03 18:00:00
+    tg_ket_thuc: 2026-05-03 20:13:00
+    trang_thai: 1 - UPCOMING
+
+38. Michael
+    ma_phim: 8
+    ma_phong: 10 - Gold 01
+    ngon_ngu_trinh_chieu: 3 - SUBTITLED
+    tg_bat_dau: 2026-05-03 19:00:00
+    tg_ket_thuc: 2026-05-03 21:07:00
+    trang_thai: 1 - UPCOMING
+
+39. Phí Phông: Quỷ Máu Rừng Thiêng
+    ma_phim: 3
+    ma_phong: 9 - 4DX 02
+    ngon_ngu_trinh_chieu: 0 - ORIGINAL
+    tg_bat_dau: 2026-05-03 21:00:00
+    tg_ket_thuc: 2026-05-03 23:00:00
+    trang_thai: 1 - UPCOMING
+
+40. Michael
+    ma_phim: 8
+    ma_phong: 7 - IMAX 02
+    ngon_ngu_trinh_chieu: 3 - SUBTITLED
+    tg_bat_dau: 2026-05-03 21:30:00
+    tg_ket_thuc: 2026-05-03 23:37:00
+    trang_thai: 1 - UPCOMING
+	
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+41. Mèo Siêu Quậy Ở Viện Bảo Tàng 2
+    ma_phim: 6
+    ma_phong: 4 - 3D 01
+    ngon_ngu_trinh_chieu: 1 - DUBBED
+    tg_bat_dau: 2026-05-04 09:00:00
+    tg_ket_thuc: 2026-05-04 10:30:00
+    trang_thai: 1 - UPCOMING
+
+42. Heo Năm Móng
+    ma_phim: 1
+    ma_phong: 1 - PT 01
+    ngon_ngu_trinh_chieu: 0 - ORIGINAL
+    tg_bat_dau: 2026-05-04 09:30:00
+    tg_ket_thuc: 2026-05-04 11:13:00
+    trang_thai: 1 - UPCOMING
+
+43. Super Mario Thiên Hà
+    ma_phim: 10
+    ma_phong: 5 - 3D 02
+    ngon_ngu_trinh_chieu: 1 - DUBBED
+    tg_bat_dau: 2026-05-04 11:00:00
+    tg_ket_thuc: 2026-05-04 12:38:00
+    trang_thai: 1 - UPCOMING
+
+44. Trùm Sò
+    ma_phim: 2
+    ma_phong: 2 - PT 02
+    ngon_ngu_trinh_chieu: 0 - ORIGINAL
+    tg_bat_dau: 2026-05-04 12:00:00
+    tg_ket_thuc: 2026-05-04 13:45:00
+    trang_thai: 1 - UPCOMING
+
+45. Anh Hùng
+    ma_phim: 5
+    ma_phong: 6 - IMAX 01
+    ngon_ngu_trinh_chieu: 0 - ORIGINAL
+    tg_bat_dau: 2026-05-04 14:00:00
+    tg_ket_thuc: 2026-05-04 16:02:00
+    trang_thai: 1 - UPCOMING
+
+46. Xác Ướp
+    ma_phim: 9
+    ma_phong: 8 - 4DX 01
+    ngon_ngu_trinh_chieu: 3 - SUBTITLED
+    tg_bat_dau: 2026-05-04 16:30:00
+    tg_ket_thuc: 2026-05-04 18:43:00
+    trang_thai: 1 - UPCOMING
+
+47. Đại Tiệc Trăng Máu 8
+    ma_phim: 4
+    ma_phong: 3 - PT 03
+    ngon_ngu_trinh_chieu: 0 - ORIGINAL
+    tg_bat_dau: 2026-05-04 18:00:00
+    tg_ket_thuc: 2026-05-04 20:10:00
+    trang_thai: 1 - UPCOMING
+
+48. Michael
+    ma_phim: 8
+    ma_phong: 10 - Gold 01
+    ngon_ngu_trinh_chieu: 3 - SUBTITLED
+    tg_bat_dau: 2026-05-04 19:00:00
+    tg_ket_thuc: 2026-05-04 21:07:00
+    trang_thai: 1 - UPCOMING
+
+49. Phí Phông: Quỷ Máu Rừng Thiêng
+    ma_phim: 3
+    ma_phong: 9 - 4DX 02
+    ngon_ngu_trinh_chieu: 0 - ORIGINAL
+    tg_bat_dau: 2026-05-04 21:00:00
+    tg_ket_thuc: 2026-05-04 23:00:00
+    trang_thai: 1 - UPCOMING
+
+50. Xác Ướp
+    ma_phim: 9
+    ma_phong: 7 - IMAX 02
+    ngon_ngu_trinh_chieu: 3 - SUBTITLED
+    tg_bat_dau: 2026-05-04 21:30:00
+    tg_ket_thuc: 2026-05-04 23:43:00
+    trang_thai: 1 - UPCOMING
+	
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+ve (ma_suat_chieu, ma_ghe, ma_bang_gia, trang_thai)
+
+enums:
+    TicketStatus:
+        * 0 - NOT_SOLD: Vé chưa bán
+        * 1 - SOLD: Vé đã bán
+        * 2 - CHANGED: Vé đã đổi
+        * 3 - CANCELLED: Vé đã hủy
+
+Quy ước:
+    - Mỗi ghế trong mỗi suất chiếu tương ứng với 1 vé.
+    - Vé được sinh tự động từ suat_chieu + ghe + bang_gia_ve.
+    - Không nhập tay từng vé.
+    - Khi mới sinh vé, trang_thai mặc định = 0 - NOT_SOLD.
+    - Khi thanh toán thành công, cập nhật trang_thai = 1 - SOLD.
+    - Khi đổi vé, vé cũ cập nhật trang_thai = 2 - CHANGED, vé mới cập nhật trang_thai = 1 - SOLD.
+    - Khi hủy vé, cập nhật trang_thai = 3 - CANCELLED.
+    - Không xóa vé đã bán để giữ lịch sử giao dịch.
+    - Khi hủy suất chiếu, nên update các vé chưa bán của suất đó thành CANCELLED.
+	
+hoa_don
+- Là dữ liệu phát sinh khi nhân viên lập hóa đơn.
+- Không cần seed nhiều.
+- Có thể tạo vài hóa đơn mẫu để test thống kê và lịch sử bán hàng.
+- Trạng thái:
+    0 - PENDING
+    1 - SUCCESS
+    2 - FAILED
+    3 - CANCELLED
+
+hoa_don_ve
+- Là chi tiết vé của hóa đơn.
+- Chỉ insert khi hóa đơn có mua vé.
+- Một hóa đơn có thể có nhiều vé.
+- don_gia lưu giá vé tại thời điểm bán, không phụ thuộc việc bảng giá sau này thay đổi.
+
+hoa_don_san_pham
+- Là chi tiết sản phẩm của hóa đơn.
+- Chỉ insert khi khách mua sản phẩm.
+- Một hóa đơn có thể không có sản phẩm.
+- don_gia lưu giá sản phẩm tại thời điểm bán.
