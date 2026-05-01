@@ -402,4 +402,5 @@ public class SeatService {
  * - Version mới đúng nghiệp vụ hơn:
  *   Tách cập nhật cấu trúc ghế và cập nhật trạng thái vận hành ghế.
  *   Không dùng SeatStatus để biểu diễn trạng thái đã bán hoặc đã đặt.
+ *   Minh Huy
  */

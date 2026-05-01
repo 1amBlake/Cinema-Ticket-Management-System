@@ -283,4 +283,5 @@ public class TheaterService {
  * - Có constructor hỗ trợ test.
  * - Có kiểm tra ID ở tầng Service.
  * - Tên method rõ nghĩa và đồng bộ hơn với cấu trúc dự án.
+ * Minh Huy
  */

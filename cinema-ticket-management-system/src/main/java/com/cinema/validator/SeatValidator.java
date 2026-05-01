@@ -12,6 +12,16 @@ import com.cinema.entity.Seat;
  */
 public final class SeatValidator {
 
+    private static final int MAX_SEAT_ROW_LENGTH = 10;
+    private static final int MAX_SEAT_COL_LENGTH = 10;
+
+    /*
+     * Hàng ghế chỉ dùng chữ cái, ví dụ: A, B, C, AA.
+     * Cột ghế chỉ dùng số, ví dụ: 1, 2, 10.
+     */
+    private static final String SEAT_ROW_REGEX = "[A-Za-z]+";
+    private static final String SEAT_COL_REGEX = "\\d+";
+
     /**
      * Constructor private để ngăn tạo đối tượng từ lớp SeatValidator.
      */
@@ -72,16 +82,20 @@ public final class SeatValidator {
             throw new IllegalArgumentException("seatRow không được để trống!");
         }
 
-        if (seat.getSeatRow().trim().length() > 10) {
-            throw new IllegalArgumentException("seatRow không được vượt quá 10 ký tự!");
+        if (seat.getSeatRow().trim().length() > MAX_SEAT_ROW_LENGTH) {
+            throw new IllegalArgumentException(
+                    "seatRow không được vượt quá " + MAX_SEAT_ROW_LENGTH + " ký tự!"
+            );
         }
 
         if (seat.getSeatCol() == null || seat.getSeatCol().trim().isEmpty()) {
             throw new IllegalArgumentException("seatCol không được để trống!");
         }
 
-        if (seat.getSeatCol().trim().length() > 10) {
-            throw new IllegalArgumentException("seatCol không được vượt quá 10 ký tự!");
+        if (seat.getSeatCol().trim().length() > MAX_SEAT_COL_LENGTH) {
+            throw new IllegalArgumentException(
+                    "seatCol không được vượt quá " + MAX_SEAT_COL_LENGTH + " ký tự!"
+            );
         }
 
         if (seat.getSeatStatus() == null) {
@@ -106,11 +120,11 @@ public final class SeatValidator {
         String seatRow = seat.getSeatRow().trim();
         String seatCol = seat.getSeatCol().trim();
 
-        if (!seatRow.matches("[A-Za-z]+")) {
+        if (!seatRow.matches(SEAT_ROW_REGEX)) {
             throw new IllegalArgumentException("seatRow chỉ được chứa chữ cái!");
         }
 
-        if (!seatCol.matches("\\d+")) {
+        if (!seatCol.matches(SEAT_COL_REGEX)) {
             throw new IllegalArgumentException("seatCol chỉ được chứa số!");
         }
     }

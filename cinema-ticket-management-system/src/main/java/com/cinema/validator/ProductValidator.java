@@ -1,6 +1,7 @@
 package com.cinema.validator;
 
 import com.cinema.entity.Product;
+import com.cinema.enums.ProductStatus;
 
 /**
  * Validator cho thực thể Product.
@@ -11,6 +12,25 @@ import com.cinema.entity.Product;
  * @author Minh Huy (sửa)
  */
 public final class ProductValidator {
+
+    private static final int MAX_PRODUCT_NAME_LENGTH = 255;
+    private static final int MAX_PICTURE_URL_LENGTH = 255;
+
+    /*
+     * Cho phép:
+     * - Chữ tiếng Việt / tiếng Anh
+     * - Số
+     * - Khoảng trắng
+     * - Các ký tự thường dùng trong tên sản phẩm: _ - . ( ) + / &
+     * 
+     * Ví dụ hợp lệ:
+     * - Bắp L
+     * - Coca-Cola M
+     * - Combo 1 + 1
+     * - Pepsi / 7Up
+     * - Michael Figure
+     */
+    private static final String PRODUCT_NAME_REGEX = "[\\p{L}\\p{N}\\s_\\-().+/&]+";
 
     /**
      * Constructor private để ngăn tạo đối tượng từ lớp ProductValidator.
@@ -56,8 +76,10 @@ public final class ProductValidator {
             throw new IllegalArgumentException("productName không được để trống!");
         }
 
-        if (product.getProductName().trim().length() > 255) {
-            throw new IllegalArgumentException("productName không được vượt quá 255 ký tự!");
+        if (product.getProductName().trim().length() > MAX_PRODUCT_NAME_LENGTH) {
+            throw new IllegalArgumentException(
+                    "productName không được vượt quá " + MAX_PRODUCT_NAME_LENGTH + " ký tự!"
+            );
         }
 
         if (product.getProductType() == null) {
@@ -84,8 +106,11 @@ public final class ProductValidator {
             throw new IllegalArgumentException("productStatus không được null!");
         }
 
-        if (product.getPictureUrl() != null && product.getPictureUrl().trim().length() > 255) {
-            throw new IllegalArgumentException("pictureUrl không được vượt quá 255 ký tự!");
+        if (product.getPictureUrl() != null
+                && product.getPictureUrl().trim().length() > MAX_PICTURE_URL_LENGTH) {
+            throw new IllegalArgumentException(
+                    "pictureUrl không được vượt quá " + MAX_PICTURE_URL_LENGTH + " ký tự!"
+            );
         }
 
         validateBusinessRule(product);
@@ -94,8 +119,37 @@ public final class ProductValidator {
     /**
      * Kiểm tra các ràng buộc nghiệp vụ nâng cao của Product.
      *
+     * Quy ước nghiệp vụ:
+     * - Tên sản phẩm chỉ được chứa các ký tự phù hợp với dữ liệu bán hàng.
+     * - Sản phẩm đang bán (SELLING) phải còn tồn kho.
+     * - Sản phẩm hết hàng (SOLD_OUT) thì số lượng tồn phải bằng 0.
+     * - Sản phẩm ngừng bán (STOPPED) có thể còn hoặc hết tồn kho,
+     *   vì đây là trạng thái do rạp chủ động ngừng kinh doanh.
+     *
      * @param product - Đối tượng Product cần kiểm tra
      */
     private static void validateBusinessRule(Product product) {
+        String productName = product.getProductName().trim();
+
+        if (!productName.matches(PRODUCT_NAME_REGEX)) {
+            throw new IllegalArgumentException(
+                    "productName chỉ được chứa chữ cái, chữ số, khoảng trắng "
+                    + "và các ký tự _ - . ( ) + / &!"
+            );
+        }
+
+        if (product.getProductStatus() == ProductStatus.SELLING
+                && product.getStockQuantity() == 0) {
+            throw new IllegalArgumentException(
+                    "Sản phẩm đang bán phải có số lượng tồn lớn hơn 0!"
+            );
+        }
+
+        if (product.getProductStatus() == ProductStatus.SOLD_OUT
+                && product.getStockQuantity() > 0) {
+            throw new IllegalArgumentException(
+                    "Sản phẩm hết hàng thì số lượng tồn phải bằng 0!"
+            );
+        }
     }
 }

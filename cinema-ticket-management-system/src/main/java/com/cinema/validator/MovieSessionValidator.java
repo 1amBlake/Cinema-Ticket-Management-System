@@ -16,6 +16,11 @@ import com.cinema.enums.ScreenStatus;
  */
 public final class MovieSessionValidator {
 
+    private static final int MIN_MOVIE_DURATION_MINUTES = 1;
+
+    /**
+     * Constructor private để ngăn tạo đối tượng từ lớp MovieSessionValidator.
+     */
     private MovieSessionValidator() {
     }
 
@@ -61,7 +66,6 @@ public final class MovieSessionValidator {
      * @param movieSession - Đối tượng MovieSession cần kiểm tra
      * @throws IllegalArgumentException nếu dữ liệu không hợp lệ
      */
-
     private static void validateCommon(MovieSession movieSession) {
         if (movieSession == null) {
             throw new IllegalArgumentException("movieSession không được null!");
@@ -135,7 +139,7 @@ public final class MovieSessionValidator {
             );
         }
 
-        if (movieSession.getMovie().getMovieDuration() <= 0) {
+        if (movieSession.getMovie().getMovieDuration() < MIN_MOVIE_DURATION_MINUTES) {
             throw new IllegalArgumentException("movieDuration phải lớn hơn 0!");
         }
 
