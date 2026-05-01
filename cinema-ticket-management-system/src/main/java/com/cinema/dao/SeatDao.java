@@ -48,15 +48,20 @@ public class SeatDao {
             """;
 
     private static final String UPDATE_MYSQL = """
-            UPDATE ghe
-            SET ma_phong = ?,
-                ma_loai_ghe = ?,
-                hang = ?,
-                cot = ?,
-                trang_thai = ?
-            WHERE ma_ghe = ?
+			UPDATE ghe
+			SET ma_phong = ?,
+			    ma_loai_ghe = ?,
+			    hang = ?,
+			    cot = ?
+			WHERE ma_ghe = ?	
             """;
 
+    private static final String UPDATE_STATUS_MYSQL = """
+            UPDATE ghe
+            SET trang_thai = ?
+            WHERE ma_ghe = ?
+            """;
+    
     private static final String DELETE_MYSQL = """
             DELETE FROM ghe
             WHERE ma_ghe = ?
@@ -402,14 +407,44 @@ public class SeatDao {
         }
 
         try (Connection connection = DBConnection.getConnection();
-             PreparedStatement ps = connection.prepareStatement(UPDATE_MYSQL)) {
+        	     PreparedStatement ps = connection.prepareStatement(UPDATE_MYSQL)) {
 
-            ps.setInt(1, seat.getScreen().getScreenId());
-            ps.setInt(2, seat.getSeatType().getSeatTypeId());
-            ps.setString(3, seat.getSeatRow().trim());
-            ps.setString(4, seat.getSeatCol().trim());
-            ps.setInt(5, seat.getSeatStatus().getSeatStatusId());
-            ps.setInt(6, seat.getSeatId());
+        	    ps.setInt(1, seat.getScreen().getScreenId());
+        	    ps.setInt(2, seat.getSeatType().getSeatTypeId());
+        	    ps.setString(3, seat.getSeatRow().trim());
+        	    ps.setString(4, seat.getSeatCol().trim());
+        	    ps.setInt(5, seat.getSeatId());
+
+        	    return ps.executeUpdate() > 0;
+        	}
+    }
+    
+    /**
+     * Cập nhật trạng thái vận hành của ghế.
+     *
+     * Method này chỉ cập nhật cột trang_thai, không thay đổi phòng chiếu,
+     * loại ghế, hàng hoặc cột. Dùng cho nghiệp vụ chuyển ghế sang bảo trì
+     * hoặc mở lại ghế hoạt động.
+     *
+     * @param seatId - Mã ghế cần cập nhật
+     * @param status - Trạng thái mới của ghế
+     * @return true nếu cập nhật thành công, false nếu không tìm thấy ghế
+     * @throws SQLException nếu có lỗi SQL
+     */
+    public boolean updateSeatStatusById(int seatId, SeatStatus status) throws SQLException {
+        if (seatId <= 0) {
+            throw new IllegalArgumentException("seatId phải lớn hơn 0!");
+        }
+
+        if (status == null) {
+            throw new IllegalArgumentException("seatStatus không được null!");
+        }
+
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement ps = connection.prepareStatement(UPDATE_STATUS_MYSQL)) {
+
+            ps.setInt(1, status.getSeatStatusId());
+            ps.setInt(2, seatId);
 
             return ps.executeUpdate() > 0;
         }

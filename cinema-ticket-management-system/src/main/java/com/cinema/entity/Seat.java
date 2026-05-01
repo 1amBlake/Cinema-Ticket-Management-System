@@ -146,11 +146,12 @@ public class Seat {
 	}
 
 	public void setSeatRow(String seatRow) {
-		if (seatRow == null || seatRow.trim().isEmpty())
-			throw new IllegalArgumentException("seatRow không được để trống");
-		else if (seatRow.trim().length() > 10)
-			throw new IllegalArgumentException("seatRow không được vượt quá 10 ký tự");
-		this.seatRow = seatRow.trim();
+	    if (seatRow == null || seatRow.trim().isEmpty())
+	        throw new IllegalArgumentException("seatRow không được để trống");
+	    else if (seatRow.trim().length() > 10)
+	        throw new IllegalArgumentException("seatRow không được vượt quá 10 ký tự");
+
+	    this.seatRow = seatRow.trim().toUpperCase();
 	}
 
 	public void setSeatCol(String seatCol) {

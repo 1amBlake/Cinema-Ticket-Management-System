@@ -94,8 +94,24 @@ public final class SeatValidator {
     /**
      * Kiểm tra các ràng buộc nghiệp vụ nâng cao của Seat.
      *
+     * Quy ước nghiệp vụ:
+     * - Hàng ghế chỉ được chứa chữ cái, ví dụ: A, B, C, AA.
+     * - Cột ghế chỉ được chứa số, ví dụ: 1, 2, 10.
+     * - SeatStatus chỉ biểu diễn trạng thái vận hành vật lý của ghế,
+     *   không biểu diễn trạng thái đã bán hoặc đã đặt.
+     *
      * @param seat - Đối tượng Seat cần kiểm tra
      */
     private static void validateBusinessRule(Seat seat) {
+        String seatRow = seat.getSeatRow().trim();
+        String seatCol = seat.getSeatCol().trim();
+
+        if (!seatRow.matches("[A-Za-z]+")) {
+            throw new IllegalArgumentException("seatRow chỉ được chứa chữ cái!");
+        }
+
+        if (!seatCol.matches("\\d+")) {
+            throw new IllegalArgumentException("seatCol chỉ được chứa số!");
+        }
     }
 }
