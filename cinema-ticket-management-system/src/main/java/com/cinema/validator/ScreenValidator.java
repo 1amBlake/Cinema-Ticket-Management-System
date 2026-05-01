@@ -86,8 +86,21 @@ public final class ScreenValidator {
     /**
      * Kiểm tra các ràng buộc nghiệp vụ nâng cao của Screen.
      *
+     * Quy ước nghiệp vụ:
+     * - Tên phòng chiếu chỉ nên chứa chữ cái, chữ số, khoảng trắng,
+     *   dấu gạch ngang hoặc dấu gạch dưới.
+     * - ScreenStatus chỉ biểu diễn trạng thái vận hành của phòng chiếu,
+     *   không biểu diễn trạng thái của suất chiếu.
+     *
      * @param screen - Đối tượng Screen cần kiểm tra
      */
     private static void validateBusinessRule(Screen screen) {
+        String screenName = screen.getScreenName().trim();
+
+        if (!screenName.matches("[\\p{L}\\p{N}\\s_-]+")) {
+            throw new IllegalArgumentException(
+                    "screenName chỉ được chứa chữ cái, chữ số, khoảng trắng, dấu gạch ngang hoặc dấu gạch dưới!"
+            );
+        }
     }
 }
