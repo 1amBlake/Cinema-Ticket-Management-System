@@ -19,6 +19,12 @@ public final class MovieSessionValidator {
     private MovieSessionValidator() {
     }
 
+    /**
+     * Kiểm tra dữ liệu của MovieSession trong trường hợp thêm mới.
+     *
+     * @param movieSession - Đối tượng MovieSession cần kiểm tra
+     * @throws IllegalArgumentException nếu dữ liệu không hợp lệ
+     */
     public static void validateForCreate(MovieSession movieSession) {
         validateCommon(movieSession);
 
@@ -31,13 +37,30 @@ public final class MovieSessionValidator {
         }
     }
 
+    /**
+     * Kiểm tra dữ liệu của MovieSession trong trường hợp cập nhật.
+     *
+     * @param movieSession - Đối tượng MovieSession cần kiểm tra
+     * @throws IllegalArgumentException nếu dữ liệu không hợp lệ
+     */
     public static void validateForUpdate(MovieSession movieSession) {
         validateCommon(movieSession);
 
         if (movieSession.getMovieSessionId() <= 0) {
             throw new IllegalArgumentException("movieSessionId phải lớn hơn 0!");
         }
+
+        if (movieSession.getMovieSessionStatus() == MovieSessionStatus.FINISHED) {
+            throw new IllegalArgumentException("Suất chiếu đã kết thúc, không thể cập nhật!");
+        }
     }
+
+    /**
+     * Kiểm tra các ràng buộc chung của thực thể MovieSession.
+     *
+     * @param movieSession - Đối tượng MovieSession cần kiểm tra
+     * @throws IllegalArgumentException nếu dữ liệu không hợp lệ
+     */
 
     private static void validateCommon(MovieSession movieSession) {
         if (movieSession == null) {

@@ -13,8 +13,6 @@ import com.cinema.entity.Movie;
 import com.cinema.entity.MovieSession;
 import com.cinema.entity.Screen;
 import com.cinema.enums.MovieSessionStatus;
-import com.cinema.enums.MovieStatus;
-import com.cinema.enums.ScreenStatus;
 import com.cinema.validator.MovieSessionValidator;
 
 /**
@@ -321,6 +319,24 @@ public class MovieSessionService {
      * @throws SQLException nếu có lỗi khi thao tác với cơ sở dữ liệu
      */
     public boolean updateMovieSession(MovieSession movieSession) throws SQLException {
+        if (movieSession == null) {
+            throw new IllegalArgumentException("movieSession không được null!");
+        }
+
+        validateRequiredId(movieSession.getMovieSessionId(), "movieSessionId");
+
+        MovieSession existingSession = movieSessionDao.findById(movieSession.getMovieSessionId());
+
+        if (existingSession == null) {
+            throw new IllegalArgumentException("Suất chiếu không tồn tại!");
+        }
+
+        applyAutoStatus(existingSession);
+
+        if (existingSession.getMovieSessionStatus() == MovieSessionStatus.FINISHED) {
+            throw new IllegalArgumentException("Suất chiếu đã kết thúc, không thể cập nhật!");
+        }
+
         prepareMovieSessionForSave(movieSession);
         MovieSessionValidator.validateForUpdate(movieSession);
 
@@ -553,3 +569,57 @@ public class MovieSessionService {
         return MovieSessionStatus.FINISHED;
     }
 }
+
+/*
+ * Các điểm đã bổ sung so với service mẫu ban đầu:
+ * - Bổ sung Javadoc cho class, constructor và các method để mô tả rõ chức năng.
+ * - Đổi tên method theo hướng rõ nghĩa hơn, ví dụ getAllMovieSessions(),
+ *   findMovieSessionById(), searchMovieSessions(), addMovieSession(),
+ *   updateMovieSession(), deleteMovieSessionById().
+ * - Bổ sung MovieDao và ScreenDao để Service có thể lấy thông tin đầy đủ
+ *   của phim và phòng chiếu trước khi thêm/cập nhật suất chiếu.
+ * - Bổ sung MovieSessionValidator để Service kiểm tra dữ liệu và nghiệp vụ
+ *   trước khi gọi DAO.
+ * - Bổ sung validateRequiredId() để kiểm tra các ID bắt buộc như
+ *   movieSessionId, movieId, screenId.
+ * - Sửa validateOptionalId() để thông báo lỗi tiếng Việt có dấu:
+ *   "phải lớn hơn 0".
+ * - Bổ sung getMovieSessionsByScreen() để lấy suất chiếu theo phòng chiếu.
+ * - Bổ sung getMovieSessionsByDate() để lấy suất chiếu theo ngày chiếu.
+ * - Đổi getTodaySessions() thành getTodayMovieSessions() cho rõ nghĩa hơn.
+ * - Bổ sung getUpcomingMovieSessions(), getNowShowingMovieSessions(),
+ *   getFinishedMovieSessions() và getMovieSessionsByStatus() để lọc suất chiếu
+ *   theo trạng thái.
+ * - Bổ sung prepareMovieSessionForSave() để chuẩn bị dữ liệu trước khi lưu:
+ *   lấy Movie đầy đủ, lấy Screen đầy đủ, kiểm tra dữ liệu nền và tự tính
+ *   tg_ket_thuc = tg_bat_dau + thời lượng phim.
+ * - Bổ sung logic tự động tính trạng thái suất chiếu theo thời gian hiện tại.
+ *   Nếu còn hơn 5 phút trước giờ chiếu thì UPCOMING, từ 5 phút trước giờ chiếu
+ *   đến hết giờ chiếu thì NOW_SHOWING, sau giờ kết thúc thì FINISHED.
+ * - Bổ sung kiểm tra trong updateMovieSession(): không cho cập nhật nếu suất chiếu
+ *   hiện tại trong database đã kết thúc.
+ * 
+ * Các ràng buộc nghiệp vụ/database liên quan:
+ * - Không cho phép tạo hoặc cập nhật suất chiếu nếu phim không tồn tại.
+ * - Không cho phép tạo hoặc cập nhật suất chiếu nếu phòng chiếu không tồn tại.
+ * - Không cho phép tạo hoặc cập nhật suất chiếu nếu phim đã dừng chiếu.
+ * - Không cho phép tạo hoặc cập nhật suất chiếu nếu phòng chiếu đang bảo trì
+ *   hoặc ngưng hoạt động.
+ * - Không cho phép tạo mới suất chiếu với trạng thái CANCELLED hoặc FINISHED.
+ * - Không cho phép cập nhật suất chiếu nếu trạng thái đã là FINISHED.
+ * - Thời gian kết thúc suất chiếu phải bằng thời gian bắt đầu cộng với
+ *   thời lượng phim.
+ * - Không cho phép trùng lịch chiếu trong cùng một phòng.
+ * - Không cho phép cập nhật hoặc xóa suất chiếu nếu suất chiếu đã phát sinh vé.
+ * 
+ * Lưu ý:
+ * - Việc kiểm tra phim dừng chiếu, phòng không hoạt động và thời gian kết thúc
+ *   hợp lệ được xử lý trong MovieSessionValidator.
+ * - Việc lấy Movie/Screen đầy đủ và tự tính thời gian kết thúc được xử lý
+ *   trong MovieSessionService.
+ * - Việc kiểm tra trùng lịch phòng chiếu được xử lý ở MovieSessionDao.
+ * - Việc kiểm tra suất chiếu đã phát sinh vé được xử lý ở MovieSessionDao.
+ * - Trạng thái tự động trong Service hiện chỉ thay đổi trên object trả về
+ *   cho Controller, chưa tự cập nhật xuống database.
+ * Minh Huy
+ */
