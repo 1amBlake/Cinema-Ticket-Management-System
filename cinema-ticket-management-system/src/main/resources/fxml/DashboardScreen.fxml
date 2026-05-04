@@ -98,7 +98,7 @@
                         </Button>
 
                         <Button fx:id="productButton" text="  Sản phẩm" maxWidth="Infinity"
-                                mnemonicParsing="false" styleClass="sidebar-button">
+                                mnemonicParsing="false" styleClass="sidebar-button" onAction="#handleProductManagement">
                             <graphic>
                                 <StackPane alignment="CENTER" minWidth="24.0" prefWidth="24.0" maxWidth="24.0" styleClass="sidebar-icon-wrapper"><children><ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="sidebar-menu-icon"><image><Image url="@../images/icons/product.png" /></image></ImageView></children></StackPane>
                             </graphic>
