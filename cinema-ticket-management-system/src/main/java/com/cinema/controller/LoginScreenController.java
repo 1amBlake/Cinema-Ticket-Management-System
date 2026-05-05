@@ -1,5 +1,8 @@
 package com.cinema.controller;
 
+import com.cinema.entity.EmployeeAccount;
+import com.cinema.service.EmployeeAccountService;
+import java.sql.SQLException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -21,13 +24,16 @@ public class LoginScreenController {
 
     @FXML
     private Label errorLabel;
-
+    
+ // Khởi tạo Service để xử lý nghiệp vụ 
+    private final EmployeeAccountService accountService = new EmployeeAccountService();
+    
     @FXML
     private void initialize() {
         errorLabel.setText("");
     }
 
-    @FXML
+    /*@FXML
     private void handleLogin() {
         String username = usernameField.getText();
         String password = passwordField.getText();
@@ -38,10 +44,7 @@ public class LoginScreenController {
             return;
         }
 
-        /*
-         * Demo tạm thời.
-         * Sau này thay đoạn này bằng AuthenticationService.
-         */
+
         boolean loginSuccess = username.equals("admin") && password.equals("123456");
 
         if (loginSuccess) {
@@ -49,19 +52,60 @@ public class LoginScreenController {
         } else {
             errorLabel.setText("Tài khoản hoặc mật khẩu không đúng.");
         }
-    }
+    }*/
 
+    /**
+     * Xử lý sự kiện khi người dùng nhấn nút Đăng nhập.
+     */
+    @FXML
+    private void handleLogin() {
+        // 1. Lấy dữ liệu từ giao diện
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+
+        try {
+            // 2. Gọi phương thức login thay vì authenticate 
+            EmployeeAccount account = accountService.login(username, password);
+            
+            // 3. Kiểm tra kết quả
+            if (account != null) {
+                openDashboard(account); // 🔥 truyền vào đây
+            } else {
+                errorLabel.setText("Tên đăng nhập hoặc mật khẩu không chính xác.");
+            }
+            
+        } catch (IllegalArgumentException e) {
+            // Bắt lỗi khi người dùng để trống tên đăng nhập hoặc mật khẩu 
+            errorLabel.setText(e.getMessage());
+        } catch (SQLException e) {
+            // Xử lý lỗi kết nối cơ sở dữ liệu
+            e.printStackTrace();
+            errorLabel.setText("Lỗi hệ thống: Không thể kết nối cơ sở dữ liệu.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            errorLabel.setText("Đã xảy ra lỗi không xác định.");
+        }
+    }
+    
     @FXML
     private void handleExit() {
         Stage stage = (Stage) usernameField.getScene().getWindow();
         stage.close();
     }
 
-    private void openDashboard() {
+    private void openDashboard(EmployeeAccount account) {
         try {
-            Parent dashboardRoot = FXMLLoader.load(
+            FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/fxml/DashboardScreen.fxml")
             );
+
+            Parent dashboardRoot = loader.load();
+
+            // 🔥 LẤY CONTROLLER
+            DashboardScreenController controller = loader.getController();
+
+            // 🔥 TRUYỀN ACCOUNT
+            controller.setCurrentAccount(account);
 
             Scene dashboardScene = new Scene(dashboardRoot);
 
@@ -71,17 +115,7 @@ public class LoginScreenController {
             Stage dashboardStage = new Stage();
             dashboardStage.setTitle("Cinema Ticket Management System");
             dashboardStage.setScene(dashboardScene);
-
-            /*
-             * Cho phép Stage maximize.
-             * Nếu setResizable(false) trước thì đôi khi maximize không đúng.
-             */
             dashboardStage.setResizable(true);
-
-            /*
-             * Maximized: có thanh bar trên cùng, có taskbar Windows,
-             * giống app desktop bình thường.
-             */
             dashboardStage.setMaximized(true);
 
             dashboardStage.show();

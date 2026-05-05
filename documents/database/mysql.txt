@@ -1,0 +1,2160 @@
+-- MySQL dump 10.13  Distrib 8.0.45, for Win64 (x86_64)
+--
+-- Host: localhost    Database: cinema_db
+-- ------------------------------------------------------
+-- Server version	8.0.45
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+DROP DATABASE IF EXISTS `cinema_db`;
+
+CREATE DATABASE IF NOT EXISTS `cinema_db`
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
+USE `cinema_db`;
+
+SET FOREIGN_KEY_CHECKS = 0;
+
+--
+-- Table structure for table `chuc_vu`
+--
+
+DROP TABLE IF EXISTS `chuc_vu`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `chuc_vu` (
+  `ma_chuc_vu` int NOT NULL AUTO_INCREMENT,
+  `ten_chuc_vu` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_chuc_vu`),
+  UNIQUE KEY `ten_chuc_vu` (`ten_chuc_vu`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `chuc_vu`
+--
+
+LOCK TABLES `chuc_vu` WRITE;
+/*!40000 ALTER TABLE `chuc_vu` DISABLE KEYS */;
+/*!40000 ALTER TABLE `chuc_vu` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `dao_dien`
+--
+
+DROP TABLE IF EXISTS `dao_dien`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `dao_dien` (
+  `ma_dao_dien` int NOT NULL AUTO_INCREMENT,
+  `ten_dao_dien` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_dao_dien`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `dao_dien`
+--
+
+LOCK TABLES `dao_dien` WRITE;
+/*!40000 ALTER TABLE `dao_dien` DISABLE KEYS */;
+/*!40000 ALTER TABLE `dao_dien` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `loai_ghe`
+--
+
+DROP TABLE IF EXISTS `loai_ghe`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `loai_ghe` (
+  `ma_loai_ghe` int NOT NULL AUTO_INCREMENT,
+  `ten_loai_ghe` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_loai_ghe`),
+  UNIQUE KEY `ten_loai_ghe` (`ten_loai_ghe`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `loai_ghe`
+--
+
+LOCK TABLES `loai_ghe` WRITE;
+/*!40000 ALTER TABLE `loai_ghe` DISABLE KEYS */;
+/*!40000 ALTER TABLE `loai_ghe` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `loai_phong`
+--
+
+DROP TABLE IF EXISTS `loai_phong`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `loai_phong` (
+  `ma_loai_phong` int NOT NULL AUTO_INCREMENT,
+  `ten_loai_phong` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_loai_phong`),
+  UNIQUE KEY `ten_loai_phong` (`ten_loai_phong`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `loai_phong`
+--
+
+LOCK TABLES `loai_phong` WRITE;
+/*!40000 ALTER TABLE `loai_phong` DISABLE KEYS */;
+/*!40000 ALTER TABLE `loai_phong` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `loai_san_pham`
+--
+
+DROP TABLE IF EXISTS `loai_san_pham`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `loai_san_pham` (
+  `ma_loai_san_pham` int NOT NULL AUTO_INCREMENT,
+  `ten_loai_san_pham` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_loai_san_pham`),
+  UNIQUE KEY `ten_loai_san_pham` (`ten_loai_san_pham`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `loai_san_pham`
+--
+
+LOCK TABLES `loai_san_pham` WRITE;
+/*!40000 ALTER TABLE `loai_san_pham` DISABLE KEYS */;
+/*!40000 ALTER TABLE `loai_san_pham` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `the_loai`
+--
+
+DROP TABLE IF EXISTS `the_loai`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `the_loai` (
+  `ma_the_loai` int NOT NULL AUTO_INCREMENT,
+  `ten_the_loai` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_the_loai`),
+  UNIQUE KEY `ten_the_loai` (`ten_the_loai`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `the_loai`
+--
+
+LOCK TABLES `the_loai` WRITE;
+/*!40000 ALTER TABLE `the_loai` DISABLE KEYS */;
+/*!40000 ALTER TABLE `the_loai` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `rap`
+--
+
+DROP TABLE IF EXISTS `rap`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rap` (
+  `ma_rap` int NOT NULL AUTO_INCREMENT,
+  `ten_rap` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `dia_chi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_rap`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rap`
+--
+
+LOCK TABLES `rap` WRITE;
+/*!40000 ALTER TABLE `rap` DISABLE KEYS */;
+/*!40000 ALTER TABLE `rap` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `phim`
+--
+
+DROP TABLE IF EXISTS `phim`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `phim` (
+  `ma_phim` int NOT NULL AUTO_INCREMENT,
+  `ten_phim` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `thoi_luong` int NOT NULL,
+  `ngay_phat_hanh` date DEFAULT NULL,
+  `ngon_ngu` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `trang_thai` tinyint NOT NULL,
+  `gioi_han_tuoi` tinyint NOT NULL,
+  `url_anh` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_phim`),
+  CONSTRAINT `chk_phim_gioi_han_tuoi` CHECK ((`gioi_han_tuoi` in (0,1,2,3,4,5))),
+  CONSTRAINT `chk_phim_trang_thai` CHECK ((`trang_thai` in (0,1,2))),
+  CONSTRAINT `phim_chk_1` CHECK ((`thoi_luong` > 0))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `phim`
+--
+
+LOCK TABLES `phim` WRITE;
+/*!40000 ALTER TABLE `phim` DISABLE KEYS */;
+/*!40000 ALTER TABLE `phim` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `bang_gia_ve`
+--
+
+DROP TABLE IF EXISTS `bang_gia_ve`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `bang_gia_ve` (
+  `ma_bang_gia` int NOT NULL AUTO_INCREMENT,
+  `ma_loai_ghe` int NOT NULL,
+  `ma_loai_phong` int NOT NULL,
+  `gia` decimal(10,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_bang_gia`),
+  UNIQUE KEY `uq_bang_gia_ve` (`ma_loai_ghe`,`ma_loai_phong`),
+  KEY `fk_bang_gia_ve_loai_phong` (`ma_loai_phong`),
+  CONSTRAINT `fk_bang_gia_ve_loai_ghe` FOREIGN KEY (`ma_loai_ghe`) REFERENCES `loai_ghe` (`ma_loai_ghe`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_bang_gia_ve_loai_phong` FOREIGN KEY (`ma_loai_phong`) REFERENCES `loai_phong` (`ma_loai_phong`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `bang_gia_ve_chk_1` CHECK ((`gia` >= 0))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bang_gia_ve`
+--
+
+LOCK TABLES `bang_gia_ve` WRITE;
+/*!40000 ALTER TABLE `bang_gia_ve` DISABLE KEYS */;
+/*!40000 ALTER TABLE `bang_gia_ve` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `nhan_vien`
+--
+
+DROP TABLE IF EXISTS `nhan_vien`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `nhan_vien` (
+  `ma_nhan_vien` int NOT NULL AUTO_INCREMENT,
+  `ten_nhan_vien` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `gioi_tinh` tinyint DEFAULT NULL,
+  `so_dien_thoai` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ngay_sinh` date DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ngay_vao_lam` date DEFAULT NULL,
+  `ma_chuc_vu` int NOT NULL,
+  `trang_thai` tinyint NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_nhan_vien`),
+  UNIQUE KEY `so_dien_thoai` (`so_dien_thoai`),
+  UNIQUE KEY `email` (`email`),
+  KEY `fk_nhan_vien_chuc_vu` (`ma_chuc_vu`),
+  CONSTRAINT `fk_nhan_vien_chuc_vu` FOREIGN KEY (`ma_chuc_vu`) REFERENCES `chuc_vu` (`ma_chuc_vu`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `chk_nhan_vien_gioi_tinh` CHECK (((`gioi_tinh` in (0,1)) or (`gioi_tinh` is null))),
+  CONSTRAINT `chk_nhan_vien_trang_thai` CHECK ((`trang_thai` in (0,1,2)))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `nhan_vien`
+--
+
+LOCK TABLES `nhan_vien` WRITE;
+/*!40000 ALTER TABLE `nhan_vien` DISABLE KEYS */;
+/*!40000 ALTER TABLE `nhan_vien` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `phong_chieu`
+--
+
+DROP TABLE IF EXISTS `phong_chieu`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `phong_chieu` (
+  `ma_phong` int NOT NULL AUTO_INCREMENT,
+  `ten_phong` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ma_rap` int NOT NULL,
+  `ma_loai_phong` int NOT NULL,
+  `trang_thai` tinyint NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_phong`),
+  UNIQUE KEY `uq_phong_chieu_rap_ten` (`ma_rap`,`ten_phong`),
+  KEY `fk_phong_chieu_loai_phong` (`ma_loai_phong`),
+  CONSTRAINT `fk_phong_chieu_loai_phong` FOREIGN KEY (`ma_loai_phong`) REFERENCES `loai_phong` (`ma_loai_phong`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_phong_chieu_rap` FOREIGN KEY (`ma_rap`) REFERENCES `rap` (`ma_rap`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `chk_phong_chieu_trang_thai` CHECK ((`trang_thai` in (0,1,2)))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `phong_chieu`
+--
+
+LOCK TABLES `phong_chieu` WRITE;
+/*!40000 ALTER TABLE `phong_chieu` DISABLE KEYS */;
+/*!40000 ALTER TABLE `phong_chieu` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `san_pham`
+--
+
+DROP TABLE IF EXISTS `san_pham`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `san_pham` (
+  `ma_san_pham` int NOT NULL AUTO_INCREMENT,
+  `ten_san_pham` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ma_loai_san_pham` int NOT NULL,
+  `gia_co_ban` decimal(10,2) NOT NULL,
+  `so_luong_ton` int NOT NULL,
+  `trang_thai` tinyint NOT NULL,
+  `url_anh` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_san_pham`),
+  KEY `fk_san_pham_loai_san_pham` (`ma_loai_san_pham`),
+  CONSTRAINT `fk_san_pham_loai_san_pham` FOREIGN KEY (`ma_loai_san_pham`) REFERENCES `loai_san_pham` (`ma_loai_san_pham`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `chk_san_pham_trang_thai` CHECK ((`trang_thai` in (0,1,2))),
+  CONSTRAINT `san_pham_chk_1` CHECK ((`gia_co_ban` >= 0)),
+  CONSTRAINT `san_pham_chk_2` CHECK ((`so_luong_ton` >= 0))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `san_pham`
+--
+
+LOCK TABLES `san_pham` WRITE;
+/*!40000 ALTER TABLE `san_pham` DISABLE KEYS */;
+/*!40000 ALTER TABLE `san_pham` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `dao_dien_phim`
+--
+
+DROP TABLE IF EXISTS `dao_dien_phim`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `dao_dien_phim` (
+  `ma_phim` int NOT NULL,
+  `ma_dao_dien` int NOT NULL,
+  PRIMARY KEY (`ma_phim`,`ma_dao_dien`),
+  KEY `fk_dao_dien_phim_dao_dien` (`ma_dao_dien`),
+  CONSTRAINT `fk_dao_dien_phim_dao_dien` FOREIGN KEY (`ma_dao_dien`) REFERENCES `dao_dien` (`ma_dao_dien`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_dao_dien_phim_phim` FOREIGN KEY (`ma_phim`) REFERENCES `phim` (`ma_phim`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `dao_dien_phim`
+--
+
+LOCK TABLES `dao_dien_phim` WRITE;
+/*!40000 ALTER TABLE `dao_dien_phim` DISABLE KEYS */;
+/*!40000 ALTER TABLE `dao_dien_phim` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `the_loai_phim`
+--
+
+DROP TABLE IF EXISTS `the_loai_phim`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `the_loai_phim` (
+  `ma_phim` int NOT NULL,
+  `ma_the_loai` int NOT NULL,
+  PRIMARY KEY (`ma_phim`,`ma_the_loai`),
+  KEY `fk_the_loai_phim_the_loai` (`ma_the_loai`),
+  CONSTRAINT `fk_the_loai_phim_phim` FOREIGN KEY (`ma_phim`) REFERENCES `phim` (`ma_phim`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_the_loai_phim_the_loai` FOREIGN KEY (`ma_the_loai`) REFERENCES `the_loai` (`ma_the_loai`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `the_loai_phim`
+--
+
+LOCK TABLES `the_loai_phim` WRITE;
+/*!40000 ALTER TABLE `the_loai_phim` DISABLE KEYS */;
+/*!40000 ALTER TABLE `the_loai_phim` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tai_khoan`
+--
+
+DROP TABLE IF EXISTS `tai_khoan`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tai_khoan` (
+  `ma_tai_khoan` int NOT NULL AUTO_INCREMENT,
+  `ma_nhan_vien` int NOT NULL,
+  `ten_tai_khoan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mat_khau` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `trang_thai` tinyint NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_tai_khoan`),
+  UNIQUE KEY `ma_nhan_vien` (`ma_nhan_vien`),
+  UNIQUE KEY `ten_tai_khoan` (`ten_tai_khoan`),
+  CONSTRAINT `fk_tai_khoan_nhan_vien` FOREIGN KEY (`ma_nhan_vien`) REFERENCES `nhan_vien` (`ma_nhan_vien`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `chk_tai_khoan_trang_thai` CHECK ((`trang_thai` in (0,1)))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tai_khoan`
+--
+
+LOCK TABLES `tai_khoan` WRITE;
+/*!40000 ALTER TABLE `tai_khoan` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tai_khoan` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ghe`
+--
+
+DROP TABLE IF EXISTS `ghe`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ghe` (
+  `ma_ghe` int NOT NULL AUTO_INCREMENT,
+  `ma_phong` int NOT NULL,
+  `ma_loai_ghe` int NOT NULL,
+  `hang` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cot` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `trang_thai` tinyint NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_ghe`),
+  UNIQUE KEY `uq_ghe_phong_hang_cot` (`ma_phong`,`hang`,`cot`),
+  KEY `fk_ghe_loai_ghe` (`ma_loai_ghe`),
+  CONSTRAINT `fk_ghe_loai_ghe` FOREIGN KEY (`ma_loai_ghe`) REFERENCES `loai_ghe` (`ma_loai_ghe`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_ghe_phong` FOREIGN KEY (`ma_phong`) REFERENCES `phong_chieu` (`ma_phong`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `chk_ghe_trang_thai` CHECK ((`trang_thai` in (0,1)))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ghe`
+--
+
+LOCK TABLES `ghe` WRITE;
+/*!40000 ALTER TABLE `ghe` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ghe` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `suat_chieu`
+--
+
+DROP TABLE IF EXISTS `suat_chieu`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `suat_chieu` (
+  `ma_suat_chieu` int NOT NULL AUTO_INCREMENT,
+  `ma_phim` int NOT NULL,
+  `ma_phong` int NOT NULL,
+  `ngon_ngu_trinh_chieu` tinyint NOT NULL,
+  `tg_bat_dau` datetime NOT NULL,
+  `tg_ket_thuc` datetime NOT NULL,
+  `trang_thai` tinyint NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_suat_chieu`),
+  KEY `fk_suat_chieu_phim` (`ma_phim`),
+  KEY `fk_suat_chieu_phong` (`ma_phong`),
+  CONSTRAINT `fk_suat_chieu_phim` FOREIGN KEY (`ma_phim`) REFERENCES `phim` (`ma_phim`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_suat_chieu_phong` FOREIGN KEY (`ma_phong`) REFERENCES `phong_chieu` (`ma_phong`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `chk_suat_chieu_ngon_ngu_trinh_chieu` CHECK ((`ngon_ngu_trinh_chieu` in (0,1,2,3))),
+  CONSTRAINT `chk_suat_chieu_time` CHECK ((`tg_ket_thuc` > `tg_bat_dau`)),
+  CONSTRAINT `chk_suat_chieu_trang_thai` CHECK ((`trang_thai` in (0,1,2,3)))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `suat_chieu`
+--
+
+LOCK TABLES `suat_chieu` WRITE;
+/*!40000 ALTER TABLE `suat_chieu` DISABLE KEYS */;
+/*!40000 ALTER TABLE `suat_chieu` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ve`
+--
+
+DROP TABLE IF EXISTS `ve`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ve` (
+  `ma_ve` int NOT NULL AUTO_INCREMENT,
+  `ma_suat_chieu` int NOT NULL,
+  `ma_ghe` int NOT NULL,
+  `ma_bang_gia` int NOT NULL,
+  `trang_thai` tinyint NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_ve`),
+  UNIQUE KEY `uq_ve_suat_chieu_ghe` (`ma_suat_chieu`,`ma_ghe`),
+  KEY `fk_ve_ghe` (`ma_ghe`),
+  KEY `fk_ve_bang_gia` (`ma_bang_gia`),
+  CONSTRAINT `fk_ve_bang_gia` FOREIGN KEY (`ma_bang_gia`) REFERENCES `bang_gia_ve` (`ma_bang_gia`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_ve_ghe` FOREIGN KEY (`ma_ghe`) REFERENCES `ghe` (`ma_ghe`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_ve_suat_chieu` FOREIGN KEY (`ma_suat_chieu`) REFERENCES `suat_chieu` (`ma_suat_chieu`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `chk_ve_trang_thai` CHECK ((`trang_thai` in (0,1,2,3)))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ve`
+--
+
+LOCK TABLES `ve` WRITE;
+/*!40000 ALTER TABLE `ve` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ve` ENABLE KEYS */;
+UNLOCK TABLES;
+--
+-- Table structure for table `hoa_don`
+--
+
+DROP TABLE IF EXISTS `hoa_don`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `hoa_don` (
+  `ma_hoa_don` int NOT NULL AUTO_INCREMENT,
+  `ma_nhan_vien` int NOT NULL,
+  `phuong_thuc_thanh_toan` tinyint NOT NULL,
+  `trang_thai` tinyint NOT NULL DEFAULT '0',
+  `thoi_gian_thanh_toan` datetime DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ma_hoa_don`),
+  KEY `fk_hoa_don_nhan_vien` (`ma_nhan_vien`),
+  CONSTRAINT `fk_hoa_don_nhan_vien` FOREIGN KEY (`ma_nhan_vien`) REFERENCES `nhan_vien` (`ma_nhan_vien`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `chk_hoa_don_phuong_thuc_thanh_toan` CHECK ((`phuong_thuc_thanh_toan` in (0,1))),
+  CONSTRAINT `chk_hoa_don_trang_thai` CHECK ((`trang_thai` in (0,1,2,3)))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hoa_don`
+--
+
+LOCK TABLES `hoa_don` WRITE;
+/*!40000 ALTER TABLE `hoa_don` DISABLE KEYS */;
+/*!40000 ALTER TABLE `hoa_don` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `hoa_don_ve`
+--
+
+DROP TABLE IF EXISTS `hoa_don_ve`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `hoa_don_ve` (
+  `ma_hoa_don` int NOT NULL,
+  `ma_ve` int NOT NULL,
+  `don_gia` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`ma_hoa_don`,`ma_ve`),
+  KEY `fk_hoa_don_ve_ve` (`ma_ve`),
+  CONSTRAINT `fk_hoa_don_ve_hoa_don` FOREIGN KEY (`ma_hoa_don`) REFERENCES `hoa_don` (`ma_hoa_don`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_hoa_don_ve_ve` FOREIGN KEY (`ma_ve`) REFERENCES `ve` (`ma_ve`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `hoa_don_ve_chk_1` CHECK ((`don_gia` >= 0))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hoa_don_ve`
+--
+
+LOCK TABLES `hoa_don_ve` WRITE;
+/*!40000 ALTER TABLE `hoa_don_ve` DISABLE KEYS */;
+/*!40000 ALTER TABLE `hoa_don_ve` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `hoa_don_san_pham`
+--
+
+DROP TABLE IF EXISTS `hoa_don_san_pham`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `hoa_don_san_pham` (
+  `ma_hoa_don` int NOT NULL,
+  `ma_san_pham` int NOT NULL,
+  `so_luong_tong` int NOT NULL DEFAULT '1',
+  `don_gia` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`ma_hoa_don`,`ma_san_pham`),
+  KEY `fk_hoa_don_san_pham_san_pham` (`ma_san_pham`),
+  CONSTRAINT `fk_hoa_don_san_pham_hoa_don` FOREIGN KEY (`ma_hoa_don`) REFERENCES `hoa_don` (`ma_hoa_don`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_hoa_don_san_pham_san_pham` FOREIGN KEY (`ma_san_pham`) REFERENCES `san_pham` (`ma_san_pham`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `hoa_don_san_pham_chk_1` CHECK ((`so_luong_tong` > 0)),
+  CONSTRAINT `hoa_don_san_pham_chk_2` CHECK ((`don_gia` >= 0))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hoa_don_san_pham`
+--
+
+LOCK TABLES `hoa_don_san_pham` WRITE;
+/*!40000 ALTER TABLE `hoa_don_san_pham` DISABLE KEYS */;
+/*!40000 ALTER TABLE `hoa_don_san_pham` ENABLE KEYS */;
+UNLOCK TABLES;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2026-04-21 10:31:21
+
+USE cinema_db;
+
+-- =========================
+-- chuc_vu
+-- =========================
+INSERT IGNORE INTO chuc_vu (ten_chuc_vu) VALUES
+('Quản Trị Viên'),
+('Quản Lý'),
+('Nhân Viên');
+
+-- =========================
+-- dao_dien
+-- =========================
+INSERT IGNORE INTO dao_dien (ten_dao_dien) VALUES
+('Đỗ Quốc Trung'),
+('Võ Thạch Thảo'),
+('Lưu Thành Luân'),
+('Phan Gia Nhật Linh'),
+('Antoine Fuqua'),
+('Đỗ Đức Thịnh'),
+('Henry Selick'),
+('Matt Bettinelli-Olpin'),
+('Tyler Gillett'),
+('Phil Lord'),
+('Christopher Miller'),
+('Frank Darabont'),
+('Francis Ford Coppola'),
+('Christopher Nolan'),
+('Peter Jackson'),
+('Lana Wachowski'),
+('Lilly Wachowski'),
+('Irvin Kershner'),
+('James Cameron'),
+('Hayao Miyazaki'),
+('Nguyễn Quang Dũng'),
+('Vũ Ngọc Đãng'),
+('Victor Vũ'),
+('Nhất Trung'),
+('Võ Thanh Hòa'),
+('Lý Hải'),
+('Nguyễn Thành Nam'),
+('Vasily Rovensky'),
+('Ricard Cussó'),
+('Rio Harrington'),
+('Lee Cronin'),
+('Aaron Horvath'),
+('Michael Jelenic'),
+('David Yates'),
+('Destin Daniel Cretton');
+
+-- =========================
+-- loai_ghe
+-- =========================
+INSERT IGNORE INTO loai_ghe (ten_loai_ghe) VALUES
+('Ghế Phổ Thông'),
+('Ghế Đôi'),
+('Ghế VIP'),
+('Ghế Premium');
+
+-- =========================
+-- loai_phong
+-- =========================
+INSERT IGNORE INTO loai_phong (ten_loai_phong) VALUES
+('Phòng Thường'),
+('Phòng 3D'),
+('Phòng IMAX'),
+('Phòng 4DX'),
+('Phòng Gold');
+
+-- =========================
+-- loai_san_pham
+-- =========================
+INSERT IGNORE INTO loai_san_pham (ten_loai_san_pham) VALUES
+('Đồ Ăn'),
+('Thức Uống'),
+('Combo'),
+('Merchandise');
+
+-- =========================
+-- the_loai
+-- =========================
+INSERT IGNORE INTO the_loai (ten_the_loai) VALUES
+('Hành Động (Action)'),
+('Phiêu Lưu (Adventure)'),
+('Hoạt Hình (Animation)'),
+('Hài (Comedy)'),
+('Chính Kịch (Drama)'),
+('Giả Tưởng (Fantasy)'),
+('Lịch Sử (Historical)'),
+('Kinh Dị (Horror)'),
+('Tâm Lý Tình Cảm (Melodrama)'),
+('Nhạc Kịch (Musical)'),
+('Noir (Noir)'),
+('Tình Cảm (Romance)'),
+('Khoa Học Viễn Tưởng (Science Fiction)'),
+('Giật Gân (Thriller)'),
+('Viễn Tây (Western)'),
+('Tội Phạm (Crime)'),
+('Bí Ẩn (Mystery)'),
+('Phim Tài Liệu (Documentary)');
+-- =========================
+-- rap
+-- =========================
+INSERT IGNORE INTO rap (ten_rap, dia_chi) VALUES
+('HSKN1 Cinema Gò Vấp', '12 Nguyễn Văn Bảo, Hạnh Thông, Hồ Chí Minh');
+
+-- =========================
+-- phim
+-- MovieStatus:
+-- 0 = COMING_SOON
+-- 1 = SHOWING
+-- 2 = DISCONTINUED
+--
+-- MovieAgeRating:
+-- 0 = P
+-- 1 = K
+-- 2 = T13
+-- 3 = T16
+-- 4 = T18
+-- 5 = C
+-- =========================
+
+INSERT INTO phim (
+    ten_phim,
+    thoi_luong,
+    ngay_phat_hanh,
+    ngon_ngu,
+    trang_thai,
+    gioi_han_tuoi,
+    url_anh
+) VALUES
+('Heo Năm Móng', 103, '2026-04-24', 'Tiếng Việt', 1, 4, '/images/movie_img/movie_1.jpg'),
+
+('Trùm Sò', 105, '2026-04-24', 'Tiếng Việt', 1, 1, '/images/movie_img/movie_2.jpg'),
+
+('Phí Phông: Quỷ Máu Rừng Thiêng', 120, '2026-04-16', 'Tiếng Việt', 1, 3, '/images/movie_img/movie_3.jpg'),
+
+('Đại Tiệc Trăng Máu 8', 130, '2026-04-23', 'Tiếng Việt', 1, 3, '/images/movie_img/movie_4.jpg'),
+
+('Anh Hùng', 122, '2026-04-24', 'Tiếng Việt', 1, 2, '/images/movie_img/movie_5.jpg'),
+
+('Mèo Siêu Quậy Ở Viện Bảo Tàng 2: Đại Náo Kim Tự Tháp', 90, '2026-04-24', 'Tiếng Nga', 1, 0, '/images/movie_img/movie_6.jpg'),
+
+('Cá Con Cau Có', 92, '2026-04-24', 'Tiếng Anh', 1, 0, '/images/movie_img/movie_7.jpg'),
+
+('Michael', 127, '2026-04-22', 'Tiếng Anh', 1, 1, '/images/movie_img/movie_8.jpg'),
+
+('Xác Ướp', 133, '2026-04-17', 'Tiếng Anh', 1, 4, '/images/movie_img/movie_9.jpg'),
+
+('Super Mario Thiên Hà', 98, '2026-04-03', 'Tiếng Anh', 1, 0, '/images/movie_img/movie_10.jpg'),
+
+('Chúa Tể Của Những Chiếc Nhẫn: Sự Trở Lại Của Nhà Vua', 201, '2003-12-03', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_11.jpg'),
+
+('Chúa Tể Của Những Chiếc Nhẫn: Hiệp Hội Nhẫn Thần', 179, '2001-12-10', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_12.jpg'),
+
+('Chúa Tể Của Những Chiếc Nhẫn: Hai Tòa Tháp', 179, '2002-12-18', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_13.jpg'),
+
+('Người Hobbit: Hành Trình Vô Định', 169, '2012-12-28', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_14.jpg'),
+
+('Người Hobbit: Đại Chiến Với Rồng Lửa', 161, '2014-01-03', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_15.jpg'),
+
+('Người Hobbit: Đại Chiến Năm Cánh Quân', 144, '2014-12-19', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_16.jpg'),
+
+('Harry Potter và Chiếc Cốc Lửa', 157, '2006-08-25', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_17.jpg'),
+
+('Harry Potter và Tù Nhân Azkaban', 141, '2004-05-31', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_18.jpg'),
+
+('Harry Potter và Căn Phòng Bí Mật', 161, '2002-11-03', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_19.jpg'),
+
+('Harry Potter và Hội Phượng Hoàng', 138, '2007-07-11', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_20.jpg'),
+
+('Harry Potter và Hòn Đá Phù Thủy', 152, '2001-11-16', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_21.jpg'),
+
+('Harry Potter và Hoàng Tử Lai', 153, '2009-07-24', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_22.jpg'),
+
+('Harry Potter và Bảo Bối Tử Thần: Phần 1', 146, '2010-11-26', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_23.jpg'),
+
+('Harry Potter và Bảo Bối Tử Thần: Phần 2', 130, '2012-02-03', 'Tiếng Anh', 2, 2, '/images/movie_img/movie_24.jpg'),
+
+('Bố Già', 175, '1972-03-24', 'Tiếng Anh', 2, 4, '/images/movie_img/movie_25.jpg'),
+
+('Bố Già 2', 202, '1974-12-20', 'Tiếng Anh', 2, 4, '/images/movie_img/movie_26.jpg'),
+
+('Bố Già 3', 162, '1990-12-25', 'Tiếng Anh', 2, 4, '/images/movie_img/movie_27.jpg'),
+
+('Người Nhện: Khởi Đầu Mới', 120, '2026-07-31', 'Tiếng Anh', 0, 0, '/images/movie_img/movie_28.jpg');
+
+INSERT INTO bang_gia_ve (ma_loai_ghe, ma_loai_phong, gia) VALUES
+-- Phòng Thường
+(1, 1, 75000),
+(2, 1, 160000),
+
+-- Phòng 3D
+(1, 2, 95000),
+(2, 2, 208000),
+
+-- Phòng IMAX
+(1, 3, 160000),
+(2, 3, 320000),
+(3, 3, 450000),
+
+-- Phòng 4DX
+(2, 4, 380000),
+(3, 4, 530000),
+
+-- Phòng Gold
+(3, 5, 650000),
+(4, 5, 800000);
+
+INSERT INTO nhan_vien (
+    ten_nhan_vien,
+    gioi_tinh,
+    so_dien_thoai,
+    ngay_sinh,
+    email,
+    ngay_vao_lam,
+    ma_chuc_vu,
+    trang_thai
+) VALUES
+('Đoàn Minh Huy', 1, '0967000000', '2000-05-15', 'doanminhhuy@gmail.com', '2025-08-09', 1, 1),
+('Bùi Quốc Anh', 1, '0961234567', '2002-08-28', 'buiquocanh@gmail.com', '2021-01-09', 2, 1),
+('Trần Hải Anh', 1, '0967654321', '1999-12-05', 'tranhaianh@gmail.com', '2019-01-02', 3, 2),
+('Nguyễn Thị Bình', 0, '0961233211', '1980-04-25', 'ntbinh@gmail.com', '2016-07-02', 3, 0);
+
+INSERT INTO phong_chieu (
+    ten_phong,
+    ma_rap,
+    ma_loai_phong,
+    trang_thai
+) VALUES
+('PT 01', 1, 1, 0),
+('PT 02', 1, 1, 0),
+('PT 03', 1, 1, 0),
+('3D 01', 1, 2, 0),
+('3D 02', 1, 2, 0),
+('IMAX 01', 1, 3, 0),
+('IMAX 02', 1, 3, 0),
+('4DX 01', 1, 4, 0),
+('4DX 02', 1, 4, 0),
+('Gold 01', 1, 5, 0);
+
+INSERT INTO san_pham
+(ten_san_pham, ma_loai_san_pham, gia_co_ban, so_luong_ton, trang_thai, url_anh)
+VALUES
+('Bắp L', 1, 65000, 40, 1, '/images/product_img/food_img/food_1.png'),
+('Bắp M', 1, 55000, 30, 1, '/images/product_img/food_img/food_2.png'),
+('Bắp S', 1, 45000, 15, 1, '/images/product_img/food_img/food_3.png'),
+('Bột Phô Mai', 1, 10000, 36, 1, '/images/product_img/food_img/food_4.png'),
+
+('Pepsi L', 2, 45000, 20, 1, '/images/product_img/drink_img/drink_1.png'),
+('Pepsi M', 2, 35000, 15, 1, '/images/product_img/drink_img/drink_2.png'),
+('Coca-Cola L', 2, 45000, 30, 1, '/images/product_img/drink_img/drink_3.png'),
+('Coca-Cola M', 2, 35000, 20, 1, '/images/product_img/drink_img/drink_4.png'),
+
+('1 Bắp L 2 Nước M', 3, 120000, 24, 1, '/images/product_img/combo_img/combo_1.png'),
+('2 Bắp M', 3, 100000, 13, 1, '/images/product_img/combo_img/combo_2.png'),
+('2 Nước M', 3, 55000, 11, 1, '/images/product_img/combo_img/combo_3.png'),
+
+('Michael''s Merchandise', 4, 67000, 29, 1, '/images/product_img/merchandise_img/merch_1.png');
+
+INSERT INTO dao_dien_phim (ma_phim, ma_dao_dien) VALUES
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 21),
+(5, 6),
+(6, 28),
+(7, 7),
+(8, 5),
+(9, 8),
+(9, 9),
+(10, 10),
+(10, 11),
+(11, 15),
+(12, 15),
+(13, 15),
+(14, 15),
+(15, 15),
+(16, 15),
+(17, 14),
+(18, 20),
+(19, 12),
+(20, 13),
+(21, 18),
+(22, 19),
+(23, 16),
+(24, 17),
+(25, 13),
+(26, 13),
+(27, 13),
+(28, 10),
+(28, 11);
+
+INSERT INTO the_loai_phim (ma_phim, ma_the_loai) VALUES
+-- 1. Heo Năm Móng
+(1, 8),
+(1, 14),
+
+-- 2. Trùm Sò
+(2, 4),
+(2, 5),
+
+-- 3. Phí Phông: Quỷ Máu Rừng Thiêng
+(3, 8),
+(3, 17),
+(3, 14),
+
+-- 4. Đại Tiệc Trăng Máu 8
+(4, 5),
+(4, 4),
+(4, 14),
+
+-- 5. Anh Hùng
+(5, 1),
+(5, 2),
+(5, 5),
+
+-- 6. Mèo Siêu Quậy Ở Viện Bảo Tàng 2: Đại Náo Kim Tự Tháp
+(6, 3),
+(6, 2),
+(6, 4),
+
+-- 7. Cá Con Cau Có
+(7, 3),
+(7, 2),
+(7, 4),
+
+-- 8. Michael
+(8, 5),
+(8, 10),
+
+-- 9. Xác Ướp
+(9, 8),
+(9, 17),
+(9, 14),
+
+-- 10. Super Mario Thiên Hà
+(10, 3),
+(10, 2),
+(10, 4),
+(10, 6),
+
+-- 11. Chúa Tể Của Những Chiếc Nhẫn: Sự Trở Lại Của Nhà Vua
+(11, 2),
+(11, 6),
+(11, 1),
+(11, 5),
+
+-- 12. Chúa Tể Của Những Chiếc Nhẫn: Hiệp Hội Nhẫn Thần
+(12, 2),
+(12, 6),
+(12, 1),
+
+-- 13. Chúa Tể Của Những Chiếc Nhẫn: Hai Tòa Tháp
+(13, 2),
+(13, 6),
+(13, 1),
+
+-- 14. Người Hobbit: Hành Trình Vô Định
+(14, 2),
+(14, 6),
+(14, 1),
+
+-- 15. Người Hobbit: Đại Chiến Với Rồng Lửa
+(15, 2),
+(15, 6),
+(15, 1),
+
+-- 16. Người Hobbit: Đại Chiến Năm Cánh Quân
+(16, 2),
+(16, 6),
+(16, 1),
+
+-- 17. Harry Potter và Chiếc Cốc Lửa
+(17, 2),
+(17, 6),
+(17, 17),
+
+-- 18. Harry Potter và Tù Nhân Azkaban
+(18, 2),
+(18, 6),
+(18, 17),
+
+-- 19. Harry Potter và Căn Phòng Bí Mật
+(19, 2),
+(19, 6),
+(19, 17),
+
+-- 20. Harry Potter và Hội Phượng Hoàng
+(20, 2),
+(20, 6),
+(20, 17),
+
+-- 21. Harry Potter và Hòn Đá Phù Thủy
+(21, 2),
+(21, 6),
+
+-- 22. Harry Potter và Hoàng Tử Lai
+(22, 2),
+(22, 6),
+(22, 17),
+
+-- 23. Harry Potter và Bảo Bối Tử Thần: Phần 1
+(23, 2),
+(23, 6),
+(23, 17),
+
+-- 24. Harry Potter và Bảo Bối Tử Thần: Phần 2
+(24, 2),
+(24, 6),
+(24, 1),
+
+-- 25. Bố Già
+(25, 16),
+(25, 5),
+
+-- 26. Bố Già 2
+(26, 16),
+(26, 5),
+
+-- 27. Bố Già 3
+(27, 16),
+(27, 5),
+(27, 14),
+
+-- 28. Người Nhện: Khởi Đầu Mới
+(28, 1),
+(28, 2),
+(28, 13);
+
+INSERT INTO tai_khoan (
+    ma_nhan_vien,
+    ten_tai_khoan,
+    mat_khau,
+    trang_thai
+) VALUES
+(1, 'QTV1@huy', 'abc123', 1),
+(2, 'QL2@anh', 'abc123', 1),
+(3, 'NV3@anh', 'abc123', 1),
+(4, 'NV4@binh', 'abc123', 0);
+
+USE cinema_db;
+
+-- =========================
+-- ghe
+-- SeatStatus: 0 = AVAILABLE, 1 = MAINTENANCE
+-- ma_loai_ghe: 1 = Ghe Pho Thong, 2 = Ghe Doi, 3 = Ghe VIP, 4 = Ghe Premium
+-- Tong so dong ghe: 490
+-- =========================
+
+INSERT IGNORE INTO ghe (ma_phong, ma_loai_ghe, hang, cot, trang_thai) VALUES
+-- PT 01
+(1, 1, 'A', '1', 0),
+(1, 1, 'A', '2', 0),
+(1, 1, 'A', '3', 0),
+(1, 1, 'A', '4', 0),
+(1, 1, 'A', '5', 0),
+(1, 1, 'A', '6', 0),
+(1, 1, 'A', '7', 0),
+(1, 1, 'A', '8', 0),
+(1, 1, 'B', '1', 0),
+(1, 1, 'B', '2', 0),
+(1, 1, 'B', '3', 0),
+(1, 1, 'B', '4', 0),
+(1, 1, 'B', '5', 0),
+(1, 1, 'B', '6', 0),
+(1, 1, 'B', '7', 0),
+(1, 1, 'B', '8', 0),
+(1, 1, 'C', '1', 0),
+(1, 1, 'C', '2', 0),
+(1, 1, 'C', '3', 0),
+(1, 1, 'C', '4', 0),
+(1, 1, 'C', '5', 0),
+(1, 1, 'C', '6', 0),
+(1, 1, 'C', '7', 0),
+(1, 1, 'C', '8', 0),
+(1, 1, 'D', '1', 0),
+(1, 1, 'D', '2', 0),
+(1, 1, 'D', '3', 0),
+(1, 1, 'D', '4', 0),
+(1, 1, 'D', '5', 0),
+(1, 1, 'D', '6', 0),
+(1, 1, 'D', '7', 0),
+(1, 1, 'D', '8', 0),
+(1, 1, 'E', '1', 0),
+(1, 1, 'E', '2', 0),
+(1, 1, 'E', '3', 0),
+(1, 1, 'E', '4', 0),
+(1, 1, 'E', '5', 0),
+(1, 1, 'E', '6', 0),
+(1, 1, 'E', '7', 0),
+(1, 1, 'E', '8', 0),
+(1, 2, 'F', '1', 0),
+(1, 2, 'F', '2', 0),
+(1, 2, 'F', '3', 0),
+(1, 2, 'F', '4', 0),
+-- PT 02
+(2, 1, 'A', '1', 0),
+(2, 1, 'A', '2', 0),
+(2, 1, 'A', '3', 0),
+(2, 1, 'A', '4', 0),
+(2, 1, 'A', '5', 0),
+(2, 1, 'A', '6', 0),
+(2, 1, 'A', '7', 0),
+(2, 1, 'A', '8', 0),
+(2, 1, 'B', '1', 0),
+(2, 1, 'B', '2', 0),
+(2, 1, 'B', '3', 0),
+(2, 1, 'B', '4', 0),
+(2, 1, 'B', '5', 0),
+(2, 1, 'B', '6', 0),
+(2, 1, 'B', '7', 0),
+(2, 1, 'B', '8', 0),
+(2, 1, 'C', '1', 0),
+(2, 1, 'C', '2', 0),
+(2, 1, 'C', '3', 0),
+(2, 1, 'C', '4', 0),
+(2, 1, 'C', '5', 0),
+(2, 1, 'C', '6', 0),
+(2, 1, 'C', '7', 0),
+(2, 1, 'C', '8', 0),
+(2, 1, 'D', '1', 0),
+(2, 1, 'D', '2', 0),
+(2, 1, 'D', '3', 0),
+(2, 1, 'D', '4', 0),
+(2, 1, 'D', '5', 0),
+(2, 1, 'D', '6', 0),
+(2, 1, 'D', '7', 0),
+(2, 1, 'D', '8', 0),
+(2, 1, 'E', '1', 0),
+(2, 1, 'E', '2', 0),
+(2, 1, 'E', '3', 0),
+(2, 1, 'E', '4', 0),
+(2, 1, 'E', '5', 0),
+(2, 1, 'E', '6', 0),
+(2, 1, 'E', '7', 0),
+(2, 1, 'E', '8', 0),
+(2, 2, 'F', '1', 0),
+(2, 2, 'F', '2', 0),
+(2, 2, 'F', '3', 0),
+(2, 2, 'F', '4', 0),
+-- PT 03
+(3, 1, 'A', '1', 0),
+(3, 1, 'A', '2', 0),
+(3, 1, 'A', '3', 0),
+(3, 1, 'A', '4', 0),
+(3, 1, 'A', '5', 0),
+(3, 1, 'A', '6', 0),
+(3, 1, 'A', '7', 0),
+(3, 1, 'A', '8', 0),
+(3, 1, 'B', '1', 0),
+(3, 1, 'B', '2', 0),
+(3, 1, 'B', '3', 0),
+(3, 1, 'B', '4', 0),
+(3, 1, 'B', '5', 0),
+(3, 1, 'B', '6', 0),
+(3, 1, 'B', '7', 0),
+(3, 1, 'B', '8', 0),
+(3, 1, 'C', '1', 0),
+(3, 1, 'C', '2', 0),
+(3, 1, 'C', '3', 0),
+(3, 1, 'C', '4', 0),
+(3, 1, 'C', '5', 0),
+(3, 1, 'C', '6', 0),
+(3, 1, 'C', '7', 0),
+(3, 1, 'C', '8', 0),
+(3, 1, 'D', '1', 0),
+(3, 1, 'D', '2', 0),
+(3, 1, 'D', '3', 0),
+(3, 1, 'D', '4', 0),
+(3, 1, 'D', '5', 0),
+(3, 1, 'D', '6', 0),
+(3, 1, 'D', '7', 0),
+(3, 1, 'D', '8', 0),
+(3, 1, 'E', '1', 0),
+(3, 1, 'E', '2', 0),
+(3, 1, 'E', '3', 0),
+(3, 1, 'E', '4', 0),
+(3, 1, 'E', '5', 0),
+(3, 1, 'E', '6', 0),
+(3, 1, 'E', '7', 0),
+(3, 1, 'E', '8', 0),
+(3, 2, 'F', '1', 0),
+(3, 2, 'F', '2', 0),
+(3, 2, 'F', '3', 0),
+(3, 2, 'F', '4', 0),
+-- 3D 01
+(4, 1, 'A', '1', 0),
+(4, 1, 'A', '2', 0),
+(4, 1, 'A', '3', 0),
+(4, 1, 'A', '4', 0),
+(4, 1, 'A', '5', 0),
+(4, 1, 'A', '6', 0),
+(4, 1, 'A', '7', 0),
+(4, 1, 'A', '8', 0),
+(4, 1, 'B', '1', 0),
+(4, 1, 'B', '2', 0),
+(4, 1, 'B', '3', 0),
+(4, 1, 'B', '4', 0),
+(4, 1, 'B', '5', 0),
+(4, 1, 'B', '6', 0),
+(4, 1, 'B', '7', 0),
+(4, 1, 'B', '8', 0),
+(4, 1, 'C', '1', 0),
+(4, 1, 'C', '2', 0),
+(4, 1, 'C', '3', 0),
+(4, 1, 'C', '4', 0),
+(4, 1, 'C', '5', 0),
+(4, 1, 'C', '6', 0),
+(4, 1, 'C', '7', 0),
+(4, 1, 'C', '8', 0),
+(4, 1, 'D', '1', 0),
+(4, 1, 'D', '2', 0),
+(4, 1, 'D', '3', 0),
+(4, 1, 'D', '4', 0),
+(4, 1, 'D', '5', 0),
+(4, 1, 'D', '6', 0),
+(4, 1, 'D', '7', 0),
+(4, 1, 'D', '8', 0),
+(4, 1, 'E', '1', 0),
+(4, 1, 'E', '2', 0),
+(4, 1, 'E', '3', 0),
+(4, 1, 'E', '4', 0),
+(4, 1, 'E', '5', 0),
+(4, 1, 'E', '6', 0),
+(4, 1, 'E', '7', 0),
+(4, 1, 'E', '8', 0),
+(4, 1, 'F', '1', 0),
+(4, 1, 'F', '2', 0),
+(4, 1, 'F', '3', 0),
+(4, 1, 'F', '4', 0),
+(4, 1, 'F', '5', 0),
+(4, 1, 'F', '6', 0),
+(4, 1, 'F', '7', 0),
+(4, 1, 'F', '8', 0),
+(4, 2, 'G', '1', 0),
+(4, 2, 'G', '2', 0),
+(4, 2, 'G', '3', 0),
+(4, 2, 'G', '4', 0),
+-- 3D 02
+(5, 1, 'A', '1', 0),
+(5, 1, 'A', '2', 0),
+(5, 1, 'A', '3', 0),
+(5, 1, 'A', '4', 0),
+(5, 1, 'A', '5', 0),
+(5, 1, 'A', '6', 0),
+(5, 1, 'A', '7', 0),
+(5, 1, 'A', '8', 0),
+(5, 1, 'B', '1', 0),
+(5, 1, 'B', '2', 0),
+(5, 1, 'B', '3', 0),
+(5, 1, 'B', '4', 0),
+(5, 1, 'B', '5', 0),
+(5, 1, 'B', '6', 0),
+(5, 1, 'B', '7', 0),
+(5, 1, 'B', '8', 0),
+(5, 1, 'C', '1', 0),
+(5, 1, 'C', '2', 0),
+(5, 1, 'C', '3', 0),
+(5, 1, 'C', '4', 0),
+(5, 1, 'C', '5', 0),
+(5, 1, 'C', '6', 0),
+(5, 1, 'C', '7', 0),
+(5, 1, 'C', '8', 0),
+(5, 1, 'D', '1', 0),
+(5, 1, 'D', '2', 0),
+(5, 1, 'D', '3', 0),
+(5, 1, 'D', '4', 0),
+(5, 1, 'D', '5', 0),
+(5, 1, 'D', '6', 0),
+(5, 1, 'D', '7', 0),
+(5, 1, 'D', '8', 0),
+(5, 1, 'E', '1', 0),
+(5, 1, 'E', '2', 0),
+(5, 1, 'E', '3', 0),
+(5, 1, 'E', '4', 0),
+(5, 1, 'E', '5', 0),
+(5, 1, 'E', '6', 0),
+(5, 1, 'E', '7', 0),
+(5, 1, 'E', '8', 0),
+(5, 1, 'F', '1', 0),
+(5, 1, 'F', '2', 0),
+(5, 1, 'F', '3', 0),
+(5, 1, 'F', '4', 0),
+(5, 1, 'F', '5', 0),
+(5, 1, 'F', '6', 0),
+(5, 1, 'F', '7', 0),
+(5, 1, 'F', '8', 0),
+(5, 2, 'G', '1', 0),
+(5, 2, 'G', '2', 0),
+(5, 2, 'G', '3', 0),
+(5, 2, 'G', '4', 0),
+-- IMAX 01
+(6, 1, 'A', '1', 0),
+(6, 1, 'A', '2', 0),
+(6, 1, 'A', '3', 0),
+(6, 1, 'A', '4', 0),
+(6, 1, 'A', '5', 0),
+(6, 1, 'A', '6', 0),
+(6, 1, 'A', '7', 0),
+(6, 1, 'A', '8', 0),
+(6, 1, 'A', '9', 0),
+(6, 1, 'A', '10', 0),
+(6, 1, 'B', '1', 0),
+(6, 1, 'B', '2', 0),
+(6, 1, 'B', '3', 0),
+(6, 1, 'B', '4', 0),
+(6, 1, 'B', '5', 0),
+(6, 1, 'B', '6', 0),
+(6, 1, 'B', '7', 0),
+(6, 1, 'B', '8', 0),
+(6, 1, 'B', '9', 0),
+(6, 1, 'B', '10', 0),
+(6, 1, 'C', '1', 0),
+(6, 1, 'C', '2', 0),
+(6, 1, 'C', '3', 0),
+(6, 1, 'C', '4', 0),
+(6, 1, 'C', '5', 0),
+(6, 1, 'C', '6', 0),
+(6, 1, 'C', '7', 0),
+(6, 1, 'C', '8', 0),
+(6, 1, 'C', '9', 0),
+(6, 1, 'C', '10', 0),
+(6, 3, 'D', '1', 0),
+(6, 3, 'D', '2', 0),
+(6, 3, 'D', '3', 0),
+(6, 3, 'D', '4', 0),
+(6, 3, 'D', '5', 0),
+(6, 3, 'D', '6', 0),
+(6, 3, 'D', '7', 0),
+(6, 3, 'D', '8', 0),
+(6, 3, 'D', '9', 0),
+(6, 3, 'D', '10', 0),
+(6, 3, 'E', '1', 0),
+(6, 3, 'E', '2', 0),
+(6, 3, 'E', '3', 0),
+(6, 3, 'E', '4', 0),
+(6, 3, 'E', '5', 0),
+(6, 3, 'E', '6', 0),
+(6, 3, 'E', '7', 0),
+(6, 3, 'E', '8', 0),
+(6, 3, 'E', '9', 0),
+(6, 3, 'E', '10', 0),
+(6, 3, 'F', '1', 0),
+(6, 3, 'F', '2', 0),
+(6, 3, 'F', '3', 0),
+(6, 3, 'F', '4', 0),
+(6, 3, 'F', '5', 0),
+(6, 3, 'F', '6', 0),
+(6, 3, 'F', '7', 0),
+(6, 3, 'F', '8', 0),
+(6, 3, 'F', '9', 0),
+(6, 3, 'F', '10', 0),
+(6, 3, 'G', '1', 0),
+(6, 3, 'G', '2', 0),
+(6, 3, 'G', '3', 0),
+(6, 3, 'G', '4', 0),
+(6, 3, 'G', '5', 0),
+(6, 3, 'G', '6', 0),
+(6, 3, 'G', '7', 0),
+(6, 3, 'G', '8', 0),
+(6, 3, 'G', '9', 0),
+(6, 3, 'G', '10', 0),
+(6, 2, 'H', '1', 0),
+(6, 2, 'H', '2', 0),
+(6, 2, 'H', '3', 0),
+(6, 2, 'H', '4', 0),
+(6, 2, 'H', '5', 0),
+-- IMAX 02
+(7, 1, 'A', '1', 0),
+(7, 1, 'A', '2', 0),
+(7, 1, 'A', '3', 0),
+(7, 1, 'A', '4', 0),
+(7, 1, 'A', '5', 0),
+(7, 1, 'A', '6', 0),
+(7, 1, 'A', '7', 0),
+(7, 1, 'A', '8', 0),
+(7, 1, 'A', '9', 0),
+(7, 1, 'A', '10', 0),
+(7, 1, 'B', '1', 0),
+(7, 1, 'B', '2', 0),
+(7, 1, 'B', '3', 0),
+(7, 1, 'B', '4', 0),
+(7, 1, 'B', '5', 0),
+(7, 1, 'B', '6', 0),
+(7, 1, 'B', '7', 0),
+(7, 1, 'B', '8', 0),
+(7, 1, 'B', '9', 0),
+(7, 1, 'B', '10', 0),
+(7, 1, 'C', '1', 0),
+(7, 1, 'C', '2', 0),
+(7, 1, 'C', '3', 0),
+(7, 1, 'C', '4', 0),
+(7, 1, 'C', '5', 0),
+(7, 1, 'C', '6', 0),
+(7, 1, 'C', '7', 0),
+(7, 1, 'C', '8', 0),
+(7, 1, 'C', '9', 0),
+(7, 1, 'C', '10', 0),
+(7, 3, 'D', '1', 0),
+(7, 3, 'D', '2', 0),
+(7, 3, 'D', '3', 0),
+(7, 3, 'D', '4', 0),
+(7, 3, 'D', '5', 0),
+(7, 3, 'D', '6', 0),
+(7, 3, 'D', '7', 0),
+(7, 3, 'D', '8', 0),
+(7, 3, 'D', '9', 0),
+(7, 3, 'D', '10', 0),
+(7, 3, 'E', '1', 0),
+(7, 3, 'E', '2', 0),
+(7, 3, 'E', '3', 0),
+(7, 3, 'E', '4', 0),
+(7, 3, 'E', '5', 0),
+(7, 3, 'E', '6', 0),
+(7, 3, 'E', '7', 0),
+(7, 3, 'E', '8', 0),
+(7, 3, 'E', '9', 0),
+(7, 3, 'E', '10', 0),
+(7, 3, 'F', '1', 0),
+(7, 3, 'F', '2', 0),
+(7, 3, 'F', '3', 0),
+(7, 3, 'F', '4', 0),
+(7, 3, 'F', '5', 0),
+(7, 3, 'F', '6', 0),
+(7, 3, 'F', '7', 0),
+(7, 3, 'F', '8', 0),
+(7, 3, 'F', '9', 0),
+(7, 3, 'F', '10', 0),
+(7, 3, 'G', '1', 0),
+(7, 3, 'G', '2', 0),
+(7, 3, 'G', '3', 0),
+(7, 3, 'G', '4', 0),
+(7, 3, 'G', '5', 0),
+(7, 3, 'G', '6', 0),
+(7, 3, 'G', '7', 0),
+(7, 3, 'G', '8', 0),
+(7, 3, 'G', '9', 0),
+(7, 3, 'G', '10', 0),
+(7, 2, 'H', '1', 0),
+(7, 2, 'H', '2', 0),
+(7, 2, 'H', '3', 0),
+(7, 2, 'H', '4', 0),
+(7, 2, 'H', '5', 0),
+-- 4DX 01
+(8, 3, 'A', '1', 0),
+(8, 3, 'A', '2', 0),
+(8, 3, 'A', '3', 0),
+(8, 3, 'A', '4', 0),
+(8, 3, 'A', '5', 0),
+(8, 3, 'A', '6', 0),
+(8, 3, 'A', '7', 0),
+(8, 3, 'A', '8', 0),
+(8, 3, 'B', '1', 0),
+(8, 3, 'B', '2', 0),
+(8, 3, 'B', '3', 0),
+(8, 3, 'B', '4', 0),
+(8, 3, 'B', '5', 0),
+(8, 3, 'B', '6', 0),
+(8, 3, 'B', '7', 0),
+(8, 3, 'B', '8', 0),
+(8, 3, 'C', '1', 0),
+(8, 3, 'C', '2', 0),
+(8, 3, 'C', '3', 0),
+(8, 3, 'C', '4', 0),
+(8, 3, 'C', '5', 0),
+(8, 3, 'C', '6', 0),
+(8, 3, 'C', '7', 0),
+(8, 3, 'C', '8', 0),
+(8, 3, 'D', '1', 0),
+(8, 3, 'D', '2', 0),
+(8, 3, 'D', '3', 0),
+(8, 3, 'D', '4', 0),
+(8, 3, 'D', '5', 0),
+(8, 3, 'D', '6', 0),
+(8, 3, 'D', '7', 0),
+(8, 3, 'D', '8', 0),
+(8, 2, 'E', '1', 0),
+(8, 2, 'E', '2', 0),
+(8, 2, 'E', '3', 0),
+(8, 2, 'E', '4', 0),
+-- 4DX 02
+(9, 3, 'A', '1', 0),
+(9, 3, 'A', '2', 0),
+(9, 3, 'A', '3', 0),
+(9, 3, 'A', '4', 0),
+(9, 3, 'A', '5', 0),
+(9, 3, 'A', '6', 0),
+(9, 3, 'A', '7', 0),
+(9, 3, 'A', '8', 0),
+(9, 3, 'B', '1', 0),
+(9, 3, 'B', '2', 0),
+(9, 3, 'B', '3', 0),
+(9, 3, 'B', '4', 0),
+(9, 3, 'B', '5', 0),
+(9, 3, 'B', '6', 0),
+(9, 3, 'B', '7', 0),
+(9, 3, 'B', '8', 0),
+(9, 3, 'C', '1', 0),
+(9, 3, 'C', '2', 0),
+(9, 3, 'C', '3', 0),
+(9, 3, 'C', '4', 0),
+(9, 3, 'C', '5', 0),
+(9, 3, 'C', '6', 0),
+(9, 3, 'C', '7', 0),
+(9, 3, 'C', '8', 0),
+(9, 3, 'D', '1', 0),
+(9, 3, 'D', '2', 0),
+(9, 3, 'D', '3', 0),
+(9, 3, 'D', '4', 0),
+(9, 3, 'D', '5', 0),
+(9, 3, 'D', '6', 0),
+(9, 3, 'D', '7', 0),
+(9, 3, 'D', '8', 0),
+(9, 2, 'E', '1', 0),
+(9, 2, 'E', '2', 0),
+(9, 2, 'E', '3', 0),
+(9, 2, 'E', '4', 0),
+-- Gold 01
+(10, 3, 'A', '1', 0),
+(10, 3, 'A', '2', 0),
+(10, 3, 'A', '3', 0),
+(10, 3, 'A', '4', 0),
+(10, 3, 'A', '5', 0),
+(10, 3, 'A', '6', 0),
+(10, 3, 'A', '7', 0),
+(10, 3, 'A', '8', 0),
+(10, 4, 'B', '1', 0),
+(10, 4, 'B', '2', 0),
+(10, 4, 'B', '3', 0),
+(10, 4, 'B', '4', 0),
+(10, 4, 'B', '5', 0),
+(10, 4, 'B', '6', 0),
+(10, 4, 'B', '7', 0),
+(10, 4, 'B', '8', 0),
+(10, 4, 'C', '1', 0),
+(10, 4, 'C', '2', 0),
+(10, 4, 'C', '3', 0),
+(10, 4, 'C', '4', 0),
+(10, 4, 'C', '5', 0),
+(10, 4, 'C', '6', 0),
+(10, 4, 'C', '7', 0),
+(10, 4, 'C', '8', 0),
+(10, 4, 'D', '1', 0),
+(10, 4, 'D', '2', 0),
+(10, 4, 'D', '3', 0),
+(10, 4, 'D', '4', 0),
+(10, 4, 'D', '5', 0),
+(10, 4, 'D', '6', 0),
+(10, 4, 'D', '7', 0),
+(10, 4, 'D', '8', 0);
+
+USE cinema_db;
+
+-- =========================
+-- suat_chieu
+-- MovieFormat: 0 = ORIGINAL, 1 = DUBBED, 2 = VOICE_OVER, 3 = SUBTITLED
+-- MovieSessionStatus: 0 = CANCELLED, 1 = UPCOMING, 2 = NOW_SHOWING, 3 = FINISHED
+-- Tong so suat chieu: 50
+-- Luu y: chay sau khi da insert phim va phong_chieu
+-- =========================
+
+INSERT INTO suat_chieu (ma_phim, ma_phong, ngon_ngu_trinh_chieu, tg_bat_dau, tg_ket_thuc, trang_thai) VALUES
+(1, 1, 0, '2026-04-30 09:00:00', '2026-04-30 10:43:00', 1),
+(2, 2, 0, '2026-04-30 09:30:00', '2026-04-30 11:15:00', 1),
+(6, 4, 1, '2026-04-30 10:00:00', '2026-04-30 11:30:00', 1),
+(10, 5, 1, '2026-04-30 10:30:00', '2026-04-30 12:08:00', 1),
+(5, 6, 0, '2026-04-30 13:00:00', '2026-04-30 15:02:00', 1),
+(9, 8, 3, '2026-04-30 14:00:00', '2026-04-30 16:13:00', 1),
+(8, 10, 3, '2026-04-30 18:00:00', '2026-04-30 20:07:00', 1),
+(4, 3, 0, '2026-04-30 18:30:00', '2026-04-30 20:40:00', 1),
+(3, 9, 0, '2026-04-30 21:00:00', '2026-04-30 23:00:00', 1),
+(9, 7, 3, '2026-04-30 21:15:00', '2026-04-30 23:28:00', 1),
+(7, 4, 1, '2026-05-01 09:00:00', '2026-05-01 10:32:00', 1),
+(1, 1, 0, '2026-05-01 10:00:00', '2026-05-01 11:43:00', 1),
+(10, 5, 1, '2026-05-01 12:00:00', '2026-05-01 13:38:00', 1),
+(5, 6, 0, '2026-05-01 13:30:00', '2026-05-01 15:32:00', 1),
+(2, 2, 0, '2026-05-01 14:00:00', '2026-05-01 15:45:00', 1),
+(9, 8, 3, '2026-05-01 16:30:00', '2026-05-01 18:43:00', 1),
+(8, 10, 3, '2026-05-01 19:00:00', '2026-05-01 21:07:00', 1),
+(4, 3, 0, '2026-05-01 19:30:00', '2026-05-01 21:40:00', 1),
+(3, 9, 0, '2026-05-01 21:30:00', '2026-05-01 23:30:00', 1),
+(8, 7, 3, '2026-05-01 21:45:00', '2026-05-01 23:52:00', 1),
+(6, 4, 1, '2026-05-02 09:00:00', '2026-05-02 10:30:00', 1),
+(7, 5, 1, '2026-05-02 10:00:00', '2026-05-02 11:32:00', 1),
+(1, 1, 0, '2026-05-02 11:00:00', '2026-05-02 12:43:00', 1),
+(5, 6, 0, '2026-05-02 13:00:00', '2026-05-02 15:02:00', 1),
+(2, 2, 0, '2026-05-02 14:00:00', '2026-05-02 15:45:00', 1),
+(9, 8, 3, '2026-05-02 16:00:00', '2026-05-02 18:13:00', 1),
+(8, 10, 3, '2026-05-02 18:30:00', '2026-05-02 20:37:00', 1),
+(4, 3, 0, '2026-05-02 19:00:00', '2026-05-02 21:10:00', 1),
+(3, 9, 0, '2026-05-02 21:00:00', '2026-05-02 23:00:00', 1),
+(9, 7, 3, '2026-05-02 21:30:00', '2026-05-02 23:43:00', 1),
+(1, 1, 0, '2026-05-03 09:00:00', '2026-05-03 10:43:00', 1),
+(2, 2, 0, '2026-05-03 09:30:00', '2026-05-03 11:15:00', 1),
+(7, 4, 1, '2026-05-03 10:00:00', '2026-05-03 11:32:00', 1),
+(10, 5, 1, '2026-05-03 10:30:00', '2026-05-03 12:08:00', 1),
+(5, 6, 0, '2026-05-03 13:00:00', '2026-05-03 15:02:00', 1),
+(4, 3, 0, '2026-05-03 15:30:00', '2026-05-03 17:40:00', 1),
+(9, 8, 3, '2026-05-03 18:00:00', '2026-05-03 20:13:00', 1),
+(8, 10, 3, '2026-05-03 19:00:00', '2026-05-03 21:07:00', 1),
+(3, 9, 0, '2026-05-03 21:00:00', '2026-05-03 23:00:00', 1),
+(8, 7, 3, '2026-05-03 21:30:00', '2026-05-03 23:37:00', 1),
+(6, 4, 1, '2026-05-04 09:00:00', '2026-05-04 10:30:00', 1),
+(1, 1, 0, '2026-05-04 09:30:00', '2026-05-04 11:13:00', 1),
+(10, 5, 1, '2026-05-04 11:00:00', '2026-05-04 12:38:00', 1),
+(2, 2, 0, '2026-05-04 12:00:00', '2026-05-04 13:45:00', 1),
+(5, 6, 0, '2026-05-04 14:00:00', '2026-05-04 16:02:00', 1),
+(9, 8, 3, '2026-05-04 16:30:00', '2026-05-04 18:43:00', 1),
+(4, 3, 0, '2026-05-04 18:00:00', '2026-05-04 20:10:00', 1),
+(8, 10, 3, '2026-05-04 19:00:00', '2026-05-04 21:07:00', 1),
+(3, 9, 0, '2026-05-04 21:00:00', '2026-05-04 23:00:00', 1),
+(9, 7, 3, '2026-05-04 21:30:00', '2026-05-04 23:43:00', 1);
+
+USE cinema_db;
+
+-- =========================
+-- ve
+-- TicketStatus:
+-- 0 = NOT_SOLD: Ve chua ban
+-- 1 = SOLD: Ve da ban
+-- 2 = CHANGED: Ve da doi
+-- 3 = CANCELLED: Ve da huy
+--
+-- Y nghia:
+-- Moi ghe trong moi suat chieu se co 1 ban ghi ve.
+-- Ve duoc sinh tu dong tu suat_chieu + ghe + bang_gia_ve.
+-- Mac dinh khi sinh ve: trang_thai = 0 - NOT_SOLD.
+--
+-- Luu y:
+-- Chay sau khi da insert:
+-- 1. loai_ghe
+-- 2. loai_phong
+-- 3. bang_gia_ve
+-- 4. phong_chieu
+-- 5. ghe
+-- 6. suat_chieu
+-- =========================
+
+INSERT IGNORE INTO ve (
+    ma_suat_chieu,
+    ma_ghe,
+    ma_bang_gia,
+    trang_thai
+)
+SELECT
+    sc.ma_suat_chieu,
+    g.ma_ghe,
+    bg.ma_bang_gia,
+    0 AS trang_thai
+FROM suat_chieu sc
+JOIN phong_chieu pc
+    ON sc.ma_phong = pc.ma_phong
+JOIN ghe g
+    ON g.ma_phong = pc.ma_phong
+JOIN bang_gia_ve bg
+    ON bg.ma_loai_ghe = g.ma_loai_ghe
+   AND bg.ma_loai_phong = pc.ma_loai_phong
+WHERE g.trang_thai = 0;
+
+
+USE cinema_db;
+
+-- ============================================================
+-- demo_hoa_don_seed
+-- Muc dich:
+-- 1. Them mot vai suat chieu sau ngay 04/05/2026 de co du lieu demo.
+-- 2. Sinh ve tuong ung cho cac suat chieu moi.
+-- 3. Tao mot vai hoa_don mau co ve va san_pham da ban.
+--
+-- Luu y:
+-- - Chay sau khi da co: phim, phong_chieu, ghe, bang_gia_ve, san_pham, nhan_vien.
+-- - Nen chay sau file insert_ve.sql truoc do.
+-- - TicketStatus: 0 = NOT_SOLD, 1 = SOLD, 2 = CHANGED, 3 = CANCELLED
+-- - InvoiceStatus: 0 = PENDING, 1 = SUCCESS, 2 = FAILED, 3 = CANCELLED
+-- - PaymentMethod: 0 = CASH, 1 = TRANSFER
+-- ============================================================
+
+-- ============================================================
+-- 1. Them 6 suat chieu demo moi
+-- ============================================================
+
+INSERT INTO suat_chieu (
+    ma_phim,
+    ma_phong,
+    ngon_ngu_trinh_chieu,
+    tg_bat_dau,
+    tg_ket_thuc,
+    trang_thai
+) VALUES
+-- 05/05/2026
+(1, 1, 0, '2026-05-05 09:00:00', '2026-05-05 10:43:00', 1), -- Heo Nam Mong - PT 01
+(8, 10, 3, '2026-05-05 19:00:00', '2026-05-05 21:07:00', 1), -- Michael - Gold 01
+
+-- 06/05/2026
+(9, 8, 3, '2026-05-06 18:00:00', '2026-05-06 20:13:00', 1), -- Xac Uop - 4DX 01
+(10, 5, 1, '2026-05-06 10:00:00', '2026-05-06 11:38:00', 1), -- Super Mario - 3D 02
+
+-- 07/05/2026
+(5, 6, 0, '2026-05-07 14:00:00', '2026-05-07 16:02:00', 1), -- Anh Hung - IMAX 01
+(3, 9, 0, '2026-05-07 21:00:00', '2026-05-07 23:00:00', 1); -- Phi Phong - 4DX 02
+
+-- ============================================================
+-- 2. Sinh ve cho cac suat chieu moi
+-- Chon theo khoang ngay 05/05/2026 - 07/05/2026 de khong anh huong suat cu.
+-- ============================================================
+
+INSERT IGNORE INTO ve (
+    ma_suat_chieu,
+    ma_ghe,
+    ma_bang_gia,
+    trang_thai
+)
+SELECT
+    sc.ma_suat_chieu,
+    g.ma_ghe,
+    bg.ma_bang_gia,
+    0 AS trang_thai
+FROM suat_chieu sc
+JOIN phong_chieu pc
+    ON sc.ma_phong = pc.ma_phong
+JOIN ghe g
+    ON g.ma_phong = pc.ma_phong
+JOIN bang_gia_ve bg
+    ON bg.ma_loai_ghe = g.ma_loai_ghe
+   AND bg.ma_loai_phong = pc.ma_loai_phong
+WHERE g.trang_thai = 0
+  AND sc.tg_bat_dau >= '2026-05-05 00:00:00'
+  AND sc.tg_bat_dau <  '2026-05-08 00:00:00';
+
+-- ============================================================
+-- 3. Tao hoa don mau
+-- Hoa don 1: SUCCESS - mua 2 ve PT 01 + combo
+-- Hoa don 2: SUCCESS - mua 2 ve Gold + merchandise
+-- Hoa don 3: SUCCESS - mua 2 ve 4DX + bap/nuoc
+-- Hoa don 4: PENDING - dang giu 2 ve 3D + chua thanh toan
+-- Hoa don 5: CANCELLED - huy thao tac mua ve IMAX
+-- ============================================================
+
+-- ------------------------------
+-- Hoa don 1: SUCCESS
+-- Suat: 2026-05-05 09:00:00 - PT 01
+-- Ghe: C3, C4
+-- San pham: 1 Bap L 2 Nuoc M x1
+-- ------------------------------
+INSERT INTO hoa_don (
+    ma_nhan_vien,
+    phuong_thuc_thanh_toan,
+    trang_thai,
+    thoi_gian_thanh_toan
+) VALUES (
+    3,
+    0,
+    1,
+    '2026-05-05 08:45:00'
+);
+
+SET @hd1 = LAST_INSERT_ID();
+
+INSERT INTO hoa_don_ve (ma_hoa_don, ma_ve, don_gia)
+SELECT
+    @hd1,
+    v.ma_ve,
+    bg.gia
+FROM ve v
+JOIN suat_chieu sc ON v.ma_suat_chieu = sc.ma_suat_chieu
+JOIN ghe g ON v.ma_ghe = g.ma_ghe
+JOIN bang_gia_ve bg ON v.ma_bang_gia = bg.ma_bang_gia
+WHERE sc.tg_bat_dau = '2026-05-05 09:00:00'
+  AND sc.ma_phong = 1
+  AND g.hang = 'C'
+  AND g.cot IN ('3', '4');
+
+UPDATE ve v
+JOIN suat_chieu sc ON v.ma_suat_chieu = sc.ma_suat_chieu
+JOIN ghe g ON v.ma_ghe = g.ma_ghe
+SET v.trang_thai = 1
+WHERE sc.tg_bat_dau = '2026-05-05 09:00:00'
+  AND sc.ma_phong = 1
+  AND g.hang = 'C'
+  AND g.cot IN ('3', '4');
+
+INSERT INTO hoa_don_san_pham (ma_hoa_don, ma_san_pham, so_luong_tong, don_gia)
+SELECT @hd1, ma_san_pham, 1, gia_co_ban
+FROM san_pham
+WHERE ma_san_pham = 9;
+
+UPDATE san_pham
+SET so_luong_ton = so_luong_ton - 1
+WHERE ma_san_pham = 9
+  AND so_luong_ton >= 1;
+
+-- ------------------------------
+-- Hoa don 2: SUCCESS
+-- Suat: 2026-05-05 19:00:00 - Gold 01
+-- Ghe: B4, B5
+-- San pham: Michael's Merchandise x1, Pepsi M x2
+-- ------------------------------
+INSERT INTO hoa_don (
+    ma_nhan_vien,
+    phuong_thuc_thanh_toan,
+    trang_thai,
+    thoi_gian_thanh_toan
+) VALUES (
+    3,
+    1,
+    1,
+    '2026-05-05 18:30:00'
+);
+
+SET @hd2 = LAST_INSERT_ID();
+
+INSERT INTO hoa_don_ve (ma_hoa_don, ma_ve, don_gia)
+SELECT
+    @hd2,
+    v.ma_ve,
+    bg.gia
+FROM ve v
+JOIN suat_chieu sc ON v.ma_suat_chieu = sc.ma_suat_chieu
+JOIN ghe g ON v.ma_ghe = g.ma_ghe
+JOIN bang_gia_ve bg ON v.ma_bang_gia = bg.ma_bang_gia
+WHERE sc.tg_bat_dau = '2026-05-05 19:00:00'
+  AND sc.ma_phong = 10
+  AND g.hang = 'B'
+  AND g.cot IN ('4', '5');
+
+UPDATE ve v
+JOIN suat_chieu sc ON v.ma_suat_chieu = sc.ma_suat_chieu
+JOIN ghe g ON v.ma_ghe = g.ma_ghe
+SET v.trang_thai = 1
+WHERE sc.tg_bat_dau = '2026-05-05 19:00:00'
+  AND sc.ma_phong = 10
+  AND g.hang = 'B'
+  AND g.cot IN ('4', '5');
+
+INSERT INTO hoa_don_san_pham (ma_hoa_don, ma_san_pham, so_luong_tong, don_gia)
+SELECT @hd2, ma_san_pham, 1, gia_co_ban
+FROM san_pham
+WHERE ma_san_pham = 12;
+
+INSERT INTO hoa_don_san_pham (ma_hoa_don, ma_san_pham, so_luong_tong, don_gia)
+SELECT @hd2, ma_san_pham, 2, gia_co_ban
+FROM san_pham
+WHERE ma_san_pham = 6;
+
+UPDATE san_pham
+SET so_luong_ton = so_luong_ton - 1
+WHERE ma_san_pham = 12
+  AND so_luong_ton >= 1;
+
+UPDATE san_pham
+SET so_luong_ton = so_luong_ton - 2
+WHERE ma_san_pham = 6
+  AND so_luong_ton >= 2;
+
+-- ------------------------------
+-- Hoa don 3: SUCCESS
+-- Suat: 2026-05-06 18:00:00 - 4DX 01
+-- Ghe: B3, B4
+-- San pham: Bap M x1, Coca-Cola M x2
+-- ------------------------------
+INSERT INTO hoa_don (
+    ma_nhan_vien,
+    phuong_thuc_thanh_toan,
+    trang_thai,
+    thoi_gian_thanh_toan
+) VALUES (
+    2,
+    1,
+    1,
+    '2026-05-06 17:20:00'
+);
+
+SET @hd3 = LAST_INSERT_ID();
+
+INSERT INTO hoa_don_ve (ma_hoa_don, ma_ve, don_gia)
+SELECT
+    @hd3,
+    v.ma_ve,
+    bg.gia
+FROM ve v
+JOIN suat_chieu sc ON v.ma_suat_chieu = sc.ma_suat_chieu
+JOIN ghe g ON v.ma_ghe = g.ma_ghe
+JOIN bang_gia_ve bg ON v.ma_bang_gia = bg.ma_bang_gia
+WHERE sc.tg_bat_dau = '2026-05-06 18:00:00'
+  AND sc.ma_phong = 8
+  AND g.hang = 'B'
+  AND g.cot IN ('3', '4');
+
+UPDATE ve v
+JOIN suat_chieu sc ON v.ma_suat_chieu = sc.ma_suat_chieu
+JOIN ghe g ON v.ma_ghe = g.ma_ghe
+SET v.trang_thai = 1
+WHERE sc.tg_bat_dau = '2026-05-06 18:00:00'
+  AND sc.ma_phong = 8
+  AND g.hang = 'B'
+  AND g.cot IN ('3', '4');
+
+INSERT INTO hoa_don_san_pham (ma_hoa_don, ma_san_pham, so_luong_tong, don_gia)
+SELECT @hd3, ma_san_pham, 1, gia_co_ban
+FROM san_pham
+WHERE ma_san_pham = 2;
+
+INSERT INTO hoa_don_san_pham (ma_hoa_don, ma_san_pham, so_luong_tong, don_gia)
+SELECT @hd3, ma_san_pham, 2, gia_co_ban
+FROM san_pham
+WHERE ma_san_pham = 8;
+
+UPDATE san_pham
+SET so_luong_ton = so_luong_ton - 1
+WHERE ma_san_pham = 2
+  AND so_luong_ton >= 1;
+
+UPDATE san_pham
+SET so_luong_ton = so_luong_ton - 2
+WHERE ma_san_pham = 8
+  AND so_luong_ton >= 2;
+
+-- ------------------------------
+-- Hoa don 4: PENDING
+-- Suat: 2026-05-06 10:00:00 - 3D 02
+-- Ghe: D4, D5
+-- Y nghia: demo giu ghe bang hoa_don PENDING.
+-- Ve van de NOT_SOLD; UI nhan biet dang giu qua hoa_don.trang_thai = 0.
+-- ------------------------------
+INSERT INTO hoa_don (
+    ma_nhan_vien,
+    phuong_thuc_thanh_toan,
+    trang_thai,
+    thoi_gian_thanh_toan
+) VALUES (
+    3,
+    0,
+    0,
+    NULL
+);
+
+SET @hd4 = LAST_INSERT_ID();
+
+INSERT INTO hoa_don_ve (ma_hoa_don, ma_ve, don_gia)
+SELECT
+    @hd4,
+    v.ma_ve,
+    bg.gia
+FROM ve v
+JOIN suat_chieu sc ON v.ma_suat_chieu = sc.ma_suat_chieu
+JOIN ghe g ON v.ma_ghe = g.ma_ghe
+JOIN bang_gia_ve bg ON v.ma_bang_gia = bg.ma_bang_gia
+WHERE sc.tg_bat_dau = '2026-05-06 10:00:00'
+  AND sc.ma_phong = 5
+  AND g.hang = 'D'
+  AND g.cot IN ('4', '5');
+
+-- ------------------------------
+-- Hoa don 5: CANCELLED
+-- Suat: 2026-05-07 14:00:00 - IMAX 01
+-- Ghe: E5, E6
+-- Y nghia: demo hoa don bi huy; ve tuong ung danh dau CANCELLED.
+-- ------------------------------
+INSERT INTO hoa_don (
+    ma_nhan_vien,
+    phuong_thuc_thanh_toan,
+    trang_thai,
+    thoi_gian_thanh_toan
+) VALUES (
+    2,
+    0,
+    3,
+    NULL
+);
+
+SET @hd5 = LAST_INSERT_ID();
+
+INSERT INTO hoa_don_ve (ma_hoa_don, ma_ve, don_gia)
+SELECT
+    @hd5,
+    v.ma_ve,
+    bg.gia
+FROM ve v
+JOIN suat_chieu sc ON v.ma_suat_chieu = sc.ma_suat_chieu
+JOIN ghe g ON v.ma_ghe = g.ma_ghe
+JOIN bang_gia_ve bg ON v.ma_bang_gia = bg.ma_bang_gia
+WHERE sc.tg_bat_dau = '2026-05-07 14:00:00'
+  AND sc.ma_phong = 6
+  AND g.hang = 'E'
+  AND g.cot IN ('5', '6');
+
+UPDATE ve v
+JOIN suat_chieu sc ON v.ma_suat_chieu = sc.ma_suat_chieu
+JOIN ghe g ON v.ma_ghe = g.ma_ghe
+SET v.trang_thai = 3
+WHERE sc.tg_bat_dau = '2026-05-07 14:00:00'
+  AND sc.ma_phong = 6
+  AND g.hang = 'E'
+  AND g.cot IN ('5', '6');
+
+-- ============================================================
+-- 4. Cac cau query kiem tra
+-- ============================================================
+
+-- Kiem tra cac suat chieu moi
+SELECT
+    ma_suat_chieu,
+    ma_phim,
+    ma_phong,
+    ngon_ngu_trinh_chieu,
+    tg_bat_dau,
+    tg_ket_thuc,
+    trang_thai
+FROM suat_chieu
+WHERE tg_bat_dau >= '2026-05-05 00:00:00'
+  AND tg_bat_dau <  '2026-05-08 00:00:00'
+ORDER BY tg_bat_dau;
+
+-- Kiem tra tong ve cua cac suat chieu moi
+SELECT
+    sc.ma_suat_chieu,
+    sc.ma_phong,
+    COUNT(v.ma_ve) AS tong_ve
+FROM suat_chieu sc
+LEFT JOIN ve v ON sc.ma_suat_chieu = v.ma_suat_chieu
+WHERE sc.tg_bat_dau >= '2026-05-05 00:00:00'
+  AND sc.tg_bat_dau <  '2026-05-08 00:00:00'
+GROUP BY sc.ma_suat_chieu, sc.ma_phong
+ORDER BY sc.ma_suat_chieu;
+
+-- Kiem tra hoa don va tong tien ve/san pham
+SELECT
+    hd.ma_hoa_don,
+    hd.ma_nhan_vien,
+    hd.phuong_thuc_thanh_toan,
+    hd.trang_thai,
+    hd.thoi_gian_thanh_toan,
+    COALESCE(SUM(DISTINCT hdv_sum.tong_tien_ve), 0) AS tong_tien_ve,
+    COALESCE(SUM(DISTINCT hdsp_sum.tong_tien_san_pham), 0) AS tong_tien_san_pham
+FROM hoa_don hd
+LEFT JOIN (
+    SELECT ma_hoa_don, SUM(don_gia) AS tong_tien_ve
+    FROM hoa_don_ve
+    GROUP BY ma_hoa_don
+) hdv_sum ON hd.ma_hoa_don = hdv_sum.ma_hoa_don
+LEFT JOIN (
+    SELECT ma_hoa_don, SUM(so_luong_tong * don_gia) AS tong_tien_san_pham
+    FROM hoa_don_san_pham
+    GROUP BY ma_hoa_don
+) hdsp_sum ON hd.ma_hoa_don = hdsp_sum.ma_hoa_don
+WHERE hd.ma_hoa_don IN (@hd1, @hd2, @hd3, @hd4, @hd5)
+GROUP BY
+    hd.ma_hoa_don,
+    hd.ma_nhan_vien,
+    hd.phuong_thuc_thanh_toan,
+    hd.trang_thai,
+    hd.thoi_gian_thanh_toan
+ORDER BY hd.ma_hoa_don;
+
+-- Kiem tra chi tiet ve trong cac hoa don mau
+SELECT
+    hd.ma_hoa_don,
+    hd.trang_thai AS trang_thai_hoa_don,
+    v.ma_ve,
+    v.trang_thai AS trang_thai_ve,
+    sc.tg_bat_dau,
+    pc.ten_phong,
+    g.hang,
+    g.cot,
+    hdv.don_gia
+FROM hoa_don hd
+JOIN hoa_don_ve hdv ON hd.ma_hoa_don = hdv.ma_hoa_don
+JOIN ve v ON hdv.ma_ve = v.ma_ve
+JOIN suat_chieu sc ON v.ma_suat_chieu = sc.ma_suat_chieu
+JOIN phong_chieu pc ON sc.ma_phong = pc.ma_phong
+JOIN ghe g ON v.ma_ghe = g.ma_ghe
+WHERE hd.ma_hoa_don IN (@hd1, @hd2, @hd3, @hd4, @hd5)
+ORDER BY hd.ma_hoa_don, g.hang, CAST(g.cot AS UNSIGNED);
+
+-- Kiem tra chi tiet san pham trong cac hoa don mau
+SELECT
+    hd.ma_hoa_don,
+    sp.ten_san_pham,
+    hdsp.so_luong_tong,
+    hdsp.don_gia,
+    hdsp.so_luong_tong * hdsp.don_gia AS thanh_tien
+FROM hoa_don hd
+JOIN hoa_don_san_pham hdsp ON hd.ma_hoa_don = hdsp.ma_hoa_don
+JOIN san_pham sp ON hdsp.ma_san_pham = sp.ma_san_pham
+WHERE hd.ma_hoa_don IN (@hd1, @hd2, @hd3, @hd4, @hd5)
+ORDER BY hd.ma_hoa_don, sp.ma_san_pham;

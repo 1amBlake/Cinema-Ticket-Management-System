@@ -1,0 +1,62 @@
+.content-area {
+    -fx-background-color: #F4F6F8;
+    -fx-font-family: "Segoe UI", "Arial";
+}
+
+.welcome-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.08), 10, 0, 0, 4);
+    -fx-padding: 20;
+}
+
+.section-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E293B;
+}
+
+/* Các nút bấm cơ bản */
+.button-primary {
+    -fx-background-color: #E50914; -fx-text-fill: white;
+    -fx-font-weight: bold; -fx-background-radius: 6;
+    -fx-padding: 8 16; -fx-cursor: hand;
+}
+.button-primary:hover { -fx-background-color: #B91C1C; }
+
+.button-secondary {
+    -fx-background-color: #F3F4F6; -fx-text-fill: #111827;
+    -fx-font-weight: bold; -fx-border-color: #D1D5DB;
+    -fx-border-radius: 6; -fx-background-radius: 6;
+    -fx-padding: 8 16; -fx-cursor: hand;
+}
+.button-secondary:hover { -fx-background-color: #E5E7EB; }
+
+.button-red {
+    -fx-background-color: #EF4444; -fx-text-fill: white;
+    -fx-font-weight: bold; -fx-background-radius: 6;
+    -fx-padding: 8 16; -fx-cursor: hand;
+}
+.button-red:hover { -fx-background-color: #DC2626; }
+
+/* Sơ đồ ghế */
+.seat-demo {
+    -fx-min-width: 30; -fx-min-height: 30;
+    -fx-background-radius: 5;
+    -fx-border-color: #94A3B8;
+    -fx-border-radius: 5;
+}
+
+.seat-normal { -fx-background-color: #FFFFFF; } /* Loại 1 */
+.seat-vip { -fx-background-color: #FBBF24; }    /* Loại 2 */
+.seat-double { -fx-background-color: #F472B6; } /* Loại 3 */
+
+.seat-button-edit {
+    -fx-min-width: 40; -fx-min-height: 40;
+    -fx-font-size: 10;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-border-color: #CBD5E1;
+    -fx-border-radius: 4;
+}
+.seat-button-edit:hover { -fx-opacity: 0.7; }

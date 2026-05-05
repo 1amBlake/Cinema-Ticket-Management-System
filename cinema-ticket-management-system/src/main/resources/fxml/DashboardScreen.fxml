@@ -54,71 +54,71 @@
                 <Separator styleClass="sidebar-separator" />
 
                 <VBox fx:id="menuBox" spacing="7.0" styleClass="menu-box">
-                    <children>
-                        <Button fx:id="overviewButton" text="  Tổng quan" maxWidth="Infinity"
-                                mnemonicParsing="false" styleClass="sidebar-button" onAction="#handleOverview">
-                            <graphic>
-                                <StackPane alignment="CENTER" minWidth="24.0" prefWidth="24.0" maxWidth="24.0" styleClass="sidebar-icon-wrapper"><children><ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="sidebar-menu-icon"><image><Image url="@../images/icons/home.png" /></image></ImageView></children></StackPane>
-                            </graphic>
-                        </Button>
-
-                        <Button fx:id="ticketSaleButton" text="  Bán vé" maxWidth="Infinity"
-                                mnemonicParsing="false" styleClass="sidebar-button">
-                            <graphic>
-                                <StackPane alignment="CENTER" minWidth="24.0" prefWidth="24.0" maxWidth="24.0" styleClass="sidebar-icon-wrapper"><children><ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="sidebar-menu-icon"><image><Image url="@../images/icons/ticket.png" /></image></ImageView></children></StackPane>
-                            </graphic>
-                        </Button>
-
-                        <Button fx:id="invoiceButton" text="  Hóa đơn" maxWidth="Infinity"
-                                mnemonicParsing="false" styleClass="sidebar-button">
-                            <graphic>
-                                <StackPane alignment="CENTER" minWidth="24.0" prefWidth="24.0" maxWidth="24.0" styleClass="sidebar-icon-wrapper"><children><ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="sidebar-menu-icon"><image><Image url="@../images/icons/invoice.png" /></image></ImageView></children></StackPane>
-                            </graphic>
-                        </Button>
-
-                        <Button fx:id="movieButton" text="  Phim" maxWidth="Infinity"
-                                mnemonicParsing="false" styleClass="sidebar-button">
-                            <graphic>
-                                <StackPane alignment="CENTER" minWidth="24.0" prefWidth="24.0" maxWidth="24.0" styleClass="sidebar-icon-wrapper"><children><ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="sidebar-menu-icon"><image><Image url="@../images/icons/movie.png" /></image></ImageView></children></StackPane>
-                            </graphic>
-                        </Button>
-
-                        <Button fx:id="movieSessionButton" text="  Suất chiếu" maxWidth="Infinity"
-                                mnemonicParsing="false" styleClass="sidebar-button">
-                            <graphic>
-                                <StackPane alignment="CENTER" minWidth="24.0" prefWidth="24.0" maxWidth="24.0" styleClass="sidebar-icon-wrapper"><children><ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="sidebar-menu-icon"><image><Image url="@../images/icons/session.png" /></image></ImageView></children></StackPane>
-                            </graphic>
-                        </Button>
-
-                        <Button fx:id="theaterButton" text="  Phòng &amp; ghế" maxWidth="Infinity"
-                                mnemonicParsing="false" styleClass="sidebar-button">
-                            <graphic>
-                                <StackPane alignment="CENTER" minWidth="24.0" prefWidth="24.0" maxWidth="24.0" styleClass="sidebar-icon-wrapper"><children><ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="sidebar-menu-icon"><image><Image url="@../images/icons/room-seat.png" /></image></ImageView></children></StackPane>
-                            </graphic>
-                        </Button>
-
-                        <Button fx:id="productButton" text="  Sản phẩm" maxWidth="Infinity"
-                                mnemonicParsing="false" styleClass="sidebar-button">
-                            <graphic>
-                                <StackPane alignment="CENTER" minWidth="24.0" prefWidth="24.0" maxWidth="24.0" styleClass="sidebar-icon-wrapper"><children><ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="sidebar-menu-icon"><image><Image url="@../images/icons/product.png" /></image></ImageView></children></StackPane>
-                            </graphic>
-                        </Button>
-
-                        <Button fx:id="employeeButton" text="  Nhân viên" maxWidth="Infinity"
-                                mnemonicParsing="false" styleClass="sidebar-button">
-                            <graphic>
-                                <StackPane alignment="CENTER" minWidth="24.0" prefWidth="24.0" maxWidth="24.0" styleClass="sidebar-icon-wrapper"><children><ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="sidebar-menu-icon"><image><Image url="@../images/icons/employee.png" /></image></ImageView></children></StackPane>
-                            </graphic>
-                        </Button>
-
-                        <Button fx:id="statisticsButton" text="  Thống kê" maxWidth="Infinity"
-                                mnemonicParsing="false" styleClass="sidebar-button">
-                            <graphic>
-                                <StackPane alignment="CENTER" minWidth="24.0" prefWidth="24.0" maxWidth="24.0" styleClass="sidebar-icon-wrapper"><children><ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="sidebar-menu-icon"><image><Image url="@../images/icons/statistics.png" /></image></ImageView></children></StackPane>
-                            </graphic>
-                        </Button>
-                    </children>
-                </VBox>
+				    <children>
+				        <Button fx:id="overviewButton" text="  Tổng quan" maxWidth="Infinity"
+				                mnemonicParsing="false" styleClass="sidebar-button" onAction="#handleOverview">
+				            <graphic>
+				                <StackPane alignment="CENTER" minWidth="24.0" prefWidth="24.0" maxWidth="24.0" styleClass="sidebar-icon-wrapper"><children><ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="sidebar-menu-icon"><image><Image url="@../images/icons/home.png" /></image></ImageView></children></StackPane>
+				            </graphic>
+				        </Button>
+				
+				        <Button fx:id="ticketSaleButton" text="  Bán vé" maxWidth="Infinity"
+				                mnemonicParsing="false" styleClass="sidebar-button" onAction="#handleTicketSale">
+				            <graphic>
+				                <StackPane alignment="CENTER" minWidth="24.0" prefWidth="24.0" maxWidth="24.0" styleClass="sidebar-icon-wrapper"><children><ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="sidebar-menu-icon"><image><Image url="@../images/icons/ticket.png" /></image></ImageView></children></StackPane>
+				            </graphic>
+				        </Button>
+				
+				        <Button fx:id="invoiceButton" text="  Hóa đơn" maxWidth="Infinity"
+				                mnemonicParsing="false" styleClass="sidebar-button" onAction="#handleInvoice">
+				            <graphic>
+				                <StackPane alignment="CENTER" minWidth="24.0" prefWidth="24.0" maxWidth="24.0" styleClass="sidebar-icon-wrapper"><children><ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="sidebar-menu-icon"><image><Image url="@../images/icons/invoice.png" /></image></ImageView></children></StackPane>
+				            </graphic>
+				        </Button>
+				
+				        <Button fx:id="movieButton" text="  Phim" maxWidth="Infinity"
+				                mnemonicParsing="false" styleClass="sidebar-button" onAction="#handleMovieManagement">
+				            <graphic>
+				                <StackPane alignment="CENTER" minWidth="24.0" prefWidth="24.0" maxWidth="24.0" styleClass="sidebar-icon-wrapper"><children><ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="sidebar-menu-icon"><image><Image url="@../images/icons/movie.png" /></image></ImageView></children></StackPane>
+				            </graphic>
+				        </Button>
+				
+				        <Button fx:id="movieSessionButton" text="  Suất chiếu" maxWidth="Infinity"
+				                mnemonicParsing="false" styleClass="sidebar-button" onAction="#handleMovieSession">
+				            <graphic>
+				                <StackPane alignment="CENTER" minWidth="24.0" prefWidth="24.0" maxWidth="24.0" styleClass="sidebar-icon-wrapper"><children><ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="sidebar-menu-icon"><image><Image url="@../images/icons/session.png" /></image></ImageView></children></StackPane>
+				            </graphic>
+				        </Button>
+				
+				        <Button fx:id="theaterButton" text="  Phòng &amp; ghế" maxWidth="Infinity"
+				                mnemonicParsing="false" styleClass="sidebar-button" onAction="#handleTheaterManagement">
+				            <graphic>
+				                <StackPane alignment="CENTER" minWidth="24.0" prefWidth="24.0" maxWidth="24.0" styleClass="sidebar-icon-wrapper"><children><ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="sidebar-menu-icon"><image><Image url="@../images/icons/room-seat.png" /></image></ImageView></children></StackPane>
+				            </graphic>
+				        </Button>
+				
+				        <Button fx:id="productButton" text="  Sản phẩm" maxWidth="Infinity"
+				                mnemonicParsing="false" styleClass="sidebar-button" onAction="#handleProductManagement">
+				            <graphic>
+				                <StackPane alignment="CENTER" minWidth="24.0" prefWidth="24.0" maxWidth="24.0" styleClass="sidebar-icon-wrapper"><children><ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="sidebar-menu-icon"><image><Image url="@../images/icons/product.png" /></image></ImageView></children></StackPane>
+				            </graphic>
+				        </Button>
+				
+				        <Button fx:id="employeeButton" text="  Nhân viên" maxWidth="Infinity"
+				                mnemonicParsing="false" styleClass="sidebar-button" onAction="#handleEmployeeManagement">
+				            <graphic>
+				                <StackPane alignment="CENTER" minWidth="24.0" prefWidth="24.0" maxWidth="24.0" styleClass="sidebar-icon-wrapper"><children><ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="sidebar-menu-icon"><image><Image url="@../images/icons/employee.png" /></image></ImageView></children></StackPane>
+				            </graphic>
+				        </Button>
+				
+				        <Button fx:id="statisticsButton" text="  Thống kê" maxWidth="Infinity"
+				                mnemonicParsing="false" styleClass="sidebar-button" onAction="#handleStatistics">
+				            <graphic>
+				                <StackPane alignment="CENTER" minWidth="24.0" prefWidth="24.0" maxWidth="24.0" styleClass="sidebar-icon-wrapper"><children><ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="sidebar-menu-icon"><image><Image url="@../images/icons/statistics.png" /></image></ImageView></children></StackPane>
+				            </graphic>
+				        </Button>
+				    </children>
+				</VBox>
 
                 <Region fx:id="sidebarSpacer" VBox.vgrow="ALWAYS" />
 
@@ -139,11 +139,19 @@
                         </Button>
 
                         <Button fx:id="logoutButton" text="  Đăng xuất" maxWidth="Infinity"
-                                mnemonicParsing="false" styleClass="logout-button">
-                            <graphic>
-                                <StackPane alignment="CENTER" minWidth="24.0" prefWidth="24.0" maxWidth="24.0" styleClass="sidebar-icon-wrapper"><children><ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="sidebar-menu-icon"><image><Image url="@../images/icons/logout.png" /></image></ImageView></children></StackPane>
-                            </graphic>
-                        </Button>
+						        mnemonicParsing="false" styleClass="logout-button" onAction="#handleLogout">
+						    <graphic>
+						        <StackPane alignment="CENTER" minWidth="24.0" prefWidth="24.0" maxWidth="24.0" styleClass="sidebar-icon-wrapper">
+						            <children>
+						                <ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="sidebar-menu-icon">
+						                    <image>
+						                        <Image url="@../images/icons/logout.png" />
+						                    </image>
+						                </ImageView>
+						            </children>
+						        </StackPane>
+						    </graphic>
+						</Button>
                     </children>
                 </VBox>
             </children>
@@ -207,15 +215,18 @@
                                        styleClass="welcome-subtitle" />
 
                                 <HBox alignment="CENTER" spacing="12.0">
-                                    <children>
-                                        <Button fx:id="quickSaleButton" text="Bán vé ngay"
-                                                mnemonicParsing="false"
-                                                styleClass="primary-button" />
-                                        <Button fx:id="quickInvoiceButton" text="Xem hóa đơn"
-                                                mnemonicParsing="false"
-                                                styleClass="outline-button" />
-                                    </children>
-                                </HBox>
+								    <children>
+								        <Button fx:id="quickSaleButton" text="Bán vé ngay"
+								                mnemonicParsing="false"
+								                styleClass="primary-button" 
+								                onAction="#handleTicketSale" />
+								                
+								        <Button fx:id="quickInvoiceButton" text="Xem hóa đơn"
+								                mnemonicParsing="false"
+								                styleClass="outline-button" 
+								                onAction="#handleInvoice" />
+								    </children>
+								</HBox>
                             </children>
                         </VBox>
                     </children>

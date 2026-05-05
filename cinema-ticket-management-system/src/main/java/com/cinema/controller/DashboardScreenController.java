@@ -3,12 +3,17 @@ package com.cinema.controller;
 import java.io.IOException;
 import java.util.List;
 
+import com.cinema.entity.EmployeeAccount;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * Controller của màn hình Dashboard chính.
@@ -22,7 +27,8 @@ import javafx.scene.layout.StackPane;
  * @author Minh Huy
  */
 public class DashboardScreenController {
-
+	private EmployeeAccount currentAccount;
+	
     @FXML
     private StackPane contentArea;
 
@@ -58,7 +64,21 @@ public class DashboardScreenController {
 
     @FXML
     private Button statisticsButton;
+    
+    @FXML
+    private Button logoutButton;
 
+    @FXML
+    private Label employeeNameLabel;
+
+    @FXML
+    private Label topAvatarLabel;
+
+    @FXML
+    private Label topPermissionValueLabel;
+
+    @FXML
+    private Label helloLabel;
     /**
      * Khởi tạo dữ liệu và trạng thái ban đầu cho Dashboard.
      * <p>
@@ -113,9 +133,12 @@ public class DashboardScreenController {
      */
     @FXML
     private void handleTicketSale() {
-        loadScreen("TicketSaleScreen.fxml");
-        updatePageHeader("Bán vé", "Chọn phim, suất chiếu, ghế và lập hóa đơn bán vé");
         setActiveButton(ticketSaleButton);
+        loadScreen("TicketSaleScreen.fxml");
+        updatePageHeader(
+            "Bán vé & Dịch vụ",
+            "Quy trình chọn phim và giữ chỗ cho khách hàng"
+        );
     }
 
     /**
@@ -127,6 +150,7 @@ public class DashboardScreenController {
      */
     @FXML
     private void handleInvoice() {
+    	setActiveButton(invoiceButton);
         loadScreen("InvoiceScreen.fxml");
         updatePageHeader("Hóa đơn", "Tra cứu, xem chi tiết và quản lý hóa đơn bán vé");
         setActiveButton(invoiceButton);
@@ -141,6 +165,7 @@ public class DashboardScreenController {
      */
     @FXML
     private void handleMovieManagement() {
+    	setActiveButton(movieButton);
         loadScreen("MovieManagementScreen.fxml");
         updatePageHeader("Quản lý phim", "Quản lý phim, đạo diễn, thể loại và liên kết dữ liệu phim");
         setActiveButton(movieButton);
@@ -155,6 +180,7 @@ public class DashboardScreenController {
      */
     @FXML
     private void handleMovieSession() {
+    	setActiveButton(movieSessionButton);
         loadScreen("MovieSessionScreen.fxml");
         updatePageHeader("Suất chiếu", "Quản lý lịch chiếu, phòng chiếu và giá vé");
         setActiveButton(movieSessionButton);
@@ -169,6 +195,7 @@ public class DashboardScreenController {
      */
     @FXML
     private void handleTheaterManagement() {
+    	setActiveButton(theaterButton);
         loadScreen("TheaterManagementScreen.fxml");
         updatePageHeader("Phòng & ghế", "Quản lý rạp, phòng chiếu, sơ đồ ghế và loại ghế");
         setActiveButton(theaterButton);
@@ -183,6 +210,7 @@ public class DashboardScreenController {
      */
     @FXML
     private void handleProductManagement() {
+    	setActiveButton(productButton);
         loadScreen("ProductManagementScreen.fxml");
         updatePageHeader("Sản phẩm", "Quản lý sản phẩm bán kèm và loại sản phẩm");
         setActiveButton(productButton);
@@ -197,6 +225,7 @@ public class DashboardScreenController {
      */
     @FXML
     private void handleEmployeeManagement() {
+    	setActiveButton(employeeButton);
         loadScreen("EmployeeManagementScreen.fxml");
         updatePageHeader("Nhân viên", "Quản lý nhân viên, tài khoản và phân quyền");
         setActiveButton(employeeButton);
@@ -211,6 +240,7 @@ public class DashboardScreenController {
      */
     @FXML
     private void handleStatistics() {
+    	setActiveButton(statisticsButton);
         loadScreen("StatisticsScreen.fxml");
         updatePageHeader("Thống kê", "Xem báo cáo doanh thu, vé bán và hiệu quả kinh doanh");
         setActiveButton(statisticsButton);
@@ -288,4 +318,103 @@ public class DashboardScreenController {
             activeButton.getStyleClass().add("sidebar-active-button");
         }
     }
+    
+    /**
+     * Xử lý sự kiện khi người dùng bấm nút Đăng xuất.
+     * Tải lại màn hình Login và thay thế Scene hiện hành.
+     */
+    /**
+     * Xử lý sự kiện khi người dùng bấm nút Đăng xuất.
+     * Đóng cửa sổ Dashboard và mở lại cửa sổ Login không có thanh bar.
+     */
+	    @FXML
+	    private void handleLogout() {
+	        try {
+	            // 1. Tải giao diện Login
+	            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LoginScreen.fxml"));
+	            Parent root = loader.load();
+	
+	            // 2. Lấy cửa sổ (Stage) Dashboard hiện tại và ĐÓNG NÓ LẠI
+	            Stage dashboardStage = (Stage) logoutButton.getScene().getWindow();
+	            dashboardStage.close();
+	
+	            // 3. TẠO MỘT CỬA SỔ MỚI (Stage) CHO MÀN HÌNH LOGIN
+	            Stage loginStage = new Stage();
+	
+	            // 4. QUAN TRỌNG NHẤT: Ẩn thanh bar ngang ở trên cùng
+	            loginStage.initStyle(StageStyle.UNDECORATED);
+	
+	            // 5. Cài đặt Scene giống hệt thông số bên LoadingScreen của bạn (900x550)
+	            Scene loginScene = new Scene(root, 900, 550);
+	            
+	            loginStage.setScene(loginScene);
+	            loginStage.centerOnScreen(); // Căn giữa màn hình
+	            
+	            // 6. Hiển thị cửa sổ Login
+	            loginStage.show();
+	
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	            System.err.println("Không thể tải màn hình Login.");
+	        }
+	    }
+	    
+	    public void setCurrentAccount(EmployeeAccount account) {
+	        this.currentAccount = account;
+	        initUserInfo(); // gọi để set UI
+	    }
+	    
+	    /**
+	     * Khởi tạo thông tin người dùng lên giao diện Dashboard.
+	     * Hiển thị ở góc trái dưới (Sidebar) và góc phải trên (Top Bar).
+	     */
+	    private void initUserInfo() {
+	        if (currentAccount == null) return;
+
+	        // 1. Lấy thông tin nhân viên và chức vụ
+	        var employee = currentAccount.getEmployee();
+	        String username = currentAccount.getAccountName();
+	        
+	        // --- XỬ LÝ GÓC TRÁI DƯỚI (SIDEBAR FOOTER) ---
+	        // Hiển thị "Xin chào, [tên_tài_khoản]"
+	        helloLabel.setText("Xin chào, " + (username != null ? username : "Guest"));
+	        
+	        if (employee != null) {
+	            // Hiển thị tên đầy đủ của nhân viên (ví dụ: "Nguyễn Minh Huy")
+	            employeeNameLabel.setText(employee.getEmployeeName());
+
+	            // --- XỬ LÝ GÓC PHẢI TRÊN (TOP BAR) ---
+	            var jobTitle = employee.getJobTitle();
+	            if (jobTitle != null) {
+	                String roleName = jobTitle.getJobTitleName();
+	                // Hiển thị tên chức vụ (ví dụ: "Quản trị viên")
+	                topPermissionValueLabel.setText(roleName);
+
+	                // Tạo chữ viết tắt cho Avatar từ tên chức vụ
+	                // Quy tắc: Lấy chữ cái đầu của mỗi từ. Ví dụ: "Quản Lý" -> "QL", "Nhân Viên" -> "NV"
+	                StringBuilder avatarBuilder = new StringBuilder();
+	                String[] words = roleName.split("\\s+");
+	                for (String word : words) {
+	                    if (!word.isEmpty()) {
+	                        avatarBuilder.append(word.charAt(0));
+	                    }
+	                }
+	                String avatarText = avatarBuilder.toString().toUpperCase();
+	                
+	                // Giới hạn tối đa 2 ký tự để Avatar không bị tràn
+	                if (avatarText.length() > 2) {
+	                    avatarText = avatarText.substring(0, 2);
+	                }
+	                topAvatarLabel.setText(avatarText);
+	            } else {
+	                topPermissionValueLabel.setText("Chưa phân quyền");
+	                topAvatarLabel.setText("??");
+	            }
+	        } else {
+	            employeeNameLabel.setText("Chưa có hồ sơ");
+	            topPermissionValueLabel.setText("N/A");
+	            topAvatarLabel.setText("??");
+	        }
+	    }
+    
 }

@@ -1,0 +1,40 @@
+.sale-root { -fx-background-color: #F4F6F8; }
+.section-title { -fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #1E293B; }
+
+/* Step Indicator */
+.step-container { -fx-padding: 10 0 20 0; }
+.step-item { -fx-opacity: 0.4; -fx-min-width: 100; }
+.step-active { -fx-opacity: 1.0; }
+.step-number {
+    -fx-background-color: #0F172A; -fx-text-fill: white; -fx-background-radius: 50;
+    -fx-min-width: 30; -fx-min-height: 30; -fx-alignment: center; -fx-font-weight: bold;
+}
+.step-active .step-number { -fx-background-color: #E50914; }
+.step-text { -fx-font-size: 12; -fx-font-weight: bold; -fx-padding: 5 0 0 0; }
+.step-line { -fx-background-color: #D1D5DB; -fx-min-height: 2; -fx-pref-width: 50; }
+
+/* Movie Cards */
+.movie-card {
+    -fx-background-color: white; -fx-background-radius: 12; -fx-pref-width: 180;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 8, 0, 0, 3); -fx-cursor: hand;
+}
+.movie-card:hover { -fx-scale-x: 1.05; -fx-scale-y: 1.05; }
+
+/* Session Buttons */
+.session-button {
+    -fx-background-color: white; -fx-border-color: #E2E8F0; -fx-border-radius: 8;
+    -fx-padding: 10 20; -fx-cursor: hand; -fx-min-width: 100;
+}
+.session-button-selected { -fx-background-color: #E50914; -fx-text-fill: white; }
+
+/* Receipt Styling */
+.receipt-panel { -fx-background-color: white; -fx-border-color: #E2E8F0; -fx-border-width: 0 0 0 1; }
+.receipt-content { -fx-padding: 25; -fx-background-color: white; }
+.receipt-header { -fx-font-size: 18px; -fx-font-weight: 900; -fx-alignment: center; }
+.receipt-movie-title { -fx-font-size: 15px; -fx-font-weight: 800; -fx-text-fill: #E50914; }
+.receipt-separator { -fx-border-style: dashed; -fx-border-color: #CBD5E1; -fx-border-width: 1 0 0 0; }
+.receipt-total-value { -fx-font-size: 20px; -fx-font-weight: 900; }
+
+/* Buttons */
+.next-button, .checkout-button { -fx-background-color: #E50914; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 25; -fx-background-radius: 8; }
+.back-button { -fx-background-color: #64748B; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 10 20; }

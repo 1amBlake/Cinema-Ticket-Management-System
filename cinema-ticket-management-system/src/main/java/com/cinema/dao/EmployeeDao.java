@@ -70,53 +70,59 @@ public class EmployeeDao {
 			""";
 	
 	private static final String SELECT_BY_ID_MYSQL = """
-			SELECT ma_nhan_vien,
-				ten_nhan_vien,
-				gioi_tinh,
-				so_dien_thoai,
-				ngay_sinh,
-				email,
-				ngay_vao_lam,
-				ma_chuc_vu,
-				trang_thai,
-				created_at,
-				updated_at
-			FROM nhan_vien
-			WHERE ma_nhan_vien = ?
-			""";
+		    SELECT nv.ma_nhan_vien,
+		           nv.ten_nhan_vien,
+		           nv.gioi_tinh,
+		           nv.so_dien_thoai,
+		           nv.ngay_sinh,
+		           nv.email,
+		           nv.ngay_vao_lam,
+		           nv.ma_chuc_vu,
+		           cv.ten_chuc_vu,   -- 🔥 thêm dòng này
+		           nv.trang_thai,
+		           nv.created_at,
+		           nv.updated_at
+		    FROM nhan_vien nv
+		    LEFT JOIN chuc_vu cv ON nv.ma_chuc_vu = cv.ma_chuc_vu
+		    WHERE nv.ma_nhan_vien = ?
+		    """;
 	
 	private static final String SELECT_ALL_MYSQL = """
-			SELECT ma_nhan_vien,
-				ten_nhan_vien,
-				gioi_tinh,
-				so_dien_thoai,
-				ngay_sinh,
-				email,
-				ngay_vao_lam,
-				ma_chuc_vu,
-				trang_thai,
-				created_at,
-				updated_at
-			FROM nhan_vien
-			ORDER BY ten_nhan_vien ASC, ma_nhan_vien ASC
-			""";
+		    SELECT nv.ma_nhan_vien,
+		           nv.ten_nhan_vien,
+		           nv.gioi_tinh,
+		           nv.so_dien_thoai,
+		           nv.ngay_sinh,
+		           nv.email,
+		           nv.ngay_vao_lam,
+		           nv.ma_chuc_vu,
+		           cv.ten_chuc_vu,
+		           nv.trang_thai,
+		           nv.created_at,
+		           nv.updated_at
+		    FROM nhan_vien nv
+		    LEFT JOIN chuc_vu cv ON nv.ma_chuc_vu = cv.ma_chuc_vu
+		    ORDER BY nv.ten_nhan_vien ASC, nv.ma_nhan_vien ASC
+		    """;
 	
 	private static final String SEARCH_BY_NAME_MYSQL = """
-			SELECT ma_nhan_vien,
-				ten_nhan_vien,
-				gioi_tinh,
-				so_dien_thoai,
-				ngay_sinh,
-				email,
-				ngay_vao_lam,
-				ma_chuc_vu,
-				trang_thai,
-				created_at,
-				updated_at
-			FROM nhan_vien
-			WHERE ten_nhan_vien LIKE ?
-			ORDER BY ten_nhan_vien ASC, ma_nhan_vien ASC
-			""";
+		    SELECT nv.ma_nhan_vien,
+		           nv.ten_nhan_vien,
+		           nv.gioi_tinh,
+		           nv.so_dien_thoai,
+		           nv.ngay_sinh,
+		           nv.email,
+		           nv.ngay_vao_lam,
+		           nv.ma_chuc_vu,
+		           cv.ten_chuc_vu,
+		           nv.trang_thai,
+		           nv.created_at,
+		           nv.updated_at
+		    FROM nhan_vien nv
+		    LEFT JOIN chuc_vu cv ON nv.ma_chuc_vu = cv.ma_chuc_vu
+		    WHERE nv.ten_nhan_vien LIKE ?
+		    ORDER BY nv.ten_nhan_vien ASC, nv.ma_nhan_vien ASC
+		    """;
 	
 	private static final String  EXISTS_BY_PHONE_MYSQL = """
 			SELECT 1
@@ -328,32 +334,41 @@ public class EmployeeDao {
 	 * @return đối tượng Employee
 	 * @throws SQLException nếu có lỗi SQL
 	 */
-	private Employee mapResultSetToEmployee (ResultSet rs) throws SQLException {
-		Timestamp createdAt = rs.getTimestamp("created_at");
-		Timestamp updatedAt = rs.getTimestamp("updated_at");
-		String phoneNumber = rs.getString("so_dien_thoai");
-		Date birthDate = rs.getDate("ngay_sinh");
-		String email = rs.getString("email");
-		Date hireDate = rs.getDate("ngay_vao_lam");
-		JobTitle jobTitle = new JobTitle(rs.getInt("ma_chuc_vu"));
-		int genderValue = rs.getInt("gioi_tinh");
-		EmployeeGender gender = rs.wasNull() ? null : EmployeeGender.fromId(genderValue);
-		
-		Employee aEmployee = new Employee(
-				rs.getInt("ma_nhan_vien"),
-				rs.getString("ten_nhan_vien"),
-				gender,
-				phoneNumber != null ? phoneNumber : null,
-				birthDate != null ? birthDate.toLocalDate() : null,
-				email != null ? email : null,
-				hireDate != null ? hireDate.toLocalDate() : null,
-				jobTitle,
-				EmployeeStatus.fromId(rs.getInt("trang_thai")),
-				createdAt != null ? createdAt.toLocalDateTime() : null,
-				updatedAt != null ? updatedAt.toLocalDateTime() : null
-				);
-		
-		return aEmployee;
+	private Employee mapResultSetToEmployee(ResultSet rs) throws SQLException {
+	    Timestamp createdAt = rs.getTimestamp("created_at");
+	    Timestamp updatedAt = rs.getTimestamp("updated_at");
+
+	    String phoneNumber = rs.getString("so_dien_thoai");
+	    Date birthDate = rs.getDate("ngay_sinh");
+	    String email = rs.getString("email");
+	    Date hireDate = rs.getDate("ngay_vao_lam");
+
+	    int genderValue = rs.getInt("gioi_tinh");
+	    EmployeeGender gender = rs.wasNull() ? null : EmployeeGender.fromId(genderValue);
+
+	    // 🔥 LẤY jobTitleName TRƯỚC
+	    String jobTitleName = rs.getString("ten_chuc_vu");
+
+	    JobTitle jobTitle = new JobTitle(
+	        rs.getInt("ma_chuc_vu"),
+	        jobTitleName
+	    );
+
+	    Employee employee = new Employee(
+	        rs.getInt("ma_nhan_vien"),
+	        rs.getString("ten_nhan_vien"),
+	        gender,
+	        phoneNumber,
+	        birthDate != null ? birthDate.toLocalDate() : null,
+	        email,
+	        hireDate != null ? hireDate.toLocalDate() : null,
+	        jobTitle,
+	        EmployeeStatus.fromId(rs.getInt("trang_thai")),
+	        createdAt != null ? createdAt.toLocalDateTime() : null,
+	        updatedAt != null ? updatedAt.toLocalDateTime() : null
+	    );
+
+	    return employee;
 	}
 	
 	/**

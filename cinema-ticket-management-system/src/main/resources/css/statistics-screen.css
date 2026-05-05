@@ -1,0 +1,343 @@
+/* ================================
+   Cinema Ticket Management Statistics
+   File: statistics-screen.css
+   ================================ */
+
+.statistics-scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.statistics-scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.statistics-root {
+    -fx-background-color: #F4F6F8;
+    -fx-font-family: "Segoe UI", "Arial";
+}
+
+.section-title {
+    -fx-text-fill: #111827;
+    -fx-font-size: 20px;
+    -fx-font-weight: 800;
+}
+
+.section-subtitle {
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 13px;
+}
+
+.section-badge,
+.badge-red,
+.badge-blue,
+.badge-gold,
+.badge-slate {
+    -fx-background-radius: 999;
+    -fx-padding: 6 12 6 12;
+    -fx-font-size: 12px;
+    -fx-font-weight: 800;
+}
+
+.badge-red {
+    -fx-background-color: rgba(229, 9, 20, 0.10);
+    -fx-text-fill: #C1121F;
+}
+
+.badge-blue {
+    -fx-background-color: rgba(37, 99, 235, 0.12);
+    -fx-text-fill: #1D4ED8;
+}
+
+.badge-gold {
+    -fx-background-color: rgba(251, 191, 36, 0.18);
+    -fx-text-fill: #92400E;
+}
+
+.badge-slate {
+    -fx-background-color: rgba(15, 23, 42, 0.08);
+    -fx-text-fill: #334155;
+}
+
+.stats-card,
+.stats-card-accent-red,
+.stats-card-accent-gold,
+.stats-card-accent-blue,
+.stats-card-accent-green {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 18;
+    -fx-border-radius: 18;
+    -fx-padding: 18;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.08), 14, 0, 0, 4);
+}
+
+.stats-card-accent-red {
+    -fx-border-color: rgba(229, 9, 20, 0.18);
+}
+
+.stats-card-accent-gold {
+    -fx-border-color: rgba(251, 191, 36, 0.22);
+}
+
+.stats-card-accent-blue {
+    -fx-border-color: rgba(37, 99, 235, 0.18);
+}
+
+.stats-card-accent-green {
+    -fx-border-color: rgba(34, 197, 94, 0.18);
+}
+
+.stats-card-title {
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+}
+
+.stats-card-value {
+    -fx-text-fill: #111827;
+    -fx-font-size: 30px;
+    -fx-font-weight: 900;
+}
+
+.stats-card-note {
+    -fx-text-fill: #9CA3AF;
+    -fx-font-size: 12px;
+}
+
+.panel-card,
+.panel-card-emphasis,
+.insight-panel {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-padding: 18;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.08), 16, 0, 0, 4);
+}
+
+.panel-card-emphasis {
+    -fx-background-color: linear-gradient(to bottom, #FFFFFF 0%, #FFF6F6 100%);
+    -fx-border-color: rgba(229, 9, 20, 0.10);
+}
+
+.panel-title {
+    -fx-text-fill: #111827;
+    -fx-font-size: 17px;
+    -fx-font-weight: 800;
+}
+
+.panel-subtitle {
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 12px;
+}
+
+.insight-panel {
+    -fx-background-color: linear-gradient(to bottom right, #0F172A 0%, #1E293B 100%);
+}
+
+.insight-panel .panel-title {
+    -fx-text-fill: #FFFFFF;
+}
+
+.insight-panel .panel-subtitle {
+    -fx-text-fill: #CBD5E1;
+}
+
+.insight-item {
+    -fx-background-color: rgba(255, 255, 255, 0.06);
+    -fx-background-radius: 14;
+    -fx-padding: 14;
+}
+
+.insight-title {
+    -fx-text-fill: #CBD5E1;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+.insight-value-positive,
+.insight-value-negative,
+.insight-value-neutral,
+.insight-value-gold {
+    -fx-font-size: 22px;
+    -fx-font-weight: 900;
+}
+
+.insight-value-positive {
+    -fx-text-fill: #4ADE80;
+}
+
+.insight-value-negative {
+    -fx-text-fill: #F87171;
+}
+
+.insight-value-neutral {
+    -fx-text-fill: #FFFFFF;
+}
+
+.insight-value-gold {
+    -fx-text-fill: #FBBF24;
+}
+
+.insight-note {
+    -fx-text-fill: #94A3B8;
+    -fx-font-size: 12px;
+}
+
+.statistics-chart,
+.revenue-chart,
+.ticket-day-chart,
+.ticket-movie-chart,
+.ticket-session-chart,
+.ticket-room-chart {
+    -fx-background-color: transparent;
+    -fx-padding: 4 0 0 0;
+}
+
+.statistics-chart .chart-plot-background,
+.revenue-chart .chart-plot-background,
+.ticket-day-chart .chart-plot-background,
+.ticket-movie-chart .chart-plot-background,
+.ticket-session-chart .chart-plot-background,
+.ticket-room-chart .chart-plot-background {
+    -fx-background-color: #F8FAFC;
+    -fx-background-radius: 14;
+}
+
+.statistics-chart .chart-legend,
+.revenue-chart .chart-legend,
+.ticket-day-chart .chart-legend,
+.ticket-movie-chart .chart-legend,
+.ticket-session-chart .chart-legend,
+.ticket-room-chart .chart-legend {
+    -fx-background-color: transparent;
+}
+
+.statistics-chart .axis,
+.revenue-chart .axis,
+.ticket-day-chart .axis,
+.ticket-movie-chart .axis,
+.ticket-session-chart .axis,
+.ticket-room-chart .axis {
+    -fx-tick-label-fill: #64748B;
+    -fx-font-size: 11px;
+}
+
+.statistics-chart .axis-label,
+.revenue-chart .axis-label,
+.ticket-day-chart .axis-label,
+.ticket-movie-chart .axis-label,
+.ticket-session-chart .axis-label,
+.ticket-room-chart .axis-label {
+    -fx-text-fill: #64748B;
+}
+
+.statistics-chart .chart-horizontal-grid-lines,
+.statistics-chart .chart-vertical-grid-lines,
+.revenue-chart .chart-horizontal-grid-lines,
+.revenue-chart .chart-vertical-grid-lines,
+.ticket-day-chart .chart-horizontal-grid-lines,
+.ticket-day-chart .chart-vertical-grid-lines,
+.ticket-movie-chart .chart-horizontal-grid-lines,
+.ticket-movie-chart .chart-vertical-grid-lines,
+.ticket-session-chart .chart-horizontal-grid-lines,
+.ticket-session-chart .chart-vertical-grid-lines,
+.ticket-room-chart .chart-horizontal-grid-lines,
+.ticket-room-chart .chart-vertical-grid-lines {
+    -fx-stroke: #E5E7EB;
+    -fx-stroke-dash-array: 2 4;
+}
+
+.statistics-chart .chart-alternative-row-fill,
+.statistics-chart .chart-alternative-column-fill,
+.revenue-chart .chart-alternative-row-fill,
+.revenue-chart .chart-alternative-column-fill,
+.ticket-day-chart .chart-alternative-row-fill,
+.ticket-day-chart .chart-alternative-column-fill,
+.ticket-movie-chart .chart-alternative-row-fill,
+.ticket-movie-chart .chart-alternative-column-fill,
+.ticket-session-chart .chart-alternative-row-fill,
+.ticket-session-chart .chart-alternative-column-fill,
+.ticket-room-chart .chart-alternative-row-fill,
+.ticket-room-chart .chart-alternative-column-fill {
+    -fx-fill: transparent;
+    -fx-stroke: transparent;
+}
+
+.revenue-chart .chart-series-area-line {
+    -fx-stroke: #E50914;
+    -fx-stroke-width: 3px;
+}
+
+.revenue-chart .chart-series-area-fill {
+    -fx-fill: linear-gradient(to bottom, rgba(229, 9, 20, 0.28), rgba(229, 9, 20, 0.03));
+}
+
+.ticket-day-chart .default-color0.chart-series-line {
+    -fx-stroke: #2563EB;
+    -fx-stroke-width: 3px;
+}
+
+.ticket-day-chart .default-color0.chart-line-symbol {
+    -fx-background-color: #FFFFFF, #2563EB;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 8px;
+    -fx-padding: 6px;
+}
+
+.ticket-movie-chart .default-color0.chart-bar {
+    -fx-bar-fill: #F59E0B;
+}
+
+.ticket-session-chart .default-color0.chart-bar {
+    -fx-bar-fill: #E11D48;
+}
+
+.ticket-room-chart .default-color0.chart-bar {
+    -fx-bar-fill: #0F172A;
+}
+
+.statistics-table {
+    -fx-background-color: transparent;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+}
+
+.statistics-table .column-header-background {
+    -fx-background-color: #F8FAFC;
+    -fx-background-radius: 12 12 0 0;
+}
+
+.statistics-table .column-header,
+.statistics-table .filler {
+    -fx-background-color: transparent;
+    -fx-size: 38px;
+}
+
+.statistics-table .column-header .label {
+    -fx-text-fill: #334155;
+    -fx-font-size: 12px;
+    -fx-font-weight: 800;
+}
+
+.statistics-table .table-row-cell {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: transparent transparent #F1F5F9 transparent;
+}
+
+.statistics-table .table-row-cell:selected {
+    -fx-background-color: rgba(229, 9, 20, 0.08);
+}
+
+.statistics-table .table-cell {
+    -fx-text-fill: #111827;
+    -fx-font-size: 12px;
+    -fx-padding: 10 12 10 12;
+}
+
+.statistics-table .placeholder .label {
+    -fx-text-fill: #94A3B8;
+    -fx-font-size: 12px;
+}

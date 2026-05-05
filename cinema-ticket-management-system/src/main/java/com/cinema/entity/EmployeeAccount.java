@@ -131,11 +131,9 @@ public class EmployeeAccount {
 	}
 
 	public void setAccountName(String accountName) {
-		if (accountName == null || accountName.trim().isEmpty())
-			throw new IllegalArgumentException("accountName không được để trống");
-		if (accountName.trim().length() > 255)
-			throw new IllegalArgumentException("accountName không được vượt quá 255 ký tự");
-		this.accountName = accountName.trim();
+	    if (accountName != null && accountName.trim().length() > 255)
+	        throw new IllegalArgumentException("accountName không được vượt quá 255 ký tự");
+	    this.accountName = accountName;
 	}
 
 	public void setAccountPassword(String accountPassword) {

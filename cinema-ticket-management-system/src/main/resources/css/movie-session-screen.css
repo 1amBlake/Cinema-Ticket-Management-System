@@ -1,0 +1,84 @@
+/* Nền của toàn bộ trang quản lý suất chiếu */
+.content-area {
+    -fx-background-color: #F4F6F8;
+    -fx-font-family: "Segoe UI", "Arial";
+}
+
+/* Card chứa nội dung (form, bảng) */
+.welcome-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(15, 23, 42, 0.08), 10, 0, 0, 4);
+}
+
+/* Tiêu đề trang */
+.welcome-title {
+    -fx-text-fill: #111827;
+    -fx-font-size: 22px;
+    -fx-font-weight: 800;
+}
+
+.welcome-subtitle {
+    -fx-text-fill: #6B7280;
+    -fx-font-size: 13px;
+}
+
+/* Các nút bấm cơ bản */
+.button-primary {
+    -fx-background-color: #E50914;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+}
+.button-primary:hover {
+    -fx-background-color: #B91C1C;
+}
+
+.button-secondary {
+    -fx-background-color: #F3F4F6;
+    -fx-text-fill: #111827;
+    -fx-font-weight: bold;
+    -fx-border-color: #D1D5DB;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+}
+.button-secondary:hover {
+    -fx-background-color: #E5E7EB;
+}
+
+.button-red {
+    -fx-background-color: #EF4444;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+}
+.button-red:hover {
+    -fx-background-color: #DC2626;
+}
+
+/* Định dạng cho TableView */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 8;
+}
+.table-view .column-header-background {
+    -fx-background-color: #F9FAFB;
+    -fx-background-radius: 8 8 0 0;
+}
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-size: 40px;
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 0 0 1 0;
+}
+.table-view .column-header .label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #374151;
+}

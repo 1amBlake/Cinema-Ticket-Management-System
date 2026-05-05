@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" styleClass="content-area" stylesheets="@../css/movie-session-screen.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cinema.controller.MovieSessionScreenController">
+    <children>
+        <VBox spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <padding>
+                <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+            </padding>
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                    <children>
+                        <VBox>
+                            <children>
+                                <Label styleClass="welcome-title" text="QUẢN LÝ SUẤT CHIẾU" />
+                                <Label styleClass="welcome-subtitle" text="Thiết lập lịch chiếu phim và quản lý phòng vé" />
+                            </children>
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="btnRefresh" onAction="#handleRefresh" styleClass="button-secondary" text="Làm mới" />
+                    </children>
+                </HBox>
+
+                <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <VBox spacing="15.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="welcome-card" style="-fx-padding: 15;">
+                                    <children>
+                                        <ComboBox fx:id="filterMovie" prefWidth="200.0" promptText="-- Chọn phim --" />
+                                        <ComboBox fx:id="filterRoom" prefWidth="120.0" promptText="-- Phòng --" />
+                                        <DatePicker fx:id="filterDate" prefWidth="150.0" promptText="Ngày chiếu" />
+                                        <Button onAction="#handleSearch" styleClass="button-primary" text="Tìm kiếm" />
+                                    </children>
+                                </HBox>
+
+                                <TableView fx:id="tableSessions" styleClass="welcome-card" VBox.vgrow="ALWAYS">
+                                    <columns>
+                                        <TableColumn fx:id="colId" prefWidth="50.0" text="ID" />
+                                        <TableColumn fx:id="colMovie" prefWidth="200.0" text="Phim" />
+                                        <TableColumn fx:id="colRoom" prefWidth="100.0" text="Phòng" />
+                                        <TableColumn fx:id="colStartTime" prefWidth="130.0" text="Bắt đầu" />
+                                        <TableColumn fx:id="colEndTime" prefWidth="130.0" text="Kết thúc" />
+                                        <TableColumn fx:id="colFormat" prefWidth="80.0" text="Định dạng" />
+                                        <TableColumn fx:id="colStatus" prefWidth="120.0" text="Trạng thái" />
+                                    </columns>
+                                    <columnResizePolicy>
+                                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                    </columnResizePolicy>
+                                </TableView>
+                            </children>
+                        </VBox>
+
+                        <VBox minWidth="300.0" spacing="15.0" styleClass="welcome-card" style="-fx-padding: 20;">
+                            <children>
+                                <Label style="-fx-font-weight: bold; -fx-font-size: 16;" text="Thông tin suất chiếu" />
+                                
+                                <Label text="Phim:" />
+                                <ComboBox fx:id="cbMovie" maxWidth="1.7976931348623157E308" />
+                                
+                                <Label text="Phòng chiếu:" />
+                                <ComboBox fx:id="cbRoom" maxWidth="1.7976931348623157E308" />
+                                
+                                <Label text="Ngày chiếu:" />
+                                <DatePicker fx:id="dpDate" maxWidth="1.7976931348623157E308" />
+                                
+                                <Label text="Giờ bắt đầu (HH:mm):" />
+                                <TextField fx:id="txtTime" promptText="Ví dụ: 19:30" />
+                                
+                                <Label text="Định dạng:" />
+                                <ComboBox fx:id="cbFormat" maxWidth="1.7976931348623157E308" />
+                                
+                                <Label text="Trạng thái:" />
+                                <ComboBox fx:id="cbStatus" maxWidth="1.7976931348623157E308" />
+
+                                <Separator style="-fx-padding: 10 0;" />
+                                
+                                <HBox spacing="10.0">
+                                    <children>
+                                        <Button fx:id="btnSave" maxWidth="1.7976931348623157E308" onAction="#handleSave" styleClass="button-primary" text="Lưu" HBox.hgrow="ALWAYS" />
+                                        <Button fx:id="btnDelete" maxWidth="1.7976931348623157E308" onAction="#handleDelete" styleClass="button-red" text="Xóa" HBox.hgrow="ALWAYS" />
+                                    </children>
+                                </HBox>
+                                <Button maxWidth="1.7976931348623157E308" onAction="#handleClear" styleClass="button-secondary" text="Nhập mới" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

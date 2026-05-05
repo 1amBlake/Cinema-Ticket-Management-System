@@ -1,6 +1,7 @@
 package com.cinema.validator;
 
 import java.time.LocalDate;
+import java.util.regex.Pattern;
 
 import com.cinema.entity.Employee;
 
@@ -12,7 +13,9 @@ import com.cinema.entity.Employee;
  * @author Minh Huy (chính)
  */
 public final class EmployeeValidator {
-
+	private static final Pattern NAME_PATTERN = Pattern.compile("^[\\p{L}]+(\\s[\\p{L}]+)*$");
+    private static final Pattern PHONE_PATTERN = Pattern.compile("^0[35789]\\d{8}$");
+    private static final Pattern EMAIL_PATTERN = Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)+$");
     /**
      * Constructor private để ngăn tạo đối tượng từ lớp EmployeeValidator.
      */
@@ -99,5 +102,41 @@ public final class EmployeeValidator {
      * @param employee - Đối tượng Employee cần kiểm tra
      */
     private static void validateBusinessRule(Employee employee) {
+    	String name = employee.getEmployeeName();
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("employeeName không được để trống!");
+        }
+        if (name.trim().length() > 255) {
+            throw new IllegalArgumentException("employeeName không được vượt quá 255 ký tự!");
+        }
+        if (!NAME_PATTERN.matcher(name.trim()).matches()) {
+            throw new IllegalArgumentException("Tên nhân viên không hợp lệ (không được chứa số hoặc ký tự đặc biệt)!");
+        }
+
+        // 2. Kiểm tra Số điện thoại (Regex VN 10 số)
+        String phone = employee.getEmployeePhoneNumber();
+        if (phone != null && !phone.trim().isEmpty()) {
+            if (!PHONE_PATTERN.matcher(phone.trim()).matches()) {
+                throw new IllegalArgumentException("Số điện thoại không hợp lệ (Phải gồm 10 số và bắt đầu bằng 03, 05, 07, 08 hoặc 09)!");
+            }
+        }
+
+        // 3. Kiểm tra Email (Regex định dạng chuẩn)
+        String email = employee.getEmployeeEmail();
+        if (email != null && !email.trim().isEmpty()) {
+            if (email.trim().length() > 255) {
+                throw new IllegalArgumentException("employeeEmail không được vượt quá 255 ký tự!");
+            }
+            if (!EMAIL_PATTERN.matcher(email.trim()).matches()) {
+                throw new IllegalArgumentException("Email không đúng định dạng (VD: example@domain.com)!");
+            }
+        }
+        
+        if (employee.getBirthDate() != null) {
+            int age = LocalDate.now().getYear() - employee.getBirthDate().getYear();
+            if (age < 18) {
+                throw new IllegalArgumentException("Nhân viên phải từ đủ 18 tuổi trở lên!");
+            }
+        }
     }
 }
