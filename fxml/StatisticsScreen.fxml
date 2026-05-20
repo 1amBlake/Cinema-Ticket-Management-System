@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true"
+            hbarPolicy="NEVER"
+            pannable="true"
+            styleClass="statistics-scroll-pane"
+            stylesheets="@../css/statistics-screen.css"
+            vbarPolicy="AS_NEEDED"
+            xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.cinema.controller.StatisticsScreenController">
+    <content>
+        <VBox fx:id="statisticsRoot" spacing="24.0" styleClass="statistics-root">
+            <padding>
+                <Insets top="2.0" right="2.0" bottom="10.0" left="2.0" />
+            </padding>
+
+            <children>
+                <VBox spacing="18.0" styleClass="section-block">
+                    <children>
+                        <HBox alignment="CENTER_LEFT">
+                            <children>
+                                <VBox spacing="3.0">
+                                    <children>
+                                        <Label text="Th&#7889;ng k&#234; doanh thu" styleClass="section-title" />
+                                        <Label text="Theo d&#245;i nhanh ti&#7873;n b&#7841;c c&#7911;a r&#7841;p theo ng&#224;y, tu&#7847;n v&#224; th&#225;ng." styleClass="section-subtitle" />
+                                    </children>
+                                </VBox>
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label text="Tr&#7885;ng t&#226;m" styleClass="badge-red" />
+                            </children>
+                        </HBox>
+
+                        <GridPane hgap="16.0" vgap="16.0">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="33.3333" hgrow="ALWAYS" />
+                                <ColumnConstraints percentWidth="33.3333" hgrow="ALWAYS" />
+                                <ColumnConstraints percentWidth="33.3333" hgrow="ALWAYS" />
+                            </columnConstraints>
+
+                            <children>
+                                <VBox spacing="8.0" styleClass="stats-card-accent-red" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                    <children>
+                                        <Label text="Doanh thu h&#244;m nay" styleClass="stats-card-title" />
+                                        <Label fx:id="todayRevenueValueLabel" text="0 &#273;" styleClass="stats-card-value" />
+                                        <Label text="Ti&#7873;n v&#233; v&#224; s&#7843;n ph&#7849;m ph&#225;t sinh trong ng&#224;y." styleClass="stats-card-note" />
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="8.0" styleClass="stats-card-accent-gold" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                    <children>
+                                        <Label text="Doanh thu tu&#7847;n n&#224;y" styleClass="stats-card-title" />
+                                        <Label fx:id="weekRevenueValueLabel" text="0 &#273;" styleClass="stats-card-value" />
+                                        <Label text="T&#7893;ng h&#7907;p 7 ng&#224;y g&#7847;n nh&#7845;t &#273;&#7875; nh&#236;n xu h&#432;&#7899;ng." styleClass="stats-card-note" />
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="8.0" styleClass="stats-card-accent-blue" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                                    <children>
+                                        <Label text="Doanh thu th&#225;ng n&#224;y" styleClass="stats-card-title" />
+                                        <Label fx:id="monthRevenueValueLabel" text="0 &#273;" styleClass="stats-card-value" />
+                                        <Label text="D&#249;ng &#273;&#7875; so ti&#7871;n &#273;&#7897; v&#7899;i m&#7909;c ti&#234;u kinh doanh th&#225;ng." styleClass="stats-card-note" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </GridPane>
+
+                        <HBox spacing="18.0">
+                            <children>
+                                <VBox spacing="12.0" styleClass="panel-card-emphasis" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT">
+                                            <children>
+                                                <VBox spacing="2.0">
+                                                    <children>
+                                                        <Label text="Xu h&#432;&#7899;ng doanh thu 7 ng&#224;y" styleClass="panel-title" />
+                                                        <Label text="Gi&#250;p xem nh&#7883;p t&#259;ng gi&#7843;m doanh thu tr&#432;&#7899;c khi c&#243; b&#7845;t th&#432;&#7901;ng." styleClass="panel-subtitle" />
+                                                    </children>
+                                                </VBox>
+                                                <Region HBox.hgrow="ALWAYS" />
+                                                <Label text="7 ng&#224;y" styleClass="badge-slate" />
+                                            </children>
+                                        </HBox>
+
+                                        <AreaChart fx:id="revenueTrendChart"
+                                                   animated="false"
+                                                   createSymbols="false"
+                                                   legendVisible="false"
+                                                   minHeight="300.0"
+                                                   prefHeight="300.0"
+                                                   styleClass="revenue-chart"
+                                                   VBox.vgrow="ALWAYS">
+                                            <xAxis>
+                                                <CategoryAxis animated="false" />
+                                            </xAxis>
+                                            <yAxis>
+                                                <NumberAxis animated="false" forceZeroInRange="false" />
+                                            </yAxis>
+                                        </AreaChart>
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="12.0" minWidth="310.0" prefWidth="310.0" styleClass="insight-panel">
+                                    <children>
+                                        <VBox spacing="3.0">
+                                            <children>
+                                                <Label text="G&#7907;i &#253; nhanh" styleClass="panel-title" />
+                                                <Label text="Nh&#7919;ng t&#237;n hi&#7879;u c&#7847;n xem ngay khi m&#7903; m&#224;n h&#236;nh." styleClass="panel-subtitle" />
+                                            </children>
+                                        </VBox>
+
+                                        <VBox spacing="10.0">
+                                            <children>
+                                                <VBox spacing="4.0" styleClass="insight-item">
+                                                    <children>
+                                                        <Label text="So s&#225;nh v&#7899;i h&#244;m qua" styleClass="insight-title" />
+                                                        <Label fx:id="todayVsYesterdayValueLabel" text="+0%" styleClass="insight-value-positive" />
+                                                        <Label text="Theo d&#245;i bi&#7871;n &#273;&#7897;ng doanh thu ngay trong ng&#224;y." styleClass="insight-note" />
+                                                    </children>
+                                                </VBox>
+
+                                                <VBox spacing="4.0" styleClass="insight-item">
+                                                    <children>
+                                                        <Label text="Phim d&#7851;n doanh thu" styleClass="insight-title" />
+                                                        <Label fx:id="bestMovieValueLabel" text="-" styleClass="insight-value-neutral" />
+                                                        <Label text="D&#249;ng &#273;&#7875; &#273;&#7849;y truy&#7873;n th&#244;ng cho phim ch&#7841;y t&#7889;t." styleClass="insight-note" />
+                                                    </children>
+                                                </VBox>
+
+                                                <VBox spacing="4.0" styleClass="insight-item">
+                                                    <children>
+                                                        <Label text="Khung gi&#7901; cao &#273;i&#7875;m" styleClass="insight-title" />
+                                                        <Label fx:id="peakSessionValueLabel" text="-" styleClass="insight-value-neutral" />
+                                                        <Label text="Gi&#250;p s&#7855;p ca v&#224; b&#7893; sung nh&#226;n s&#7921; ph&#249; h&#7907;p." styleClass="insight-note" />
+                                                    </children>
+                                                </VBox>
+
+                                                <VBox spacing="4.0" styleClass="insight-item">
+                                                    <children>
+                                                        <Label text="Ti&#7871;n &#273;&#7897; m&#7909;c ti&#234;u th&#225;ng" styleClass="insight-title" />
+                                                        <Label fx:id="monthTargetValueLabel" text="0%" styleClass="insight-value-gold" />
+                                                        <Label text="T&#7927; l&#7879; ho&#224;n th&#224;nh doanh thu th&#225;ng so v&#7899;i k&#7871; ho&#7841;ch." styleClass="insight-note" />
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+
+                <VBox spacing="18.0" styleClass="section-block">
+                    <children>
+                        <HBox alignment="CENTER_LEFT">
+                            <children>
+                                <VBox spacing="3.0">
+                                    <children>
+                                        <Label text="Th&#7889;ng k&#234; v&#233; b&#225;n" styleClass="section-title" />
+                                        <Label text="Theo d&#245;i l&#432;&#7907;ng v&#233; &#273;&#227; b&#225;n, v&#233; h&#7911;y v&#224; ph&#226;n b&#7893; theo nhi&#7873;u g&#243;c nh&#236;n." styleClass="section-subtitle" />
+                                    </children>
+                                </VBox>
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label text="4 g&#243;c nh&#236;n" styleClass="badge-blue" />
+                            </children>
+                        </HBox>
+
+                        <GridPane hgap="16.0" vgap="16.0">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="33.3333" hgrow="ALWAYS" />
+                                <ColumnConstraints percentWidth="33.3333" hgrow="ALWAYS" />
+                                <ColumnConstraints percentWidth="33.3333" hgrow="ALWAYS" />
+                            </columnConstraints>
+
+                            <children>
+                                <VBox spacing="8.0" styleClass="stats-card-accent-green" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                    <children>
+                                        <Label text="T&#7893;ng v&#233; &#273;&#227; b&#225;n" styleClass="stats-card-title" />
+                                        <Label fx:id="soldTicketsValueLabel" text="0" styleClass="stats-card-value" />
+                                        <Label text="S&#7889; v&#233; thanh to&#225;n th&#224;nh c&#244;ng trong chu k&#7923; theo d&#245;i." styleClass="stats-card-note" />
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="8.0" styleClass="stats-card-accent-red" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                    <children>
+                                        <Label text="T&#7893;ng v&#233; &#273;&#227; h&#7911;y" styleClass="stats-card-title" />
+                                        <Label fx:id="canceledTicketsValueLabel" text="0" styleClass="stats-card-value" />
+                                        <Label text="Theo d&#245;i t&#236;nh tr&#7841;ng h&#7911;y &#273;&#7875; gi&#7843;m m&#7845;t doanh thu." styleClass="stats-card-note" />
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="8.0" styleClass="stats-card-accent-gold" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                                    <children>
+                                        <Label text="T&#7927; l&#7879; h&#7911;y v&#233;" styleClass="stats-card-title" />
+                                        <Label fx:id="ticketCancelRateValueLabel" text="0%" styleClass="stats-card-value" />
+                                        <Label text="Duy tr&#236; d&#432;&#7899;i 5% &#273;&#7875; gi&#7919; ch&#7845;t l&#432;&#7907;ng b&#225;n h&#224;ng." styleClass="stats-card-note" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </GridPane>
+
+                        <GridPane hgap="18.0" vgap="18.0">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="50.0" hgrow="ALWAYS" />
+                                <ColumnConstraints percentWidth="50.0" hgrow="ALWAYS" />
+                            </columnConstraints>
+
+                            <children>
+                                <VBox spacing="12.0" styleClass="panel-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                    <children>
+                                        <VBox spacing="2.0">
+                                            <children>
+                                                <Label text="Theo ng&#224;y" styleClass="panel-title" />
+                                                <Label text="Kh&#7889;i l&#432;&#7907;ng v&#233; b&#225;n theo t&#7915;ng ng&#224;y trong tu&#7847;n." styleClass="panel-subtitle" />
+                                            </children>
+                                        </VBox>
+
+                                        <LineChart fx:id="ticketByDayChart"
+                                                   animated="false"
+                                                   legendVisible="false"
+                                                   minHeight="250.0"
+                                                   prefHeight="250.0"
+                                                   styleClass="ticket-day-chart"
+                                                   VBox.vgrow="ALWAYS">
+                                            <xAxis>
+                                                <CategoryAxis animated="false" />
+                                            </xAxis>
+                                            <yAxis>
+                                                <NumberAxis animated="false" forceZeroInRange="false" />
+                                            </yAxis>
+                                        </LineChart>
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="12.0" styleClass="panel-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                    <children>
+                                        <VBox spacing="2.0">
+                                            <children>
+                                                <Label text="Theo phim" styleClass="panel-title" />
+                                                <Label text="Top phim c&#243; l&#432;&#7907;ng v&#233; b&#225;n cao nh&#7845;t trong ng&#224;y." styleClass="panel-subtitle" />
+                                            </children>
+                                        </VBox>
+
+                                        <BarChart fx:id="ticketByMovieChart"
+                                                  animated="false"
+                                                  legendVisible="false"
+                                                  minHeight="250.0"
+                                                  prefHeight="250.0"
+                                                  styleClass="ticket-movie-chart"
+                                                  VBox.vgrow="ALWAYS">
+                                            <xAxis>
+                                                <CategoryAxis animated="false" />
+                                            </xAxis>
+                                            <yAxis>
+                                                <NumberAxis animated="false" forceZeroInRange="false" />
+                                            </yAxis>
+                                        </BarChart>
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="12.0" styleClass="panel-card" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                    <children>
+                                        <VBox spacing="2.0">
+                                            <children>
+                                                <Label text="Theo su&#7845;t chi&#7871;u" styleClass="panel-title" />
+                                                <Label text="Ph&#225;t hi&#7879;n khung gi&#7901; n&#224;o &#273;ang h&#250;t kh&#225;ch nh&#7845;t." styleClass="panel-subtitle" />
+                                            </children>
+                                        </VBox>
+
+                                        <BarChart fx:id="ticketBySessionChart"
+                                                  animated="false"
+                                                  legendVisible="false"
+                                                  minHeight="250.0"
+                                                  prefHeight="250.0"
+                                                  styleClass="ticket-session-chart"
+                                                  VBox.vgrow="ALWAYS">
+                                            <xAxis>
+                                                <CategoryAxis animated="false" />
+                                            </xAxis>
+                                            <yAxis>
+                                                <NumberAxis animated="false" forceZeroInRange="false" />
+                                            </yAxis>
+                                        </BarChart>
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="12.0" styleClass="panel-card" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <children>
+                                        <VBox spacing="2.0">
+                                            <children>
+                                                <Label text="Theo ph&#242;ng chi&#7871;u" styleClass="panel-title" />
+                                                <Label text="So s&#225;nh s&#7913;c ch&#7913;a b&#225;n ra gi&#7919;a c&#225;c ph&#242;ng." styleClass="panel-subtitle" />
+                                            </children>
+                                        </VBox>
+
+                                        <BarChart fx:id="ticketByRoomChart"
+                                                  animated="false"
+                                                  legendVisible="false"
+                                                  minHeight="250.0"
+                                                  prefHeight="250.0"
+                                                  styleClass="ticket-room-chart"
+                                                  VBox.vgrow="ALWAYS">
+                                            <xAxis>
+                                                <CategoryAxis animated="false" />
+                                            </xAxis>
+                                            <yAxis>
+                                                <NumberAxis animated="false" forceZeroInRange="false" />
+                                            </yAxis>
+                                        </BarChart>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </GridPane>
+                    </children>
+                </VBox>
+
+                <VBox spacing="18.0" styleClass="section-block">
+                    <children>
+                        <HBox alignment="CENTER_LEFT">
+                            <children>
+                                <VBox spacing="3.0">
+                                    <children>
+                                        <Label text="Hi&#7879;u qu&#7843; phim" styleClass="section-title" />
+                                        <Label text="Nhanh ch&#243;ng nh&#236;n ra phim n&#224;o &#273;em l&#7841;i doanh thu v&#224; l&#432;&#7907;ng kh&#225;ch t&#7889;t nh&#7845;t." styleClass="section-subtitle" />
+                                    </children>
+                                </VBox>
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label text="Top phim" styleClass="badge-gold" />
+                            </children>
+                        </HBox>
+
+                        <HBox spacing="18.0">
+                            <children>
+                                <VBox spacing="12.0" styleClass="panel-card" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <VBox spacing="2.0">
+                                            <children>
+                                                <Label text="Top phim doanh thu cao nh&#7845;t" styleClass="panel-title" />
+                                                <Label text="X&#7871;p h&#7841;ng theo s&#7889; ti&#7873;n thu v&#7873;." styleClass="panel-subtitle" />
+                                            </children>
+                                        </VBox>
+
+                                        <TableView fx:id="topRevenueMovieTable" styleClass="statistics-table" VBox.vgrow="ALWAYS">
+                                            <columns>
+                                                <TableColumn fx:id="topRevenueMovieNameColumn" prefWidth="240.0" text="Phim" />
+                                                <TableColumn fx:id="topRevenueMovieAmountColumn" prefWidth="160.0" text="Doanh thu" />
+                                                <TableColumn fx:id="topRevenueMovieTicketsColumn" prefWidth="120.0" text="V&#233; b&#225;n" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="12.0" styleClass="panel-card" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <VBox spacing="2.0">
+                                            <children>
+                                                <Label text="Top phim b&#225;n nhi&#7873;u v&#233; nh&#7845;t" styleClass="panel-title" />
+                                                <Label text="Theo d&#245;i l&#432;&#7907;ng kh&#225;ch v&#224; m&#7913;c l&#7845;p &#273;&#7847;y." styleClass="panel-subtitle" />
+                                            </children>
+                                        </VBox>
+
+                                        <TableView fx:id="topTicketMovieTable" styleClass="statistics-table" VBox.vgrow="ALWAYS">
+                                            <columns>
+                                                <TableColumn fx:id="topTicketMovieNameColumn" prefWidth="240.0" text="Phim" />
+                                                <TableColumn fx:id="topTicketMovieSoldColumn" prefWidth="120.0" text="V&#233; b&#225;n" />
+                                                <TableColumn fx:id="topTicketMovieOccupancyColumn" prefWidth="160.0" text="L&#7845;p &#273;&#7847;y" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>

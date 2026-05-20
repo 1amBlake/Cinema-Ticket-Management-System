@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane fx:controller="com.cinema.controller.LoadingScreenController"
+           styleClass="loading-root"
+           stylesheets="@../css/loading-screen.css"
+           maxHeight="550.0" maxWidth="900.0"
+           minHeight="550.0" minWidth="900.0"
+           prefHeight="550.0" prefWidth="900.0"
+           xmlns="http://javafx.com/javafx/25"
+           xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="CENTER" spacing="18.0" StackPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="160.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logo.png" />
+               </image>
+            </ImageView>
+
+            <Label text="CINEMA TICKET MANAGEMENT" styleClass="app-title" />
+
+            <ProgressBar fx:id="progressBar"
+                         prefHeight="18.0"
+                         prefWidth="562.0"
+                         progress="0.0"
+                         styleClass="loading-progress" />
+
+            <Label fx:id="loadingLabel" text="Đang tải..." styleClass="loading-text" />
+            <Label text="Một sản phẩm của Nhóm 1 - Hướng Sự Kiện" styleClass="loading-text" />
+         </children>
+      </VBox>
+   </children>
+</StackPane>

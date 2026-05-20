@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true"
+            hbarPolicy="NEVER"
+            pannable="true"
+            styleClass="invoice-scroll-pane"
+            stylesheets="@../css/invoice-screen.css"
+            vbarPolicy="AS_NEEDED"
+            xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.cinema.controller.InvoiceScreenController">
+    <content>
+        <VBox fx:id="invoiceRoot" spacing="18.0" styleClass="invoice-root">
+            <padding>
+                <Insets top="2.0" right="2.0" bottom="10.0" left="2.0" />
+            </padding>
+
+            <children>
+                <HBox spacing="16.0">
+                    <children>
+                        <VBox spacing="6.0" styleClass="summary-card-primary" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label text="T&#7893;ng h&#243;a &#273;&#417;n" styleClass="summary-title" />
+                                <Label fx:id="totalInvoicesValueLabel" text="0" styleClass="summary-value" />
+                                <Label text="To&#224;n b&#7897; h&#243;a &#273;&#417;n &#273;ang c&#243; trong danh s&#225;ch hi&#7875;n th&#7883;." styleClass="summary-note" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="6.0" styleClass="summary-card-success" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label text="H&#243;a &#273;&#417;n th&#224;nh c&#244;ng" styleClass="summary-title" />
+                                <Label fx:id="successfulInvoicesValueLabel" text="0" styleClass="summary-value" />
+                                <Label text="Theo d&#245;i s&#7889; giao d&#7883;ch thanh to&#225;n ho&#224;n t&#7845;t." styleClass="summary-note" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="6.0" styleClass="summary-card-warning" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label text="H&#243;a &#273;&#417;n h&#244;m nay" styleClass="summary-title" />
+                                <Label fx:id="todayInvoicesValueLabel" text="0" styleClass="summary-value" />
+                                <Label text="S&#7889; h&#243;a &#273;&#417;n ph&#225;t sinh trong ng&#224;y hi&#7879;n t&#7841;i." styleClass="summary-note" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="6.0" styleClass="summary-card-dark" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label text="T&#7893;ng gi&#225; tr&#7883; h&#243;a &#273;&#417;n" styleClass="summary-title" />
+                                <Label fx:id="totalAmountValueLabel" text="0 &#273;" styleClass="summary-value" />
+                                <Label text="Bao g&#7891;m to&#224;n b&#7897; v&#233; v&#224; s&#7843;n ph&#7849;m c&#7911;a danh s&#225;ch hi&#7879;n t&#7841;i." styleClass="summary-note" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <VBox spacing="10.0" styleClass="toolbar-card">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" spacing="12.0">
+                            <children>
+                                <VBox spacing="2.0">
+                                    <children>
+                                        <Label text="Danh s&#225;ch h&#243;a &#273;&#417;n" styleClass="panel-title" />
+                                        <Label text="T&#236;m theo m&#227; h&#243;a &#273;&#417;n &#273;&#7875; l&#7885;c nhanh v&#224; xem chi ti&#7871;t." styleClass="panel-subtitle" />
+                                    </children>
+                                </VBox>
+
+                                <Region HBox.hgrow="ALWAYS" />
+
+                                <TextField fx:id="invoiceSearchField"
+                                           onAction="#handleSearch"
+                                           prefWidth="220.0"
+                                           promptText="Nhap ma hoa don, vi du 12 hoac HD-0012"
+                                           styleClass="search-field" />
+
+                                <Button mnemonicParsing="false"
+                                        onAction="#handleSearch"
+                                        styleClass="primary-action-button"
+                                        text="T&#236;m" />
+
+                                <Button mnemonicParsing="false"
+                                        onAction="#handleResetSearch"
+                                        styleClass="secondary-action-button"
+                                        text="B&#7887; l&#7885;c" />
+
+                                <Button mnemonicParsing="false"
+                                        onAction="#handleRefreshInvoices"
+                                        styleClass="ghost-action-button"
+                                        text="T&#7843;i l&#7841;i" />
+                            </children>
+                        </HBox>
+
+                        <Label fx:id="searchMessageLabel"
+                               text="Danh s&#225;ch h&#243;a &#273;&#417;n s&#7861; hi&#7875;n th&#7883; t&#7841;i &#273;&#226;y."
+                               styleClass="toolbar-note-info" />
+                    </children>
+                </VBox>
+
+                <HBox spacing="18.0">
+                    <children>
+                        <VBox spacing="12.0" styleClass="list-panel" HBox.hgrow="ALWAYS">
+                            <children>
+                                <VBox spacing="2.0">
+                                    <children>
+                                        <Label text="T&#7893;ng h&#7907;p h&#243;a &#273;&#417;n" styleClass="panel-title" />
+                                        <Label text="Ch&#7885;n m&#7897;t d&#242;ng &#273;&#7875; xem chi ti&#7871;t h&#243;a &#273;&#417;n b&#234;n ph&#7843;i." styleClass="panel-subtitle" />
+                                    </children>
+                                </VBox>
+
+                                <TableView fx:id="invoiceTable" prefHeight="520.0" styleClass="invoice-table" VBox.vgrow="ALWAYS">
+                                    <columns>
+                                        <TableColumn fx:id="invoiceIdColumn" prefWidth="110.0" text="M&#227; H&#272;" />
+                                        <TableColumn fx:id="invoiceEmployeeColumn" prefWidth="180.0" text="Nh&#226;n vi&#234;n" />
+                                        <TableColumn fx:id="invoicePaymentMethodColumn" prefWidth="140.0" text="Thanh to&#225;n" />
+                                        <TableColumn fx:id="invoiceStatusColumn" prefWidth="145.0" text="Tr&#7841;ng th&#225;i" />
+                                        <TableColumn fx:id="invoiceTimeColumn" prefWidth="170.0" text="Th&#7901;i gian" />
+                                        <TableColumn fx:id="invoiceTotalColumn" prefWidth="140.0" text="T&#7893;ng ti&#7873;n" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+
+                        <VBox minWidth="430.0" prefWidth="430.0" spacing="18.0">
+                            <children>
+                                <VBox spacing="14.0" styleClass="detail-overview-card">
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT">
+                                            <children>
+                                                <VBox spacing="2.0">
+                                                    <children>
+                                                        <Label text="Chi ti&#7871;t h&#243;a &#273;&#417;n" styleClass="panel-title" />
+                                                        <Label text="Th&#244;ng tin chung v&#224; t&#7893;ng h&#7907;p gi&#225; tr&#7883; c&#7911;a h&#243;a &#273;&#417;n &#273;ang ch&#7885;n." styleClass="panel-subtitle" />
+                                                    </children>
+                                                </VBox>
+
+                                                <Region HBox.hgrow="ALWAYS" />
+
+                                                <Label fx:id="detailStatusValueLabel"
+                                                       alignment="CENTER"
+                                                       minWidth="128.0"
+                                                       prefWidth="128.0"
+                                                        text="Chua chon"
+                                                        styleClass="status-pill-empty" />
+                                            </children>
+                                        </HBox>
+
+                                        <GridPane hgap="14.0" vgap="10.0">
+                                            <columnConstraints>
+                                                <ColumnConstraints percentWidth="38.0" />
+                                                <ColumnConstraints percentWidth="62.0" />
+                                            </columnConstraints>
+
+                                            <children>
+                                                <Label text="M&#227; h&#243;a &#273;&#417;n" styleClass="detail-label" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                                <Label fx:id="detailInvoiceIdValueLabel" text="-" styleClass="detail-value" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                                                <Label text="Nh&#226;n vi&#234;n l&#7853;p" styleClass="detail-label" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                                <Label fx:id="detailEmployeeValueLabel" text="-" styleClass="detail-value" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                                                <Label text="Thanh to&#225;n" styleClass="detail-label" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                                <Label fx:id="detailPaymentMethodValueLabel" text="-" styleClass="detail-value" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                                                <Label text="Th&#7901;i gian thanh to&#225;n" styleClass="detail-label" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                                                <Label fx:id="detailPaymentTimeValueLabel" text="-" styleClass="detail-value" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                                                <Label text="Th&#7901;i gian t&#7841;o" styleClass="detail-label" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                                                <Label fx:id="detailCreatedAtValueLabel" text="-" styleClass="detail-value" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                            </children>
+                                        </GridPane>
+
+                                        <HBox spacing="12.0">
+                                            <children>
+                                                <VBox spacing="4.0" styleClass="amount-card-ticket" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <Label text="V&#233;" styleClass="amount-title" />
+                                                        <Label fx:id="detailTicketCountValueLabel" text="0 ve" styleClass="amount-value" />
+                                                        <Label fx:id="detailTicketTotalValueLabel" text="0 &#273;" styleClass="amount-note" />
+                                                    </children>
+                                                </VBox>
+
+                                                <VBox spacing="4.0" styleClass="amount-card-product" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <Label text="S&#7843;n ph&#7849;m" styleClass="amount-title" />
+                                                        <Label fx:id="detailProductCountValueLabel" text="0 mon" styleClass="amount-value" />
+                                                        <Label fx:id="detailProductTotalValueLabel" text="0 &#273;" styleClass="amount-note" />
+                                                    </children>
+                                                </VBox>
+
+                                                <VBox spacing="4.0" styleClass="amount-card-total" HBox.hgrow="ALWAYS">
+                                                    <children>
+                                                        <Label text="T&#7893;ng h&#243;a &#273;&#417;n" styleClass="amount-title" />
+                                                        <Label fx:id="detailGrandTotalValueLabel" text="0 &#273;" styleClass="amount-value" />
+                                                        <Label text="Gia tri thanh toan" styleClass="amount-note" />
+                                                    </children>
+                                                </VBox>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="12.0" styleClass="detail-panel">
+                                    <children>
+                                        <VBox spacing="2.0">
+                                            <children>
+                                                <Label text="V&#233; trong h&#243;a &#273;&#417;n" styleClass="panel-title" />
+                                                <Label text="Danh s&#225;ch v&#233; &#273;&#227; &#273;&#432;&#7907;c g&#7845;n v&#224;o h&#243;a &#273;&#417;n." styleClass="panel-subtitle" />
+                                            </children>
+                                        </VBox>
+
+                                        <TableView fx:id="ticketDetailTable" prefHeight="160.0" styleClass="detail-table">
+                                            <columns>
+                                                <TableColumn fx:id="ticketIdColumn" prefWidth="190.0" text="M&#227; v&#233;" />
+                                                <TableColumn fx:id="ticketPriceColumn" prefWidth="190.0" text="&#272;&#417;n gi&#225;" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </VBox>
+
+                                <VBox spacing="12.0" styleClass="detail-panel">
+                                    <children>
+                                        <VBox spacing="2.0">
+                                            <children>
+                                                <Label text="S&#7843;n ph&#7849;m trong h&#243;a &#273;&#417;n" styleClass="panel-title" />
+                                                <Label text="Theo d&#245;i c&#225;c m&#243;n b&#225;n k&#232;m &#273;i c&#249;ng h&#243;a &#273;&#417;n." styleClass="panel-subtitle" />
+                                            </children>
+                                        </VBox>
+
+                                        <TableView fx:id="productDetailTable" prefHeight="190.0" styleClass="detail-table">
+                                            <columns>
+                                                <TableColumn fx:id="productIdColumn" prefWidth="105.0" text="M&#227; SP" />
+                                                <TableColumn fx:id="productQuantityColumn" prefWidth="85.0" text="SL" />
+                                                <TableColumn fx:id="productUnitPriceColumn" prefWidth="110.0" text="&#272;&#417;n gi&#225;" />
+                                                <TableColumn fx:id="productTotalColumn" prefWidth="110.0" text="Th&#224;nh ti&#7873;n" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>

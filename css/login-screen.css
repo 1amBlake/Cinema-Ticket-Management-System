@@ -1,0 +1,83 @@
+.login-root {
+    -fx-background-color: #111827;
+}
+
+.login-left-panel {
+    -fx-background-color: linear-gradient(to bottom right, #111827, #1f2937);
+}
+
+.login-right-panel {
+    -fx-background-color: #f9fafb;
+}
+
+.brand-title {
+    -fx-text-fill: white;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+
+.brand-subtitle {
+    -fx-text-fill: #d1d5db;
+    -fx-font-size: 15px;
+}
+
+.login-title {
+    -fx-text-fill: #111827;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+}
+
+.login-subtitle {
+    -fx-text-fill: #6b7280;
+    -fx-font-size: 14px;
+}
+
+.input-label {
+    -fx-text-fill: #374151;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.login-input {
+    -fx-background-color: white;
+    -fx-border-color: #d1d5db;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 10 12 10 12;
+    -fx-font-size: 14px;
+}
+
+.login-input:focused {
+    -fx-border-color: #f59e0b;
+    -fx-border-width: 1.5;
+}
+
+.login-button {
+    -fx-background-color: #f59e0b;
+    -fx-text-fill: #111827;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.login-button:hover {
+    -fx-background-color: #d97706;
+}
+
+.message-label {
+    -fx-text-fill: #dc2626;
+    -fx-font-size: 13px;
+}
+
+.close-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #6b7280;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.close-button:hover {
+    -fx-text-fill: #dc2626;
+}

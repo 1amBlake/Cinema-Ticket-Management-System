@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="overviewRoot" spacing="22.0"
+      styleClass="overview-root"
+      stylesheets="@../css/overview-screen.css"
+      xmlns="http://javafx.com/javafx/25"
+      xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets top="0.0" right="0.0" bottom="0.0" left="0.0" />
+    </padding>
+
+    <children>
+        <GridPane fx:id="summaryCardGrid" hgap="16.0" vgap="16.0">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="25.0" hgrow="ALWAYS" />
+                <ColumnConstraints percentWidth="25.0" hgrow="ALWAYS" />
+                <ColumnConstraints percentWidth="25.0" hgrow="ALWAYS" />
+                <ColumnConstraints percentWidth="25.0" hgrow="ALWAYS" />
+            </columnConstraints>
+
+            <children>
+                <VBox fx:id="todayRevenueCard" spacing="8.0" styleClass="summary-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                            <children>
+                                <Label text="Doanh thu hôm nay" styleClass="summary-title" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <StackPane alignment="CENTER" minWidth="34.0" prefWidth="34.0" maxWidth="34.0" minHeight="34.0" prefHeight="34.0" maxHeight="34.0" styleClass="summary-icon-box-red">
+                                    <children>
+                                        <ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="summary-card-icon">
+                                            <image>
+                                                <Image url="@../images/icons/revenue.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                </StackPane>
+                            </children>
+                        </HBox>
+                        <Label fx:id="todayRevenueValueLabel" text="0 đ" styleClass="summary-value" />
+                        <Label text="Tổng tiền hóa đơn trong ngày" styleClass="summary-note" />
+                    </children>
+                </VBox>
+
+                <VBox fx:id="ticketSoldCard" spacing="8.0" styleClass="summary-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                            <children>
+                                <Label text="Vé đã bán" styleClass="summary-title" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <StackPane alignment="CENTER" minWidth="34.0" prefWidth="34.0" maxWidth="34.0" minHeight="34.0" prefHeight="34.0" maxHeight="34.0" styleClass="summary-icon-box-gold">
+                                    <children>
+                                        <ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="summary-card-icon">
+                                            <image>
+                                                <Image url="@../images/icons/ticket.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                </StackPane>
+                            </children>
+                        </HBox>
+                        <Label fx:id="ticketSoldValueLabel" text="0" styleClass="summary-value" />
+                        <Label text="Số vé đã thanh toán" styleClass="summary-note" />
+                    </children>
+                </VBox>
+
+                <VBox fx:id="sessionTodayCard" spacing="8.0" styleClass="summary-card" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                            <children>
+                                <Label text="Suất chiếu hôm nay" styleClass="summary-title" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <StackPane alignment="CENTER" minWidth="34.0" prefWidth="34.0" maxWidth="34.0" minHeight="34.0" prefHeight="34.0" maxHeight="34.0" styleClass="summary-icon-box-blue">
+                                    <children>
+                                        <ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="summary-card-icon">
+                                            <image>
+                                                <Image url="@../images/icons/session.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                </StackPane>
+                            </children>
+                        </HBox>
+                        <Label fx:id="sessionTodayValueLabel" text="0" styleClass="summary-value" />
+                        <Label text="Các suất chiếu trong ngày" styleClass="summary-note" />
+                    </children>
+                </VBox>
+
+                <VBox fx:id="invoiceTodayCard" spacing="8.0" styleClass="summary-card" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                            <children>
+                                <Label text="Hóa đơn hôm nay" styleClass="summary-title" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <StackPane alignment="CENTER" minWidth="34.0" prefWidth="34.0" maxWidth="34.0" minHeight="34.0" prefHeight="34.0" maxHeight="34.0" styleClass="summary-icon-box-green">
+                                    <children>
+                                        <ImageView fitWidth="18.0" fitHeight="18.0" preserveRatio="true" pickOnBounds="true" styleClass="summary-card-icon">
+                                            <image>
+                                                <Image url="@../images/icons/invoice.png" />
+                                            </image>
+                                        </ImageView>
+                                    </children>
+                                </StackPane>
+                            </children>
+                        </HBox>
+                        <Label fx:id="invoiceTodayValueLabel" text="0" styleClass="summary-value" />
+                        <Label text="Số hóa đơn đã lập" styleClass="summary-note" />
+                    </children>
+                </VBox>
+            </children>
+        </GridPane>
+
+        <HBox spacing="18.0" VBox.vgrow="ALWAYS">
+            <children>
+                <VBox fx:id="upcomingSessionPanel" spacing="12.0" styleClass="panel-card" HBox.hgrow="ALWAYS">
+                    <children>
+                        <HBox alignment="CENTER_LEFT">
+                            <children>
+                                <VBox spacing="2.0">
+                                    <children>
+                                        <Label text="Suất chiếu sắp tới" styleClass="panel-title" />
+                                        <Label text="Danh sách suất chiếu gần nhất" styleClass="panel-subtitle" />
+                                    </children>
+                                </VBox>
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label text="Hôm nay" styleClass="badge-gold" />
+                            </children>
+                        </HBox>
+
+                        <TableView fx:id="upcomingSessionTable" VBox.vgrow="ALWAYS" styleClass="dashboard-table">
+                            <columns>
+                                <TableColumn fx:id="movieNameColumn" text="Phim" prefWidth="180.0" />
+                                <TableColumn fx:id="sessionTimeColumn" text="Giờ chiếu" prefWidth="100.0" />
+                                <TableColumn fx:id="screenNameColumn" text="Phòng" prefWidth="90.0" />
+                                <TableColumn fx:id="sessionStatusColumn" text="Trạng thái" prefWidth="120.0" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </VBox>
+
+                <VBox fx:id="recentInvoicePanel" spacing="12.0" styleClass="panel-card" HBox.hgrow="ALWAYS">
+                    <children>
+                        <HBox alignment="CENTER_LEFT">
+                            <children>
+                                <VBox spacing="2.0">
+                                    <children>
+                                        <Label text="Hóa đơn gần đây" styleClass="panel-title" />
+                                        <Label text="Các giao dịch mới nhất" styleClass="panel-subtitle" />
+                                    </children>
+                                </VBox>
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label text="Mới" styleClass="badge-red" />
+                            </children>
+                        </HBox>
+
+                        <TableView fx:id="recentInvoiceTable" VBox.vgrow="ALWAYS" styleClass="dashboard-table">
+                            <columns>
+                                <TableColumn fx:id="invoiceIdColumn" text="Mã HĐ" prefWidth="90.0" />
+                                <TableColumn fx:id="invoiceEmployeeColumn" text="Nhân viên" prefWidth="130.0" />
+                                <TableColumn fx:id="invoiceTotalColumn" text="Tổng tiền" prefWidth="120.0" />
+                                <TableColumn fx:id="invoiceTimeColumn" text="Thời gian" prefWidth="110.0" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+</VBox>
+
+<!--
+Gợi ý controller sau này:
+fx:controller="com.cinema.controller.OverviewScreenController"
+
+fx:id quan trọng:
+todayRevenueValueLabel, ticketSoldValueLabel, sessionTodayValueLabel, invoiceTodayValueLabel,
+upcomingSessionTable, recentInvoiceTable
+-->
